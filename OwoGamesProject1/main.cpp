@@ -3,6 +3,11 @@
 void tocar_los_huevos()
 {
 	printf("Jajano que paso");
+
+}
+
+int sum(int num1, int num2) {
+	return num1 + num2;
 }
 
 int main() {
