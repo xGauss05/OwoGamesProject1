@@ -1,5 +1,6 @@
 # OwoGamesProject1
 Proyecto 1: Guerrilla War
 ## Buenos días
-![4rTcT0F](https://user-images.githubusercontent.com/57706173/155699114-838fac16-5dd2-4db1-b398-41185c82202b.jpeg)
 
+
+![wooden_train](https://user-images.githubusercontent.com/99729919/155699289-d6527918-2b69-44e9-b0e0-b137c14c73db.jpg)
