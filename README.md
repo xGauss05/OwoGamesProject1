@@ -1,4 +1,4 @@
-# A a small Guerrilla War project
+# A small Guerrilla War project
 This is a project for the arcade game 'Guerrilla War' created by Owo Games. We don't own any of the files used in this project. Guerrilla War (Guevara) and all of the content used for the project is the property of SNK. Every piece of content is used and can be used by anyone for non-commercial projects. Created by Owo Games for educational purposes.
 ## Game instructions
 *to do*
@@ -8,9 +8,14 @@ This is a project for the arcade game 'Guerrilla War' created by Owo Games. We d
 - Remember to change the solution platform to x86.
 
 ## Controls
-*to do*
++ W, A, S, D : Movement controls
++ ARROWS KEYS: Sets the direction where the player looks
++ SPACE BAR: Shoot
++ E: Throw grenade
 
 ## Team members
++ Project Repository: [Link](https://github.com/xGauss05/OwoGamesProject1)
+
 _Jonathan Cacay's Github and role_
 
 + Code & Management
