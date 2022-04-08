@@ -8,6 +8,11 @@
 struct SDL_Texture;
 struct Collider;
 
+enum Directions {
+	UP, DOWN, RIGHT, LEFT,
+	UP_RIGHT, UP_LEFT, DOWN_RIGHT, DOWN_LEFT
+};
+
 class ModulePlayer : public Module {
 public:
 	// Constructor
@@ -41,6 +46,8 @@ public:
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
 
+	// Sets the player direction
+	Directions direction;
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
 	Animation* currentAnimTop = nullptr;
@@ -50,18 +57,22 @@ public:
 	Animation idleAnimTop;
 	Animation idleAnimBot;
 
-	Animation upAnimTop;
-	Animation upAnimBot;
-	Animation upRightAnimBot;
-	Animation upLeftAnimBot;
-	
-	Animation downAnimBot;
-
-	Animation rightAnimBot;
-
-	Animation leftAnimBot;
-
-	// TODO 3: Add a collider to the player
+	// Up
+	Animation upAnimTop, upAnimBot;
+	// Up-Right
+	Animation upRightAnimTop, upRightAnimBot;
+	// Up-Left
+	Animation upLeftAnimTop, upLeftAnimBot;
+	// Down
+	Animation downAnimTop, downAnimBot;
+	// Down-Right
+	Animation downRightAnimTop, downRightAnimBot;
+	// Down-Left
+	Animation downLeftAnimTop, downLeftAnimBot;
+	// Right
+	Animation rightAnimTop, rightAnimBot;
+	// Left
+	Animation leftAnimTop, leftAnimBot;
 
 	// The player's collider
 	Collider* collider = nullptr;
