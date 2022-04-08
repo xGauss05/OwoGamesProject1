@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Archivos de recursos">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Archivos de origen\Application">
       <UniqueIdentifier>{6c73b7bb-00aa-44b2-9288-a5ef2980999f}</UniqueIdentifier>
     </Filter>
@@ -30,6 +26,9 @@
     </Filter>
     <Filter Include="Archivos de origen\Modules\Gameplay">
       <UniqueIdentifier>{2e500ab1-7477-47b4-b000-eac169d354c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Entities\Enemies">
+      <UniqueIdentifier>{f89ffd84-2921-4f01-be6b-75fc2b080855}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +76,15 @@
     </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Archivos de origen\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleEnemies.cpp">
+      <Filter>Archivos de origen\Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Archivos de origen\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_GreenSoldier.cpp">
+      <Filter>Archivos de origen\Entities\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +138,15 @@
     </ClInclude>
     <ClInclude Include="p2Point.h">
       <Filter>Archivos de origen\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleEnemies.h">
+      <Filter>Archivos de origen\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Archivos de origen\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_GreenSoldier.h">
+      <Filter>Archivos de origen\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

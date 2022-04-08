@@ -43,12 +43,23 @@ public:
 
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
-	Animation* currentAnimation = nullptr;
+	Animation* currentAnimTop = nullptr;
+	Animation* currentAnimBot = nullptr;
 
 	// A set of animations
-	Animation idleAnim;
-	Animation upAnim;
-	Animation downAnim;
+	Animation idleAnimTop;
+	Animation idleAnimBot;
+
+	Animation upAnimTop;
+	Animation upAnimBot;
+	Animation upRightAnimBot;
+	Animation upLeftAnimBot;
+	
+	Animation downAnimBot;
+
+	Animation rightAnimBot;
+
+	Animation leftAnimBot;
 
 	// TODO 3: Add a collider to the player
 
@@ -62,8 +73,8 @@ public:
 	uint destroyedCountdown = 120;
 
 	// Sound effects indices
-	uint laserFx = 0;
-	uint explosionFx = 0;
+	uint shotFx = 0;
+	uint deadFx = 0;
 };
 
 #endif //!__MODULE_PLAYER_H__
