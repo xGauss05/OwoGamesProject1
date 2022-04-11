@@ -17,16 +17,17 @@ ModulePlayer::ModulePlayer() {
 
 	// Insert player animations here
 	// Move up, top
-	upAnimTop.PushBack({ 0, 0, 32, 32 });
-	upAnimTop.PushBack({ 33, 0, 32, 32 });
-	upAnimTop.PushBack({ 65, 0, 32, 32 });
-	upAnimTop.PushBack({ 97, 0, 32, 32 });
-	upAnimTop.PushBack({ 129, 0, 32, 32 });
-	upAnimTop.PushBack({ 97, 0, 32, 32 });
-	upAnimTop.PushBack({ 65, 0, 32, 32 });
-	upAnimTop.PushBack({ 33, 0, 32, 32 });
+	upAnimTop.PushBack({ 0,   0, 32, 32 });
+	upAnimTop.PushBack({ 32,  0, 32, 32 });
+	upAnimTop.PushBack({ 64,  0, 32, 32 });
+	upAnimTop.PushBack({ 96,  0, 32, 32 });
+	upAnimTop.PushBack({ 128, 0, 32, 32 });
+	upAnimTop.PushBack({ 96,  0, 32, 32 });
+	upAnimTop.PushBack({ 64,  0, 32, 32 });
+	upAnimTop.PushBack({ 32,  0, 32, 32 });
 	upAnimTop.loop = true;
 	upAnimTop.speed = 0.1f;
+
 	// Move up, bot
 	upAnimBot.PushBack({ 160, 0, 32, 32 });
 	upAnimBot.PushBack({ 192, 0, 32, 32 });
@@ -40,102 +41,173 @@ ModulePlayer::ModulePlayer() {
 	upAnimBot.speed = 0.1f;
 
 	// Move up-right, top
-	upRightAnimTop.PushBack({ 160, 31, 32, 32 });
-	upRightAnimTop.PushBack({ 192, 31, 32, 32 });
-	upRightAnimTop.PushBack({ 224, 31, 32, 32 });
-	upRightAnimTop.PushBack({ 256, 31, 32, 32 });
-	upRightAnimTop.PushBack({ 288, 31, 32, 32 });
-	upRightAnimTop.PushBack({ 256, 31, 32, 32 });
-	upRightAnimTop.PushBack({ 224, 31, 32, 32 });
-	upRightAnimTop.PushBack({ 192, 31, 32, 32 });
+	upRightAnimTop.PushBack({ 0,   32, 32, 32 });
+	upRightAnimTop.PushBack({ 32,  32, 32, 32 });
+	upRightAnimTop.PushBack({ 64,  32, 32, 32 });
+	upRightAnimTop.PushBack({ 96,  32, 32, 32 });
+	upRightAnimTop.PushBack({ 128, 32, 32, 32 });
+	upRightAnimTop.PushBack({ 96,  32, 32, 32 });
+	upRightAnimTop.PushBack({ 64,  32, 32, 32 });
+	upRightAnimTop.PushBack({ 32,  32, 32, 32 });
 	upRightAnimTop.loop = true;
 	upRightAnimTop.speed = 0.1f;
+
 	// Move up-right, bot
-	upRightAnimBot.PushBack({ 160, 31, 32, 32 });
-	upRightAnimBot.PushBack({ 192, 31, 32, 32 });
-	upRightAnimBot.PushBack({ 224, 31, 32, 32 });
-	upRightAnimBot.PushBack({ 256, 31, 32, 32 });
-	upRightAnimBot.PushBack({ 288, 31, 32, 32 });
-	upRightAnimBot.PushBack({ 256, 31, 32, 32 });
-	upRightAnimBot.PushBack({ 224, 31, 32, 32 });
-	upRightAnimBot.PushBack({ 192, 31, 32, 32 });
+	upRightAnimBot.PushBack({ 160, 32, 32, 32 });
+	upRightAnimBot.PushBack({ 192, 32, 32, 32 });
+	upRightAnimBot.PushBack({ 224, 32, 32, 32 });
+	upRightAnimBot.PushBack({ 256, 32, 32, 32 });
+	upRightAnimBot.PushBack({ 288, 32, 32, 32 });
+	upRightAnimBot.PushBack({ 256, 32, 32, 32 });
+	upRightAnimBot.PushBack({ 224, 32, 32, 32 });
+	upRightAnimBot.PushBack({ 192, 32, 32, 32 });
 	upRightAnimBot.loop = true;
 	upRightAnimBot.speed = 0.1f;
 
-	// Move up-left, top
-	upLeftAnimTop.PushBack({ 0, 225, 32, 32 });
-	upLeftAnimTop.PushBack({ 33, 225, 32, 32 });
-	upLeftAnimTop.PushBack({ 65, 225, 32, 32 });
-	upLeftAnimTop.PushBack({ 97, 225, 32, 32 });
-	upLeftAnimTop.PushBack({ 129, 225, 32, 32 });
-	upLeftAnimTop.PushBack({ 97, 225, 32, 32 });
-	upLeftAnimTop.PushBack({ 65, 225, 32, 32 });
-	upLeftAnimTop.PushBack({ 33, 225, 32, 32 });
-	upLeftAnimTop.loop = true;
-	upLeftAnimTop.speed = 0.1f;
-	// Move up-left, bot
-	upLeftAnimBot.PushBack({ 160, 225, 32, 32 });
-	upLeftAnimBot.PushBack({ 192, 225, 32, 32 });
-	upLeftAnimBot.PushBack({ 224, 225, 32, 32 });
-	upLeftAnimBot.PushBack({ 256, 225, 32, 32 });
-	upLeftAnimBot.PushBack({ 288, 225, 32, 32 });
-	upLeftAnimBot.PushBack({ 256, 225, 32, 32 });
-	upLeftAnimBot.PushBack({ 224, 225, 32, 32 });
-	upLeftAnimBot.PushBack({ 192, 225, 32, 32 });
-	upLeftAnimBot.loop = true;
-	upLeftAnimBot.speed = 0.1f;
+	// Move right, top
+	rightAnimTop.PushBack({ 0,   64, 32, 32 });
+	rightAnimTop.PushBack({ 32,  64, 32, 32 });
+	rightAnimTop.PushBack({ 64,  64, 32, 32 });
+	rightAnimTop.PushBack({ 96,  64, 32, 32 });
+	rightAnimTop.PushBack({ 128, 64, 32, 32 });
+	rightAnimTop.PushBack({ 96,  64, 32, 32 });
+	rightAnimTop.PushBack({ 64,  64, 32, 32 });
+	rightAnimTop.PushBack({ 32,  64, 32, 32 });
+	rightAnimTop.loop = true;
+	rightAnimTop.speed = 0.1f;
 
-	// Move down, top
-	downAnimTop.PushBack({ 0, 128, 32, 32 });
-	downAnimTop.PushBack({ 33, 128, 32, 32 });
-	downAnimTop.PushBack({ 65, 128, 32, 32 });
-	downAnimTop.PushBack({ 97, 128, 32, 32 });
-	downAnimTop.PushBack({ 129, 128, 32, 32 });
-	downAnimTop.PushBack({ 97, 128, 32, 32 });
-	downAnimTop.PushBack({ 65, 128, 32, 32 });
-	downAnimTop.PushBack({ 33, 128, 32, 32 });
-	downAnimTop.loop = true;
-	downAnimTop.speed = 0.1f;
-
-	// Move down
-	downAnimBot.PushBack({ 160, 127, 32, 32 });
-	downAnimBot.PushBack({ 192, 127, 32, 32 });
-	downAnimBot.PushBack({ 224, 127, 32, 32 });
-	downAnimBot.PushBack({ 256, 127, 32, 32 });
-	downAnimBot.PushBack({ 288, 127, 32, 32 });
-	downAnimBot.PushBack({ 256, 127, 32, 32 });
-	downAnimBot.PushBack({ 224, 127, 32, 32 });
-	downAnimBot.PushBack({ 192, 127, 32, 32 });
-	downAnimBot.loop = true;
-	downAnimBot.speed = 0.1f;
-
-	// Move right
-	rightAnimBot.PushBack({ 160, 63, 32, 32 });
-	rightAnimBot.PushBack({ 192, 63, 32, 32 });
-	rightAnimBot.PushBack({ 224, 63, 32, 32 });
-	rightAnimBot.PushBack({ 256, 63, 32, 32 });
-	rightAnimBot.PushBack({ 288, 63, 32, 32 });
-	rightAnimBot.PushBack({ 256, 63, 32, 32 });
-	rightAnimBot.PushBack({ 224, 63, 32, 32 });
-	rightAnimBot.PushBack({ 192, 63, 32, 32 });
+	// Move right, bot
+	rightAnimBot.PushBack({ 160, 64, 32, 32 });
+	rightAnimBot.PushBack({ 192, 64, 32, 32 });
+	rightAnimBot.PushBack({ 224, 64, 32, 32 });
+	rightAnimBot.PushBack({ 256, 64, 32, 32 });
+	rightAnimBot.PushBack({ 288, 64, 32, 32 });
+	rightAnimBot.PushBack({ 256, 64, 32, 32 });
+	rightAnimBot.PushBack({ 224, 64, 32, 32 });
+	rightAnimBot.PushBack({ 192, 64, 32, 32 });
 	rightAnimBot.loop = true;
 	rightAnimBot.speed = 0.1f;
 
-	// Move left
-	leftAnimBot.PushBack({ 160, 191, 32, 32 });
-	leftAnimBot.PushBack({ 192, 191, 32, 32 });
-	leftAnimBot.PushBack({ 224, 191, 32, 32 });
-	leftAnimBot.PushBack({ 256, 191, 32, 32 });
-	leftAnimBot.PushBack({ 288, 191, 32, 32 });
-	leftAnimBot.PushBack({ 256, 191, 32, 32 });
-	leftAnimBot.PushBack({ 224, 191, 32, 32 });
-	leftAnimBot.PushBack({ 192, 191, 32, 32 });
+	// Move down-right, top
+	downRightAnimTop.PushBack({ 0,   96, 32, 32 });
+	downRightAnimTop.PushBack({ 32,  96, 32, 32 });
+	downRightAnimTop.PushBack({ 64,  96, 32, 32 });
+	downRightAnimTop.PushBack({ 96,  96, 32, 32 });
+	downRightAnimTop.PushBack({ 128, 96, 32, 32 });
+	downRightAnimTop.PushBack({ 96,  96, 32, 32 });
+	downRightAnimTop.PushBack({ 64,  96, 32, 32 });
+	downRightAnimTop.PushBack({ 32,  96, 32, 32 });
+	downRightAnimTop.loop = true;
+	downRightAnimTop.speed = 0.1f;
+
+	// Move down-right, bot
+	downRightAnimBot.PushBack({ 160, 96, 32, 32 });
+	downRightAnimBot.PushBack({ 192, 96, 32, 32 });
+	downRightAnimBot.PushBack({ 224, 96, 32, 32 });
+	downRightAnimBot.PushBack({ 256, 96, 32, 32 });
+	downRightAnimBot.PushBack({ 288, 96, 32, 32 });
+	downRightAnimBot.PushBack({ 256, 96, 32, 32 });
+	downRightAnimBot.PushBack({ 224, 96, 32, 32 });
+	downRightAnimBot.PushBack({ 192, 96, 32, 32 });
+	downRightAnimBot.loop = true;
+	downRightAnimBot.speed = 0.1f;
+
+	// Move down, top
+	downAnimTop.PushBack({ 0,   128, 32, 32 });
+	downAnimTop.PushBack({ 32,  128, 32, 32 });
+	downAnimTop.PushBack({ 64,  128, 32, 32 });
+	downAnimTop.PushBack({ 96,  128, 32, 32 });
+	downAnimTop.PushBack({ 128, 128, 32, 32 });
+	downAnimTop.PushBack({ 96,  128, 32, 32 });
+	downAnimTop.PushBack({ 64,  128, 32, 32 });
+	downAnimTop.PushBack({ 32,  128, 32, 32 });
+	downAnimTop.loop = true;
+	downAnimTop.speed = 0.1f;
+
+	// Move down, bot
+	downAnimBot.PushBack({ 160, 128, 32, 32 });
+	downAnimBot.PushBack({ 192, 128, 32, 32 });
+	downAnimBot.PushBack({ 224, 128, 32, 32 });
+	downAnimBot.PushBack({ 256, 128, 32, 32 });
+	downAnimBot.PushBack({ 288, 128, 32, 32 });
+	downAnimBot.PushBack({ 256, 128, 32, 32 });
+	downAnimBot.PushBack({ 224, 128, 32, 32 });
+	downAnimBot.PushBack({ 192, 128, 32, 32 });
+	downAnimBot.loop = true;
+	downAnimBot.speed = 0.1f;
+
+	// Move down-left, top
+	downLeftAnimTop.PushBack({ 0,   160, 32, 32 });
+	downLeftAnimTop.PushBack({ 32,  160, 32, 32 });
+	downLeftAnimTop.PushBack({ 64,  160, 32, 32 });
+	downLeftAnimTop.PushBack({ 96,  160, 32, 32 });
+	downLeftAnimTop.PushBack({ 128, 160, 32, 32 });
+	downLeftAnimTop.PushBack({ 96,  160, 32, 32 });
+	downLeftAnimTop.PushBack({ 64,  160, 32, 32 });
+	downLeftAnimTop.PushBack({ 32,  160, 32, 32 });
+	downLeftAnimTop.loop = true;
+	downLeftAnimTop.speed = 0.1f;
+
+	// Move down-left, bot
+	downLeftAnimBot.PushBack({ 160, 160, 32, 32 });
+	downLeftAnimBot.PushBack({ 192, 160, 32, 32 });
+	downLeftAnimBot.PushBack({ 224, 160, 32, 32 });
+	downLeftAnimBot.PushBack({ 256, 160, 32, 32 });
+	downLeftAnimBot.PushBack({ 288, 160, 32, 32 });
+	downLeftAnimBot.PushBack({ 256, 160, 32, 32 });
+	downLeftAnimBot.PushBack({ 224, 160, 32, 32 });
+	downLeftAnimBot.PushBack({ 192, 160, 32, 32 });
+	downLeftAnimBot.loop = true;
+	downLeftAnimBot.speed = 0.1f;
+
+	// Move left, top
+	leftAnimTop.PushBack({ 0,   192, 32, 32 });
+	leftAnimTop.PushBack({ 32,  192, 32, 32 });
+	leftAnimTop.PushBack({ 64,  192, 32, 32 });
+	leftAnimTop.PushBack({ 96,  192, 32, 32 });
+	leftAnimTop.PushBack({ 128, 192, 32, 32 });
+	leftAnimTop.PushBack({ 96,  192, 32, 32 });
+	leftAnimTop.PushBack({ 64,  192, 32, 32 });
+	leftAnimTop.PushBack({ 32,  192, 32, 32 });
+	leftAnimTop.loop = true;
+	leftAnimTop.speed = 0.1f;
+
+	// Move left, bot
+	leftAnimBot.PushBack({ 160, 192, 32, 32 });
+	leftAnimBot.PushBack({ 192, 192, 32, 32 });
+	leftAnimBot.PushBack({ 224, 192, 32, 32 });
+	leftAnimBot.PushBack({ 256, 192, 32, 32 });
+	leftAnimBot.PushBack({ 288, 192, 32, 32 });
+	leftAnimBot.PushBack({ 256, 192, 32, 32 });
+	leftAnimBot.PushBack({ 224, 192, 32, 32 });
+	leftAnimBot.PushBack({ 192, 192, 32, 32 });
 	leftAnimBot.loop = true;
 	leftAnimBot.speed = 0.1f;
 
-	// Move down-left
+	// Move up-left, top
+	upLeftAnimTop.PushBack({ 0,   224, 32, 32 });
+	upLeftAnimTop.PushBack({ 32,  224, 32, 32 });
+	upLeftAnimTop.PushBack({ 64,  224, 32, 32 });
+	upLeftAnimTop.PushBack({ 96,  224, 32, 32 });
+	upLeftAnimTop.PushBack({ 128, 224, 32, 32 });
+	upLeftAnimTop.PushBack({ 96,  224, 32, 32 });
+	upLeftAnimTop.PushBack({ 64,  224, 32, 32 });
+	upLeftAnimTop.PushBack({ 32,  224, 32, 32 });
+	upLeftAnimTop.loop = true;
+	upLeftAnimTop.speed = 0.1f;
 
-	// Move down-right
+	// Move up-left, bot
+	upLeftAnimBot.PushBack({ 160, 224, 32, 32 });
+	upLeftAnimBot.PushBack({ 192, 224, 32, 32 });
+	upLeftAnimBot.PushBack({ 224, 224, 32, 32 });
+	upLeftAnimBot.PushBack({ 256, 224, 32, 32 });
+	upLeftAnimBot.PushBack({ 288, 224, 32, 32 });
+	upLeftAnimBot.PushBack({ 256, 224, 32, 32 });
+	upLeftAnimBot.PushBack({ 224, 224, 32, 32 });
+	upLeftAnimBot.PushBack({ 192, 224, 32, 32 });
+	upLeftAnimBot.loop = true;
+	upLeftAnimBot.speed = 0.1f;
+
 }
 
 ModulePlayer::~ModulePlayer() {
@@ -267,9 +339,9 @@ update_status ModulePlayer::Update() {
 	// Movement
 	// Move UP
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE &&
 		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE) {
+		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 		position.y -= speed;
 		if (currentAnimBot != &upAnimBot) {
 			upAnimBot.Reset();
@@ -279,9 +351,9 @@ update_status ModulePlayer::Update() {
 
 	// Move UP_RIGHT
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT &&
+		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE) {
+		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
 		position.y -= speed;
 		position.x += speed;
 		if (currentAnimBot != &upRightAnimBot) {
@@ -290,21 +362,36 @@ update_status ModulePlayer::Update() {
 		}
 	}
 
-	// Move UP_LEFT
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE) {
-		position.y -= speed;
-		position.x -= speed;
-		if (currentAnimBot != &upLeftAnimBot) {
-			upLeftAnimBot.Reset();
-			currentAnimBot = &upLeftAnimBot;
+	// Move RIGHT
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+		position.x += speed;
+		if (currentAnimBot != &rightAnimBot) {
+			rightAnimBot.Reset();
+			currentAnimBot = &rightAnimBot;
+		}
+	}
+
+	// Move DOWN_RIGHT
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
+		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+		position.y += speed;
+		position.x += speed;
+		if (currentAnimBot != &downRightAnimBot) {
+			downRightAnimBot.Reset();
+			currentAnimBot = &downRightAnimBot;
 		}
 	}
 
 	// Move DOWN
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT) {
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
+		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 		position.y += speed;
 		if (currentAnimBot != &downAnimBot) {
 			downAnimBot.Reset();
@@ -312,35 +399,22 @@ update_status ModulePlayer::Update() {
 		}
 	}
 
-	// Move DOWN_RIGHT
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE) {
-		position.y -= speed;
-		position.x += speed;
-		if (currentAnimBot != &upRightAnimBot) {
-			upRightAnimBot.Reset();
-			currentAnimBot = &upRightAnimBot;
-		}
-	}
-
 	// Move DOWN_LEFT
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
 		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
-		position.y -= speed;
-		position.x += speed;
-		if (currentAnimBot != &upRightAnimBot) {
-			upRightAnimBot.Reset();
-			currentAnimBot = &upRightAnimBot;
+		position.y += speed;
+		position.x -= speed;
+		if (currentAnimBot != &downLeftAnimBot) {
+			downLeftAnimBot.Reset();
+			currentAnimBot = &downLeftAnimBot;
 		}
 	}
 
 	// Move LEFT
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
 		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
 		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 		position.x -= speed;
@@ -350,17 +424,20 @@ update_status ModulePlayer::Update() {
 		}
 	}
 
-	// Move RIGHT
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE) {
-		position.x += speed;
-		if (currentAnimBot != &rightAnimBot) {
-			rightAnimBot.Reset();
-			currentAnimBot = &rightAnimBot;
+	// Move UP_LEFT
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
+		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
+		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+		position.y -= speed;
+		position.x -= speed;
+		if (currentAnimBot != &upLeftAnimBot) {
+			upLeftAnimBot.Reset();
+			currentAnimBot = &upLeftAnimBot;
 		}
 	}
+
+
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 
