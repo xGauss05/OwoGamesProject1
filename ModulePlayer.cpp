@@ -314,7 +314,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
 			direction = Directions::UP_LEFT;
-			currentAnimTop = &upAnimTop;
+			currentAnimTop = &upLeftAnimTop;
 		}
 		idleAnimTop.frames[0] = currentAnimTop->frames[currentAnimTop->GetCurrentFrameNum()];
 	}
