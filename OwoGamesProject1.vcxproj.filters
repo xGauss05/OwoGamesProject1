@@ -86,6 +86,9 @@
     <ClCompile Include="Enemy_GreenSoldier.cpp">
       <Filter>Archivos de origen\Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>Archivos de origen\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -147,6 +150,9 @@
     </ClInclude>
     <ClInclude Include="Enemy_GreenSoldier.h">
       <Filter>Archivos de origen\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>Archivos de origen\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

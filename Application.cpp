@@ -10,6 +10,7 @@
 #include "ModuleParticles.h"
 #include "ModuleCollisions.h"
 #include "ModuleRender.h"
+#include "ModuleEnemies.h"
 
 Application::Application() {
 	// The order in which the modules are added is very important.
@@ -27,6 +28,8 @@ Application::Application() {
 	modules[7] = collisions = new ModuleCollisions();
 
 	modules[8] = render = new ModuleRender();
+
+	modules[9] = enemies = new ModuleEnemies();
 }
 
 Application::~Application() {
