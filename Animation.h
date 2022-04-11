@@ -37,6 +37,10 @@ public:
 		}
 	}
 
+	int GetCurrentFrameNum() {
+		return (int)currentFrame;
+	}
+
 	SDL_Rect& GetCurrentFrame() {
 		return frames[(int)currentFrame];
 	}

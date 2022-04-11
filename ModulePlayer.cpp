@@ -239,90 +239,98 @@ bool ModulePlayer::Start() {
 update_status ModulePlayer::Update() {
 	// Moving the player with the camera scroll
 
-	// Look Directions
-	// Look UP
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-		direction = Directions::UP;
+	// Change Direction
+	if (App->input->keys[SDL_SCANCODE_I] != KEY_STATE::KEY_IDLE ||
+		App->input->keys[SDL_SCANCODE_J] != KEY_STATE::KEY_IDLE ||
+		App->input->keys[SDL_SCANCODE_K] != KEY_STATE::KEY_IDLE ||
+		App->input->keys[SDL_SCANCODE_L] != KEY_STATE::KEY_IDLE) {
+
+		// Direction to UP
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			direction = Directions::UP;
+			idleAnimTop.frames[0] = upAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+		}
+
+		// Direction to UP_RIGHT
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
+			direction = Directions::UP_RIGHT;
+			idleAnimTop.frames[0] = upRightAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+		}
+
+		// Direction to RIGHT
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
+			direction = Directions::RIGHT;
+			idleAnimTop.frames[0] = rightAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+		}
+
+		// Direction to DOWN_RIGHT
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
+			direction = Directions::DOWN_RIGHT;
+			idleAnimTop.frames[0] = downRightAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+		}
+
+		// Direction to DOWN
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			direction = Directions::DOWN;
+			idleAnimTop.frames[0] = downAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+		}
+
+		// Direction to DOWN_LEFT
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			direction = Directions::DOWN_LEFT;
+			idleAnimTop.frames[0] = downLeftAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+		}
+
+		// Direction to LEFT
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			direction = Directions::LEFT;
+			idleAnimTop.frames[0] = leftAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+		}
+
+		// Direction to UP_LEFT
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			direction = Directions::UP_LEFT;
+			idleAnimTop.frames[0] = upLeftAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+		}
+		currentAnimTop = &idleAnimTop;
 	}
-
-	// Look UP_RIGHT
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-		direction = Directions::UP_RIGHT;
-	}
-
-	// Look RIGHT
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-		direction = Directions::RIGHT;
-
-		
-	}
-
-	// Look DOWN_RIGHT
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-		direction = Directions::DOWN_RIGHT;
-
-	}
-
-	// Look DOWN
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-		direction = Directions::DOWN;
-
-	}
-
-	// Look DOWN_LEFT
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-		direction = Directions::DOWN_LEFT;
-
-	}
-
-	// Look LEFT
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-		direction = Directions::LEFT;
-
-	}
-
-	// Look UP_LEFT
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-		direction = Directions::UP_LEFT;
-
-	}
-
 	
-
 	// Movement
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
 		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+
 		currentAnimTop = &idleAnimTop;
 		currentAnimBot = &idleAnimBot;
 	}
-	// Move UP
 	else {
+
+		// Move UP
 		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
@@ -445,9 +453,7 @@ update_status ModulePlayer::Update() {
 			break;
 		}
 
-
-
-
+		//set the idles to the current frame
 		idleAnimTop.frames[0] = currentAnimTop->GetCurrentFrame();
 		idleAnimBot.frames[0] = currentAnimBot->GetCurrentFrame();
 	}
