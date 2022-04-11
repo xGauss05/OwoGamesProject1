@@ -240,201 +240,205 @@ update_status ModulePlayer::Update() {
 	// Moving the player with the camera scroll
 
 	// Look Directions
-	// Look UP
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-		direction = Directions::UP;
-		if (currentAnimTop != &upAnimTop) {
-			upAnimTop.Reset();
-			currentAnimTop = &upAnimTop;
-		}
-	}
-
-	// Look UP_RIGHT
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-		direction = Directions::UP_RIGHT;
-		if (currentAnimTop != &upRightAnimTop) {
-			upRightAnimTop.Reset();
-			currentAnimTop = &upRightAnimTop;
-		}
-	}
-
-	// Look RIGHT
 	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
 		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
 		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-		direction = Directions::RIGHT;
-		if (currentAnimTop != &rightAnimTop) {
-			rightAnimTop.Reset();
-			currentAnimTop = &rightAnimTop;
-		}
-	}
-
-	// Look DOWN_RIGHT
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-		direction = Directions::DOWN_RIGHT;
-		if (currentAnimTop != &downRightAnimTop) {
-			downRightAnimTop.Reset();
-			currentAnimTop = &downRightAnimTop;
-		}
-	}
-
-	// Look DOWN
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
 		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-		direction = Directions::DOWN;
-		if (currentAnimTop != &downAnimTop) {
-			downAnimTop.Reset();
-			currentAnimTop = &downAnimTop;
-		}
-	}
+		currentAnimTop = &idleAnimTop;
 
-	// Look DOWN_LEFT
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-		direction = Directions::DOWN_LEFT;
-		if (currentAnimTop != &downLeftAnimTop) {
-			downLeftAnimTop.Reset();
-			currentAnimTop = &downLeftAnimTop;
+	}	
+	else {
+		// Look UP
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			direction = Directions::UP;
+			if (currentAnimTop != &upAnimTop) {
+				currentAnimTop = &upAnimTop;
+			}
 		}
-	}
 
-	// Look LEFT
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-		direction = Directions::LEFT;
-		if (currentAnimTop != &leftAnimTop) {
-			leftAnimTop.Reset();
-			currentAnimTop = &leftAnimTop;
+		// Look UP_RIGHT
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
+			direction = Directions::UP_RIGHT;
+			if (currentAnimTop != &upRightAnimTop) {
+				currentAnimTop = &upRightAnimTop;
+			}
 		}
-	}
 
-	// Look UP_LEFT
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-		direction = Directions::UP_LEFT;
-		if (currentAnimTop != &upLeftAnimTop) {
-			upLeftAnimTop.Reset();
-			currentAnimTop = &upLeftAnimTop;
+		// Look RIGHT
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
+			direction = Directions::RIGHT;
+			if (currentAnimTop != &rightAnimTop) {
+				currentAnimTop = &rightAnimTop;
+			}
 		}
+
+		// Look DOWN_RIGHT
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
+			direction = Directions::DOWN_RIGHT;
+			if (currentAnimTop != &downRightAnimTop) {
+				currentAnimTop = &downRightAnimTop;
+			}
+		}
+
+		// Look DOWN
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			direction = Directions::DOWN;
+			if (currentAnimTop != &downAnimTop) {
+				currentAnimTop = &downAnimTop;
+			}
+		}
+
+		// Look DOWN_LEFT
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			direction = Directions::DOWN_LEFT;
+			if (currentAnimTop != &downLeftAnimTop) {
+				currentAnimTop = &downLeftAnimTop;
+			}
+		}
+
+		// Look LEFT
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			direction = Directions::LEFT;
+			if (currentAnimTop != &leftAnimTop) {
+				currentAnimTop = &leftAnimTop;
+			}
+		}
+
+		// Look UP_LEFT
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			direction = Directions::UP_LEFT;
+			if (currentAnimTop != &upLeftAnimTop) {
+				currentAnimTop = &upLeftAnimTop;
+			}
+		}
+
+		idleAnimTop.frames[0] = currentAnimTop->GetCurrentFrame();
 	}
 
 	// Movement
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+		currentAnimBot = &idleAnimBot;
+	}
 	// Move UP
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
-		position.y -= speed;
-		if (currentAnimBot != &upAnimBot) {
-			upAnimBot.Reset();
-			currentAnimBot = &upAnimBot;
+	else {
+		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			position.y -= speed;
+			if (currentAnimBot != &upAnimBot) {
+				currentAnimBot = &upAnimBot;
+			}
 		}
-	}
 
-	// Move UP_RIGHT
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
-		position.y -= speed;
-		position.x += speed;
-		if (currentAnimBot != &upRightAnimBot) {
-			upRightAnimBot.Reset();
-			currentAnimBot = &upRightAnimBot;
+		// Move UP_RIGHT
+		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+			position.y -= speed;
+			position.x += speed;
+			if (currentAnimBot != &upRightAnimBot) {
+				currentAnimBot = &upRightAnimBot;
+			}
 		}
-	}
 
-	// Move RIGHT
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
-		position.x += speed;
-		if (currentAnimBot != &rightAnimBot) {
-			rightAnimBot.Reset();
-			currentAnimBot = &rightAnimBot;
+		// Move RIGHT
+		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+			position.x += speed;
+			if (currentAnimBot != &rightAnimBot) {
+				currentAnimBot = &rightAnimBot;
+			}
 		}
-	}
 
-	// Move DOWN_RIGHT
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
-		position.y += speed;
-		position.x += speed;
-		if (currentAnimBot != &downRightAnimBot) {
-			downRightAnimBot.Reset();
-			currentAnimBot = &downRightAnimBot;
+		// Move DOWN_RIGHT
+		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+			position.y += speed;
+			position.x += speed;
+			if (currentAnimBot != &downRightAnimBot) {
+				currentAnimBot = &downRightAnimBot;
+			}
 		}
-	}
 
-	// Move DOWN
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
-		position.y += speed;
-		if (currentAnimBot != &downAnimBot) {
-			downAnimBot.Reset();
-			currentAnimBot = &downAnimBot;
+		// Move DOWN
+		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			position.y += speed;
+			if (currentAnimBot != &downAnimBot) {
+				currentAnimBot = &downAnimBot;
+			}
 		}
-	}
 
-	// Move DOWN_LEFT
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
-		position.y += speed;
-		position.x -= speed;
-		if (currentAnimBot != &downLeftAnimBot) {
-			downLeftAnimBot.Reset();
-			currentAnimBot = &downLeftAnimBot;
+		// Move DOWN_LEFT
+		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			position.y += speed;
+			position.x -= speed;
+			if (currentAnimBot != &downLeftAnimBot) {
+				currentAnimBot = &downLeftAnimBot;
+			}
 		}
-	}
 
-	// Move LEFT
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
-		position.x -= speed;
-		if (currentAnimBot != &leftAnimBot) {
-			leftAnimBot.Reset();
-			currentAnimBot = &leftAnimBot;
+		// Move LEFT
+		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			position.x -= speed;
+			if (currentAnimBot != &leftAnimBot) {
+				currentAnimBot = &leftAnimBot;
+			}
 		}
-	}
 
-	// Move UP_LEFT
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
-		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
-		position.y -= speed;
-		position.x -= speed;
-		if (currentAnimBot != &upLeftAnimBot) {
-			upLeftAnimBot.Reset();
-			currentAnimBot = &upLeftAnimBot;
+		// Move UP_LEFT
+		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			position.y -= speed;
+			position.x -= speed;
+			if (currentAnimBot != &upLeftAnimBot) {
+				currentAnimBot = &upLeftAnimBot;
+			}
 		}
+		idleAnimBot.frames[0] = currentAnimBot->GetCurrentFrame();
 	}
 
 
