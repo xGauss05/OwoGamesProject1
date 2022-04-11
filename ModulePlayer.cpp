@@ -251,7 +251,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
 			direction = Directions::UP;
-			idleAnimTop.frames[0] = upAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+			currentAnimTop = &upAnimTop;
 		}
 
 		// Direction to UP_RIGHT
@@ -260,7 +260,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
 			direction = Directions::UP_RIGHT;
-			idleAnimTop.frames[0] = upRightAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+			currentAnimTop = &upRightAnimTop;
 		}
 
 		// Direction to RIGHT
@@ -269,7 +269,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
 			direction = Directions::RIGHT;
-			idleAnimTop.frames[0] = rightAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+			currentAnimTop = &rightAnimTop;
 		}
 
 		// Direction to DOWN_RIGHT
@@ -278,7 +278,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
 			direction = Directions::DOWN_RIGHT;
-			idleAnimTop.frames[0] = downRightAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+			currentAnimTop = &downRightAnimTop;
 		}
 
 		// Direction to DOWN
@@ -287,7 +287,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
 			direction = Directions::DOWN;
-			idleAnimTop.frames[0] = downAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+			currentAnimTop = &downAnimTop;
 		}
 
 		// Direction to DOWN_LEFT
@@ -296,7 +296,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
 			direction = Directions::DOWN_LEFT;
-			idleAnimTop.frames[0] = downLeftAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+			currentAnimTop = &downLeftAnimTop;
 		}
 
 		// Direction to LEFT
@@ -305,7 +305,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
 			direction = Directions::LEFT;
-			idleAnimTop.frames[0] = leftAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+			currentAnimTop = &leftAnimTop;
 		}
 
 		// Direction to UP_LEFT
@@ -314,9 +314,9 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
 			direction = Directions::UP_LEFT;
-			idleAnimTop.frames[0] = upLeftAnimTop.frames[currentAnimTop->GetCurrentFrameNum()];
+			currentAnimTop = &upLeftAnimTop;
 		}
-		currentAnimTop = &idleAnimTop;
+		idleAnimTop.frames[0] = currentAnimTop->frames[currentAnimTop->GetCurrentFrameNum()];
 	}
 	
 	// Movement
