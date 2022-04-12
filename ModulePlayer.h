@@ -13,6 +13,12 @@ enum Directions {
 	UP_RIGHT, UP_LEFT, DOWN_RIGHT, DOWN_LEFT
 };
 
+enum Weapon {
+	NORMAL,
+	HEAVY_RIFLE,
+	FLAMETHROWER
+};
+
 class ModulePlayer : public Module {
 public:
 	// Constructor

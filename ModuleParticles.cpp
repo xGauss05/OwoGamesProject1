@@ -36,6 +36,8 @@ bool ModuleParticles::Start() {
 	shot.lifetime = 180;
 	shot.anim.speed = 0.2f;
 
+	weapon_hrifle.anim.PushBack({});
+
 	return true;
 }
 
@@ -61,10 +63,14 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2) {
 				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x, particles[i]->position.y - 10);
 				App->audio->PlayFx(1);
 			}
+			if (c2->type == Collider::Type::PLAYER) {
+				
+			}
 			delete particles[i];
 			particles[i] = nullptr;
 			break;
 		}
+		
 	}
 }
 

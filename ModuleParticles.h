@@ -61,6 +61,9 @@ public:
 
 	//Template particle for a laser
 	Particle shot;
+
+	Particle weapon_hrifle;
+	Particle weapon_flamethrower;
 };
 
 #endif // !__MODULEPARTICLES_H__

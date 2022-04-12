@@ -89,6 +89,9 @@
     <ClCompile Include="Path.cpp">
       <Filter>Archivos de origen\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="ModulePowerup.cpp">
+      <Filter>Archivos de origen\Modules\Gameplay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -153,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="Path.h">
       <Filter>Archivos de origen\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePowerup.h">
+      <Filter>Archivos de origen\Modules\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
