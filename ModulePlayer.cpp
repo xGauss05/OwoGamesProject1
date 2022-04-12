@@ -227,7 +227,7 @@ bool ModulePlayer::Start() {
 	deadFx = App->audio->LoadFx("sounds/sfx/195.wav"); // dead sfx
 
 	// initial position
-	position.x = 150;
+	position.x = 240;
 	position.y = 120;
 
 	// player collider

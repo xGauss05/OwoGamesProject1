@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
+#include "ModuleEnemies.h"
 
 ModuleScene::ModuleScene() {}
 ModuleScene::~ModuleScene() {}
@@ -23,6 +24,8 @@ bool ModuleScene::Start() {
 	// Bottom collider
 	// Make collision boxes here
 	//App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -60);
 
 	return ret;
 }

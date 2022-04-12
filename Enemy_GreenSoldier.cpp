@@ -9,11 +9,11 @@ Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y) : Enemy(x, y)
 	//currentAnim = &(empty);
 
 	//Have the Brown Cookies describe a path in the screen
-	path.PushBack({ -1.0f,-1.0f }, 50);
-	path.PushBack({ -1.0f,1.0f }, 50);
+	path.PushBack({ -1.0f, 0 }, 50);
+	path.PushBack({ 1.0f, 0 }, 50);
 
 
-	collider = App->collisions->AddCollider({ 0, 0, 24, 24 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0, 0, 36, 72 }, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
 void Enemy_GreenSoldier::Update()
