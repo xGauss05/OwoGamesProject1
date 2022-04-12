@@ -51,6 +51,7 @@ ModuleCollisions::ModuleCollisions() {
 	matrix[Collider::Type::POWER_UP][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::POWER_UP][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::POWER_UP][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::POWER_UP][Collider::Type::POWER_UP] = false;
 }
 
 // Destructor
@@ -134,6 +135,9 @@ void ModuleCollisions::DebugDraw() {
 			break;
 		case Collider::Type::ENEMY_SHOT: // magenta
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+			break;
+		case Collider::Type::POWER_UP: 
+			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 			break;
 		}
 	}

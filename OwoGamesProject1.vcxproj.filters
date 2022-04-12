@@ -30,6 +30,9 @@
     <Filter Include="Archivos de origen\Entities\Enemies">
       <UniqueIdentifier>{f89ffd84-2921-4f01-be6b-75fc2b080855}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Entities\Powerups">
+      <UniqueIdentifier>{d88ed2cf-df0e-4340-8cc5-7630f891431e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -91,6 +94,15 @@
     </ClCompile>
     <ClCompile Include="ModulePowerup.cpp">
       <Filter>Archivos de origen\Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Powerup.cpp">
+      <Filter>Archivos de origen\Entities\Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="Powerup_HeavyRifle.cpp">
+      <Filter>Archivos de origen\Entities\Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="Powerup_Flamethrower.cpp">
+      <Filter>Archivos de origen\Entities\Powerups</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +171,15 @@
     </ClInclude>
     <ClInclude Include="ModulePowerup.h">
       <Filter>Archivos de origen\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Powerup.h">
+      <Filter>Archivos de origen\Entities\Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="Powerup_HeavyRifle.h">
+      <Filter>Archivos de origen\Entities\Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="Powerup_Flamethrower.h">
+      <Filter>Archivos de origen\Entities\Powerups</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

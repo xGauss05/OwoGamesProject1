@@ -11,6 +11,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleRender.h"
 #include "ModuleEnemies.h"
+#include "ModulePowerup.h"
 
 Application::Application() {
 	// The order in which the modules are added is very important.
@@ -30,6 +31,7 @@ Application::Application() {
 	modules[8] = render = new ModuleRender();
 
 	modules[9] = enemies = new ModuleEnemies();
+	modules[10] = powerups = new ModulePowerup();
 }
 
 Application::~Application() {

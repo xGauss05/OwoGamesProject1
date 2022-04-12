@@ -2,12 +2,21 @@
 #define __MODULE_POWERUP_H__
 
 #include "Module.h"
-#include "Animation.h"
-#include "p2Point.h"
 
+#define MAX_POWERUPS 50
+enum class POWERUP_TYPE {
+	NO_TYPE,
+	HEAVY_RIFLE,
+	FLAMETHROWER
+};
+
+struct PowerupSpawnpoint {
+	POWERUP_TYPE type = POWERUP_TYPE::NO_TYPE;
+	int x, y;
+};
+
+class Powerup;
 struct SDL_Texture;
-struct Collider;
-
 
 class ModulePowerup : public Module {
 public:
@@ -29,12 +38,27 @@ public:
 	// Performs the render call of the player sprite
 	update_status PostUpdate() override;
 
+	bool CleanUp() override;
 	// Collision callback, called when the player intersects with another collider
 	void OnCollision(Collider* c1, Collider* c2) override;
-public:
-	iPoint position;
-	Animation animation;
+
+	bool AddPowerup(POWERUP_TYPE type, int x, int y);
+
+	void HandlePowerupsSpawn();
+
+	void HandlePowerupsDespawn();
+
+private:
+	// Spawns a new enemy using the data from the queue
+	void SpawnPowerup(const PowerupSpawnpoint& info);
+
+private:
+	PowerupSpawnpoint spawnQueue[MAX_POWERUPS];
+
+	Powerup* powerUps[MAX_POWERUPS] = { nullptr };
+
 	SDL_Texture* texture = nullptr;
-	Collider* collider = nullptr;
+	
+	int pickUpFx = 0;
 };
 #endif

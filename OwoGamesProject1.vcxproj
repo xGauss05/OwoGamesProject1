@@ -159,6 +159,9 @@
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="Path.cpp" />
+    <ClCompile Include="Powerup.cpp" />
+    <ClCompile Include="Powerup_Flamethrower.cpp" />
+    <ClCompile Include="Powerup_HeavyRifle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -183,6 +186,9 @@
     <ClInclude Include="p2Point.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="Path.h" />
+    <ClInclude Include="Powerup.h" />
+    <ClInclude Include="Powerup_Flamethrower.h" />
+    <ClInclude Include="Powerup_HeavyRifle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
