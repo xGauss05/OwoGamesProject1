@@ -26,6 +26,8 @@ bool ModuleScene::Start() {
 	//App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -60);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 180, -500);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);
 
 	return ret;
 }
