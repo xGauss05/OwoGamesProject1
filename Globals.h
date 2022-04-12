@@ -30,6 +30,6 @@ typedef unsigned int uint;
 #define VSYNC 1
 
 // Camera Configuration (for debug purposes)
-#define CAMERA_SPEED 3
+#define CAMERA_SPEED 2
 
 #endif // __GLOBALS_H__
