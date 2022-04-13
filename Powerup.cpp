@@ -7,6 +7,7 @@
 
 Powerup::Powerup(int x, int y) : position(x, y) {
 	spawnPos = position;
+	pickUpFx = App->audio->LoadFx("sounds/sfx/165.wav");
 }
 
 Powerup::~Powerup() {
@@ -29,8 +30,4 @@ void Powerup::Update() {
 void Powerup::Draw() {
 	if (currentAnim != nullptr)
 		App->render->Blit(texture, position.x, position.y, &(currentAnim->GetCurrentFrame()));
-}
-
-void Powerup::OnCollision(Collider* collider) {
-	App->audio->PlayFx(pickUpFx);
 }

@@ -8,6 +8,7 @@
 
 #include "Powerup.h"
 #include "Powerup_HeavyRifle.h"
+#include "Powerup_Flamethrower.h"
 
 #define SPAWN_MARGIN 50
 
@@ -106,25 +107,29 @@ void ModulePowerup::HandlePowerupsDespawn() {
 }
 
 void ModulePowerup::SpawnPowerup(const PowerupSpawnpoint& info) {
-	// Find an empty slot in the enemies array
+	// Find an empty slot in the powerups array
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] == nullptr) {
 			switch (info.type) {
-			case POWERUP_TYPE::HEAVY_RIFLE:
+			case POWERUP_TYPE::HEAVY_RIFLE: {
 				powerUps[i] = new Powerup_HeavyRifle(info.x, info.y);
-				break;
+			}break;
+			case POWERUP_TYPE::FLAMETHROWER: {
+				powerUps[i] = new Powerup_Flamethrower(info.x, info.y);
+			}break;
 			}
-			powerUps[i]->texture = texture;
-			powerUps[i]->pickUpFx = this->pickUpFx;
-			break;
 		}
+		powerUps[i]->texture = texture;
+		powerUps[i]->pickUpFx = this->pickUpFx;
+		break;
 	}
 }
+
 void ModulePowerup::OnCollision(Collider* c1, Collider* c2) {
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] != nullptr && powerUps[i]->GetCollider() == c1) {
-			powerUps[i]->OnCollision(c2); //Notify the powerup of a collision
 
+			powerUps[i]->OnCollision(c2); //Notify the powerup of a collision
 			delete powerUps[i];
 			powerUps[i] = nullptr;
 			break;

@@ -218,6 +218,7 @@ bool ModulePlayer::Start() {
 
 	bool ret = true;
 	direction = UP;
+	weapon = NORMAL;
 	texture = App->textures->Load("img/sprites/player.png"); // player spritesheet
 	currentAnimTop = &idleAnimTop;
 	currentAnimBot = &idleAnimBot;
@@ -225,6 +226,8 @@ bool ModulePlayer::Start() {
 	// initiate player audios here
 	shotFx = App->audio->LoadFx("sounds/sfx/128.wav"); // shot sfx
 	deadFx = App->audio->LoadFx("sounds/sfx/195.wav"); // dead sfx
+	heavyRifleFx = App->audio->LoadFx("sounds/sfx/153.wav");
+	flamethrowerFx = App->audio->LoadFx("sounds/sfx/136.wav");
 
 	// initial position
 	position.x = 240;
@@ -318,7 +321,7 @@ update_status ModulePlayer::Update() {
 		}
 		idleAnimTop.frames[0] = currentAnimTop->frames[currentAnimTop->GetCurrentFrameNum()];
 	}
-	
+
 	// Movement
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
@@ -327,8 +330,7 @@ update_status ModulePlayer::Update() {
 
 		currentAnimTop = &idleAnimTop;
 		currentAnimBot = &idleAnimBot;
-	}
-	else {
+	} else {
 
 		// Move UP
 		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
@@ -423,8 +425,7 @@ update_status ModulePlayer::Update() {
 		}
 
 		//activate top anim when moving
-		switch (direction)
-		{
+		switch (direction) {
 		case UP:
 			currentAnimTop = &upAnimTop;
 			break;
@@ -467,58 +468,58 @@ update_status ModulePlayer::Update() {
 		switch (direction) {
 		case Directions::UP:
 		{
-			App->particles->shot.speed.x = 0;
-			App->particles->shot.speed.y = -5;
-			App->particles->AddParticle(App->particles->shot, position.x + 13, position.y, Collider::Type::PLAYER_SHOT);
+			App->particles->shot_up.speed.x = 0;
+			App->particles->shot_up.speed.y = -5;
+			App->particles->AddParticle(App->particles->shot_up, position.x + 13, position.y, Collider::Type::PLAYER_SHOT);
 		}
 		break;
 		case Directions::UP_RIGHT:
 		{
-			App->particles->shot.speed.x = 5;
-			App->particles->shot.speed.y = -5;
-			App->particles->AddParticle(App->particles->shot, position.x + 32, position.y, Collider::Type::PLAYER_SHOT);
+			App->particles->shot_up.speed.x = 5;
+			App->particles->shot_up.speed.y = -5;
+			App->particles->AddParticle(App->particles->shot_up_right, position.x + 32, position.y, Collider::Type::PLAYER_SHOT);
 		}
 		break;
 		case Directions::UP_LEFT:
 		{
-			App->particles->shot.speed.x = -5;
-			App->particles->shot.speed.y = -5;
-			App->particles->AddParticle(App->particles->shot, position.x, position.y, Collider::Type::PLAYER_SHOT);
+			App->particles->shot_up.speed.x = -5;
+			App->particles->shot_up.speed.y = -5;
+			App->particles->AddParticle(App->particles->shot_up_left, position.x, position.y, Collider::Type::PLAYER_SHOT);
 		}
 		break;
 		case Directions::DOWN:
 		{
-			App->particles->shot.speed.x = 0;
-			App->particles->shot.speed.y = 5;
-			App->particles->AddParticle(App->particles->shot, position.x + 13, position.y + 64, Collider::Type::PLAYER_SHOT);
+			App->particles->shot_up.speed.x = 0;
+			App->particles->shot_up.speed.y = 5;
+			App->particles->AddParticle(App->particles->shot_down, position.x + 13, position.y + 64, Collider::Type::PLAYER_SHOT);
 		}
 		break;
 		case Directions::DOWN_RIGHT:
 		{
-			App->particles->shot.speed.x = 5;
-			App->particles->shot.speed.y = 5;
-			App->particles->AddParticle(App->particles->shot, position.x + 32, position.y+64, Collider::Type::PLAYER_SHOT);
+			App->particles->shot_up.speed.x = 5;
+			App->particles->shot_up.speed.y = 5;
+			App->particles->AddParticle(App->particles->shot_down_right, position.x + 32, position.y + 64, Collider::Type::PLAYER_SHOT);
 		}
 		break;
 		case Directions::DOWN_LEFT:
 		{
-			App->particles->shot.speed.x = -5;
-			App->particles->shot.speed.y = 5;
-			App->particles->AddParticle(App->particles->shot, position.x, position.y + 64, Collider::Type::PLAYER_SHOT);
+			App->particles->shot_up.speed.x = -5;
+			App->particles->shot_up.speed.y = 5;
+			App->particles->AddParticle(App->particles->shot_down_left, position.x, position.y + 64, Collider::Type::PLAYER_SHOT);
 		}
 		break;
 		case Directions::RIGHT:
 		{
-			App->particles->shot.speed.x = 5;
-			App->particles->shot.speed.y = 0;
-			App->particles->AddParticle(App->particles->shot, position.x + 32, position.y + 29, Collider::Type::PLAYER_SHOT);
+			App->particles->shot_up.speed.x = 5;
+			App->particles->shot_up.speed.y = 0;
+			App->particles->AddParticle(App->particles->shot_right, position.x + 32, position.y + 29, Collider::Type::PLAYER_SHOT);
 		}
 		break;
 		case Directions::LEFT:
 		{
-			App->particles->shot.speed.x = -5;
-			App->particles->shot.speed.y = 0;
-			App->particles->AddParticle(App->particles->shot, position.x, position.y + 29, Collider::Type::PLAYER_SHOT);
+			App->particles->shot_up.speed.x = -5;
+			App->particles->shot_up.speed.y = 0;
+			App->particles->AddParticle(App->particles->shot_left, position.x, position.y + 29, Collider::Type::PLAYER_SHOT);
 		}
 		break;
 		}
@@ -538,9 +539,7 @@ update_status ModulePlayer::Update() {
 	currentAnimBot->Update();
 
 	if (dead) {
-		destroyedCountdown--;
-		if (destroyedCountdown <= 0)
-			return update_status::UPDATE_STOP;
+		// need to implement death behaviour
 	}
 
 	return update_status::UPDATE_CONTINUE;
@@ -557,12 +556,28 @@ update_status ModulePlayer::PostUpdate() {
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
-	if (!this->dead) {
-		// Delete player
-		this->dead = true;
-		// Delete player collider
-		c1->pendingToDelete = true;
-		App->audio->PlayFx(deadFx);
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y - 10);
+	if (c1 == collider) {
+		switch (c2->type) {
+		case Collider::Type::ENEMY:
+		{
+			App->audio->PlayFx(deadFx);
+
+			this->dead = true;
+		} break;
+		case Collider::Type::ENEMY_SHOT:
+		{
+			App->audio->PlayFx(deadFx);
+
+			this->dead = true;
+		}break;
+		case Collider::Type::POWER_UP:
+		{
+			// sound plays at Powerup.cpp
+			c2->pendingToDelete = true;
+			ammunition = MAX_AMMO;
+		}
+		break;
+		}
+
 	}
 }

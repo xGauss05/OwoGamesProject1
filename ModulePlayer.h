@@ -7,7 +7,7 @@
 
 struct SDL_Texture;
 struct Collider;
-
+#define MAX_AMMO 50
 enum Directions {
 	UP, DOWN, RIGHT, LEFT,
 	UP_RIGHT, UP_LEFT, DOWN_RIGHT, DOWN_LEFT
@@ -54,6 +54,8 @@ public:
 
 	// Sets the player direction
 	Directions direction;
+
+	Weapon weapon;
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
 	Animation* currentAnimTop = nullptr;
@@ -86,12 +88,14 @@ public:
 	// A flag to detect when the player has been destroyed
 	bool dead = false;
 
-	// A countdown to when the player gets destroyed. After a while, the game exits
-	uint destroyedCountdown = 120;
+	// Amount of shots available. Max should be 50.
+	uint ammunition = 0;
 
 	// Sound effects indices
 	uint shotFx = 0;
 	uint deadFx = 0;
+	uint heavyRifleFx = 0;
+	uint flamethrowerFx = 0;
 };
 
 #endif //!__MODULE_PLAYER_H__

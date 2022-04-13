@@ -15,8 +15,9 @@ public:
 
 	virtual void Update();
 	virtual void Draw();
-	virtual void OnCollision(Collider* collider);
+	virtual void OnCollision(Collider* collider) = 0;
 
+public:
 	iPoint position;
 	SDL_Texture* texture = nullptr;
 	int pickUpFx = 0;

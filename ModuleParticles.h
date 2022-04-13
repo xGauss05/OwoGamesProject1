@@ -59,11 +59,33 @@ public:
 	//Template particle for an explosion
 	Particle explosion;
 
-	//Template particle for a laser
-	Particle shot;
+	Particle enemy_shot;
+	Particle shot_up;
+	Particle shot_up_left;
+	Particle shot_up_right;
+	Particle shot_down;
+	Particle shot_down_left;
+	Particle shot_down_right;
+	Particle shot_left;
+	Particle shot_right;
 
-	Particle weapon_hrifle;
-	Particle weapon_flamethrower;
+	Particle hrifle_up;
+	Particle hrifle_up_left;
+	Particle hrifle_up_right;
+	Particle hrifle_down;
+	Particle hrifle_down_left;
+	Particle hrifle_down_right;
+	Particle hrifle_left;
+	Particle hrifle_right;
+
+	Particle fthrower_up;
+	Particle fthrower_up_left;
+	Particle fthrower_up_right;
+	Particle fthrower_down;
+	Particle fthrower_down_left;
+	Particle fthrower_down_right;
+	Particle fthrower_left;
+	Particle fthrower_right;
 };
 
 #endif // !__MODULEPARTICLES_H__
