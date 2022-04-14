@@ -104,6 +104,9 @@
     <ClCompile Include="Powerup_Flamethrower.cpp">
       <Filter>Archivos de origen\Entities\Powerups</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy_RedSoldier.cpp">
+      <Filter>Archivos de origen\Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -180,6 +183,9 @@
     </ClInclude>
     <ClInclude Include="Powerup_Flamethrower.h">
       <Filter>Archivos de origen\Entities\Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_RedSoldier.h">
+      <Filter>Archivos de origen\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

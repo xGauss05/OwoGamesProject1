@@ -30,6 +30,7 @@ bool ModuleScene::Start() {
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -60);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 180, -500);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 230, -600);
 
 	return ret;
 }
