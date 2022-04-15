@@ -208,6 +208,35 @@ ModulePlayer::ModulePlayer() {
 	upLeftAnimBot.loop = true;
 	upLeftAnimBot.speed = 0.1f;
 
+	// Death animation, top 
+	deathAnimTop.PushBack({ 0,   320, 32, 32 });
+	deathAnimTop.PushBack({ 32,  320, 32, 32 });
+	deathAnimTop.PushBack({ 64,  320, 32, 32 });
+	deathAnimTop.PushBack({ 96,  320, 32, 32 });
+	deathAnimTop.PushBack({ 128, 320, 32, 32 });
+	deathAnimTop.PushBack({ 160, 320, 32, 32 });
+	deathAnimTop.PushBack({ 192, 320, 32, 32 });
+	deathAnimTop.PushBack({ 224, 320, 32, 32 });
+	deathAnimTop.PushBack({ 256, 320, 32, 32 });
+	deathAnimTop.PushBack({ 288, 320, 32, 32 });
+	deathAnimTop.speed = 0.15f;
+	deathAnimTop.loop = false;
+
+	// Death animation, bot
+	deathAnimBot.PushBack({ 0,   352, 32, 32 });
+	deathAnimBot.PushBack({ 32,  352, 32, 32 });
+	deathAnimBot.PushBack({ 64,  352, 32, 32 });
+	deathAnimBot.PushBack({ 96,  352, 32, 32 });
+	deathAnimBot.PushBack({ 128, 352, 32, 32 });
+	deathAnimBot.PushBack({ 160, 352, 32, 32 });
+	deathAnimBot.PushBack({ 192, 352, 32, 32 });
+	deathAnimBot.PushBack({ 224, 352, 32, 32 });
+	deathAnimBot.PushBack({ 256, 352, 32, 32 });
+	deathAnimBot.PushBack({ 288, 352, 32, 32 });
+	deathAnimBot.speed = 0.15f;
+	deathAnimBot.loop = false;
+
+
 }
 
 ModulePlayer::~ModulePlayer() {
@@ -533,25 +562,27 @@ update_status ModulePlayer::Update() {
 			currentAnimBot = &idleAnimBot;*/
 	}
 
+	if (dead) {
+		// need to implement death behaviour
+		currentAnimTop = &deathAnimTop;
+		currentAnimBot = &deathAnimBot;
+	}
+
 	// Updates player collider position
 	collider->SetPos(position.x, position.y);
 	currentAnimTop->Update();
 	currentAnimBot->Update();
 
-	if (dead) {
-		// need to implement death behaviour
-	}
-
 	return update_status::UPDATE_CONTINUE;
 }
 
 update_status ModulePlayer::PostUpdate() {
-	if (!dead) {
-		SDL_Rect rect = currentAnimTop->GetCurrentFrame();
+	//if (!dead) {
+		SDL_Rect rect = currentAnimBot->GetCurrentFrame();
+		App->render->Blit(texture, position.x, position.y + 29, &rect);
+		rect = currentAnimTop->GetCurrentFrame();
 		App->render->Blit(texture, position.x, position.y, &rect);
-		rect = currentAnimBot->GetCurrentFrame();
-		App->render->Blit(texture, position.x, position.y + 31, &rect);
-	}
+	//}
 	return update_status::UPDATE_CONTINUE;
 }
 

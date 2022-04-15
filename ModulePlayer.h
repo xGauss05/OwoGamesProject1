@@ -81,6 +81,9 @@ public:
 	Animation rightAnimTop, rightAnimBot;
 	// Left
 	Animation leftAnimTop, leftAnimBot;
+	// Death
+	Animation deathAnimTop, deathAnimBot;
+
 
 	// The player's collider
 	Collider* collider = nullptr;
