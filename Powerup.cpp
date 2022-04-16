@@ -13,7 +13,7 @@ Powerup::Powerup(int x, int y) : position(x, y) {
 	weaponAnim.PushBack({ 32, 132, 22, 23 });
 	weaponAnim.PushBack({ 64, 132, 22, 23 });
 	weaponAnim.PushBack({ 32, 132, 22, 23 });
-	weaponAnim.speed = 0.2f;
+	weaponAnim.speed = 0.05f;
 	weaponAnim.loop = true;
 	currentAnim = &weaponAnim;
 }

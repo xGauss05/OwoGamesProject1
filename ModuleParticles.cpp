@@ -44,7 +44,6 @@ bool ModuleParticles::Start() {
 	shot_up.anim.PushBack({ 3, 179, 10, 11 });
 	shot_up.anim.PushBack({ 20, 178, 10, 11 });
 	shot_up.anim.loop = true;
-	shot_up.speed.x = 3;
 	shot_up.lifetime = 30;
 	shot_up.anim.speed = 0.2f;
 	shot_up.speed.x = 0;
@@ -53,7 +52,6 @@ bool ModuleParticles::Start() {
 	shot_up_right.anim.PushBack({ 35,180,9,12 });
 	shot_up_right.anim.PushBack({ 51,180,9,12 });
 	shot_up_right.anim.loop = true;
-	shot_up_right.speed.x = 3;
 	shot_up_right.lifetime = 30;
 	shot_up_right.anim.speed = 0.2f;
 	shot_up_right.speed.x = 5;
@@ -62,7 +60,6 @@ bool ModuleParticles::Start() {
 	shot_up_left.anim.PushBack({ 35,180,9,12 });
 	shot_up_left.anim.PushBack({ 51,180,9,12 });
 	shot_up_left.anim.loop = true;
-	shot_up_left.speed.x = 3;
 	shot_up_left.lifetime = 30;
 	shot_up_left.anim.speed = 0.2f;
 	shot_up_left.speed.x = -5;
@@ -71,16 +68,14 @@ bool ModuleParticles::Start() {
 	shot_down.anim.PushBack({ 35,180,9,12 });
 	shot_down.anim.PushBack({ 51,180,9,12 });
 	shot_down.anim.loop = true;
-	shot_down.speed.x = 3;
 	shot_down.lifetime = 30;
 	shot_down.anim.speed = 0.2f;
-		shot_down.speed.x = 0;
+	shot_down.speed.x = 0;
 	shot_down.speed.y = 5;
 
 	shot_down_right.anim.PushBack({ 35,180,9,12 });
 	shot_down_right.anim.PushBack({ 51,180,9,12 });
 	shot_down_right.anim.loop = true;
-	shot_down_right.speed.x = 3;
 	shot_down_right.lifetime = 30;
 	shot_down_right.anim.speed = 0.2f;
 	shot_down_right.speed.x = 5;
@@ -89,7 +84,6 @@ bool ModuleParticles::Start() {
 	shot_down_left.anim.PushBack({ 35,180,9,12 });
 	shot_down_left.anim.PushBack({ 51,180,9,12 });
 	shot_down_left.anim.loop = true;
-	shot_down_left.speed.x = 3;
 	shot_down_left.lifetime = 30;
 	shot_down_left.anim.speed = 0.2f;
 	shot_down_left.speed.x = -5;
@@ -98,7 +92,6 @@ bool ModuleParticles::Start() {
 	shot_right.anim.PushBack({ 35,180,9,12 });
 	shot_right.anim.PushBack({ 51,180,9,12 });
 	shot_right.anim.loop = true;
-	shot_right.speed.x = 3;
 	shot_right.lifetime = 30;
 	shot_right.anim.speed = 0.2f;
 	shot_right.speed.x = 5;
@@ -107,7 +100,6 @@ bool ModuleParticles::Start() {
 	shot_left.anim.PushBack({ 35,180,9,12 });
 	shot_left.anim.PushBack({ 51,180,9,12 });
 	shot_left.anim.loop = true;
-	shot_left.speed.x = 3;
 	shot_left.lifetime = 30;
 	shot_left.anim.speed = 0.2f;
 	shot_left.speed.x = -5;
@@ -117,7 +109,6 @@ bool ModuleParticles::Start() {
 	hrifle_up.anim.PushBack({ 5,208,9,29 });
 	hrifle_up.anim.PushBack({ 21,208,9,29 });
 	hrifle_up.anim.loop = true;
-	hrifle_up.speed.x = 3;
 	hrifle_up.lifetime = 30;
 	hrifle_up.anim.speed = 0.2f;
 	hrifle_up.speed.x = 0;
@@ -126,7 +117,6 @@ bool ModuleParticles::Start() {
 	hrifle_up_left.anim.PushBack({ 203,211,24,25 });
 	hrifle_up_left.anim.PushBack({ 227,211,24,25 });
 	hrifle_up_left.anim.loop = true;
-	hrifle_up_left.speed.x = 3;
 	hrifle_up_left.lifetime = 30;
 	hrifle_up_left.anim.speed = 0.2f;
 	hrifle_up_left.speed.x = -5;
@@ -135,7 +125,6 @@ bool ModuleParticles::Start() {
 	hrifle_up_right.anim.PushBack({ 33,211,27,29 });
 	hrifle_up_right.anim.PushBack({ 60,211,27,29 });
 	hrifle_up_right.anim.loop = true;
-	hrifle_up_right.speed.x = 3;
 	hrifle_up_right.lifetime = 30;
 	hrifle_up_right.anim.speed = 0.2f;
 	hrifle_up_right.speed.x = 5;
@@ -144,7 +133,6 @@ bool ModuleParticles::Start() {
 	hrifle_down.anim.PushBack({ 12,237,-9,-29 });
 	hrifle_down.anim.PushBack({ 28,237,-9,-29 });
 	hrifle_down.anim.loop = true;
-	hrifle_down.speed.x = 3;
 	hrifle_down.lifetime = 30;
 	hrifle_down.anim.speed = 0.2f;
 	hrifle_down.speed.x = 0;
@@ -153,7 +141,6 @@ bool ModuleParticles::Start() {
 	hrifle_down_left.anim.PushBack({ 147,211,24,25 });
 	hrifle_down_left.anim.PushBack({ 171,211,24,25 });
 	hrifle_down_left.anim.loop = true;
-	hrifle_down_left.speed.x = 3;
 	hrifle_down_left.lifetime = 30;
 	hrifle_down_left.anim.speed = 0.2f;
 	hrifle_down_left.speed.x = -5;
@@ -162,7 +149,6 @@ bool ModuleParticles::Start() {
 	hrifle_down_right.anim.PushBack({ 91,208,24,25 });
 	hrifle_down_right.anim.PushBack({ 116,208,24,25 });
 	hrifle_down_right.anim.loop = true;
-	hrifle_down_right.speed.x = 3;
 	hrifle_down_right.lifetime = 30;
 	hrifle_down_right.anim.speed = 0.2f;
 	hrifle_down_right.speed.x = 5;
@@ -171,7 +157,6 @@ bool ModuleParticles::Start() {
 	hrifle_right.anim.PushBack({ 3,245,28,7 });
 	hrifle_right.anim.PushBack({ 34,245,28,7 });
 	hrifle_right.anim.loop = true;
-	hrifle_right.speed.x = 3;
 	hrifle_right.lifetime = 30;
 	hrifle_right.anim.speed = 0.2f;
 	hrifle_right.speed.x = 5;
@@ -180,7 +165,6 @@ bool ModuleParticles::Start() {
 	hrifle_left.anim.PushBack({ 64,245,28,7 });
 	hrifle_left.anim.PushBack({ 96,245,28,7 });
 	hrifle_left.anim.loop = true;
-	hrifle_left.speed.x = 3;
 	hrifle_left.lifetime = 30;
 	hrifle_left.anim.speed = 0.2f;
 	hrifle_left.speed.x = -5;
@@ -190,58 +174,66 @@ bool ModuleParticles::Start() {
 	fthrower_up.anim.PushBack({ 5,0,19,64 });
 	fthrower_up.anim.PushBack({ 134,0,18,63 });
 	fthrower_up.anim.loop = true;
-	fthrower_up.speed.x = 3;
 	fthrower_up.lifetime = 30;
 	fthrower_up.anim.speed = 0.2f;
+	fthrower_up.speed.x = 0;
+	fthrower_up.speed.y = -5;
 
-	fthrower_up_left.anim.PushBack({ 5,208,9,29 });
-	fthrower_up_left.anim.PushBack({ 21,208,9,29 });
+	fthrower_up_left.anim.PushBack({ 0,111,43,44 });
+	fthrower_up_left.anim.PushBack({ 95,111,44,42 });
 	fthrower_up_left.anim.loop = true;
-	fthrower_up_left.speed.x = 3;
 	fthrower_up_left.lifetime = 30;
 	fthrower_up_left.anim.speed = 0.2f;
+	fthrower_up_left.speed.x = -5;
+	fthrower_up_left.speed.y = -5;
 
-	fthrower_up_right.anim.PushBack({ 5,208,9,29 });
-	fthrower_up_right.anim.PushBack({ 21,208,9,29 });
+	fthrower_up_right.anim.PushBack({ 4,63,44,44 });
+	fthrower_up_right.anim.PushBack({ 100,63,44,42 });
 	fthrower_up_right.anim.loop = true;
-	fthrower_up_right.speed.x = 3;
 	fthrower_up_right.lifetime = 30;
 	fthrower_up_right.anim.speed = 0.2f;
+	fthrower_up_right.speed.x = 5;
+	fthrower_up_right.speed.y = -5;
 
-	fthrower_down.anim.PushBack({ 5,208,9,29 });
-	fthrower_down.anim.PushBack({ 21,208,9,29 });
+	fthrower_down.anim.PushBack({ 101,0,19,64 });
+	fthrower_down.anim.PushBack({ 230,1,18,63 });
 	fthrower_down.anim.loop = true;
-	fthrower_down.speed.x = 3;
 	fthrower_down.lifetime = 30;
 	fthrower_down.anim.speed = 0.2f;
+	fthrower_down.speed.x = 0;
+	fthrower_down.speed.y = 5;
 
-	fthrower_down_left.anim.PushBack({ 5,208,9,29 });
-	fthrower_down_left.anim.PushBack({ 21,208,9,29 });
+	fthrower_down_left.anim.PushBack({ 47,116,44,44 });
+	fthrower_down_left.anim.PushBack({ 143,116,42,44 });
 	fthrower_down_left.anim.loop = true;
-	fthrower_down_left.speed.x = 3;
 	fthrower_down_left.lifetime = 30;
 	fthrower_down_left.anim.speed = 0.2f;
+	fthrower_down_left.speed.x = -5;
+	fthrower_down_left.speed.y = 5;
 
-	fthrower_down_right.anim.PushBack({ 5,208,9,29 });
-	fthrower_down_right.anim.PushBack({ 21,208,9,29 });
+	fthrower_down_right.anim.PushBack({ 52,68,44,44 });
+	fthrower_down_right.anim.PushBack({ 150,68,42,44 });
 	fthrower_down_right.anim.loop = true;
-	fthrower_down_right.speed.x = 3;
 	fthrower_down_right.lifetime = 30;
 	fthrower_down_right.anim.speed = 0.2f;
+	fthrower_down_right.speed.x = 5;
+	fthrower_down_right.speed.y = 5;
 
-	fthrower_left.anim.PushBack({ 5,208,9,29 });
-	fthrower_left.anim.PushBack({ 21,208,9,29 });
+	fthrower_left.anim.PushBack({ 31,39,65,18 });
+	fthrower_left.anim.PushBack({ 159,39,64,19 });
 	fthrower_left.anim.loop = true;
-	fthrower_left.speed.x = 3;
 	fthrower_left.lifetime = 30;
 	fthrower_left.anim.speed = 0.2f;
+	fthrower_left.speed.x = -5;
+	fthrower_left.speed.y = 0;
 
-	fthrower_right.anim.PushBack({ 5,208,9,29 });
-	fthrower_right.anim.PushBack({ 21,208,9,29 });
+	fthrower_right.anim.PushBack({ 31,5,65,19 });
+	fthrower_right.anim.PushBack({ 160,6,64,18 });
 	fthrower_right.anim.loop = true;
-	fthrower_right.speed.x = 3;
 	fthrower_right.lifetime = 30;
 	fthrower_right.anim.speed = 0.2f;
+	fthrower_right.speed.x = 5;
+	fthrower_right.speed.y = 0;
 
 	return true;
 }

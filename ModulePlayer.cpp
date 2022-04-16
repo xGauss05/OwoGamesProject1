@@ -253,7 +253,7 @@ bool ModulePlayer::Start() {
 	currentAnimBot = &idleAnimBot;
 
 	// initiate player audios here
-	shotFx = App->audio->LoadFx("sounds/sfx/128.wav"); // shot sfx
+	shotFx = App->audio->LoadFx("sounds/sfx/142.wav"); // shot sfx
 	deadFx = App->audio->LoadFx("sounds/sfx/195.wav"); // dead sfx
 	heavyRifleFx = App->audio->LoadFx("sounds/sfx/153.wav");
 	flamethrowerFx = App->audio->LoadFx("sounds/sfx/136.wav");
@@ -623,6 +623,10 @@ update_status ModulePlayer::Update() {
 		idleAnimBot.frames[0] = currentAnimBot->GetCurrentFrame();
 	}
 
+	if (ammunition == 0) {
+		weapon = Weapon::NORMAL;
+	}
+
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 		switch (weapon) {
 		case Weapon::FLAMETHROWER:
@@ -643,10 +647,6 @@ update_status ModulePlayer::Update() {
 			shootNormal();
 		}break;
 		}
-	}
-
-	if (ammunition == 0) {
-		weapon = Weapon::NORMAL;
 	}
 
 	// If no up/down movement detected, set the current animation back to idle
