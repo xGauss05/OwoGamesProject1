@@ -47,6 +47,8 @@ bool ModuleParticles::Start() {
 	shot_up.speed.x = 3;
 	shot_up.lifetime = 30;
 	shot_up.anim.speed = 0.2f;
+	shot_up.speed.x = 0;
+	shot_up.speed.y = -5;
 
 	shot_up_right.anim.PushBack({ 35,180,9,12 });
 	shot_up_right.anim.PushBack({ 51,180,9,12 });
@@ -54,6 +56,8 @@ bool ModuleParticles::Start() {
 	shot_up_right.speed.x = 3;
 	shot_up_right.lifetime = 30;
 	shot_up_right.anim.speed = 0.2f;
+	shot_up_right.speed.x = 5;
+	shot_up_right.speed.y = -5;
 
 	shot_up_left.anim.PushBack({ 35,180,9,12 });
 	shot_up_left.anim.PushBack({ 51,180,9,12 });
@@ -61,6 +65,8 @@ bool ModuleParticles::Start() {
 	shot_up_left.speed.x = 3;
 	shot_up_left.lifetime = 30;
 	shot_up_left.anim.speed = 0.2f;
+	shot_up_left.speed.x = -5;
+	shot_up_left.speed.y = -5;
 
 	shot_down.anim.PushBack({ 35,180,9,12 });
 	shot_down.anim.PushBack({ 51,180,9,12 });
@@ -68,6 +74,8 @@ bool ModuleParticles::Start() {
 	shot_down.speed.x = 3;
 	shot_down.lifetime = 30;
 	shot_down.anim.speed = 0.2f;
+		shot_down.speed.x = 0;
+	shot_down.speed.y = 5;
 
 	shot_down_right.anim.PushBack({ 35,180,9,12 });
 	shot_down_right.anim.PushBack({ 51,180,9,12 });
@@ -75,6 +83,8 @@ bool ModuleParticles::Start() {
 	shot_down_right.speed.x = 3;
 	shot_down_right.lifetime = 30;
 	shot_down_right.anim.speed = 0.2f;
+	shot_down_right.speed.x = 5;
+	shot_down_right.speed.y = 5;
 
 	shot_down_left.anim.PushBack({ 35,180,9,12 });
 	shot_down_left.anim.PushBack({ 51,180,9,12 });
@@ -82,6 +92,8 @@ bool ModuleParticles::Start() {
 	shot_down_left.speed.x = 3;
 	shot_down_left.lifetime = 30;
 	shot_down_left.anim.speed = 0.2f;
+	shot_down_left.speed.x = -5;
+	shot_down_left.speed.y = 5;
 
 	shot_right.anim.PushBack({ 35,180,9,12 });
 	shot_right.anim.PushBack({ 51,180,9,12 });
@@ -89,6 +101,8 @@ bool ModuleParticles::Start() {
 	shot_right.speed.x = 3;
 	shot_right.lifetime = 30;
 	shot_right.anim.speed = 0.2f;
+	shot_right.speed.x = 5;
+	shot_right.speed.y = 0;
 
 	shot_left.anim.PushBack({ 35,180,9,12 });
 	shot_left.anim.PushBack({ 51,180,9,12 });
@@ -96,6 +110,8 @@ bool ModuleParticles::Start() {
 	shot_left.speed.x = 3;
 	shot_left.lifetime = 30;
 	shot_left.anim.speed = 0.2f;
+	shot_left.speed.x = -5;
+	shot_left.speed.y = 0;
 
 	// Heavy Rifle player shots
 	hrifle_up.anim.PushBack({ 5,208,9,29 });
@@ -104,55 +120,71 @@ bool ModuleParticles::Start() {
 	hrifle_up.speed.x = 3;
 	hrifle_up.lifetime = 30;
 	hrifle_up.anim.speed = 0.2f;
+	hrifle_up.speed.x = 0;
+	hrifle_up.speed.y = -5;
 
-	hrifle_up_left.anim.PushBack({ 5,208,9,29 });
-	hrifle_up_left.anim.PushBack({ 21,208,9,29 });
+	hrifle_up_left.anim.PushBack({ 203,211,24,25 });
+	hrifle_up_left.anim.PushBack({ 227,211,24,25 });
 	hrifle_up_left.anim.loop = true;
 	hrifle_up_left.speed.x = 3;
 	hrifle_up_left.lifetime = 30;
 	hrifle_up_left.anim.speed = 0.2f;
+	hrifle_up_left.speed.x = -5;
+	hrifle_up_left.speed.y = -5;
 
-	hrifle_up_right.anim.PushBack({ 5,208,9,29 });
-	hrifle_up_right.anim.PushBack({ 21,208,9,29 });
+	hrifle_up_right.anim.PushBack({ 33,211,27,29 });
+	hrifle_up_right.anim.PushBack({ 60,211,27,29 });
 	hrifle_up_right.anim.loop = true;
 	hrifle_up_right.speed.x = 3;
 	hrifle_up_right.lifetime = 30;
 	hrifle_up_right.anim.speed = 0.2f;
+	hrifle_up_right.speed.x = 5;
+	hrifle_up_right.speed.y = -5;
 
-	hrifle_down.anim.PushBack({ 5,208,9,29 });
-	hrifle_down.anim.PushBack({ 21,208,9,29 });
+	hrifle_down.anim.PushBack({ 12,237,-9,-29 });
+	hrifle_down.anim.PushBack({ 28,237,-9,-29 });
 	hrifle_down.anim.loop = true;
 	hrifle_down.speed.x = 3;
 	hrifle_down.lifetime = 30;
 	hrifle_down.anim.speed = 0.2f;
+	hrifle_down.speed.x = 0;
+	hrifle_down.speed.y = 5;
 
-	hrifle_down_left.anim.PushBack({ 5,208,9,29 });
-	hrifle_down_left.anim.PushBack({ 21,208,9,29 });
+	hrifle_down_left.anim.PushBack({ 147,211,24,25 });
+	hrifle_down_left.anim.PushBack({ 171,211,24,25 });
 	hrifle_down_left.anim.loop = true;
 	hrifle_down_left.speed.x = 3;
 	hrifle_down_left.lifetime = 30;
 	hrifle_down_left.anim.speed = 0.2f;
+	hrifle_down_left.speed.x = -5;
+	hrifle_down_left.speed.y = 5;
 
-	hrifle_down_right.anim.PushBack({ 5,208,9,29 });
-	hrifle_down_right.anim.PushBack({ 21,208,9,29 });
+	hrifle_down_right.anim.PushBack({ 91,208,24,25 });
+	hrifle_down_right.anim.PushBack({ 116,208,24,25 });
 	hrifle_down_right.anim.loop = true;
 	hrifle_down_right.speed.x = 3;
 	hrifle_down_right.lifetime = 30;
 	hrifle_down_right.anim.speed = 0.2f;
+	hrifle_down_right.speed.x = 5;
+	hrifle_down_right.speed.y = 5;
 
-	hrifle_right.anim.PushBack({ 5,208,9,29 });
-	hrifle_right.anim.PushBack({ 21,208,9,29 });
+	hrifle_right.anim.PushBack({ 3,245,28,7 });
+	hrifle_right.anim.PushBack({ 34,245,28,7 });
 	hrifle_right.anim.loop = true;
 	hrifle_right.speed.x = 3;
 	hrifle_right.lifetime = 30;
 	hrifle_right.anim.speed = 0.2f;
+	hrifle_right.speed.x = 5;
+	hrifle_right.speed.y = 0;
 
-	hrifle_left.anim.PushBack({ 5,208,9,29 });
-	hrifle_left.anim.PushBack({ 21,208,9,29 });
+	hrifle_left.anim.PushBack({ 64,245,28,7 });
+	hrifle_left.anim.PushBack({ 96,245,28,7 });
 	hrifle_left.anim.loop = true;
 	hrifle_left.speed.x = 3;
 	hrifle_left.lifetime = 30;
 	hrifle_left.anim.speed = 0.2f;
+	hrifle_left.speed.x = -5;
+	hrifle_left.speed.y = 0;
 
 	// Flamethrower player shots
 	fthrower_up.anim.PushBack({ 5,0,19,64 });

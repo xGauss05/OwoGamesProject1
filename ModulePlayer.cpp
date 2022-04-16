@@ -236,7 +236,6 @@ ModulePlayer::ModulePlayer() {
 	deathAnimBot.speed = 0.15f;
 	deathAnimBot.loop = false;
 
-
 }
 
 ModulePlayer::~ModulePlayer() {
@@ -266,6 +265,141 @@ bool ModulePlayer::Start() {
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 64 }, Collider::Type::PLAYER, this);
 
 	return ret;
+}
+
+void shootNormal() {
+	switch (App->player->direction) {
+	case Directions::UP:
+	{
+		App->particles->AddParticle(App->particles->shot_up, App->player->position.x + 13, App->player->position.y, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::UP_RIGHT:
+	{
+		App->particles->AddParticle(App->particles->shot_up_right, App->player->position.x + 32, App->player->position.y, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::UP_LEFT:
+	{
+		App->particles->AddParticle(App->particles->shot_up_left, App->player->position.x, App->player->position.y, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::DOWN:
+	{
+		App->particles->AddParticle(App->particles->shot_down, App->player->position.x + 13, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::DOWN_RIGHT:
+	{
+		App->particles->AddParticle(App->particles->shot_down_right, App->player->position.x + 32, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::DOWN_LEFT:
+	{
+		App->particles->AddParticle(App->particles->shot_down_left, App->player->position.x, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::RIGHT:
+	{
+		App->particles->AddParticle(App->particles->shot_right, App->player->position.x + 32, App->player->position.y + 29, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::LEFT:
+	{
+		App->particles->AddParticle(App->particles->shot_left, App->player->position.x, App->player->position.y + 29, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	}
+}
+
+void shootHeavyRifle() {
+	switch (App->player->direction) {
+	case Directions::UP:
+	{
+		App->particles->AddParticle(App->particles->hrifle_up, App->player->position.x + 13, App->player->position.y, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::UP_RIGHT:
+	{
+		App->particles->AddParticle(App->particles->hrifle_up_right, App->player->position.x + 32, App->player->position.y, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::UP_LEFT:
+	{
+		App->particles->AddParticle(App->particles->hrifle_up_left, App->player->position.x, App->player->position.y, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::DOWN:
+	{
+		App->particles->AddParticle(App->particles->hrifle_down, App->player->position.x + 13, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::DOWN_RIGHT:
+	{
+		App->particles->AddParticle(App->particles->hrifle_down_right, App->player->position.x + 32, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::DOWN_LEFT:
+	{
+		App->particles->AddParticle(App->particles->hrifle_down_left, App->player->position.x, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::RIGHT:
+	{
+		App->particles->AddParticle(App->particles->hrifle_right, App->player->position.x + 32, App->player->position.y + 29, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::LEFT:
+	{
+		App->particles->AddParticle(App->particles->hrifle_left, App->player->position.x, App->player->position.y + 29, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	}
+}
+
+void shootFlamethrower() {
+	switch (App->player->direction) {
+	case Directions::UP:
+	{
+		App->particles->AddParticle(App->particles->fthrower_up, App->player->position.x + 13, App->player->position.y, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::UP_RIGHT:
+	{
+		App->particles->AddParticle(App->particles->fthrower_up_right, App->player->position.x + 32, App->player->position.y, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::UP_LEFT:
+	{
+		App->particles->AddParticle(App->particles->fthrower_up_left, App->player->position.x, App->player->position.y, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::DOWN:
+	{
+		App->particles->AddParticle(App->particles->fthrower_down, App->player->position.x + 13, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::DOWN_RIGHT:
+	{
+		App->particles->AddParticle(App->particles->fthrower_down_right, App->player->position.x + 32, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::DOWN_LEFT:
+	{
+		App->particles->AddParticle(App->particles->fthrower_down_left, App->player->position.x, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::RIGHT:
+	{
+		App->particles->AddParticle(App->particles->fthrower_right, App->player->position.x + 32, App->player->position.y + 29, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	case Directions::LEFT:
+	{
+		App->particles->AddParticle(App->particles->fthrower_left, App->player->position.x, App->player->position.y + 29, Collider::Type::PLAYER_SHOT);
+	}
+	break;
+	}
 }
 
 update_status ModulePlayer::Update() {
@@ -488,70 +622,30 @@ update_status ModulePlayer::Update() {
 		idleAnimBot.frames[0] = currentAnimBot->GetCurrentFrame();
 	}
 
-
-
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
+		switch (weapon) {
+		case Weapon::FLAMETHROWER:
+		{
+			App->audio->PlayFx(flamethrowerFx);
+			ammunition--;
+			shootFlamethrower();
+		} break;
+		case Weapon::HEAVY_RIFLE:
+		{
+			App->audio->PlayFx(heavyRifleFx);
+			ammunition--;
+			shootHeavyRifle();
+		} break;
+		case Weapon::NORMAL:
+		{
+			App->audio->PlayFx(shotFx);
+			shootNormal();
+		}break;
+		}
+	}
 
-		App->audio->PlayFx(shotFx);
-
-		switch (direction) {
-		case Directions::UP:
-		{
-			App->particles->shot_up.speed.x = 0;
-			App->particles->shot_up.speed.y = -5;
-			App->particles->AddParticle(App->particles->shot_up, position.x + 13, position.y, Collider::Type::PLAYER_SHOT);
-		}
-		break;
-		case Directions::UP_RIGHT:
-		{
-			App->particles->shot_up.speed.x = 5;
-			App->particles->shot_up.speed.y = -5;
-			App->particles->AddParticle(App->particles->shot_up_right, position.x + 32, position.y, Collider::Type::PLAYER_SHOT);
-		}
-		break;
-		case Directions::UP_LEFT:
-		{
-			App->particles->shot_up.speed.x = -5;
-			App->particles->shot_up.speed.y = -5;
-			App->particles->AddParticle(App->particles->shot_up_left, position.x, position.y, Collider::Type::PLAYER_SHOT);
-		}
-		break;
-		case Directions::DOWN:
-		{
-			App->particles->shot_up.speed.x = 0;
-			App->particles->shot_up.speed.y = 5;
-			App->particles->AddParticle(App->particles->shot_down, position.x + 13, position.y + 64, Collider::Type::PLAYER_SHOT);
-		}
-		break;
-		case Directions::DOWN_RIGHT:
-		{
-			App->particles->shot_up.speed.x = 5;
-			App->particles->shot_up.speed.y = 5;
-			App->particles->AddParticle(App->particles->shot_down_right, position.x + 32, position.y + 64, Collider::Type::PLAYER_SHOT);
-		}
-		break;
-		case Directions::DOWN_LEFT:
-		{
-			App->particles->shot_up.speed.x = -5;
-			App->particles->shot_up.speed.y = 5;
-			App->particles->AddParticle(App->particles->shot_down_left, position.x, position.y + 64, Collider::Type::PLAYER_SHOT);
-		}
-		break;
-		case Directions::RIGHT:
-		{
-			App->particles->shot_up.speed.x = 5;
-			App->particles->shot_up.speed.y = 0;
-			App->particles->AddParticle(App->particles->shot_right, position.x + 32, position.y + 29, Collider::Type::PLAYER_SHOT);
-		}
-		break;
-		case Directions::LEFT:
-		{
-			App->particles->shot_up.speed.x = -5;
-			App->particles->shot_up.speed.y = 0;
-			App->particles->AddParticle(App->particles->shot_left, position.x, position.y + 29, Collider::Type::PLAYER_SHOT);
-		}
-		break;
-		}
+	if (ammunition == 0) {
+		weapon = Weapon::NORMAL;
 	}
 
 	// If no up/down movement detected, set the current animation back to idle
@@ -578,10 +672,10 @@ update_status ModulePlayer::Update() {
 
 update_status ModulePlayer::PostUpdate() {
 	//if (!dead) {
-		SDL_Rect rect = currentAnimBot->GetCurrentFrame();
-		App->render->Blit(texture, position.x, position.y + 29, &rect);
-		rect = currentAnimTop->GetCurrentFrame();
-		App->render->Blit(texture, position.x, position.y, &rect);
+	SDL_Rect rect = currentAnimBot->GetCurrentFrame();
+	App->render->Blit(texture, position.x, position.y + 29, &rect);
+	rect = currentAnimTop->GetCurrentFrame();
+	App->render->Blit(texture, position.x, position.y, &rect);
 	//}
 	return update_status::UPDATE_CONTINUE;
 }
@@ -600,14 +694,14 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			App->audio->PlayFx(deadFx);
 
 			this->dead = true;
-		}break;
+		} break;
 		case Collider::Type::POWER_UP:
 		{
 			// sound plays at Powerup.cpp
+			// weapon changes at each Powerup_(weaponname).cpp
 			c2->pendingToDelete = true;
 			ammunition = MAX_AMMO;
-		}
-		break;
+		} break;
 		}
 
 	}

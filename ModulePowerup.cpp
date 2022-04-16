@@ -85,7 +85,7 @@ void ModulePowerup::HandlePowerupsSpawn() {
 				LOG("Spawning powerup at %d", spawnQueue[i].x * SCREEN_SIZE);
 
 				SpawnPowerup(spawnQueue[i]);
-				spawnQueue[i].type = POWERUP_TYPE::NO_TYPE; // Removing the newly spawned enemy from the queue
+				spawnQueue[i].type = POWERUP_TYPE::NO_TYPE; // Removing the newly spawned powerup from the queue
 			}
 		}
 	}
@@ -95,7 +95,7 @@ void ModulePowerup::HandlePowerupsDespawn() {
 	// Iterate existing enemies
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] != nullptr) {
-			// Delete the enemy when it has reached the end of the screen
+			// Delete the powerup when it has reached the end of the screen
 			if (powerUps[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN) {
 				LOG("DeSpawning powerup at %d", powerUps[i]->position.x * SCREEN_SIZE);
 
@@ -129,7 +129,7 @@ void ModulePowerup::OnCollision(Collider* c1, Collider* c2) {
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] != nullptr && powerUps[i]->GetCollider() == c1) {
 
-			powerUps[i]->OnCollision(c2); //Notify the powerup of a collision
+			powerUps[i]->OnCollision(c2); 
 			delete powerUps[i];
 			powerUps[i] = nullptr;
 			break;
