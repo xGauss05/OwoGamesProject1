@@ -3,6 +3,8 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 
+#include "ModuleEnemies.h" //(Testing)
+
 Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y) : Enemy(x, y)
 {
 	//(empty).PushBack({ 5,72,21,22 });
@@ -24,4 +26,9 @@ void Enemy_GreenSoldier::Update()
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();
+}
+
+void Enemy_GreenSoldier::Die()
+{
+	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -100); (Testing)
 }

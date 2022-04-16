@@ -3,6 +3,9 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 
+#include "ModuleEnemies.h" //(Testing)
+#include "ModulePowerup.h" //(Testing)
+
 Enemy_RedSoldier::Enemy_RedSoldier(int x, int y) : Enemy(x, y)
 {
 	//(empty).PushBack({ 5,72,21,22 });
@@ -24,4 +27,10 @@ void Enemy_RedSoldier::Update()
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();
+}
+
+void Enemy_RedSoldier::Die()
+{
+	//App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 300, -600);
+	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, position.x, position.y);
 }
