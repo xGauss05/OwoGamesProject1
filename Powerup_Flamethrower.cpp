@@ -7,9 +7,7 @@
 #include "ModulePlayer.h"
 
 Powerup_Flamethrower::Powerup_Flamethrower(int x, int y) : Powerup(x, y) {
-	//(empty).PushBack({ 5,72,21,22 });
-	//currentAnim = &(empty);
-
+	
 	collider = App->collisions->AddCollider({ 0, 0, 23, 23 }, Collider::Type::POWER_UP, (Module*)App->powerups);
 }
 

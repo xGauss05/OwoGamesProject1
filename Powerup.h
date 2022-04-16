@@ -24,6 +24,7 @@ public:
 
 protected:
 	Animation* currentAnim = nullptr;
+	Animation weaponAnim;
 	Collider* collider = nullptr;
 	iPoint spawnPos;
 };

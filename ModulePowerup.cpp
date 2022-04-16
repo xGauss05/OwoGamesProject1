@@ -2,8 +2,8 @@
 
 #include "Application.h"
 
-#include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "ModuleTextures.h"
 #include "ModuleAudio.h"
 
 #include "Powerup.h"
@@ -119,7 +119,7 @@ void ModulePowerup::SpawnPowerup(const PowerupSpawnpoint& info) {
 			}break;
 			}
 		}
-		powerUps[i]->texture = texture;
+		powerUps[i]->texture = this->texture;
 		powerUps[i]->pickUpFx = this->pickUpFx;
 		break;
 	}

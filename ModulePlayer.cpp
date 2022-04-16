@@ -11,6 +11,8 @@
 #include "SDL/include/SDL_scancode.h"
 
 ModulePlayer::ModulePlayer() {
+	direction = UP;
+	weapon = NORMAL;
 	// idle animation - just one sprite
 	idleAnimTop.PushBack({ 0, 0, 32, 32 });
 	idleAnimBot.PushBack({ 256, 0, 32, 32 });
@@ -245,8 +247,7 @@ bool ModulePlayer::Start() {
 	LOG("Loading player textures");
 
 	bool ret = true;
-	direction = UP;
-	weapon = NORMAL;
+	
 	texture = App->textures->Load("img/sprites/player.png"); // player spritesheet
 	currentAnimTop = &idleAnimTop;
 	currentAnimBot = &idleAnimBot;

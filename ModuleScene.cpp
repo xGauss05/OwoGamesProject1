@@ -24,10 +24,9 @@ bool ModuleScene::Start() {
 	// Colliders ---
 	// Bottom collider
 	// Make collision boxes here
-	App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::POWER_UP);
-	
+
 	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 300, -60);
-	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 200, -500);
+	//App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 230, -60);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -60);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 180, -500);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);

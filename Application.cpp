@@ -24,14 +24,15 @@ Application::Application() {
 
 	modules[4] = scene = new ModuleScene();
 	modules[5] = player = new ModulePlayer();
-
 	modules[6] = particles = new ModuleParticles();
-	modules[7] = collisions = new ModuleCollisions();
+	modules[7] = enemies = new ModuleEnemies();
+	modules[8] = powerups = new ModulePowerup();
 
-	modules[8] = render = new ModuleRender();
+	modules[9] = collisions = new ModuleCollisions();
 
-	modules[9] = enemies = new ModuleEnemies();
-	modules[10] = powerups = new ModulePowerup();
+	modules[10] = render = new ModuleRender();
+
+
 }
 
 Application::~Application() {

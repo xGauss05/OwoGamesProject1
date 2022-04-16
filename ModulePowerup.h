@@ -3,7 +3,7 @@
 
 #include "Module.h"
 
-#define MAX_POWERUPS 50
+#define MAX_POWERUPS 100
 enum class POWERUP_TYPE {
 	NO_TYPE,
 	HEAVY_RIFLE,
@@ -49,7 +49,7 @@ public:
 	void HandlePowerupsDespawn();
 
 private:
-	// Spawns a new enemy using the data from the queue
+	// Spawns a new powerup using the data from the queue
 	void SpawnPowerup(const PowerupSpawnpoint& info);
 
 private:
