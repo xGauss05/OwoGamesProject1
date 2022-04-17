@@ -27,8 +27,7 @@ protected:
 	Animation weaponAnim;
 	Collider* collider = nullptr;
 	iPoint spawnPos;
+
 };
-
-
 
 #endif

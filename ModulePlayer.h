@@ -7,7 +7,9 @@
 
 struct SDL_Texture;
 struct Collider;
+
 #define MAX_AMMO 50
+
 enum Directions {
 	UP, DOWN, RIGHT, LEFT,
 	UP_RIGHT, UP_LEFT, DOWN_RIGHT, DOWN_LEFT
@@ -83,7 +85,6 @@ public:
 	Animation leftAnimTop, leftAnimBot;
 	// Death
 	Animation deathAnimTop, deathAnimBot;
-
 
 	// The player's collider
 	Collider* collider = nullptr;

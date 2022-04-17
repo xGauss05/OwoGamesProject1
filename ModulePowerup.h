@@ -4,6 +4,7 @@
 #include "Module.h"
 
 #define MAX_POWERUPS 100
+
 enum class POWERUP_TYPE {
 	NO_TYPE,
 	HEAVY_RIFLE,
@@ -39,6 +40,7 @@ public:
 	update_status PostUpdate() override;
 
 	bool CleanUp() override;
+
 	// Collision callback, called when the player intersects with another collider
 	void OnCollision(Collider* c1, Collider* c2) override;
 
@@ -61,4 +63,5 @@ private:
 	
 	int pickUpFx = 0;
 };
-#endif
+
+#endif // __MODULE_POWERUP_H__

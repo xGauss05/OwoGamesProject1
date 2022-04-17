@@ -5,7 +5,6 @@
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 
-
 Powerup::Powerup(int x, int y) : position(x, y) {
 	spawnPos = position;
 	pickUpFx = App->audio->LoadFx("sounds/sfx/165.wav");

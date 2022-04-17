@@ -21,12 +21,10 @@ bool ModuleScene::Start() {
 	bgTexture = App->textures->Load("img/sprites/map.png"); // needs to be changed
 	App->audio->PlayMusic("sounds/bgm/106.ogg", 1.0f); // bgm Farm
 
-	// Colliders ---
-	// Bottom collider
-	// Make collision boxes here
+	// Colliders --- Make collision boxes here
 
-	//App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 300, -60);
-	//App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 230, -60);
+	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 300, -60);
+	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 230, -60);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -60);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 180, -500);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);

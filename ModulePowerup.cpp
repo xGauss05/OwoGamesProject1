@@ -92,7 +92,7 @@ void ModulePowerup::HandlePowerupsSpawn() {
 }
 
 void ModulePowerup::HandlePowerupsDespawn() {
-	// Iterate existing enemies
+	// Iterate existing powerups
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] != nullptr) {
 			// Delete the powerup when it has reached the end of the screen
@@ -111,17 +111,17 @@ void ModulePowerup::SpawnPowerup(const PowerupSpawnpoint& info) {
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] == nullptr) {
 			switch (info.type) {
-			case POWERUP_TYPE::HEAVY_RIFLE: {
+			case POWERUP_TYPE::HEAVY_RIFLE:
 				powerUps[i] = new Powerup_HeavyRifle(info.x, info.y);
-			}break;
-			case POWERUP_TYPE::FLAMETHROWER: {
+				break;
+			case POWERUP_TYPE::FLAMETHROWER:
 				powerUps[i] = new Powerup_Flamethrower(info.x, info.y);
-			}break;
+				break;
 			}
+			powerUps[i]->texture = this->texture;
+			powerUps[i]->pickUpFx = this->pickUpFx;
+			break;
 		}
-		powerUps[i]->texture = this->texture;
-		powerUps[i]->pickUpFx = this->pickUpFx;
-		break;
 	}
 }
 
@@ -129,7 +129,7 @@ void ModulePowerup::OnCollision(Collider* c1, Collider* c2) {
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] != nullptr && powerUps[i]->GetCollider() == c1) {
 
-			powerUps[i]->OnCollision(c2); 
+			powerUps[i]->OnCollision(c2);
 			delete powerUps[i];
 			powerUps[i] = nullptr;
 			break;

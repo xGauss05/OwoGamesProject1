@@ -668,6 +668,10 @@ update_status ModulePlayer::Update() {
 	currentAnimTop->Update();
 	currentAnimBot->Update();
 
+	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_REPEAT) {
+		return update_status::UPDATE_STOP;
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 
