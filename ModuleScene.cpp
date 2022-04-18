@@ -30,6 +30,34 @@ bool ModuleScene::Start() {
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 230, -600);
 
+	// Left colliders
+	App->collisions->AddCollider({0, 140, 60, 100}, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, 110, 90, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, 75, 120, 35 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, -20, 150, 95 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, -50, 185, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, -210, 210, 160 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, -270, 185, 60 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, -300, 150, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, -475, 120, 175 }, Collider::Type::WALL);
+
+	// Right colliders
+	App->collisions->AddCollider({ 450, 205, 60, 35 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 425, 135, 85, 70 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 405, 105, 105, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 360, 45, 150, 60 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 335, 5, 175, 40 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 300, -290, 210, 295 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 325, -475, 185, 185 }, Collider::Type::WALL);
+
+	//Rock
+	App->collisions->AddCollider({ 128, -425, 65, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 255, -425, 65, 20 }, Collider::Type::WALL);
+
+	//Down
+	
+
+
 	return ret;
 }
 
