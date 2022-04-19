@@ -7,13 +7,11 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 
-SceneIntro::SceneIntro(bool startEnabled) : Module(startEnabled) {
+#include "SDL/include/SDL_scancode.h"
 
-}
+SceneIntro::SceneIntro(bool startEnabled) : Module(startEnabled) {}
 
-SceneIntro::~SceneIntro() {
-
-}
+SceneIntro::~SceneIntro() {}
 
 // Load assets
 bool SceneIntro::Start() {
@@ -21,8 +19,8 @@ bool SceneIntro::Start() {
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Sprites/startScreen.png");
-	App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
+	bgTexture = App->textures->Load("img/sprites/introduction.png");
+	// App->audio->PlayMusic("musicname here", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -31,9 +29,9 @@ bool SceneIntro::Start() {
 }
 
 update_status SceneIntro::Update() {
-	//if (App->input->keys[SDL_SCANCODE] == KEY_STATE::KEY_DOWN) {
-	//	//App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
-	//}
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->level1, 90);
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }

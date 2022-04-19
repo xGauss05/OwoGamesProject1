@@ -28,7 +28,9 @@ bool ModuleRender::Init() {
 	if (renderer == nullptr) {
 		LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
-	}
+	}	
+	camera.x += App->player->position.x;
+	camera.y += App->player->position.y;
 
 	return ret;
 }

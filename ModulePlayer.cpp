@@ -252,6 +252,8 @@ bool ModulePlayer::Start() {
 	currentAnimTop = &idleAnimTop;
 	currentAnimBot = &idleAnimBot;
 
+	dead = false;
+
 	// initiate player audios here
 	shotFx = App->audio->LoadFx("sounds/sfx/142.wav"); // shot sfx
 	deadFx = App->audio->LoadFx("sounds/sfx/195.wav"); // dead sfx
@@ -635,7 +637,7 @@ update_status ModulePlayer::Update() {
 		weapon = Weapon::NORMAL;
 	}
 
-	
+
 
 	if (!dead) {
 		if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
@@ -706,10 +708,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		switch (c2->type) {
 		case Collider::Type::ENEMY:
 		{
-			if (godMode == false){ 
-			App->audio->PlayFx(deadFx);
+			if (godMode == false) {
+				App->audio->PlayFx(deadFx);
 
-			this->dead = true;
+				this->dead = true;
 			}
 		} break;
 		case Collider::Type::ENEMY_SHOT:

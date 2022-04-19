@@ -7,11 +7,14 @@
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 #include "ModulePowerup.h"
-
-SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled) {}
-SceneLevel1::~SceneLevel1() {}
+#include "ModulePlayer.h"
 
 #define Y_BG_POSITION -3920
+
+SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled) {}
+
+SceneLevel1::~SceneLevel1() {}
+
 // Load assets
 bool SceneLevel1::Start() {
 	LOG("Loading background assets");
@@ -57,6 +60,9 @@ bool SceneLevel1::Start() {
 	//Down
 	
 
+	App->player->Enable();
+	App->enemies->Enable();
+	App->powerups->Enable();
 
 	return ret;
 }
@@ -71,4 +77,15 @@ update_status SceneLevel1::PostUpdate() {
 	App->render->Blit(bgTexture, 0, Y_BG_POSITION, NULL);
 
 	return update_status::UPDATE_CONTINUE;
+}
+
+bool SceneLevel1::CleanUp() {
+	// Disables the player, enemies and powerups.	
+	App->player->Disable();
+	App->enemies->Disable();
+	App->powerups->Disable();
+
+	// Handle memory leaks
+
+	return true;
 }
