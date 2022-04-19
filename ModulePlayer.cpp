@@ -247,7 +247,7 @@ bool ModulePlayer::Start() {
 	LOG("Loading player textures");
 
 	bool ret = true;
-	
+
 	texture = App->textures->Load("img/sprites/player.png"); // player spritesheet
 	currentAnimTop = &idleAnimTop;
 	currentAnimBot = &idleAnimBot;
@@ -635,25 +635,29 @@ update_status ModulePlayer::Update() {
 		weapon = Weapon::NORMAL;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
-		switch (weapon) {
-		case Weapon::FLAMETHROWER:
-		{
-			App->audio->PlayFx(flamethrowerFx);
-			ammunition--;
-			shootFlamethrower();
-		} break;
-		case Weapon::HEAVY_RIFLE:
-		{
-			App->audio->PlayFx(heavyRifleFx);
-			ammunition--;
-			shootHeavyRifle();
-		} break;
-		case Weapon::NORMAL:
-		{
-			App->audio->PlayFx(shotFx);
-			shootNormal();
-		}break;
+	
+
+	if (!dead) {
+		if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
+			switch (weapon) {
+			case Weapon::FLAMETHROWER:
+			{
+				App->audio->PlayFx(flamethrowerFx);
+				ammunition--;
+				shootFlamethrower();
+			} break;
+			case Weapon::HEAVY_RIFLE:
+			{
+				App->audio->PlayFx(heavyRifleFx);
+				ammunition--;
+				shootHeavyRifle();
+			} break;
+			case Weapon::NORMAL:
+			{
+				App->audio->PlayFx(shotFx);
+				shootNormal();
+			}break;
+			}
 		}
 	}
 
@@ -671,7 +675,7 @@ update_status ModulePlayer::Update() {
 		currentAnimBot = &deathAnimBot;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT) {
+	if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN) {
 		godMode = !godMode;
 	}
 
@@ -702,15 +706,19 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		switch (c2->type) {
 		case Collider::Type::ENEMY:
 		{
+			if (godMode == false){ 
 			App->audio->PlayFx(deadFx);
 
 			this->dead = true;
+			}
 		} break;
 		case Collider::Type::ENEMY_SHOT:
 		{
-			App->audio->PlayFx(deadFx);
+			if (godMode == false) {
+				App->audio->PlayFx(deadFx);
 
-			this->dead = true;
+				this->dead = true;
+			}
 		} break;
 		case Collider::Type::POWER_UP:
 		{
