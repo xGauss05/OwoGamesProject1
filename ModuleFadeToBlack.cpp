@@ -76,7 +76,6 @@ bool ModuleFadeToBlack::FadeToBlack(Module* moduleToDisable, Module* moduleToEna
 }
 
 bool ModuleFadeToBlack::CleanUp() {
-	delete this->moduleToDisable;
-	delete this->moduleToEnable;
+
 	return true;
 }
