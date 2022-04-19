@@ -91,7 +91,7 @@ public:
 
 	// A flag to detect when the player has been destroyed
 	bool dead = false;
-
+	bool godMode = false;
 	// Amount of shots available. Max should be 50.
 	uint ammunition = 0;
 

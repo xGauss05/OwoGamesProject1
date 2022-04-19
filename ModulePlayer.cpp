@@ -663,6 +663,10 @@ update_status ModulePlayer::Update() {
 		currentAnimBot = &deathAnimBot;
 	}
 
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT) {
+		godMode = !godMode;
+	}
+
 	// Updates player collider position
 	collider->SetPos(position.x, position.y);
 	currentAnimTop->Update();
