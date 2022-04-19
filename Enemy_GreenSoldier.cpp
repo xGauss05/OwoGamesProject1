@@ -2,7 +2,7 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
-
+#include "ModuleAudio.h"
 #include "ModuleEnemies.h" //(Testing)
 
 Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y) : Enemy(x, y)
@@ -10,7 +10,6 @@ Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y) : Enemy(x, y)
 	//(empty).PushBack({ 5,72,21,22 });
 	//currentAnim = &(empty);
 
-	//Have the Brown Cookies describe a path in the screen
 	path.PushBack({ -1.0f, 0 }, 50);
 	path.PushBack({ 1.0f, 0 }, 50);
 
@@ -28,7 +27,9 @@ void Enemy_GreenSoldier::Update()
 	Enemy::Update();
 }
 
-void Enemy_GreenSoldier::Die()
-{
-	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -100); (Testing)
+void Enemy_GreenSoldier::OnCollision(Collider* collider) {
+	App->audio->PlayFx(enemyDeadFx);
+
+	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+	//App->audio->PlayFx(enemyDeadFx);
 }

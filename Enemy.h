@@ -28,9 +28,7 @@ public:
 
 	// Collision response
 	// Triggers an animation and a sound fx
-	virtual void OnCollision(Collider* collider);
-
-	virtual void Die();
+	virtual void OnCollision(Collider* collider) = 0;
 
 public:
 	// The current position in the world
@@ -40,7 +38,7 @@ public:
 	SDL_Texture* texture = nullptr;
 
 	// Sound fx when destroyed
-	int destroyedFx = 0;
+	int enemyDeadFx = 0;
 
 protected:
 	// A ptr to the current animation

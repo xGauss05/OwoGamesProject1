@@ -8,6 +8,7 @@
 
 Enemy::Enemy(int x, int y) : position(x, y) {
 	spawnPos = position;
+	enemyDeadFx = App->audio->LoadFx("sounds/sfx/194.wav");
 }
 
 Enemy::~Enemy() {
@@ -32,11 +33,10 @@ void Enemy::Draw() {
 		App->render->Blit(texture, position.x, position.y, &(currentAnim->GetCurrentFrame()));
 }
 
-void Enemy::OnCollision(Collider* collider) {
-	App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-	//App->audio->PlayFx(destroyedFx);
-}
+//void Enemy::OnCollision(Collider* collider) {
+//	
+//
+//	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+//	//App->audio->PlayFx(enemyDeadFx);
+//}
 
-void Enemy::Die() {
-	App->audio->PlayFx(destroyedFx);
-}

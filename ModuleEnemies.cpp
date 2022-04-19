@@ -147,8 +147,8 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				enemies[i] = new Enemy_RedSoldier(info.x, info.y);
 				break;
 			}
-			enemies[i]->texture = texture;
-			enemies[i]->destroyedFx = enemyDestroyedFx;
+			enemies[i]->texture = this->texture;
+			enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
 			break;
 		}
 	}
@@ -161,8 +161,6 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
-
-			enemies[i]->Die();
 
 			delete enemies[i];
 			enemies[i] = nullptr;

@@ -15,8 +15,7 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
-	void Die() override;
-
+	void OnCollision(Collider* collider) override;
 private:
 	// A set of steps that define the position in the screen
 	// And an animation for each step

@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "ModuleAudio.h"
 
 #include "ModuleEnemies.h" //(Testing)
 #include "ModulePowerup.h" //(Testing)
@@ -11,7 +12,6 @@ Enemy_RedSoldier::Enemy_RedSoldier(int x, int y) : Enemy(x, y)
 	//(empty).PushBack({ 5,72,21,22 });
 	//currentAnim = &(empty);
 
-	//Have the Brown Cookies describe a path in the screen
 	path.PushBack({ 0, -1.0f }, 50);
 	path.PushBack({ 0, 1.0f }, 50);
 
@@ -29,8 +29,11 @@ void Enemy_RedSoldier::Update()
 	Enemy::Update();
 }
 
-void Enemy_RedSoldier::Die()
-{
-	//App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 300, -600);
+void Enemy_RedSoldier::OnCollision(Collider* collider) {
+	App->audio->PlayFx(enemyDeadFx);
 	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, position.x, position.y);
+
+	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+	//App->audio->PlayFx(enemyDeadFx);
 }
+
