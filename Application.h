@@ -11,7 +11,7 @@ class ModuleInput;
 class ModuleTextures;
 class ModuleAudio;
 class ModulePlayer;
-class ModuleScene;
+class SceneLevel1;
 class ModuleParticles;
 class ModuleCollisions;
 class ModuleRender;
@@ -48,7 +48,7 @@ public:
 	ModuleAudio* audio = nullptr;
 
 	ModulePlayer* player = nullptr;
-	ModuleScene* scene = nullptr;
+	SceneLevel1* level1 = nullptr;
 	ModuleParticles* particles = nullptr;
 
 	ModuleCollisions* collisions = nullptr;

@@ -10,7 +10,7 @@ struct SDL_Surface;
 class ModuleWindow : public Module {
 public:
 	//Constructor
-	ModuleWindow();
+	ModuleWindow(bool startEnabled);
 
 	// Destructor
 	~ModuleWindow();

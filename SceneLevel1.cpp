@@ -1,4 +1,4 @@
-#include "ModuleScene.h"
+#include "SceneLevel1.h"
 
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -8,12 +8,12 @@
 #include "ModuleEnemies.h"
 #include "ModulePowerup.h"
 
-ModuleScene::ModuleScene() {}
-ModuleScene::~ModuleScene() {}
+SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled) {}
+SceneLevel1::~SceneLevel1() {}
 
 #define Y_BG_POSITION -3920
 // Load assets
-bool ModuleScene::Start() {
+bool SceneLevel1::Start() {
 	LOG("Loading background assets");
 
 	bool ret = true;
@@ -61,12 +61,12 @@ bool ModuleScene::Start() {
 	return ret;
 }
 
-update_status ModuleScene::Update() {
+update_status SceneLevel1::Update() {
 	return update_status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
-update_status ModuleScene::PostUpdate() {
+update_status SceneLevel1::PostUpdate() {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, Y_BG_POSITION, NULL);
 

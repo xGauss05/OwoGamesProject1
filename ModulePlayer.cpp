@@ -10,7 +10,7 @@
 
 #include "SDL/include/SDL_scancode.h"
 
-ModulePlayer::ModulePlayer() {
+ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	direction = UP;
 	weapon = NORMAL;
 	// idle animation - just one sprite

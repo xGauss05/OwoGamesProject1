@@ -6,7 +6,7 @@
 #include "ModuleInput.h"
 #include "SDL/include/SDL_Scancode.h"
 
-ModuleCollisions::ModuleCollisions() {
+ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 		colliders[i] = nullptr;
 
@@ -112,7 +112,7 @@ update_status ModuleCollisions::PreUpdate() {
 }
 
 update_status ModuleCollisions::Update() {
-	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_F2] == KEY_DOWN)
 		debug = !debug;
 
 	return update_status::UPDATE_CONTINUE;

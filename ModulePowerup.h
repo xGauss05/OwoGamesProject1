@@ -22,7 +22,7 @@ struct SDL_Texture;
 class ModulePowerup : public Module {
 public:
 	// Constructor
-	ModulePowerup();
+	ModulePowerup(bool startEnabled);
 
 	// Destructor
 	~ModulePowerup();

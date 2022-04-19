@@ -12,7 +12,7 @@
 
 #define SPAWN_MARGIN 50
 
-ModulePowerup::ModulePowerup() {
+ModulePowerup::ModulePowerup(bool startEnabled) : Module(startEnabled) {
 	for (uint i = 0; i < MAX_POWERUPS; ++i)
 		powerUps[i] = nullptr;
 }
