@@ -56,6 +56,7 @@ public:
 
 	// Sets the player direction
 	Directions direction;
+	Directions movementDir;
 
 	Weapon weapon;
 	// The pointer to the current player animation
