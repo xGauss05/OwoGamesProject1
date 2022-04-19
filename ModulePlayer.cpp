@@ -502,6 +502,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			position.y -= speed;
+			movementDir = UP;
 			if (currentAnimBot != &upAnimBot) {
 				currentAnimBot = &upAnimBot;
 			}
@@ -514,6 +515,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
 			position.y -= speed;
 			position.x += speed;
+			movementDir = UP_RIGHT;
 			if (currentAnimBot != &upRightAnimBot) {
 				currentAnimBot = &upRightAnimBot;
 			}
@@ -525,6 +527,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
 			position.x += speed;
+			movementDir = RIGHT;
 			if (currentAnimBot != &rightAnimBot) {
 				currentAnimBot = &rightAnimBot;
 			}
@@ -537,6 +540,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
 			position.y += speed;
 			position.x += speed;
+			movementDir = DOWN_RIGHT;
 			if (currentAnimBot != &downRightAnimBot) {
 				currentAnimBot = &downRightAnimBot;
 			}
@@ -548,6 +552,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			position.y += speed;
+			movementDir = DOWN;
 			if (currentAnimBot != &downAnimBot) {
 				currentAnimBot = &downAnimBot;
 			}
@@ -560,6 +565,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			position.y += speed;
 			position.x -= speed;
+			movementDir = DOWN_LEFT;
 			if (currentAnimBot != &downLeftAnimBot) {
 				currentAnimBot = &downLeftAnimBot;
 			}
@@ -571,6 +577,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			position.x -= speed;
+			movementDir = LEFT;
 			if (currentAnimBot != &leftAnimBot) {
 				currentAnimBot = &leftAnimBot;
 			}
@@ -583,6 +590,7 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			position.y -= speed;
 			position.x -= speed;
+			movementDir = UP_LEFT;
 			if (currentAnimBot != &upLeftAnimBot) {
 				currentAnimBot = &upLeftAnimBot;
 			}
@@ -709,8 +717,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		} break;
 		case Collider::Type::WALL:
 		{
-			//can't go through
-			switch (direction) {
+			switch (movementDir) {
 			case UP:
 				position.y += 1;
 				break;
@@ -723,10 +730,27 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			case LEFT:
 				position.x += 1;
 				break;
-			
+			case UP_RIGHT:
+				position.y += 1;
+				position.x -= 1;
+				break;
+			case UP_LEFT:
+				position.y += 1;
+				position.x += 1;
+				break;
+			case DOWN_RIGHT:
+				position.y -= 1;
+				position.x -= 1;
+				break;
+			case DOWN_LEFT:
+				position.y -= 1;
+				position.x += 1;
+				break;
+			default:
+				break;
 			}
 		}
-		}
 
+		}
 	}
 }
