@@ -733,32 +733,32 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		{
 			switch (movementDir) {
 			case UP:
-				position.y += 1;
+				position.y += speed;
 				break;
 			case DOWN:
-				position.y -= 1;
+				position.y -= speed;
 				break;
 			case RIGHT:
-				position.x -= 1;
+				position.x -= speed;
 				break;
 			case LEFT:
-				position.x += 1;
+				position.x += speed;
 				break;
 			case UP_RIGHT:
-				position.y += 1;
-				position.x -= 1;
+				position.y += speed;
+				position.x -= speed;
 				break;
 			case UP_LEFT:
-				position.y += 1;
-				position.x += 1;
+				position.y += speed;
+				position.x += speed;
 				break;
 			case DOWN_RIGHT:
-				position.y -= 1;
-				position.x -= 1;
+				position.y -= speed;
+				position.x -= speed;
 				break;
 			case DOWN_LEFT:
-				position.y -= 1;
-				position.x += 1;
+				position.y -= speed;
+				position.x += speed;
 				break;
 			default:
 				break;
