@@ -45,6 +45,9 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 0, -270, 185, 60 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 0, -300, 150, 30 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 0, -475, 120, 175 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, -535, 145, 60 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, -565, 190, 30 }, Collider::Type::WALL);
+
 
 	// Right colliders
 	App->collisions->AddCollider({ 450, 205, 60, 35 }, Collider::Type::WALL);
