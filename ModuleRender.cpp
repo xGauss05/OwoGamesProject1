@@ -53,17 +53,17 @@ update_status ModuleRender::Update() {
 
 	if (debugCamera) {
 		/*Handle positive vertical movement*/
-		if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT)
+		if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT)
 			camera.y -= cameraSpeed;
 
 		//Handle negative vertical movement
-		if (App->input->keys[SDL_SCANCODE_DOWN] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT)
+		if (App->input->keys[SDL_SCANCODE_DOWN] == KEY_REPEAT)
 			camera.y += cameraSpeed;
 
-		if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT)
+		if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_REPEAT)
 			camera.x -= cameraSpeed;
 
-		if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
+		if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
 			camera.x += cameraSpeed;
 	}
 
