@@ -71,10 +71,24 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 300, -290, 210, 295 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 325, -475, 185, 185 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 295, -810, 215, 335 }, Collider::Type::WALL);
+		//85 right
+	App->collisions->AddCollider({ 400, -840, 235, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 445, -875, 190, 35 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 535, -1025, 100, 150 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 555, -1315, 80, 290 }, Collider::Type::WALL);
+		//130 right
+	App->collisions->AddCollider({ 585, -1375, 180, 60 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 560, -1575, 205, 200 }, Collider::Type::WALL);
+
 
 	// Rock
 	App->collisions->AddCollider({ 128, -425, 65, 20 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 255, -425, 65, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 285, -840, 65, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 128, -920, 95, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 415, -1415, 65, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 485, -1450, 20, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 448, -1550, 65, 32 }, Collider::Type::WALL);
 
 	// Down
 	
