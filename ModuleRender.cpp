@@ -72,7 +72,7 @@ update_status ModuleRender::Update() {
 }
 
 update_status ModuleRender::PostUpdate() {
-	//Update the screen
+	// Update the screen
 	SDL_RenderPresent(renderer);
 
 	return update_status::UPDATE_CONTINUE;
@@ -81,7 +81,7 @@ update_status ModuleRender::PostUpdate() {
 bool ModuleRender::CleanUp() {
 	LOG("Destroying renderer");
 
-	//Destroy the rendering context
+	// Destroy the rendering context
 	if (renderer != nullptr)
 		SDL_DestroyRenderer(renderer);
 
@@ -101,7 +101,7 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 		rect.w = section->w;
 		rect.h = section->h;
 	} else {
-		//Collect the texture size into rect.w and rect.h variables
+		// Collect the texture size into rect.w and rect.h variables
 		SDL_QueryTexture(texture, nullptr, nullptr, &rect.w, &rect.h);
 	}
 

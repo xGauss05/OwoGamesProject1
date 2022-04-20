@@ -9,8 +9,7 @@ ModuleFadeToBlack::ModuleFadeToBlack(bool startEnabled) : Module(startEnabled) {
 	screenRect = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE };
 }
 
-ModuleFadeToBlack::~ModuleFadeToBlack() {
-}
+ModuleFadeToBlack::~ModuleFadeToBlack() {}
 
 bool ModuleFadeToBlack::Start() {
 	LOG("Preparing Fade Screen");
@@ -65,7 +64,6 @@ bool ModuleFadeToBlack::FadeToBlack(Module* moduleToDisable, Module* moduleToEna
 		frameCount = 0;
 		maxFadeFrames = frames;
 
-		// TODO 1: How do we keep track of the modules received in this function?
 		this->moduleToEnable = moduleToEnable;
 		this->moduleToDisable = moduleToDisable;
 

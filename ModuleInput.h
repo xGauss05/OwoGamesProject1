@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Globals.h"
 
-#define MAX_KEYS 256
+#define MAX_KEYS	256
 
 enum KEY_STATE {
 	KEY_IDLE,

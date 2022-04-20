@@ -8,10 +8,10 @@ struct SDL_Texture;
 
 class SceneLevel1 : public Module {
 public:
-	//Constructor
+	// Constructor
 	SceneLevel1(bool startEnabled);
 
-	//Destructor
+	// Destructor
 	~SceneLevel1();
 
 	// Called when the module is activated

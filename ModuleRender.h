@@ -10,10 +10,10 @@ struct SDL_Renderer;
 
 class ModuleRender : public Module {
 public:
-	//Constructor
+	// Constructor
 	ModuleRender(bool startEnabled);
 
-	//Destructor
+	// Destructor
 	~ModuleRender();
 
 	// Called on application start

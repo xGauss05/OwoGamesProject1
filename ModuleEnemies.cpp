@@ -10,7 +10,7 @@
 #include "Enemy_GreenSoldier.h"
 #include "Enemy_RedSoldier.h"
 
-#define SPAWN_MARGIN 50
+#define SPAWN_MARGIN	50
 
 ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 {
@@ -18,10 +18,7 @@ ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 		enemies[i] = nullptr;
 }
 
-ModuleEnemies::~ModuleEnemies()
-{
-
-}
+ModuleEnemies::~ModuleEnemies() {}
 
 bool ModuleEnemies::Start()
 {
@@ -160,7 +157,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
-			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
+			enemies[i]->OnCollision(c2); // Notify the enemy of a collision
 
 			delete enemies[i];
 			enemies[i] = nullptr;

@@ -10,7 +10,7 @@
 #include "Powerup_HeavyRifle.h"
 #include "Powerup_Flamethrower.h"
 
-#define SPAWN_MARGIN 50
+#define SPAWN_MARGIN	50
 
 ModulePowerup::ModulePowerup(bool startEnabled) : Module(startEnabled) {
 	for (uint i = 0; i < MAX_POWERUPS; ++i)

@@ -9,7 +9,7 @@ struct SDL_Surface;
 
 class ModuleWindow : public Module {
 public:
-	//Constructor
+	// Constructor
 	ModuleWindow(bool startEnabled);
 
 	// Destructor
@@ -24,10 +24,10 @@ public:
 	bool CleanUp() override;
 
 public:
-	//The window we'll be rendering to
+	// The window we'll be rendering to
 	SDL_Window* window = nullptr;
 
-	//The window's surface
+	// The window's surface
 	SDL_Surface* screenSurface = nullptr;
 };
 

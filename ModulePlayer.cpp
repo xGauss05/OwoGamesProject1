@@ -13,11 +13,12 @@
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	direction = UP;
 	weapon = NORMAL;
+
 	// idle animation - just one sprite
 	idleAnimTop.PushBack({ 0, 0, 32, 32 });
 	idleAnimBot.PushBack({ 256, 0, 32, 32 });
 
-	// Insert player animations here
+	// Animations ---
 	// Move up, top
 	upAnimTop.PushBack({ 0,   0, 32, 32 });
 	upAnimTop.PushBack({ 32,  0, 32, 32 });
@@ -240,8 +241,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 
 }
 
-ModulePlayer::~ModulePlayer() {
-}
+ModulePlayer::~ModulePlayer() {}
 
 bool ModulePlayer::Start() {
 	LOG("Loading player textures");
@@ -253,18 +253,19 @@ bool ModulePlayer::Start() {
 	currentAnimBot = &idleAnimBot;
 
 	dead = false;
+	godMode = false;
 
-	// initiate player audios here
+	// Initiate player audios here
 	shotFx = App->audio->LoadFx("sounds/sfx/142.wav"); // shot sfx
 	deadFx = App->audio->LoadFx("sounds/sfx/195.wav"); // dead sfx
 	heavyRifleFx = App->audio->LoadFx("sounds/sfx/153.wav");
 	flamethrowerFx = App->audio->LoadFx("sounds/sfx/136.wav");
 
-	// initial position
+	// Initial position
 	position.x = 240;
 	position.y = 120;
 
-	// player collider
+	// Player collider
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 64 }, Collider::Type::PLAYER, this);
 
 	return ret;
@@ -406,7 +407,6 @@ void shootFlamethrower() {
 }
 
 update_status ModulePlayer::Update() {
-	// Moving the player with the camera scroll
 
 	// Change Direction
 	if (App->input->keys[SDL_SCANCODE_I] != KEY_STATE::KEY_IDLE ||
@@ -488,7 +488,7 @@ update_status ModulePlayer::Update() {
 		idleAnimTop.frames[0] = currentAnimTop->frames[currentAnimTop->GetCurrentFrameNum()];
 	}
 
-	// Movement
+	// Player movement
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
@@ -598,7 +598,7 @@ update_status ModulePlayer::Update() {
 			}
 		}
 
-		//activate top anim when moving
+		// Activate top anim when moving
 		switch (direction) {
 		case UP:
 			currentAnimTop = &upAnimTop;
@@ -628,7 +628,7 @@ update_status ModulePlayer::Update() {
 			break;
 		}
 
-		//set the idles to the current frame
+		// Set the idles to the current frame
 		idleAnimTop.frames[0] = currentAnimTop->GetCurrentFrame();
 		idleAnimBot.frames[0] = currentAnimBot->GetCurrentFrame();
 	}
@@ -636,8 +636,6 @@ update_status ModulePlayer::Update() {
 	if (ammunition == 0) {
 		weapon = Weapon::NORMAL;
 	}
-
-
 
 	if (!dead) {
 		if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
@@ -764,7 +762,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 				break;
 			}
 		}
-
 		}
 	}
 }

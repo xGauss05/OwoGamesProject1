@@ -1,11 +1,11 @@
-#include "ModuleParticles.h"
-
 #include "Application.h"
 
+#include "ModuleParticles.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleCollisions.h"
 #include "ModuleAudio.h"
+
 #include "SDL/include/SDL_timer.h"
 
 ModuleParticles::ModuleParticles(bool startEnabled) : Module(startEnabled) {
@@ -13,24 +13,14 @@ ModuleParticles::ModuleParticles(bool startEnabled) : Module(startEnabled) {
 		particles[i] = nullptr;
 }
 
-ModuleParticles::~ModuleParticles() {
-}
+ModuleParticles::~ModuleParticles() {}
 
 bool ModuleParticles::Start() {
 	LOG("Loading particles");
 	texture = App->textures->Load("img/sprites/bullets.png");
 
-	// Explosion particle
 	// Put the animations here, 
 	// Variables need to be declared in the header
-	explosion.anim.PushBack({ 274, 296, 33, 30 });
-	explosion.anim.PushBack({ 313, 296, 33, 30 });
-	explosion.anim.PushBack({ 346, 296, 33, 30 });
-	explosion.anim.PushBack({ 382, 296, 33, 30 });
-	explosion.anim.PushBack({ 419, 296, 33, 30 });
-	explosion.anim.PushBack({ 457, 296, 33, 30 });
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
 
 	// Enemy shots
 	enemy_shot.anim.PushBack({ 197, 65, 5, 6 });
@@ -256,12 +246,8 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2) {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && particles[i]->collider == c1) {
-			if (c2->type == Collider::Type::WALL) {
-				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x, particles[i]->position.y - 10);
-				App->audio->PlayFx(1);
-			}
 			if (c2->type == Collider::Type::PLAYER) {
-
+				// c1->type == Collider:Type::ENEMY_SHOT
 			}
 			delete particles[i];
 			particles[i] = nullptr;
@@ -288,7 +274,7 @@ update_status ModuleParticles::Update() {
 }
 
 update_status ModuleParticles::PostUpdate() {
-	//Iterating all particle array and drawing any active particles
+	// Iterating all particle array and drawing any active particles
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
 		Particle* particle = particles[i];
 
@@ -302,7 +288,7 @@ update_status ModuleParticles::PostUpdate() {
 
 void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType, uint delay) {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
-		//Finding an empty slot for a new particle
+		// Finding an empty slot for a new particle
 		if (particles[i] == nullptr) {
 			Particle* p = new Particle(particle);
 
@@ -310,7 +296,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collid
 			p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
 			p->position.y = y;
 
-			//Adding the particle's collider
+			// Adding the particle's collider
 			if (colliderType != Collider::Type::NONE)
 				p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
 

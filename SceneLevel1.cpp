@@ -21,10 +21,11 @@ bool SceneLevel1::Start() {
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("img/sprites/map.png"); // needs to be changed
+	bgTexture = App->textures->Load("img/sprites/map.png");
 	App->audio->PlayMusic("sounds/bgm/106.ogg", 1.0f); // bgm Farm
 
-	// Colliders --- Make collision boxes here
+
+	// Entities --- Add enemies/powerups here
 
 	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 300, -60);
 	App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 230, -60);
@@ -33,6 +34,7 @@ bool SceneLevel1::Start() {
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 230, -600);
 
+	// Colliders --- Make collision boxes here
 	// Left colliders
 	App->collisions->AddCollider({0, 140, 60, 100}, Collider::Type::WALL);
 	App->collisions->AddCollider({ 0, 110, 90, 30 }, Collider::Type::WALL);
@@ -53,11 +55,11 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 300, -290, 210, 295 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 325, -475, 185, 185 }, Collider::Type::WALL);
 
-	//Rock
+	// Rock
 	App->collisions->AddCollider({ 128, -425, 65, 20 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 255, -425, 65, 20 }, Collider::Type::WALL);
 
-	//Down
+	// Down
 	
 
 	App->player->Enable();
