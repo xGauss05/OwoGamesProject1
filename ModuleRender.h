@@ -56,6 +56,9 @@ public:
 
 	// The speed at which the camera will be moving
 	int cameraSpeed = CAMERA_SPEED;
+
+private: 
+	bool debugCamera = false;
 };
 
 #endif //__MODULE_RENDER_H__
