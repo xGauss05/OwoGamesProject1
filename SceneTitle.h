@@ -1,18 +1,18 @@
-#ifndef __MODULE_SCENE1_H__
-#define __MODULE_SCENE1_H__
+#ifndef __MODULE_SCENETITLE_H__
+#define __MODULE_SCENETITLE_H__
 
 #include "Module.h"
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class SceneLevel1 : public Module {
+class SceneTitle : public Module {
 public:
 	// Constructor
-	SceneLevel1(bool startEnabled);
+	SceneTitle(bool startEnabled);
 
 	// Destructor
-	~SceneLevel1();
+	~SceneTitle();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
@@ -25,7 +25,7 @@ public:
 	// Called at the end of the application loop.
 	// Performs the render call of all the parts of the scene's background
 	update_status PostUpdate() override;
-	
+
 	// Disables the player, the enemies and the powerups.
 	bool CleanUp();
 
@@ -35,4 +35,4 @@ public:
 
 };
 
-#endif // __MODULE_SCENE1_H__
+#endif // __MODULE_SCENETITLE_H__
