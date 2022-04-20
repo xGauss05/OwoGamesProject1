@@ -7,6 +7,7 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
+#include "ModuleFadeToBlack.h"
 
 #include "SDL/include/SDL_scancode.h"
 
@@ -677,6 +678,17 @@ update_status ModulePlayer::Update() {
 
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN) {
 		godMode = !godMode;
+	}
+
+	// Insta win cheat
+	if (App->input->keys[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) {
+		App->fade->FadeToBlack((Module*)App->level1, (Module*)App->win, 0);
+	}
+
+	// Insta lose cheat
+	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN) {
+		// Handle insta lose
+		//App->fade->FadeToBlack(this, (Module*)App->win, 0);
 	}
 
 	// Updates player collider position
