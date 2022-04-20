@@ -6,10 +6,10 @@
 
 class ModuleFadeToBlack : public Module {
 public:
-	//Constructor
+	// Constructor
 	ModuleFadeToBlack(bool startEnabled);
 
-	//Destructor
+	// Destructor
 	~ModuleFadeToBlack();
 
 	// Called when the module is activated

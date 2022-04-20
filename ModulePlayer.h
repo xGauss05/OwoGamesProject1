@@ -8,17 +8,16 @@
 struct SDL_Texture;
 struct Collider;
 
-#define MAX_AMMO 50
+#define MAX_AMMO	50
 
 enum Directions {
-	UP, DOWN, RIGHT, LEFT,
-	UP_RIGHT, UP_LEFT, DOWN_RIGHT, DOWN_LEFT
+	UP, DOWN, RIGHT, 
+	LEFT, UP_RIGHT, UP_LEFT, 
+	DOWN_RIGHT, DOWN_LEFT
 };
 
 enum Weapon {
-	NORMAL,
-	HEAVY_RIFLE,
-	FLAMETHROWER
+	NORMAL, HEAVY_RIFLE, FLAMETHROWER
 };
 
 class ModulePlayer : public Module {
@@ -58,16 +57,18 @@ public:
 	Directions direction;
 	Directions movementDir;
 
+	// Sets the weapon that the player has
 	Weapon weapon;
+
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
 	Animation* currentAnimTop = nullptr;
 	Animation* currentAnimBot = nullptr;
 
-	// A set of animations
-	Animation idleAnimTop;
-	Animation idleAnimBot;
-
+	// Animations ---
+	
+	// Idle animation
+	Animation idleAnimTop, idleAnimBot;
 	// Up
 	Animation upAnimTop, upAnimBot;
 	// Up-Right
@@ -92,9 +93,12 @@ public:
 
 	// A flag to detect when the player has been destroyed
 	bool dead = false;
+
+	// God mode flag
 	bool godMode = false;
-	// Amount of shots available. Max should be 50.
-	uint ammunition = 0;
+
+	// Amount of shots available. Max defined in MAX_AMMO
+	ushort ammunition = 0;
 
 	// Sound effects indices
 	uint shotFx = 0;

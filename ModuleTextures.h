@@ -3,16 +3,16 @@
 
 #include "Module.h"
 
-#define MAX_TEXTURES 50
+#define MAX_TEXTURES	50
 
 struct SDL_Texture;
 
 class ModuleTextures : public Module {
 public:
-	//Constructor
+	// Constructor
 	ModuleTextures(bool startEnabled);
 
-	//Destructor
+	// Destructor
 	~ModuleTextures();
 
 	// Called on application start.

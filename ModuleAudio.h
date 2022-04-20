@@ -4,7 +4,7 @@
 #include "Module.h"
 
 #define DEFAULT_MUSIC_FADE_TIME 2.0f
-#define MAX_FX 200
+#define MAX_FX					200
 
 struct _Mix_Music;
 struct Mix_Chunk;
@@ -12,10 +12,10 @@ typedef struct _Mix_Music Mix_Music;
 
 class ModuleAudio : public Module {
 public:
-	//Constructor
+	// Constructor
 	ModuleAudio(bool startEnabled);
 
-	//Destructor
+	// Destructor
 	~ModuleAudio();
 
 	// Called on application start.

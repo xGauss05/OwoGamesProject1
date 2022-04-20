@@ -3,12 +3,10 @@
 
 #include "Module.h"
 
-#define MAX_POWERUPS 100
+#define MAX_POWERUPS	100
 
 enum class POWERUP_TYPE {
-	NO_TYPE,
-	HEAVY_RIFLE,
-	FLAMETHROWER
+	NO_TYPE, HEAVY_RIFLE, FLAMETHROWER
 };
 
 struct PowerupSpawnpoint {
@@ -28,15 +26,15 @@ public:
 	~ModulePowerup();
 
 	// Called when the module is activated
-	// Loads the necessary textures for the player
+	// Loads the necessary textures for the powerups
 	bool Start() override;
 
 	// Called at the middle of the application loop
-	// Processes new input and handles player movement
+	// Processes new input and handles powerup movement
 	update_status Update() override;
 
 	// Called at the end of the application loop
-	// Performs the render call of the player sprite
+	// Performs the render call of the powerup sprite
 	update_status PostUpdate() override;
 
 	bool CleanUp() override;
@@ -44,10 +42,13 @@ public:
 	// Collision callback, called when the player intersects with another collider
 	void OnCollision(Collider* c1, Collider* c2) override;
 
+	// Add a powerup into the queue to be spawned later
 	bool AddPowerup(POWERUP_TYPE type, int x, int y);
 
+	// Iterates the queue and checks for camera position
 	void HandlePowerupsSpawn();
 
+	// Destroys any powerups that have moved outside the camera limits
 	void HandlePowerupsDespawn();
 
 private:
@@ -55,12 +56,16 @@ private:
 	void SpawnPowerup(const PowerupSpawnpoint& info);
 
 private:
+	// A queue with all spawn points information
 	PowerupSpawnpoint spawnQueue[MAX_POWERUPS];
 
+	// All spawned powerups in the scene
 	Powerup* powerUps[MAX_POWERUPS] = { nullptr };
 
+	// The powerups sprite sheet
 	SDL_Texture* texture = nullptr;
 	
+	// The audio fx for picking up a powerup
 	int pickUpFx = 0;
 };
 

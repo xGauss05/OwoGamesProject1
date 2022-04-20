@@ -21,13 +21,13 @@ bool ModuleInput::Init() {
 }
 
 update_status ModuleInput::PreUpdate() {
-	//Read new SDL events, mostly from the window
+	// Read new SDL events, mostly from the window
 	SDL_Event event;
 	if (SDL_PollEvent(&event)) {
 		if (event.type == SDL_QUIT)	return update_status::UPDATE_STOP;
 	}
 
-	//Read all keyboard data and update our custom array
+	// Read all keyboard data and update our custom array
 	SDL_PumpEvents();
 	const Uint8* keyboard = SDL_GetKeyboardState(NULL);
 	for (int i = 0; i < MAX_KEYS; ++i) {

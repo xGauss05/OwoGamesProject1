@@ -17,6 +17,7 @@ enum class update_status {
 
 // Useful typedefs ----------------
 typedef unsigned int uint;
+typedef unsigned short ushort;
 
 // Window Configuration -----------
 #define SCREEN_WIDTH 224

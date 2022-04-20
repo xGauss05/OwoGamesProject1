@@ -12,8 +12,7 @@ ModuleTextures::ModuleTextures(bool startEnabled) : Module(startEnabled) {
 		textures[i] = nullptr;
 }
 
-ModuleTextures::~ModuleTextures() {
-}
+ModuleTextures::~ModuleTextures() {}
 
 bool ModuleTextures::Init() {
 	LOG("Init Image library");
@@ -35,7 +34,7 @@ bool ModuleTextures::Init() {
 bool ModuleTextures::CleanUp() {
 	LOG("Freeing textures and Image library");
 
-	//Free all textures sill existing in the textures array
+	// Free all textures sill existing in the textures array
 	for (uint i = 0; i < MAX_TEXTURES; ++i) {
 		if (textures[i] != nullptr) {
 			SDL_DestroyTexture(textures[i]);
@@ -43,7 +42,7 @@ bool ModuleTextures::CleanUp() {
 		}
 	}
 
-	//Quit SDL_Image subsystems
+	// Quit SDL_Image subsystems
 	IMG_Quit();
 	return true;
 }

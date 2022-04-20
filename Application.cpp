@@ -13,7 +13,9 @@
 #include "ModulePowerup.h"
 #include "ModuleFadeToBlack.h"
 #include "SceneIntro.h"
+#include "SceneTitle.h"
 #include "SceneLevel1.h"
+#include "SceneWin.h"
 
 Application::Application() {
 	// The order in which the modules are added is very important.
@@ -25,16 +27,17 @@ Application::Application() {
 	modules[3] = audio = new ModuleAudio(true);
 
 	modules[4] = intro = new SceneIntro(true);
-	modules[5] = level1 = new SceneLevel1(false);
-	modules[6] = player = new ModulePlayer(false);
-	modules[7] = particles = new ModuleParticles(true);
-	modules[8] = enemies = new ModuleEnemies(false);
-	modules[9] = powerups = new ModulePowerup(false);
+	modules[5] = title = new SceneTitle(false);
+	modules[6] = level1 = new SceneLevel1(false);
+	modules[7] = win = new SceneWin(false);
+	modules[8] = player = new ModulePlayer(false);
+	modules[9] = particles = new ModuleParticles(true);
+	modules[10] = enemies = new ModuleEnemies(false);
+	modules[11] = powerups = new ModulePowerup(false);
 
-	modules[10] = collisions = new ModuleCollisions(true);
-	modules[11] = fade = new ModuleFadeToBlack(true);
-	modules[12] = render = new ModuleRender(true);
-
+	modules[12] = collisions = new ModuleCollisions(true);
+	modules[13] = fade = new ModuleFadeToBlack(true);
+	modules[14] = render = new ModuleRender(true);
 
 }
 

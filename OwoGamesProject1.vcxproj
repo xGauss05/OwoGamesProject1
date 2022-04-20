@@ -165,6 +165,9 @@
     <ClCompile Include="Powerup_Flamethrower.cpp" />
     <ClCompile Include="Powerup_HeavyRifle.cpp" />
     <ClCompile Include="SceneIntro.cpp" />
+    <ClCompile Include="SceneStart.cpp" />
+    <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="SceneWin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -195,6 +198,9 @@
     <ClInclude Include="Powerup_Flamethrower.h" />
     <ClInclude Include="Powerup_HeavyRifle.h" />
     <ClInclude Include="SceneIntro.h" />
+    <ClInclude Include="SceneStart.h" />
+    <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="SceneWin.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

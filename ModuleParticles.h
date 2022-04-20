@@ -55,37 +55,25 @@ private:
 	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };
 
 public:
-	// All animation variables here
-	//Template particle for an explosion
-	Particle explosion;
+	// All Particle variables here
 
+	// Enemy shot
 	Particle enemy_shot;
-	Particle shot_up;
-	Particle shot_up_left;
-	Particle shot_up_right;
-	Particle shot_down;
-	Particle shot_down_left;
-	Particle shot_down_right;
-	Particle shot_left;
-	Particle shot_right;
 
-	Particle hrifle_up;
-	Particle hrifle_up_left;
-	Particle hrifle_up_right;
-	Particle hrifle_down;
-	Particle hrifle_down_left;
-	Particle hrifle_down_right;
-	Particle hrifle_left;
-	Particle hrifle_right;
+	// Normal player shots
+	Particle shot_up,			shot_up_left,			shot_up_right,
+			 shot_down,			shot_down_left,			shot_down_right,
+			 shot_left,			shot_right;
 
-	Particle fthrower_up;
-	Particle fthrower_up_left;
-	Particle fthrower_up_right;
-	Particle fthrower_down;
-	Particle fthrower_down_left;
-	Particle fthrower_down_right;
-	Particle fthrower_left;
-	Particle fthrower_right;
+	// Heavy Rifle player shots
+	Particle hrifle_up,			hrifle_up_left,			hrifle_up_right,
+			 hrifle_down,		hrifle_down_left,		hrifle_down_right,
+			 hrifle_left,		hrifle_right;
+
+	// Flamethrower player shots
+	Particle fthrower_up,		fthrower_up_left,		fthrower_up_right,
+			 fthrower_down,		fthrower_down_left,		fthrower_down_right,
+			 fthrower_left,		fthrower_right;
 };
 
 #endif // !__MODULEPARTICLES_H__

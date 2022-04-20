@@ -3,13 +3,11 @@
 
 #include "Module.h"
 
-#define MAX_ENEMIES 100
+#define MAX_ENEMIES		100
 
 enum class ENEMY_TYPE
 {
-	NO_TYPE,
-	GREENSOLDIER,
-	REDSOLDIER,
+	NO_TYPE, GREENSOLDIER,	REDSOLDIER
 };
 
 struct EnemySpawnpoint

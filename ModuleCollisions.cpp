@@ -4,6 +4,7 @@
 
 #include "ModuleRender.h"
 #include "ModuleInput.h"
+
 #include "SDL/include/SDL_Scancode.h"
 
 ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
@@ -84,15 +85,15 @@ update_status ModuleCollisions::PreUpdate() {
 	Collider* c2;
 
 	for (uint i = 0; i < MAX_COLLIDERS; ++i) {
-		// skip empty colliders
+		// Skip empty colliders
 		if (colliders[i] == nullptr)
 			continue;
 
 		c1 = colliders[i];
 
-		// avoid checking collisions already checked
+		// Avoid checking collisions already checked
 		for (uint k = i + 1; k < MAX_COLLIDERS; ++k) {
-			// skip empty colliders
+			// Skip empty colliders
 			if (colliders[k] == nullptr)
 				continue;
 
@@ -150,7 +151,7 @@ void ModuleCollisions::DebugDraw() {
 		case Collider::Type::ENEMY_SHOT: // magenta
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
 			break;
-		case Collider::Type::POWER_UP: 
+		case Collider::Type::POWER_UP: // white
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 			break;
 		case Collider::Type::DOWN:
