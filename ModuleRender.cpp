@@ -47,22 +47,27 @@ update_status ModuleRender::PreUpdate() {
 }
 
 update_status ModuleRender::Update() {
-	//Handle positive vertical movement
-	//if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT)
-	//	camera.y -= cameraSpeed;
 
-	////Handle negative vertical movement
-	//if (App->input->keys[SDL_SCANCODE_DOWN] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT)
-	//	camera.y += cameraSpeed;
+	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN)
+		debugCamera = !debugCamera;
 
-	//if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT)
-	//	camera.x -= cameraSpeed;
-	//if (camera.x < 0) camera.x = 0;
+	if (debugCamera) {
+		/*Handle positive vertical movement*/
+		if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT)
+			camera.y -= cameraSpeed;
 
-	//if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
-	//	camera.x += cameraSpeed;
+		//Handle negative vertical movement
+		if (App->input->keys[SDL_SCANCODE_DOWN] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT)
+			camera.y += cameraSpeed;
 
-	if (App->player->IsEnabled()) {
+		if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT)
+			camera.x -= cameraSpeed;
+
+		if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
+			camera.x += cameraSpeed;
+	}
+
+	if (App->player->IsEnabled() && !debugCamera) {
 		camera.x = 2 * App->player->position.x - SCREEN_WIDTH;
 		camera.y = 2 * App->player->position.y - SCREEN_HEIGHT;
 	}
