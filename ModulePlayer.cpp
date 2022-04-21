@@ -658,6 +658,10 @@ update_status ModulePlayer::Update() {
 				if (currentAnimBot != &downLeftAnimBot)
 					currentAnimBot = &downLeftAnimBot;
 			}
+			if (movementDir == UP) {
+				if (currentAnimBot != &upAnimBot)
+					currentAnimBot = &upAnimBot;
+			}
 			break;
 		case LEFT:
 			currentAnimTop = &leftAnimTop;
@@ -730,8 +734,8 @@ update_status ModulePlayer::Update() {
 					currentAnimBot = &leftAnimBot;
 			}
 			if (movementDir == UP) {
-				if (currentAnimBot != &upAnimBot)
-					currentAnimBot = &upAnimBot;
+				if (currentAnimBot != &downAnimBot)
+					currentAnimBot = &downAnimBot;
 			}
 			break;
 		default:
