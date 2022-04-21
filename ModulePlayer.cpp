@@ -12,7 +12,7 @@
 #include "SDL/include/SDL_scancode.h"
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
-	direction = UP;
+	facing = UP;
 	weapon = NORMAL;
 
 	// idle animation - just one sprite
@@ -242,7 +242,8 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 
 }
 
-ModulePlayer::~ModulePlayer() {}
+ModulePlayer::~ModulePlayer() {
+}
 
 bool ModulePlayer::Start() {
 	LOG("Loading player textures");
@@ -273,7 +274,7 @@ bool ModulePlayer::Start() {
 }
 
 void shootNormal() {
-	switch (App->player->direction) {
+	switch (App->player->facing) {
 	case Directions::UP:
 	{
 		App->particles->AddParticle(App->particles->shot_up, App->player->position.x + 13, App->player->position.y, Collider::Type::PLAYER_SHOT);
@@ -318,7 +319,8 @@ void shootNormal() {
 }
 
 void shootHeavyRifle() {
-	switch (App->player->direction) {
+	App->player->ammunition--;
+	switch (App->player->facing) {
 	case Directions::UP:
 	{
 		App->particles->AddParticle(App->particles->hrifle_up, App->player->position.x + 13, App->player->position.y, Collider::Type::PLAYER_SHOT);
@@ -363,7 +365,8 @@ void shootHeavyRifle() {
 }
 
 void shootFlamethrower() {
-	switch (App->player->direction) {
+	App->player->ammunition--;
+	switch (App->player->facing) {
 	case Directions::UP:
 	{
 		App->particles->AddParticle(App->particles->fthrower_up, App->player->position.x + 13, App->player->position.y, Collider::Type::PLAYER_SHOT);
@@ -420,8 +423,9 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			direction = Directions::UP;
+			facing = Directions::UP;
 			currentAnimTop = &upAnimTop;
+			currentAnimBot = &upAnimBot;
 		}
 
 		// Direction to UP_RIGHT
@@ -429,8 +433,9 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-			direction = Directions::UP_RIGHT;
+			facing = Directions::UP_RIGHT;
 			currentAnimTop = &upRightAnimTop;
+			currentAnimBot = &upRightAnimBot;
 		}
 
 		// Direction to RIGHT
@@ -438,8 +443,9 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-			direction = Directions::RIGHT;
+			facing = Directions::RIGHT;
 			currentAnimTop = &rightAnimTop;
+			currentAnimBot = &rightAnimBot;
 		}
 
 		// Direction to DOWN_RIGHT
@@ -447,8 +453,9 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-			direction = Directions::DOWN_RIGHT;
+			facing = Directions::DOWN_RIGHT;
 			currentAnimTop = &downRightAnimTop;
+			currentAnimBot = &downRightAnimBot;
 		}
 
 		// Direction to DOWN
@@ -456,8 +463,9 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			direction = Directions::DOWN;
+			facing = Directions::DOWN;
 			currentAnimTop = &downAnimTop;
+			currentAnimBot = &downAnimBot;
 		}
 
 		// Direction to DOWN_LEFT
@@ -465,8 +473,9 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			direction = Directions::DOWN_LEFT;
+			facing = Directions::DOWN_LEFT;
 			currentAnimTop = &downLeftAnimTop;
+			currentAnimBot = &downLeftAnimBot;
 		}
 
 		// Direction to LEFT
@@ -474,8 +483,9 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			direction = Directions::LEFT;
+			facing = Directions::LEFT;
 			currentAnimTop = &leftAnimTop;
+			currentAnimBot = &leftAnimBot;
 		}
 
 		// Direction to UP_LEFT
@@ -483,10 +493,12 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			direction = Directions::UP_LEFT;
+			facing = Directions::UP_LEFT;
 			currentAnimTop = &upLeftAnimTop;
+			currentAnimBot = &upLeftAnimBot;
 		}
 		idleAnimTop.frames[0] = currentAnimTop->frames[currentAnimTop->GetCurrentFrameNum()];
+		idleAnimBot.frames[0] = currentAnimBot->frames[currentAnimBot->GetCurrentFrameNum()];
 	}
 
 	// Player movement
@@ -509,6 +521,7 @@ update_status ModulePlayer::Update() {
 			if (currentAnimBot != &upAnimBot) {
 				currentAnimBot = &upAnimBot;
 			}
+
 		}
 
 		// Move UP_RIGHT
@@ -599,31 +612,127 @@ update_status ModulePlayer::Update() {
 			}
 		}
 
-		// Activate top anim when moving
-		switch (direction) {
+		// Activate top/bot anim when moving
+		switch (facing) {
 		case UP:
 			currentAnimTop = &upAnimTop;
+			if (movementDir == DOWN) {
+				if (currentAnimBot != &upAnimBot)
+					currentAnimBot = &upAnimBot;
+			}
+			if (movementDir == DOWN_LEFT) {
+				if (currentAnimBot != &upRightAnimBot)
+					currentAnimBot = &upRightAnimBot;
+			}
+			if (movementDir == DOWN_RIGHT) {
+				if (currentAnimBot != &upLeftAnimBot)
+					currentAnimBot = &upLeftAnimBot;
+			}
 			break;
 		case DOWN:
 			currentAnimTop = &downAnimTop;
+			if (movementDir == UP) {
+				if (currentAnimBot != &downAnimBot)
+					currentAnimBot = &downAnimBot;
+			}
+			if (movementDir == UP_LEFT) {
+				if (currentAnimBot != &downRightAnimBot)
+					currentAnimBot = &downRightAnimBot;
+			}
+			if (movementDir == UP_RIGHT) {
+				if (currentAnimBot != &downLeftAnimBot)
+					currentAnimBot = &downLeftAnimBot;
+			}
 			break;
 		case RIGHT:
 			currentAnimTop = &rightAnimTop;
+			if (movementDir == LEFT) {
+				if (currentAnimBot != &rightAnimBot)
+					currentAnimBot = &rightAnimBot;
+			}
+			if (movementDir == UP_LEFT) {
+				if (currentAnimBot != &downRightAnimBot)
+					currentAnimBot = &downRightAnimBot;
+			}
+			if (movementDir == DOWN_LEFT) {
+				if (currentAnimBot != &downLeftAnimBot)
+					currentAnimBot = &downLeftAnimBot;
+			}
 			break;
 		case LEFT:
 			currentAnimTop = &leftAnimTop;
+			if (movementDir == RIGHT) {
+				if (currentAnimBot != &leftAnimBot)
+					currentAnimBot = &leftAnimBot;
+			}
+			if (movementDir == UP_RIGHT) {
+				if (currentAnimBot != &downLeftAnimBot)
+					currentAnimBot = &downLeftAnimBot;
+			}
+			if (movementDir == DOWN_RIGHT) {
+				if (currentAnimBot != &upLeftAnimBot)
+					currentAnimBot = &upLeftAnimBot;
+			}
 			break;
 		case UP_RIGHT:
 			currentAnimTop = &upRightAnimTop;
+			if (movementDir == DOWN_LEFT) {
+				if (currentAnimBot != &upRightAnimBot)
+					currentAnimBot = &upRightAnimBot;
+			}
+			if (movementDir == LEFT) {
+				if (currentAnimBot != &rightAnimBot)
+					currentAnimBot = &rightAnimBot;
+			}
+			if (movementDir == DOWN) {
+				if (currentAnimBot != &upAnimBot)
+					currentAnimBot = &upAnimBot;
+			}
 			break;
 		case UP_LEFT:
 			currentAnimTop = &upLeftAnimTop;
+			if (movementDir == DOWN_RIGHT) {
+				if (currentAnimBot != &upLeftAnimBot)
+					currentAnimBot = &upLeftAnimBot;
+			}
+			if (movementDir == RIGHT) {
+				if (currentAnimBot != &leftAnimBot)
+					currentAnimBot = &leftAnimBot;
+			}
+			if (movementDir == DOWN) {
+				if (currentAnimBot != &upAnimBot)
+					currentAnimBot = &upAnimBot;
+			}
 			break;
 		case DOWN_RIGHT:
 			currentAnimTop = &downRightAnimTop;
+			if (movementDir == UP_LEFT) {
+				if (currentAnimBot != &downRightAnimBot)
+					currentAnimBot = &downRightAnimBot;
+			}
+			if (movementDir == LEFT) {
+				if (currentAnimBot != &leftAnimBot)
+					currentAnimBot = &leftAnimBot;
+			}
+			if (movementDir == UP) {
+				if (currentAnimBot != &downAnimBot)
+					currentAnimBot = &downAnimBot;
+			}
 			break;
 		case DOWN_LEFT:
 			currentAnimTop = &downLeftAnimTop;
+			if (movementDir == UP_RIGHT) {
+				if (currentAnimBot != &downLeftAnimBot)
+					currentAnimBot = &downLeftAnimBot;
+			}
+			if (movementDir == RIGHT) {
+				if (currentAnimBot != &leftAnimBot)
+					currentAnimBot = &leftAnimBot;
+			}
+			if (movementDir == UP) {
+				if (currentAnimBot != &upAnimBot)
+					currentAnimBot = &upAnimBot;
+			}
 			break;
 		default:
 			break;
@@ -644,13 +753,11 @@ update_status ModulePlayer::Update() {
 			case Weapon::FLAMETHROWER:
 			{
 				App->audio->PlayFx(flamethrowerFx);
-				ammunition--;
 				shootFlamethrower();
 			} break;
 			case Weapon::HEAVY_RIFLE:
 			{
 				App->audio->PlayFx(heavyRifleFx);
-				ammunition--;
 				shootHeavyRifle();
 			} break;
 			case Weapon::NORMAL:
@@ -717,30 +824,30 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	if (c1 == collider) {
 		switch (c2->type) {
 		case Collider::Type::ENEMY:
-		{
+
 			if (godMode == false) {
 				App->audio->PlayFx(deadFx);
 
 				this->dead = true;
 			}
-		} break;
+			break;
 		case Collider::Type::ENEMY_SHOT:
-		{
+
 			if (godMode == false) {
 				App->audio->PlayFx(deadFx);
 
 				this->dead = true;
 			}
-		} break;
+			break;
 		case Collider::Type::POWER_UP:
-		{
+
 			// sound plays at Powerup.cpp
 			// weapon changes at each Powerup_(weaponname).cpp
 			c2->pendingToDelete = true;
 			ammunition = MAX_AMMO;
-		} break;
+			break;
 		case Collider::Type::WALL:
-		{
+
 			switch (movementDir) {
 			case UP:
 				position.y += speed;
@@ -773,7 +880,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			default:
 				break;
 			}
-		}
+
 		}
 	}
 }

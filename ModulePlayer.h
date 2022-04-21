@@ -54,7 +54,9 @@ public:
 	SDL_Texture* texture = nullptr;
 
 	// Sets the player direction
-	Directions direction;
+	Directions facing;
+
+	// Variable to handle wall collisions.
 	Directions movementDir;
 
 	// Sets the weapon that the player has
