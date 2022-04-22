@@ -12,6 +12,7 @@
 #include "ModuleEnemies.h"
 #include "ModulePowerup.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleFonts.h"
 #include "SceneIntro.h"
 #include "SceneTitle.h"
 #include "SceneLevel1.h"
@@ -37,7 +38,8 @@ Application::Application() {
 
 	modules[12] = collisions = new ModuleCollisions(true);
 	modules[13] = fade = new ModuleFadeToBlack(true);
-	modules[14] = render = new ModuleRender(true);
+	modules[14] = fonts = new ModuleFonts(true);
+	modules[15] = render = new ModuleRender(true);
 
 }
 

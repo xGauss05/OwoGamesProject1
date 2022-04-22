@@ -122,6 +122,9 @@
     <ClCompile Include="SceneWin.cpp">
       <Filter>Archivos de origen\Modules\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleFonts.cpp">
+      <Filter>Archivos de origen\Modules\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -216,6 +219,9 @@
     </ClInclude>
     <ClInclude Include="SceneWin.h">
       <Filter>Archivos de origen\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFonts.h">
+      <Filter>Archivos de origen\Modules\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
