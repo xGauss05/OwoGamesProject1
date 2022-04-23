@@ -24,7 +24,9 @@ private:
 
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
-	//Animation (empty);
+	Animation defaultTopAnim;
+	Animation botAnimLeft;
+	Animation botAnimRight;
 };
 
 #endif // __ENEMY_GREENSOLDIER_H__

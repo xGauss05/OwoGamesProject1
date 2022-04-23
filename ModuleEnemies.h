@@ -68,8 +68,9 @@ private:
 	// All spawned enemies in the scene
 	Enemy* enemies[MAX_ENEMIES] = { nullptr };
 
-	// The enemies sprite sheet
-	SDL_Texture* texture = nullptr;
+	// The enemies sprite sheets
+	SDL_Texture* greenEnemyTexture = nullptr;
+	SDL_Texture* redEnemyTexture = nullptr;
 
 	// The audio fx for destroying an enemy (generic)
 	int enemyDestroyedFx = 0;

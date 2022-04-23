@@ -21,16 +21,18 @@ const Collider* Enemy::GetCollider() const {
 }
 
 void Enemy::Update() {
-	if (currentAnim != nullptr)
-		currentAnim->Update();
+	if (currentAnimTop != nullptr)
+		currentAnimTop->Update();
 
 	if (collider != nullptr)
 		collider->SetPos(position.x, position.y);
 }
 
 void Enemy::Draw() {
-	if (currentAnim != nullptr)
-		App->render->Blit(texture, position.x, position.y, &(currentAnim->GetCurrentFrame()));
+	if (currentAnimTop != nullptr)
+		App->render->Blit(texture, position.x, position.y, &(currentAnimTop->GetCurrentFrame()));
+	if (currentAnimBot != nullptr)
+		App->render->Blit(texture, position.x, position.y + 32, &(currentAnimBot->GetCurrentFrame()));
 }
 
 //void Enemy::OnCollision(Collider* collider) {

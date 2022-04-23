@@ -42,7 +42,8 @@ public:
 
 protected:
 	// A ptr to the current animation
-	Animation* currentAnim = nullptr;
+	Animation* currentAnimTop = nullptr;
+	Animation* currentAnimBot = nullptr;
 
 	// The enemy's collider
 	Collider* collider = nullptr;

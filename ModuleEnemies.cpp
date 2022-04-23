@@ -22,7 +22,8 @@ ModuleEnemies::~ModuleEnemies() {}
 
 bool ModuleEnemies::Start()
 {
-	texture = App->textures->Load("Assets/enemies.png");
+	greenEnemyTexture = App->textures->Load("img/sprites/Guerrilla War Enemy Spritesheet.png");
+	redEnemyTexture = App->textures->Load("img/sprites/Guerrilla War Enemy Red Spritesheet.png");
 	enemyDestroyedFx = App->audio->LoadFx("sounds/sfx/194.wav");
 
 	return true;
@@ -139,12 +140,13 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 			{
 			case ENEMY_TYPE::GREENSOLDIER:
 				enemies[i] = new Enemy_GreenSoldier(info.x, info.y);
+				enemies[i]->texture = greenEnemyTexture;
 				break;
 			case ENEMY_TYPE::REDSOLDIER:
 				enemies[i] = new Enemy_RedSoldier(info.x, info.y);
+				enemies[i]->texture = redEnemyTexture;
 				break;
 			}
-			enemies[i]->texture = this->texture;
 			enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
 			break;
 		}
