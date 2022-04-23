@@ -29,8 +29,11 @@ bool ModuleRender::Init() {
 		LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}	
-	camera.x += App->player->position.x;
-	camera.y += App->player->position.y;
+	//camera.x += App->player->position.x;
+	//camera.y += App->player->position.y;
+
+	camera.x = App->player->position.x - SCREEN_WIDTH / 2;
+	camera.y = App->player->position.y - SCREEN_HEIGHT / 3;
 
 	return ret;
 }
@@ -68,8 +71,11 @@ update_status ModuleRender::Update() {
 	}
 
 	if (App->player->IsEnabled() && !debugCamera) {
-		camera.x = 2 * App->player->position.x - SCREEN_WIDTH;
-		camera.y = 2 * App->player->position.y - SCREEN_HEIGHT;
+		//camera.x = 2 * App->player->position.x - SCREEN_WIDTH;
+		//camera.y = 2 * App->player->position.y - SCREEN_HEIGHT;
+
+		camera.x = App->player->position.x - SCREEN_WIDTH / 2 + 16;				// (+ 16 to center in the character 32 pixels width)
+		camera.y = App->player->position.y - SCREEN_HEIGHT / 1.5f;
 	}
 
 
