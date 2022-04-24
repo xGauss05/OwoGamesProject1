@@ -91,7 +91,30 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 485, -1450, 20, 30 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 448, -1550, 65, 32 }, Collider::Type::WALL);
 
-	// Down
+	// Water
+		//First
+	App->collisions->AddCollider({ 80, 210, 325, 30 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 110, 180, 260, 30 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 140, 140, 225, 40 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 165, 110, 185, 30 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 195, 75, 140, 35 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 215, 35, 105, 40 }, Collider::Type::DOWN);
+		//Second
+	App->collisions->AddCollider({ 255, -1625, 140, 20 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 605, -1625, 140, 20 }, Collider::Type::DOWN);
+		//Third
+	App->collisions->AddCollider({ 480, -3286, 260, 405 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 795, -3286, 260, 405 }, Collider::Type::DOWN);
+
+	//Trenches
+	App->collisions->AddCollider({140, -945, 160, 30 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 255, -1840, 180, 25 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 560, -1840, 180, 25 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 430, -2450, 100, 25 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 430, -2450, 100, 25 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 525, -2545, 160, 25 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 720, -2765, 100, 25 }, Collider::Type::DOWN);
+	App->collisions->AddCollider({ 690, -3440, 135, 25 }, Collider::Type::DOWN);
 	
 	App->player->Enable();
 	App->enemies->Enable();
