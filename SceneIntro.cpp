@@ -20,6 +20,7 @@ bool SceneIntro::Start() {
 	bool ret = true;
 
 	bgTexture = App->textures->Load("img/sprites/introduction.png");
+	durationTimer = 0;
 	// App->audio->PlayMusic("musicname here", 1.0f);
 
 	App->render->camera.x = 0;
@@ -29,8 +30,10 @@ bool SceneIntro::Start() {
 }
 
 update_status SceneIntro::Update() {
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
-		App->fade->FadeToBlack(this, (Module*)App->title, 0);
+	durationTimer++;
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN ||
+		durationTimer >= SCENE_DURATION) {
+		App->fade->FadeToBlack(this, (Module*)App->title, 90);
 	}
 
 	return update_status::UPDATE_CONTINUE;
@@ -43,3 +46,8 @@ update_status SceneIntro::PostUpdate() {
 
 	return update_status::UPDATE_CONTINUE;
 }
+
+bool SceneIntro::CleanUp() {
+	return true;
+}
+

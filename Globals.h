@@ -33,4 +33,7 @@ typedef unsigned short ushort;
 // Camera Configuration (for debug purposes)
 #define CAMERA_SPEED 2
 
+// Scenes
+#define SCENE_DURATION 500
+
 #endif // __GLOBALS_H__
