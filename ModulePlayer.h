@@ -51,7 +51,8 @@ public:
 	int speed = 1;
 
 	// The player spritesheet loaded into an SDL_Texture
-	SDL_Texture* texture = nullptr;
+	SDL_Texture* playerTexture = nullptr;
+	SDL_Texture* weaponTexture = nullptr;
 
 	// Sets the player direction
 	Directions facing;
@@ -66,6 +67,7 @@ public:
 	// It will be switched depending on the player's movement direction
 	Animation* currentAnimTop = nullptr;
 	Animation* currentAnimBot = nullptr;
+	Animation* currentWeaponAnim = nullptr;
 
 	// Animations ---
 	
@@ -89,6 +91,33 @@ public:
 	Animation leftAnimTop, leftAnimBot;
 	// Death
 	Animation deathAnimTop, deathAnimBot;
+
+	// Weapon animations ---
+	// Up
+	Animation upNorWeaponAnim, upPowWeaponAnim;
+	Animation upShotNorWeaponAnim, upShotPowWeaponAnim;	
+	// Up-Right
+	Animation upRightNorWeaponAnim, upRightPowWeaponAnim;
+	Animation upRightShotNorWeaponAnim, upRightShotPowWeaponAnim;
+	// Up-Left
+	Animation upLeftNorWeaponAnim, upLeftPowWeaponAnim;
+	Animation upLeftShotNorWeaponAnim, upLeftShotPowWeaponAnim;
+	// Down
+	Animation downNorWeaponAnim, downPowWeaponAnim;
+	Animation downShotNorWeaponAnim, downShotPowWeaponAnim;
+	// Down-Right
+	Animation downRightNorWeaponAnim, downRightPowWeaponAnim;
+	Animation downRightShotNorWeaponAnim, downRightShotPowWeaponAnim;
+	// Down-Left
+	Animation downLeftNorWeaponAnim, downLeftPowWeaponAnim;
+	Animation downLeftShotNorWeaponAnim, downLeftShotPowWeaponAnim;
+	// Right
+	Animation rightNorWeaponAnim, rightPowWeaponAnim;
+	Animation rightShotNorWeaponAnim, rightShotPowWeaponAnim;
+	// Left
+	Animation leftNorWeaponAnim, leftPowWeaponAnim;
+	Animation leftShotNorWeaponAnim, leftShotPowWeaponAnim;
+
 
 	// The player's collider
 	Collider* collider = nullptr;

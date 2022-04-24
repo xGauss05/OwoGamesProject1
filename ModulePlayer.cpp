@@ -12,8 +12,9 @@
 #include "SDL/include/SDL_scancode.h"
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
-	facing = UP;
-	weapon = NORMAL;
+	facing = Directions::UP;
+	weapon = Weapon::NORMAL;
+	movementDir = Directions::UP;
 
 	// idle animation - just one sprite
 	idleAnimTop.PushBack({ 0, 0, 32, 32 });
@@ -240,20 +241,62 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	deathAnimBot.speed = 0.15f;
 	deathAnimBot.loop = false;
 
+	// Normal weapon animations
+	upNorWeaponAnim.PushBack({ 0, 0, 32,32 });
+	upRightNorWeaponAnim.PushBack({ 32,0, 32,32 });
+	upLeftNorWeaponAnim.PushBack({ 224,0, 32,32 });
+	downNorWeaponAnim.PushBack({ 128,0, 32,32 });
+	downRightNorWeaponAnim.PushBack({ 96,0, 32,32 });
+	downLeftNorWeaponAnim.PushBack({ 160,0, 32,32 });
+	rightNorWeaponAnim.PushBack({ 64,0, 32,32 });
+	leftNorWeaponAnim.PushBack({ 192,0, 32,32 });
+
+	// Normal weapon shooting animations
+	upShotNorWeaponAnim.PushBack({ 0, 32, 32,32 });
+	upRightShotNorWeaponAnim.PushBack({ 32,32, 32,32 });
+	upLeftShotNorWeaponAnim.PushBack({ 224,32, 32,32 });
+	downShotNorWeaponAnim.PushBack({ 128,32, 32,32 });
+	downRightShotNorWeaponAnim.PushBack({ 96,32, 32,32 });
+	downLeftShotNorWeaponAnim.PushBack({ 160,32, 32,32 });
+	rightShotNorWeaponAnim.PushBack({ 64,32, 32,32 });
+	leftShotNorWeaponAnim.PushBack({ 192,32, 32,32 });
+
+	// Powerup weapon animations
+	upPowWeaponAnim.PushBack({ 0, 64, 32,32 });
+	upRightPowWeaponAnim.PushBack({ 32,64, 32,32 });
+	upLeftPowWeaponAnim.PushBack({ 224,64, 32,32 });
+	downPowWeaponAnim.PushBack({ 128,64, 32,32 });
+	downRightPowWeaponAnim.PushBack({ 96,64, 32,32 });
+	downLeftPowWeaponAnim.PushBack({ 160,64, 32,32 });
+	rightPowWeaponAnim.PushBack({ 64,64, 32,32 });
+	leftPowWeaponAnim.PushBack({ 192,64, 32,32 });
+
+	// Powerup weapon shooting animations
+	upShotPowWeaponAnim.PushBack({ 0, 96, 32,32 });
+	upRightShotPowWeaponAnim.PushBack({ 32,96, 32,32 });
+	upLeftShotPowWeaponAnim.PushBack({ 224,96, 32,32 });
+	downShotPowWeaponAnim.PushBack({ 128,96, 32,32 });
+	downRightShotPowWeaponAnim.PushBack({ 96,96, 32,32 });
+	downLeftShotPowWeaponAnim.PushBack({ 160,96, 32,32 });
+	rightShotPowWeaponAnim.PushBack({ 64,96, 32,32 });
+	leftShotPowWeaponAnim.PushBack({ 192,96, 32,32 });
 }
 
-ModulePlayer::~ModulePlayer() {
-}
+ModulePlayer::~ModulePlayer() {}
 
 bool ModulePlayer::Start() {
 	LOG("Loading player textures");
 
 	bool ret = true;
 
-	texture = App->textures->Load("img/sprites/player.png"); // player spritesheet
+	playerTexture = App->textures->Load("img/sprites/player.png"); // player spritesheet
+	weaponTexture = App->textures->Load("img/sprites/weapon.png"); // weapon spritesheet
 	currentAnimTop = &idleAnimTop;
 	currentAnimBot = &idleAnimBot;
-
+	currentWeaponAnim = &upNorWeaponAnim;
+	facing = Directions::UP;
+	weapon = Weapon::NORMAL;
+	movementDir = Directions::UP;
 	dead = false;
 	godMode = false;
 
@@ -773,20 +816,13 @@ update_status ModulePlayer::Update() {
 		}
 	}
 
-	// If no up/down movement detected, set the current animation back to idle
-	// Needs to be improved?
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE) {
-		/*	currentAnimTop = &idleAnimTop;
-			currentAnimBot = &idleAnimBot;*/
-	}
-
 	if (dead) {
 		// need to implement death behaviour
 		currentAnimTop = &deathAnimTop;
 		currentAnimBot = &deathAnimBot;
 	}
 
+	// God mode cheat
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN) {
 		godMode = !godMode;
 	}
@@ -799,7 +835,7 @@ update_status ModulePlayer::Update() {
 	// Insta lose cheat
 	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN) {
 		// Handle insta lose
-		//App->fade->FadeToBlack(this, (Module*)App->win, 0);
+		//App->fade->FadeToBlack(this, (Module*)App->lose, 0);
 	}
 
 	// Updates player collider position
@@ -817,9 +853,9 @@ update_status ModulePlayer::Update() {
 update_status ModulePlayer::PostUpdate() {
 	//if (!dead) {
 	SDL_Rect rect = currentAnimBot->GetCurrentFrame();
-	App->render->Blit(texture, position.x, position.y + 29, &rect);
+	App->render->Blit(playerTexture, position.x, position.y + 29, &rect);
 	rect = currentAnimTop->GetCurrentFrame();
-	App->render->Blit(texture, position.x, position.y, &rect);
+	App->render->Blit(playerTexture, position.x, position.y, &rect);
 	//}
 	return update_status::UPDATE_CONTINUE;
 }
