@@ -8,6 +8,7 @@
 #include "ModuleEnemies.h"
 #include "ModulePowerup.h"
 #include "ModulePlayer.h"
+#include "ModuleParticles.h"
 
 #define Y_BG_POSITION -3920
 
@@ -92,11 +93,11 @@ bool SceneLevel1::Start() {
 
 	// Down
 	
-
 	App->player->Enable();
 	App->enemies->Enable();
 	App->powerups->Enable();
-
+	App->collisions->Enable();
+	App->particles->Enable();
 	return ret;
 }
 
@@ -117,7 +118,8 @@ bool SceneLevel1::CleanUp() {
 	App->player->Disable();
 	App->enemies->Disable();
 	App->powerups->Disable();
-
+	App->collisions->Disable();
+	App->particles->Disable();
 	// Handle memory leaks
 
 	return true;

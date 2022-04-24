@@ -282,7 +282,8 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	leftShotPowWeaponAnim.PushBack({ 192,96, 32,32 });
 }
 
-ModulePlayer::~ModulePlayer() {}
+ModulePlayer::~ModulePlayer() {
+}
 
 bool ModulePlayer::Start() {
 	LOG("Loading player textures");
@@ -315,6 +316,8 @@ bool ModulePlayer::Start() {
 
 	return ret;
 }
+
+
 
 void shootNormal() {
 	switch (App->player->facing) {
@@ -453,6 +456,48 @@ void shootFlamethrower() {
 	}
 }
 
+void updateWeaponAnim() {
+	if (App->player->weapon == Weapon::NORMAL) {
+		switch (App->player->facing) {
+		case Directions::UP:
+			App->player->currentWeaponAnim = &(App->player->upNorWeaponAnim);
+		case Directions::UP_RIGHT:
+			App->player->currentWeaponAnim = &(App->player->upRightNorWeaponAnim);
+		case Directions::UP_LEFT:
+			App->player->currentWeaponAnim = &(App->player->upLeftNorWeaponAnim);
+		case Directions::DOWN:
+			App->player->currentWeaponAnim = &(App->player->downNorWeaponAnim);
+		case Directions::DOWN_RIGHT:
+			App->player->currentWeaponAnim = &(App->player->downRightNorWeaponAnim);
+		case Directions::DOWN_LEFT:
+			App->player->currentWeaponAnim = &(App->player->downLeftNorWeaponAnim);
+		case Directions::RIGHT:
+			App->player->currentWeaponAnim = &(App->player->rightNorWeaponAnim);
+		case Directions::LEFT:
+			App->player->currentWeaponAnim = &(App->player->leftNorWeaponAnim);
+		}
+	} else {
+		switch (App->player->facing) {
+		case Directions::UP:
+			App->player->currentWeaponAnim = &(App->player->upPowWeaponAnim);
+		case Directions::UP_RIGHT:
+			App->player->currentWeaponAnim = &(App->player->upRightPowWeaponAnim);
+		case Directions::UP_LEFT:
+			App->player->currentWeaponAnim = &(App->player->upLeftPowWeaponAnim);
+		case Directions::DOWN:
+			App->player->currentWeaponAnim = &(App->player->downPowWeaponAnim);
+		case Directions::DOWN_RIGHT:
+			App->player->currentWeaponAnim = &(App->player->downRightPowWeaponAnim);
+		case Directions::DOWN_LEFT:
+			App->player->currentWeaponAnim = &(App->player->downLeftPowWeaponAnim);
+		case Directions::RIGHT:
+			App->player->currentWeaponAnim = &(App->player->rightPowWeaponAnim);
+		case Directions::LEFT:
+			App->player->currentWeaponAnim = &(App->player->leftPowWeaponAnim);
+		}
+	}
+}
+
 update_status ModulePlayer::Update() {
 
 	// Change Direction
@@ -469,6 +514,7 @@ update_status ModulePlayer::Update() {
 			facing = Directions::UP;
 			currentAnimTop = &upAnimTop;
 			currentAnimBot = &upAnimBot;
+
 		}
 
 		// Direction to UP_RIGHT
@@ -479,6 +525,7 @@ update_status ModulePlayer::Update() {
 			facing = Directions::UP_RIGHT;
 			currentAnimTop = &upRightAnimTop;
 			currentAnimBot = &upRightAnimBot;
+
 		}
 
 		// Direction to RIGHT
@@ -542,6 +589,7 @@ update_status ModulePlayer::Update() {
 		}
 		idleAnimTop.frames[0] = currentAnimTop->frames[currentAnimTop->GetCurrentFrameNum()];
 		idleAnimBot.frames[0] = currentAnimBot->frames[currentAnimBot->GetCurrentFrameNum()];
+		
 	}
 
 	// Player movement
@@ -789,7 +837,7 @@ update_status ModulePlayer::Update() {
 		idleAnimTop.frames[0] = currentAnimTop->GetCurrentFrame();
 		idleAnimBot.frames[0] = currentAnimBot->GetCurrentFrame();
 	}
-
+	updateWeaponAnim();
 	if (ammunition == 0) {
 		weapon = Weapon::NORMAL;
 	}
@@ -833,8 +881,11 @@ update_status ModulePlayer::Update() {
 	}
 
 	// Insta lose cheat
-	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN) {
+	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN && dead == false) {
 		// Handle insta lose
+
+		dead = true;
+
 		//App->fade->FadeToBlack(this, (Module*)App->lose, 0);
 	}
 
@@ -842,6 +893,7 @@ update_status ModulePlayer::Update() {
 	collider->SetPos(position.x, position.y);
 	currentAnimTop->Update();
 	currentAnimBot->Update();
+	currentWeaponAnim->Update();
 
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_REPEAT) {
 		return update_status::UPDATE_STOP;
@@ -856,6 +908,8 @@ update_status ModulePlayer::PostUpdate() {
 	App->render->Blit(playerTexture, position.x, position.y + 29, &rect);
 	rect = currentAnimTop->GetCurrentFrame();
 	App->render->Blit(playerTexture, position.x, position.y, &rect);
+	rect = currentWeaponAnim->GetCurrentFrame();
+	App->render->Blit(weaponTexture, position.x, position.y, &rect);
 	//}
 	return update_status::UPDATE_CONTINUE;
 }

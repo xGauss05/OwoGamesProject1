@@ -47,48 +47,48 @@ bool ModuleParticles::Start() {
 	shot_up_right.speed.x = 5;
 	shot_up_right.speed.y = -5;
 
-	shot_up_left.anim.PushBack({ 35,180,9,12 });
-	shot_up_left.anim.PushBack({ 51,180,9,12 });
+	shot_up_left.anim.PushBack({ 227,180,9,12 });
+	shot_up_left.anim.PushBack({ 243,180,9,12 });
 	shot_up_left.anim.loop = true;
 	shot_up_left.lifetime = 30;
 	shot_up_left.anim.speed = 0.2f;
 	shot_up_left.speed.x = -5;
 	shot_up_left.speed.y = -5;
 
-	shot_down.anim.PushBack({ 35,180,9,12 });
-	shot_down.anim.PushBack({ 51,180,9,12 });
+	shot_down.anim.PushBack({ 133,180,9,12 });
+	shot_down.anim.PushBack({ 149,180,9,12 });
 	shot_down.anim.loop = true;
 	shot_down.lifetime = 30;
 	shot_down.anim.speed = 0.2f;
 	shot_down.speed.x = 0;
 	shot_down.speed.y = 5;
 
-	shot_down_right.anim.PushBack({ 35,180,9,12 });
-	shot_down_right.anim.PushBack({ 51,180,9,12 });
+	shot_down_right.anim.PushBack({ 98,180,9,12 });
+	shot_down_right.anim.PushBack({ 114,180,9,12 });
 	shot_down_right.anim.loop = true;
 	shot_down_right.lifetime = 30;
 	shot_down_right.anim.speed = 0.2f;
 	shot_down_right.speed.x = 5;
 	shot_down_right.speed.y = 5;
 
-	shot_down_left.anim.PushBack({ 35,180,9,12 });
-	shot_down_left.anim.PushBack({ 51,180,9,12 });
+	shot_down_left.anim.PushBack({ 164,180,9,12 });
+	shot_down_left.anim.PushBack({ 180,180,9,12 });
 	shot_down_left.anim.loop = true;
 	shot_down_left.lifetime = 30;
 	shot_down_left.anim.speed = 0.2f;
 	shot_down_left.speed.x = -5;
 	shot_down_left.speed.y = 5;
 
-	shot_right.anim.PushBack({ 35,180,9,12 });
-	shot_right.anim.PushBack({ 51,180,9,12 });
+	shot_right.anim.PushBack({ 66,180,9,12 });
+	shot_right.anim.PushBack({ 83,180,9,12 });
 	shot_right.anim.loop = true;
 	shot_right.lifetime = 30;
 	shot_right.anim.speed = 0.2f;
 	shot_right.speed.x = 5;
 	shot_right.speed.y = 0;
 
-	shot_left.anim.PushBack({ 35,180,9,12 });
-	shot_left.anim.PushBack({ 51,180,9,12 });
+	shot_left.anim.PushBack({ 195,180,9,12 });
+	shot_left.anim.PushBack({ 210,180,9,12 });
 	shot_left.anim.loop = true;
 	shot_left.lifetime = 30;
 	shot_left.anim.speed = 0.2f;
