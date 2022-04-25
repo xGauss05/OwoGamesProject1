@@ -19,7 +19,7 @@ Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y) : Enemy(x, y)
 	botAnimLeft.PushBack({ 160,192,32,32 });
 	botAnimLeft.PushBack({ 192,192,32,32 });
 	botAnimLeft.PushBack({ 224,192,32,32 });
-	botAnimLeft.speed = 0.5f;
+	botAnimLeft.speed = 0.2f;
 	botAnimLeft.pingpong = true;
 
 	botAnimRight.PushBack({ 96, 64,32,32 });
@@ -27,7 +27,7 @@ Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y) : Enemy(x, y)
 	botAnimRight.PushBack({ 160,64,32,32 });
 	botAnimRight.PushBack({ 192,64,32,32 });
 	botAnimRight.PushBack({ 224,64,32,32 });
-	botAnimRight.speed = 0.5f;
+	botAnimRight.speed = 0.2f;
 	botAnimRight.pingpong = true;
 	currentAnimBot = &botAnimLeft;
 

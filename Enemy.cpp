@@ -24,6 +24,9 @@ void Enemy::Update() {
 	if (currentAnimTop != nullptr)
 		currentAnimTop->Update();
 
+	if (currentAnimBot != nullptr)
+	currentAnimBot->Update();
+
 	if (collider != nullptr)
 		collider->SetPos(position.x, position.y);
 }
