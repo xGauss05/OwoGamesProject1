@@ -91,6 +91,8 @@ public:
 	Animation leftAnimTop, leftAnimBot;
 	// Death
 	Animation deathAnimTop, deathAnimBot;
+	//No leg
+	Animation waterAnimBot, trenchAnimBot;
 
 	// Weapon animations ---
 	// Up

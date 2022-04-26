@@ -241,6 +241,20 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	deathAnimBot.speed = 0.15f;
 	deathAnimBot.loop = false;
 
+	// Water animation
+	waterAnimBot.PushBack({ 160, 256, 32, 32 });
+	waterAnimBot.PushBack({ 192, 256, 32, 32 });
+	waterAnimBot.PushBack({ 224, 256, 32, 32 });
+	waterAnimBot.PushBack({ 256, 256, 32, 32 });
+	waterAnimBot.loop = true;
+	waterAnimBot.speed = 0.1f;
+
+	//trench animation
+	trenchAnimBot.PushBack({ 160, 256, 32, 32 });
+	trenchAnimBot.PushBack({ 192, 256, 32, 32 });
+	trenchAnimBot.loop = true;
+	trenchAnimBot.speed = 0.1f;
+
 	// Normal weapon animations
 	upNorWeaponAnim.PushBack({ 0, 0, 32,32 });
 	upRightNorWeaponAnim.PushBack({ 32,0, 32,32 });
@@ -976,6 +990,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			}
 			break;
 
+		case Collider::Type::WATER:
+			currentAnimBot = &waterAnimBot;
+			break;
+
+		case Collider::Type::TRENCH:
+			currentAnimBot = &trenchAnimBot;
+			break;
 
 		}
 	}
