@@ -23,6 +23,8 @@ bool SceneTitle::Start() {
 	bgTexture = App->textures->Load("img/sprites/title.png");
 	App->audio->PlayMusic("sounds/bgm/112.ogg", 1.0f);
 
+	introAssets = App->textures->Load("img/sprites/intro_assets.png");
+
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	return ret;
