@@ -254,8 +254,8 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	waterAnimBot.speed = 0.1f;
 
 	//trench animation
-	trenchAnimBot.PushBack({ 160, 256, 32, 32 });
-	trenchAnimBot.PushBack({ 192, 256, 32, 32 });
+	trenchAnimBot.PushBack({ 160, 288, 32, 32 });
+	trenchAnimBot.PushBack({ 192, 288, 32, 32 });
 	trenchAnimBot.loop = true;
 	trenchAnimBot.speed = 0.1f;
 
@@ -335,48 +335,46 @@ bool ModulePlayer::Start() {
 	return ret;
 }
 
-
-
 void shootNormal() {
 	switch (App->player->facing) {
 	case Directions::UP:
 	{
-		App->particles->AddParticle(App->particles->shot_up, App->player->position.x + 13, App->player->position.y, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_up, App->player->position.x + 19, App->player->position.y, Collider::Type::PLAYER_SHOT);
 	}
 	break;
 	case Directions::UP_RIGHT:
 	{
-		App->particles->AddParticle(App->particles->shot_up_right, App->player->position.x + 32, App->player->position.y, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_up_right, App->player->position.x + 29, App->player->position.y+11, Collider::Type::PLAYER_SHOT);
 	}
 	break;
 	case Directions::UP_LEFT:
 	{
-		App->particles->AddParticle(App->particles->shot_up_left, App->player->position.x, App->player->position.y, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_up_left, App->player->position.x - 1, App->player->position.y, Collider::Type::PLAYER_SHOT);
 	}
 	break;
 	case Directions::DOWN:
 	{
-		App->particles->AddParticle(App->particles->shot_down, App->player->position.x + 13, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_down, App->player->position.x + 9, App->player->position.y + 50, Collider::Type::PLAYER_SHOT);
 	}
 	break;
 	case Directions::DOWN_RIGHT:
 	{
-		App->particles->AddParticle(App->particles->shot_down_right, App->player->position.x + 32, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_down_right, App->player->position.x + 25, App->player->position.y + 42, Collider::Type::PLAYER_SHOT);
 	}
 	break;
 	case Directions::DOWN_LEFT:
 	{
-		App->particles->AddParticle(App->particles->shot_down_left, App->player->position.x, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_down_left, App->player->position.x, App->player->position.y + 31, Collider::Type::PLAYER_SHOT);
 	}
 	break;
 	case Directions::RIGHT:
 	{
-		App->particles->AddParticle(App->particles->shot_right, App->player->position.x + 32, App->player->position.y + 29, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_right, App->player->position.x + 26, App->player->position.y + 23, Collider::Type::PLAYER_SHOT);
 	}
 	break;
 	case Directions::LEFT:
 	{
-		App->particles->AddParticle(App->particles->shot_left, App->player->position.x, App->player->position.y + 29, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_left, App->player->position.x, App->player->position.y + 24, Collider::Type::PLAYER_SHOT);
 	}
 	break;
 	}
@@ -474,48 +472,6 @@ void shootFlamethrower() {
 	}
 }
 
-void updateWeaponAnim() {
-	if (App->player->weapon == Weapon::NORMAL) {
-		switch (App->player->facing) {
-		case Directions::UP:
-			App->player->currentWeaponAnim = &(App->player->upNorWeaponAnim);
-		case Directions::UP_RIGHT:
-			App->player->currentWeaponAnim = &(App->player->upRightNorWeaponAnim);
-		case Directions::UP_LEFT:
-			App->player->currentWeaponAnim = &(App->player->upLeftNorWeaponAnim);
-		case Directions::DOWN:
-			App->player->currentWeaponAnim = &(App->player->downNorWeaponAnim);
-		case Directions::DOWN_RIGHT:
-			App->player->currentWeaponAnim = &(App->player->downRightNorWeaponAnim);
-		case Directions::DOWN_LEFT:
-			App->player->currentWeaponAnim = &(App->player->downLeftNorWeaponAnim);
-		case Directions::RIGHT:
-			App->player->currentWeaponAnim = &(App->player->rightNorWeaponAnim);
-		case Directions::LEFT:
-			App->player->currentWeaponAnim = &(App->player->leftNorWeaponAnim);
-		}
-	} else {
-		switch (App->player->facing) {
-		case Directions::UP:
-			App->player->currentWeaponAnim = &(App->player->upPowWeaponAnim);
-		case Directions::UP_RIGHT:
-			App->player->currentWeaponAnim = &(App->player->upRightPowWeaponAnim);
-		case Directions::UP_LEFT:
-			App->player->currentWeaponAnim = &(App->player->upLeftPowWeaponAnim);
-		case Directions::DOWN:
-			App->player->currentWeaponAnim = &(App->player->downPowWeaponAnim);
-		case Directions::DOWN_RIGHT:
-			App->player->currentWeaponAnim = &(App->player->downRightPowWeaponAnim);
-		case Directions::DOWN_LEFT:
-			App->player->currentWeaponAnim = &(App->player->downLeftPowWeaponAnim);
-		case Directions::RIGHT:
-			App->player->currentWeaponAnim = &(App->player->rightPowWeaponAnim);
-		case Directions::LEFT:
-			App->player->currentWeaponAnim = &(App->player->leftPowWeaponAnim);
-		}
-	}
-}
-
 update_status ModulePlayer::Update() {
 
 	// Change Direction
@@ -532,7 +488,11 @@ update_status ModulePlayer::Update() {
 			facing = Directions::UP;
 			currentAnimTop = &upAnimTop;
 			currentAnimBot = &upAnimBot;
-
+			if (weapon == Weapon::NORMAL) {
+				currentWeaponAnim = &upNorWeaponAnim;
+			} else {
+				currentWeaponAnim = &upPowWeaponAnim;
+			}
 		}
 
 		// Direction to UP_RIGHT
@@ -543,7 +503,11 @@ update_status ModulePlayer::Update() {
 			facing = Directions::UP_RIGHT;
 			currentAnimTop = &upRightAnimTop;
 			currentAnimBot = &upRightAnimBot;
-
+			if (weapon == Weapon::NORMAL) {
+				currentWeaponAnim = &upRightNorWeaponAnim;
+			} else {
+				currentWeaponAnim = &upRightPowWeaponAnim;
+			}
 		}
 
 		// Direction to RIGHT
@@ -554,6 +518,11 @@ update_status ModulePlayer::Update() {
 			facing = Directions::RIGHT;
 			currentAnimTop = &rightAnimTop;
 			currentAnimBot = &rightAnimBot;
+			if (weapon == Weapon::NORMAL) {
+				currentWeaponAnim = &rightNorWeaponAnim;
+			} else {
+				currentWeaponAnim = &rightPowWeaponAnim;
+			}
 		}
 
 		// Direction to DOWN_RIGHT
@@ -564,6 +533,11 @@ update_status ModulePlayer::Update() {
 			facing = Directions::DOWN_RIGHT;
 			currentAnimTop = &downRightAnimTop;
 			currentAnimBot = &downRightAnimBot;
+			if (weapon == Weapon::NORMAL) {
+				currentWeaponAnim = &downRightNorWeaponAnim;
+			} else {
+				currentWeaponAnim = &downRightPowWeaponAnim;
+			}
 		}
 
 		// Direction to DOWN
@@ -574,6 +548,11 @@ update_status ModulePlayer::Update() {
 			facing = Directions::DOWN;
 			currentAnimTop = &downAnimTop;
 			currentAnimBot = &downAnimBot;
+			if (weapon == Weapon::NORMAL) {
+				currentWeaponAnim = &downNorWeaponAnim;
+			} else {
+				currentWeaponAnim = &downPowWeaponAnim;
+			}
 		}
 
 		// Direction to DOWN_LEFT
@@ -584,6 +563,11 @@ update_status ModulePlayer::Update() {
 			facing = Directions::DOWN_LEFT;
 			currentAnimTop = &downLeftAnimTop;
 			currentAnimBot = &downLeftAnimBot;
+			if (weapon == Weapon::NORMAL) {
+				currentWeaponAnim = &downLeftNorWeaponAnim;
+			} else {
+				currentWeaponAnim = &downLeftPowWeaponAnim;
+			}
 		}
 
 		// Direction to LEFT
@@ -594,6 +578,11 @@ update_status ModulePlayer::Update() {
 			facing = Directions::LEFT;
 			currentAnimTop = &leftAnimTop;
 			currentAnimBot = &leftAnimBot;
+			if (weapon == Weapon::NORMAL) {
+				currentWeaponAnim = &leftNorWeaponAnim;
+			} else {
+				currentWeaponAnim = &leftPowWeaponAnim;
+			}
 		}
 
 		// Direction to UP_LEFT
@@ -604,10 +593,15 @@ update_status ModulePlayer::Update() {
 			facing = Directions::UP_LEFT;
 			currentAnimTop = &upLeftAnimTop;
 			currentAnimBot = &upLeftAnimBot;
+			if (weapon == Weapon::NORMAL) {
+				currentWeaponAnim = &upLeftNorWeaponAnim;
+			} else {
+				currentWeaponAnim = &upLeftPowWeaponAnim;
+			}
 		}
 		idleAnimTop.frames[0] = currentAnimTop->frames[currentAnimTop->GetCurrentFrameNum()];
 		idleAnimBot.frames[0] = currentAnimBot->frames[currentAnimBot->GetCurrentFrameNum()];
-		
+
 	}
 
 	// Player movement
@@ -618,7 +612,7 @@ update_status ModulePlayer::Update() {
 
 		currentAnimTop = &idleAnimTop;
 		currentAnimBot = &idleAnimBot;
-	} else {
+	} else if (!dead) {
 
 		// Move UP
 		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
@@ -627,13 +621,25 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			position.y -= speed;
 			movementDir = UP;
-			if (currentAnimBot != &upAnimBot) {
+			
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &upAnimBot) {
 				currentAnimBot = &upAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
-			if (currentWeaponAnim != &upNorWeaponAnim || 
-				currentWeaponAnim != &upPowWeaponAnim) {
-				updateWeaponAnim();
-			}
+			
 		}
 
 		// Move UP_RIGHT
@@ -644,13 +650,24 @@ update_status ModulePlayer::Update() {
 			position.y -= speed;
 			position.x += speed;
 			movementDir = UP_RIGHT;
-			if (currentAnimBot != &upRightAnimBot) {
-				currentAnimBot = &upRightAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &upRightAnimBot) {
+					currentAnimBot = &upRightAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
-			if (currentWeaponAnim != &upRightNorWeaponAnim ||
-				currentWeaponAnim != &upRightPowWeaponAnim) {
-				updateWeaponAnim();
-			}
+			
 		}
 
 		// Move RIGHT
@@ -660,13 +677,24 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
 			position.x += speed;
 			movementDir = RIGHT;
-			if (currentAnimBot != &rightAnimBot) {
-				currentAnimBot = &rightAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &rightAnimBot) {
+					currentAnimBot = &rightAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
-			if (currentWeaponAnim != &rightNorWeaponAnim ||
-				currentWeaponAnim != &rightPowWeaponAnim) {
-				updateWeaponAnim();
-			}
+			
 		}
 
 		// Move DOWN_RIGHT
@@ -677,13 +705,24 @@ update_status ModulePlayer::Update() {
 			position.y += speed;
 			position.x += speed;
 			movementDir = DOWN_RIGHT;
-			if (currentAnimBot != &downRightAnimBot) {
-				currentAnimBot = &downRightAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &downRightAnimBot) {
+					currentAnimBot = &downRightAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
-			if (currentWeaponAnim != &downRightNorWeaponAnim ||
-				currentWeaponAnim != &downRightPowWeaponAnim) {
-				updateWeaponAnim();
-			}
+			
 		}
 
 		// Move DOWN
@@ -693,13 +732,24 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			position.y += speed;
 			movementDir = DOWN;
-			if (currentAnimBot != &downAnimBot) {
-				currentAnimBot = &downAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &downAnimBot) {
+					currentAnimBot = &downAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
-			if (currentWeaponAnim != &downNorWeaponAnim ||
-				currentWeaponAnim != &downPowWeaponAnim) {
-				updateWeaponAnim();
-			}
+			
 		}
 
 		// Move DOWN_LEFT
@@ -710,13 +760,24 @@ update_status ModulePlayer::Update() {
 			position.y += speed;
 			position.x -= speed;
 			movementDir = DOWN_LEFT;
-			if (currentAnimBot != &downLeftAnimBot) {
-				currentAnimBot = &downLeftAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &downLeftAnimBot) {
+					currentAnimBot = &downLeftAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
-			if (currentWeaponAnim != &downLeftNorWeaponAnim ||
-				currentWeaponAnim != &downLeftPowWeaponAnim) {
-				updateWeaponAnim();
-			}
+			
 		}
 
 		// Move LEFT
@@ -726,13 +787,24 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			position.x -= speed;
 			movementDir = LEFT;
-			if (currentAnimBot != &leftAnimBot) {
-				currentAnimBot = &leftAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &leftAnimBot) {
+					currentAnimBot = &leftAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
-			if (currentWeaponAnim != &leftNorWeaponAnim ||
-				currentWeaponAnim != &leftPowWeaponAnim) {
-				updateWeaponAnim();
-			}
+			
 		}
 
 		// Move UP_LEFT
@@ -743,13 +815,24 @@ update_status ModulePlayer::Update() {
 			position.y -= speed;
 			position.x -= speed;
 			movementDir = UP_LEFT;
-			if (currentAnimBot != &upLeftAnimBot) {
-				currentAnimBot = &upLeftAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &upLeftAnimBot) {
+					currentAnimBot = &upLeftAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
-			if (currentWeaponAnim != &upLeftNorWeaponAnim ||
-				currentWeaponAnim != &upLeftPowWeaponAnim) {
-				updateWeaponAnim();
-			}
+			
 		}
 
 		// Activate top/bot anim when moving
@@ -881,12 +964,11 @@ update_status ModulePlayer::Update() {
 		default:
 			break;
 		}
-		
 		// Set the idles to the current frame
 		idleAnimTop.frames[0] = currentAnimTop->GetCurrentFrame();
 		idleAnimBot.frames[0] = currentAnimBot->GetCurrentFrame();
 	}
-	
+
 	if (ammunition == 0) {
 		weapon = Weapon::NORMAL;
 	}
@@ -936,10 +1018,11 @@ update_status ModulePlayer::Update() {
 	// Insta lose cheat
 	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN && dead == false) {
 		// Handle insta lose
-
 		dead = true;
-		
-		
+	}
+
+	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_REPEAT) {
+		return update_status::UPDATE_STOP;
 	}
 
 	// Updates player collider position
@@ -948,53 +1031,75 @@ update_status ModulePlayer::Update() {
 	currentAnimBot->Update();
 	currentWeaponAnim->Update();
 
-	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_REPEAT) {
-		return update_status::UPDATE_STOP;
-	}
-
 	return update_status::UPDATE_CONTINUE;
 }
 
 update_status ModulePlayer::PostUpdate() {
-	//if (!dead) {
-	SDL_Rect rect = currentAnimBot->GetCurrentFrame();
+	SDL_Rect rect = currentWeaponAnim->GetCurrentFrame();
+	switch (facing) {
+	case Directions::LEFT:
+		App->render->Blit(weaponTexture, position.x - 14, position.y + 7, &rect);
+		break;
+	case Directions::UP_LEFT:
+		App->render->Blit(weaponTexture, position.x - 14, position.y - 7, &rect);
+		break;
+	case Directions::UP:
+		App->render->Blit(weaponTexture, position.x, position.y - 6, &rect);
+		break;
+	case Directions::RIGHT:
+		App->render->Blit(weaponTexture, position.x + 10, position.y + 8, &rect);
+		break;
+
+	case Directions::UP_RIGHT:
+		App->render->Blit(weaponTexture, position.x + 15, position.y +2, &rect);
+		break;
+	
+	}
+
+	rect = currentAnimBot->GetCurrentFrame();
 	App->render->Blit(playerTexture, position.x, position.y + 29, &rect);
+
 	rect = currentAnimTop->GetCurrentFrame();
 	App->render->Blit(playerTexture, position.x, position.y, &rect);
+
 	rect = currentWeaponAnim->GetCurrentFrame();
-	App->render->Blit(weaponTexture, position.x, position.y, &rect);
-	//}
+	switch (facing) {
+	case Directions::DOWN:
+		App->render->Blit(weaponTexture, position.x, position.y + 20, &rect);
+		break;
+	case Directions::DOWN_RIGHT:
+		App->render->Blit(weaponTexture, position.x +9, position.y+20, &rect);
+		break;
+	case Directions::DOWN_LEFT:
+		App->render->Blit(weaponTexture, position.x - 16, position.y + 20, &rect);
+		break;
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
+	place = Place::LAND;
 	if (c1 == collider) {
 		switch (c2->type) {
 		case Collider::Type::ENEMY:
-
 			if (godMode == false) {
 				App->audio->PlayFx(deadFx);
-
 				this->dead = true;
 			}
 			break;
 		case Collider::Type::ENEMY_SHOT:
-
 			if (godMode == false) {
 				App->audio->PlayFx(deadFx);
-
 				this->dead = true;
 			}
 			break;
 		case Collider::Type::POWER_UP:
-
-			// sound plays at Powerup.cpp
+			// sound pick up at Powerup.cpp
 			// weapon changes at each Powerup_(weaponname).cpp
 			c2->pendingToDelete = true;
 			ammunition = MAX_AMMO;
 			break;
 		case Collider::Type::WALL:
-
 			switch (movementDir) {
 			case UP:
 				position.y += speed;
@@ -1030,13 +1135,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			break;
 
 		case Collider::Type::WATER:
-			//currentAnimBot = &waterAnimBot;
+			currentAnimBot = &waterAnimBot;
 			place = Place::WATER;
 			break;
 
 		case Collider::Type::TRENCH:
-			//currentAnimBot = &trenchAnimBot;
-			place == Place::TRENCH;
+			currentAnimBot = &trenchAnimBot;
+			place = Place::TRENCH;
 			break;
 
 		}
