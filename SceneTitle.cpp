@@ -25,6 +25,37 @@ bool SceneTitle::Start() {
 
 	introAssets = App->textures->Load("img/sprites/intro_assets.png");
 
+	bombsAnimation.PushBack({ 0 , 160, 16, 16 });
+	bombsAnimation.PushBack({ 16, 160, 16, 16 });
+	bombsAnimation.PushBack({ 32, 160, 16, 16 });
+	bombsAnimation.PushBack({ 48, 160, 16, 16 });
+	bombsAnimation.PushBack({ 64, 160, 16, 16 });
+	bombsAnimation.PushBack({ 80, 160, 16, 16 });
+	bombsAnimation.PushBack({ 96, 160, 16, 16 });
+		
+	bombsAnimation.PushBack({ 0  , 176, 32, 64 });
+	bombsAnimation.PushBack({ 32 , 176, 32, 64 });
+	bombsAnimation.PushBack({ 64 , 176, 32, 64 });
+	bombsAnimation.PushBack({ 96 , 176, 32, 64 });
+	bombsAnimation.PushBack({ 128, 176, 32, 64 });
+	bombsAnimation.PushBack({ 160, 176, 32, 64 });
+	bombsAnimation.PushBack({ 192, 176, 32, 64 });
+		
+	planesAnim.PushBack({ 224, 112, 128, 128 });
+
+	playerMiniAnim.PushBack({ 0  , 0, 32, 32 });
+	playerMiniAnim.PushBack({ 32 , 0, 32, 32 });
+	playerMiniAnim.PushBack({ 64 , 0, 32, 32 });
+	playerMiniAnim.PushBack({ 96 , 0, 32, 32 });
+	playerMiniAnim.PushBack({ 128, 0, 32, 32 });
+	playerMiniAnim.PushBack({ 160, 0, 32, 32 });
+	playerMiniAnim.PushBack({ 192, 0, 32, 32 });
+	playerMiniAnim.PushBack({ 224, 0, 32, 32 });
+	playerMiniAnim.PushBack({ 256, 0, 32, 32 });
+	playerMiniAnim.PushBack({ 288, 0, 32, 32 });
+	playerMiniAnim.PushBack({ 320, 0, 32, 32 });
+	playerMiniAnim.PushBack({ 352, 0, 32, 32 });
+
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	return ret;

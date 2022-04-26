@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "p2Point.h"
 
 struct SDL_Texture;
 
@@ -45,7 +46,7 @@ public:
 	Animation boatAnim;
 
 	iPoint bombs[8];
-	Animation bombAnimation;
+	Animation bombsAnimation;
 
 	iPoint playerMini;
 	Animation playerMiniAnim;
