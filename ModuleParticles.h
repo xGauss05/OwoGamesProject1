@@ -74,6 +74,9 @@ public:
 	Particle fthrower_up,		fthrower_up_left,		fthrower_up_right,
 			 fthrower_down,		fthrower_down_left,		fthrower_down_right,
 			 fthrower_left,		fthrower_right;
+
+	// Generic grenade
+	Particle grenade;
 };
 
 #endif // !__MODULEPARTICLES_H__

@@ -10,8 +10,11 @@
 
 Enemy_RedSoldier::Enemy_RedSoldier(int x, int y) : Enemy(x, y) 
 {
-	//(empty).PushBack({ 5,72,21,22 });
-	//currentAnim = &(empty);
+	topAnim.PushBack({ 0,0,32,32 });
+	currentAnimTop = &topAnim;
+
+	botAnim.PushBack({ 160,128,32,32 });
+	currentAnimBot = &botAnim;
 
 	path.PushBack({ 0, -1.0f }, 50);
 	path.PushBack({ 0, 1.0f }, 50);

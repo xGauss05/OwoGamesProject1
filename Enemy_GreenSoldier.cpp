@@ -3,6 +3,8 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 #include "ModuleAudio.h"
+
+#include "ModuleParticles.h"
 #include "ModuleEnemies.h" //(Testing)
 
 Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y) : Enemy(x, y)
@@ -46,6 +48,8 @@ void Enemy_GreenSoldier::Update()
 
 	position = spawnPos + path.GetRelativePosition();
 
+	Shoot();
+
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();
@@ -54,12 +58,17 @@ void Enemy_GreenSoldier::Update()
 void Enemy_GreenSoldier::OnCollision(Collider* collider) {
 	App->audio->PlayFx(enemyDeadFx);
 
-
-
 	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
 	//App->audio->PlayFx(enemyDeadFx);
 }
 
 void Enemy_GreenSoldier::Shoot()
 {
+	if (shootdelay >= 50)
+	{
+		App->particles->AddParticle(App->particles->grenade, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
+		shootdelay = 0;
+	}
+
+	shootdelay++;
 }
