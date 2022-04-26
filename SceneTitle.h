@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "p2Point.h"
 
 struct SDL_Texture;
 
@@ -30,9 +31,25 @@ public:
 	bool CleanUp();
 
 public:
+	// Scene duration
+	uint duration;
+
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
+	SDL_Texture* introAssets = nullptr;
 
+	// Textures & Animations
+	iPoint planes[3];
+	Animation planesAnim;
+
+	iPoint boat;
+	Animation boatAnim;
+
+	iPoint bombs[8];
+	Animation bombsAnimation;
+
+	iPoint playerMini;
+	Animation playerMiniAnim;
 };
 
 #endif // __MODULE_SCENETITLE_H__
