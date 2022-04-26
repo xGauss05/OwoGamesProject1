@@ -344,7 +344,7 @@ void shootNormal() {
 	break;
 	case Directions::UP_RIGHT:
 	{
-		App->particles->AddParticle(App->particles->shot_up_right, App->player->position.x + 29, App->player->position.y+11, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_up_right, App->player->position.x + 29, App->player->position.y + 11, Collider::Type::PLAYER_SHOT);
 	}
 	break;
 	case Directions::UP_LEFT:
@@ -599,6 +599,16 @@ update_status ModulePlayer::Update() {
 				currentWeaponAnim = &upLeftPowWeaponAnim;
 			}
 		}
+
+		switch (place) {
+		case Place::TRENCH:
+			if (currentAnimBot != &waterAnimBot)
+				currentAnimBot = &waterAnimBot;
+		case Place::WATER:
+			if (currentAnimBot != &trenchAnimBot)
+				currentAnimBot = &trenchAnimBot;
+		}
+
 		idleAnimTop.frames[0] = currentAnimTop->frames[currentAnimTop->GetCurrentFrameNum()];
 		idleAnimBot.frames[0] = currentAnimBot->frames[currentAnimBot->GetCurrentFrameNum()];
 
@@ -621,11 +631,11 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			position.y -= speed;
 			movementDir = UP;
-			
+
 			switch (place) {
 			case Place::LAND:
 				if (currentAnimBot != &upAnimBot) {
-				currentAnimBot = &upAnimBot;
+					currentAnimBot = &upAnimBot;
 				}
 				break;
 			case Place::WATER:
@@ -639,7 +649,7 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			}
-			
+
 		}
 
 		// Move UP_RIGHT
@@ -667,7 +677,7 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			}
-			
+
 		}
 
 		// Move RIGHT
@@ -694,7 +704,7 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			}
-			
+
 		}
 
 		// Move DOWN_RIGHT
@@ -722,7 +732,7 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			}
-			
+
 		}
 
 		// Move DOWN
@@ -749,7 +759,7 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			}
-			
+
 		}
 
 		// Move DOWN_LEFT
@@ -777,7 +787,7 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			}
-			
+
 		}
 
 		// Move LEFT
@@ -804,7 +814,7 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			}
-			
+
 		}
 
 		// Move UP_LEFT
@@ -815,10 +825,25 @@ update_status ModulePlayer::Update() {
 			position.y -= speed;
 			position.x -= speed;
 			movementDir = UP_LEFT;
+		}
+
+		// Activate top/bot anim when moving
+		switch (facing) {
+		case UP:
+			currentAnimTop = &upAnimTop;
 			switch (place) {
 			case Place::LAND:
-				if (currentAnimBot != &upLeftAnimBot) {
-					currentAnimBot = &upLeftAnimBot;
+				if (movementDir == DOWN) {
+					if (currentAnimBot != &upAnimBot)
+						currentAnimBot = &upAnimBot;
+				}
+				if (movementDir == DOWN_LEFT) {
+					if (currentAnimBot != &upRightAnimBot)
+						currentAnimBot = &upRightAnimBot;
+				}
+				if (movementDir == DOWN_RIGHT) {
+					if (currentAnimBot != &upLeftAnimBot)
+						currentAnimBot = &upLeftAnimBot;
 				}
 				break;
 			case Place::WATER:
@@ -832,133 +857,217 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			}
-			
-		}
-
-		// Activate top/bot anim when moving
-		switch (facing) {
-		case UP:
-			currentAnimTop = &upAnimTop;
-			if (movementDir == DOWN) {
-				if (currentAnimBot != &upAnimBot)
-					currentAnimBot = &upAnimBot;
-			}
-			if (movementDir == DOWN_LEFT) {
-				if (currentAnimBot != &upRightAnimBot)
-					currentAnimBot = &upRightAnimBot;
-			}
-			if (movementDir == DOWN_RIGHT) {
-				if (currentAnimBot != &upLeftAnimBot)
-					currentAnimBot = &upLeftAnimBot;
-			}
 			break;
 		case DOWN:
 			currentAnimTop = &downAnimTop;
-			if (movementDir == UP) {
-				if (currentAnimBot != &downAnimBot)
-					currentAnimBot = &downAnimBot;
-			}
-			if (movementDir == UP_LEFT) {
-				if (currentAnimBot != &downRightAnimBot)
-					currentAnimBot = &downRightAnimBot;
-			}
-			if (movementDir == UP_RIGHT) {
-				if (currentAnimBot != &downLeftAnimBot)
-					currentAnimBot = &downLeftAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (movementDir == UP) {
+					if (currentAnimBot != &downAnimBot)
+						currentAnimBot = &downAnimBot;
+				}
+				if (movementDir == UP_LEFT) {
+					if (currentAnimBot != &downRightAnimBot)
+						currentAnimBot = &downRightAnimBot;
+				}
+				if (movementDir == UP_RIGHT) {
+					if (currentAnimBot != &downLeftAnimBot)
+						currentAnimBot = &downLeftAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
 			break;
 		case RIGHT:
 			currentAnimTop = &rightAnimTop;
-			if (movementDir == LEFT) {
-				if (currentAnimBot != &rightAnimBot)
-					currentAnimBot = &rightAnimBot;
-			}
-			if (movementDir == UP_LEFT) {
-				if (currentAnimBot != &downRightAnimBot)
-					currentAnimBot = &downRightAnimBot;
-			}
-			if (movementDir == DOWN_LEFT) {
-				if (currentAnimBot != &downLeftAnimBot)
-					currentAnimBot = &downLeftAnimBot;
-			}
-			if (movementDir == UP) {
-				if (currentAnimBot != &upAnimBot)
-					currentAnimBot = &upAnimBot;
+
+			switch (place) {
+			case Place::LAND:
+				if (movementDir == LEFT) {
+					if (currentAnimBot != &rightAnimBot)
+						currentAnimBot = &rightAnimBot;
+				}
+				if (movementDir == UP_LEFT) {
+					if (currentAnimBot != &downRightAnimBot)
+						currentAnimBot = &downRightAnimBot;
+				}
+				if (movementDir == DOWN_LEFT) {
+					if (currentAnimBot != &downLeftAnimBot)
+						currentAnimBot = &downLeftAnimBot;
+				}
+				if (movementDir == UP) {
+					if (currentAnimBot != &upAnimBot)
+						currentAnimBot = &upAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
 			break;
 		case LEFT:
 			currentAnimTop = &leftAnimTop;
-			if (movementDir == RIGHT) {
-				if (currentAnimBot != &leftAnimBot)
-					currentAnimBot = &leftAnimBot;
-			}
-			if (movementDir == UP_RIGHT) {
-				if (currentAnimBot != &downLeftAnimBot)
-					currentAnimBot = &downLeftAnimBot;
-			}
-			if (movementDir == DOWN_RIGHT) {
-				if (currentAnimBot != &upLeftAnimBot)
-					currentAnimBot = &upLeftAnimBot;
+
+			switch (place) {
+			case Place::LAND:
+				if (movementDir == RIGHT) {
+					if (currentAnimBot != &leftAnimBot)
+						currentAnimBot = &leftAnimBot;
+				}
+				if (movementDir == UP_RIGHT) {
+					if (currentAnimBot != &downLeftAnimBot)
+						currentAnimBot = &downLeftAnimBot;
+				}
+				if (movementDir == DOWN_RIGHT) {
+					if (currentAnimBot != &upLeftAnimBot)
+						currentAnimBot = &upLeftAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
 			break;
 		case UP_RIGHT:
 			currentAnimTop = &upRightAnimTop;
-			if (movementDir == DOWN_LEFT) {
-				if (currentAnimBot != &upRightAnimBot)
-					currentAnimBot = &upRightAnimBot;
-			}
-			if (movementDir == LEFT) {
-				if (currentAnimBot != &rightAnimBot)
-					currentAnimBot = &rightAnimBot;
-			}
-			if (movementDir == DOWN) {
-				if (currentAnimBot != &upAnimBot)
-					currentAnimBot = &upAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (movementDir == DOWN_LEFT) {
+					if (currentAnimBot != &upRightAnimBot)
+						currentAnimBot = &upRightAnimBot;
+				}
+				if (movementDir == LEFT) {
+					if (currentAnimBot != &rightAnimBot)
+						currentAnimBot = &rightAnimBot;
+				}
+				if (movementDir == DOWN) {
+					if (currentAnimBot != &upAnimBot)
+						currentAnimBot = &upAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
 			break;
 		case UP_LEFT:
 			currentAnimTop = &upLeftAnimTop;
-			if (movementDir == DOWN_RIGHT) {
-				if (currentAnimBot != &upLeftAnimBot)
-					currentAnimBot = &upLeftAnimBot;
-			}
-			if (movementDir == RIGHT) {
-				if (currentAnimBot != &leftAnimBot)
-					currentAnimBot = &leftAnimBot;
-			}
-			if (movementDir == DOWN) {
-				if (currentAnimBot != &upAnimBot)
-					currentAnimBot = &upAnimBot;
+
+			switch (place) {
+			case Place::LAND:
+				if (movementDir == DOWN_RIGHT) {
+					if (currentAnimBot != &upLeftAnimBot)
+						currentAnimBot = &upLeftAnimBot;
+				}
+				if (movementDir == RIGHT) {
+					if (currentAnimBot != &leftAnimBot)
+						currentAnimBot = &leftAnimBot;
+				}
+				if (movementDir == DOWN) {
+					if (currentAnimBot != &upAnimBot)
+						currentAnimBot = &upAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
 			break;
 		case DOWN_RIGHT:
 			currentAnimTop = &downRightAnimTop;
-			if (movementDir == UP_LEFT) {
-				if (currentAnimBot != &downRightAnimBot)
-					currentAnimBot = &downRightAnimBot;
-			}
-			if (movementDir == LEFT) {
-				if (currentAnimBot != &leftAnimBot)
-					currentAnimBot = &leftAnimBot;
-			}
-			if (movementDir == UP) {
-				if (currentAnimBot != &downAnimBot)
-					currentAnimBot = &downAnimBot;
+
+			switch (place) {
+			case Place::LAND:
+				if (movementDir == UP_LEFT) {
+					if (currentAnimBot != &downRightAnimBot)
+						currentAnimBot = &downRightAnimBot;
+				}
+				if (movementDir == LEFT) {
+					if (currentAnimBot != &leftAnimBot)
+						currentAnimBot = &leftAnimBot;
+				}
+				if (movementDir == UP) {
+					if (currentAnimBot != &downAnimBot)
+						currentAnimBot = &downAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
 			break;
 		case DOWN_LEFT:
 			currentAnimTop = &downLeftAnimTop;
-			if (movementDir == UP_RIGHT) {
-				if (currentAnimBot != &downLeftAnimBot)
-					currentAnimBot = &downLeftAnimBot;
-			}
-			if (movementDir == RIGHT) {
-				if (currentAnimBot != &leftAnimBot)
-					currentAnimBot = &leftAnimBot;
-			}
-			if (movementDir == UP) {
-				if (currentAnimBot != &downAnimBot)
-					currentAnimBot = &downAnimBot;
+
+			switch (place) {
+			case Place::LAND:
+				if (movementDir == UP_RIGHT) {
+					if (currentAnimBot != &downLeftAnimBot)
+						currentAnimBot = &downLeftAnimBot;
+				}
+				if (movementDir == RIGHT) {
+					if (currentAnimBot != &leftAnimBot)
+						currentAnimBot = &leftAnimBot;
+				}
+				if (movementDir == UP) {
+					if (currentAnimBot != &downAnimBot)
+						currentAnimBot = &downAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
 			break;
 		default:
@@ -1051,9 +1160,9 @@ update_status ModulePlayer::PostUpdate() {
 		break;
 
 	case Directions::UP_RIGHT:
-		App->render->Blit(weaponTexture, position.x + 15, position.y +2, &rect);
+		App->render->Blit(weaponTexture, position.x + 15, position.y + 2, &rect);
 		break;
-	
+
 	}
 
 	rect = currentAnimBot->GetCurrentFrame();
@@ -1068,7 +1177,7 @@ update_status ModulePlayer::PostUpdate() {
 		App->render->Blit(weaponTexture, position.x, position.y + 20, &rect);
 		break;
 	case Directions::DOWN_RIGHT:
-		App->render->Blit(weaponTexture, position.x +9, position.y+20, &rect);
+		App->render->Blit(weaponTexture, position.x + 9, position.y + 20, &rect);
 		break;
 	case Directions::DOWN_LEFT:
 		App->render->Blit(weaponTexture, position.x - 16, position.y + 20, &rect);
