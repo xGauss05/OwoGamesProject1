@@ -38,6 +38,10 @@ void Enemy::Draw() {
 		App->render->Blit(texture, position.x, position.y + 32, &(currentAnimBot->GetCurrentFrame()));
 }
 
+void Enemy::lookAtPlayer()
+{
+
+}
 //void Enemy::OnCollision(Collider* collider) {
 //	
 //

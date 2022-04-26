@@ -17,6 +17,8 @@ public:
 
 	void OnCollision(Collider* collider) override;
 
+	void Shoot() override;
+
 private:
 	// A set of steps that define the position in the screen
 	// And an animation for each step

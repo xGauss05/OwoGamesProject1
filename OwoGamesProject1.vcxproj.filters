@@ -33,6 +33,9 @@
     <Filter Include="Archivos de origen\Entities\Powerups">
       <UniqueIdentifier>{d88ed2cf-df0e-4340-8cc5-7630f891431e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Modules\Gameplay\Scenes">
+      <UniqueIdentifier>{357942ff-5878-47bb-a059-c32fcdcccd15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -74,9 +77,6 @@
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Archivos de origen\Modules\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="SceneLevel1.cpp">
-      <Filter>Archivos de origen\Modules\Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Archivos de origen\Utils</Filter>
     </ClCompile>
@@ -107,23 +107,29 @@
     <ClCompile Include="Enemy_RedSoldier.cpp">
       <Filter>Archivos de origen\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="SceneIntro.cpp">
-      <Filter>Archivos de origen\Modules\Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleFadeToBlack.cpp">
       <Filter>Archivos de origen\Modules\Core</Filter>
     </ClCompile>
-    <ClCompile Include="SceneStart.cpp">
-      <Filter>Archivos de origen\Modules\Gameplay</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneTitle.cpp">
-      <Filter>Archivos de origen\Modules\Gameplay</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneWin.cpp">
-      <Filter>Archivos de origen\Modules\Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleFonts.cpp">
       <Filter>Archivos de origen\Modules\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneWin.cpp">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneStart.cpp">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneLevel1.cpp">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneIntro.cpp">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneLose.cpp">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,9 +172,6 @@
     <ClInclude Include="ModulePlayer.h">
       <Filter>Archivos de origen\Modules\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="SceneLevel1.h">
-      <Filter>Archivos de origen\Modules\Gameplay</Filter>
-    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Archivos de origen\Utils</Filter>
     </ClInclude>
@@ -205,23 +208,29 @@
     <ClInclude Include="Enemy_RedSoldier.h">
       <Filter>Archivos de origen\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="SceneIntro.h">
-      <Filter>Archivos de origen\Modules\Gameplay</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleFadeToBlack.h">
       <Filter>Archivos de origen\Modules\Core</Filter>
     </ClInclude>
-    <ClInclude Include="SceneStart.h">
-      <Filter>Archivos de origen\Modules\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneTitle.h">
-      <Filter>Archivos de origen\Modules\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneWin.h">
-      <Filter>Archivos de origen\Modules\Gameplay</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleFonts.h">
       <Filter>Archivos de origen\Modules\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneWin.h">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneStart.h">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneLevel1.h">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneIntro.h">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneLose.h">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

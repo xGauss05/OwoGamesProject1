@@ -9,7 +9,11 @@
 #include "ModuleCollisions.h"
 #include "ModuleFadeToBlack.h"
 
+#include "Globals.h"
+
 #include "SDL/include/SDL_scancode.h"
+
+ushort deathCooldown = 0;
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	facing = Directions::UP;
@@ -626,7 +630,10 @@ update_status ModulePlayer::Update() {
 			if (currentAnimBot != &upAnimBot) {
 				currentAnimBot = &upAnimBot;
 			}
-
+			if (currentWeaponAnim != &upNorWeaponAnim || 
+				currentWeaponAnim != &upPowWeaponAnim) {
+				updateWeaponAnim();
+			}
 		}
 
 		// Move UP_RIGHT
@@ -640,6 +647,10 @@ update_status ModulePlayer::Update() {
 			if (currentAnimBot != &upRightAnimBot) {
 				currentAnimBot = &upRightAnimBot;
 			}
+			if (currentWeaponAnim != &upRightNorWeaponAnim ||
+				currentWeaponAnim != &upRightPowWeaponAnim) {
+				updateWeaponAnim();
+			}
 		}
 
 		// Move RIGHT
@@ -651,6 +662,10 @@ update_status ModulePlayer::Update() {
 			movementDir = RIGHT;
 			if (currentAnimBot != &rightAnimBot) {
 				currentAnimBot = &rightAnimBot;
+			}
+			if (currentWeaponAnim != &rightNorWeaponAnim ||
+				currentWeaponAnim != &rightPowWeaponAnim) {
+				updateWeaponAnim();
 			}
 		}
 
@@ -665,6 +680,10 @@ update_status ModulePlayer::Update() {
 			if (currentAnimBot != &downRightAnimBot) {
 				currentAnimBot = &downRightAnimBot;
 			}
+			if (currentWeaponAnim != &downRightNorWeaponAnim ||
+				currentWeaponAnim != &downRightPowWeaponAnim) {
+				updateWeaponAnim();
+			}
 		}
 
 		// Move DOWN
@@ -676,6 +695,10 @@ update_status ModulePlayer::Update() {
 			movementDir = DOWN;
 			if (currentAnimBot != &downAnimBot) {
 				currentAnimBot = &downAnimBot;
+			}
+			if (currentWeaponAnim != &downNorWeaponAnim ||
+				currentWeaponAnim != &downPowWeaponAnim) {
+				updateWeaponAnim();
 			}
 		}
 
@@ -690,6 +713,10 @@ update_status ModulePlayer::Update() {
 			if (currentAnimBot != &downLeftAnimBot) {
 				currentAnimBot = &downLeftAnimBot;
 			}
+			if (currentWeaponAnim != &downLeftNorWeaponAnim ||
+				currentWeaponAnim != &downLeftPowWeaponAnim) {
+				updateWeaponAnim();
+			}
 		}
 
 		// Move LEFT
@@ -701,6 +728,10 @@ update_status ModulePlayer::Update() {
 			movementDir = LEFT;
 			if (currentAnimBot != &leftAnimBot) {
 				currentAnimBot = &leftAnimBot;
+			}
+			if (currentWeaponAnim != &leftNorWeaponAnim ||
+				currentWeaponAnim != &leftPowWeaponAnim) {
+				updateWeaponAnim();
 			}
 		}
 
@@ -714,6 +745,10 @@ update_status ModulePlayer::Update() {
 			movementDir = UP_LEFT;
 			if (currentAnimBot != &upLeftAnimBot) {
 				currentAnimBot = &upLeftAnimBot;
+			}
+			if (currentWeaponAnim != &upLeftNorWeaponAnim ||
+				currentWeaponAnim != &upLeftPowWeaponAnim) {
+				updateWeaponAnim();
 			}
 		}
 
@@ -846,12 +881,12 @@ update_status ModulePlayer::Update() {
 		default:
 			break;
 		}
-
+		
 		// Set the idles to the current frame
 		idleAnimTop.frames[0] = currentAnimTop->GetCurrentFrame();
 		idleAnimBot.frames[0] = currentAnimBot->GetCurrentFrame();
 	}
-	updateWeaponAnim();
+	
 	if (ammunition == 0) {
 		weapon = Weapon::NORMAL;
 	}
@@ -882,6 +917,10 @@ update_status ModulePlayer::Update() {
 		// need to implement death behaviour
 		currentAnimTop = &deathAnimTop;
 		currentAnimBot = &deathAnimBot;
+		deathCooldown++;
+		if (deathCooldown >= DEATH_ANIM_DURATION) {
+			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->lose, 0);
+		}
 	}
 
 	// God mode cheat
@@ -899,8 +938,8 @@ update_status ModulePlayer::Update() {
 		// Handle insta lose
 
 		dead = true;
-
-		//App->fade->FadeToBlack(this, (Module*)App->lose, 0);
+		
+		
 	}
 
 	// Updates player collider position

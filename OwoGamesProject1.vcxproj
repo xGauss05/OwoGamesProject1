@@ -166,6 +166,7 @@
     <ClCompile Include="Powerup_Flamethrower.cpp" />
     <ClCompile Include="Powerup_HeavyRifle.cpp" />
     <ClCompile Include="SceneIntro.cpp" />
+    <ClCompile Include="SceneLose.cpp" />
     <ClCompile Include="SceneStart.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="SceneWin.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="Powerup_Flamethrower.h" />
     <ClInclude Include="Powerup_HeavyRifle.h" />
     <ClInclude Include="SceneIntro.h" />
+    <ClInclude Include="SceneLose.h" />
     <ClInclude Include="SceneStart.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="SceneWin.h" />

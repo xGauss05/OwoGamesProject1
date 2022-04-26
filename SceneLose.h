@@ -1,18 +1,18 @@
-#ifndef __MODULE_SCENETITLE_H__
-#define __MODULE_SCENETITLE_H__
+#ifndef __MODULE_SCENELOSE_H__
+#define __MODULE_SCENELOSE_H__
 
 #include "Module.h"
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class SceneTitle : public Module {
+class SceneLose : public Module {
 public:
 	// Constructor
-	SceneTitle(bool startEnabled);
+	SceneLose(bool startEnabled);
 
 	// Destructor
-	~SceneTitle();
+	~SceneLose();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
@@ -30,25 +30,9 @@ public:
 	bool CleanUp();
 
 public:
-	// Scene duration
-	uint duration;
-
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
-	SDL_Texture* introAssets = nullptr;
 
-	// Textures & Animations
-	iPoint planes[3];
-	Animation planesAnim;
-
-	iPoint boat;
-	Animation boatAnim;
-
-	iPoint bombs[8];
-	Animation bombAnimation;
-
-	iPoint playerMini;
-	Animation playerMiniAnim;
 };
 
-#endif // __MODULE_SCENETITLE_H__
+#endif // __MODULE_SCENELOSE_H__
