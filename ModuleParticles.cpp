@@ -225,6 +225,24 @@ bool ModuleParticles::Start() {
 	fthrower_right.speed.x = 5;
 	fthrower_right.speed.y = 0;
 
+	grenade.anim.PushBack({0,160,16,16});
+	grenade.anim.PushBack({16,160,16,16});
+	grenade.anim.PushBack({32,160,16,16});
+	grenade.anim.PushBack({48,160,16,16});
+	grenade.anim.PushBack({64,160,16,16});
+	grenade.anim.PushBack({80,160,16,16});
+	grenade.anim.PushBack({96,160,16,16});
+	grenade.anim.PushBack({112,160,16,16});
+	grenade.anim.PushBack({128,160,16,16});
+	grenade.anim.PushBack({144,160,16,16});
+	grenade.anim.PushBack({160,160,16,16});
+	grenade.anim.PushBack({176,160,16,16});
+	grenade.anim.loop = true;
+	grenade.lifetime = 30;
+	grenade.anim.speed = 0.2f;
+	grenade.speed.x = 0;
+	grenade.speed.y = 5;
+
 	return true;
 }
 

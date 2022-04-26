@@ -24,11 +24,11 @@ private:
 	// And an animation for each step
 	Path path;
 
-	// This enemy has one sprite and one frame
-	// We are keeping it an animation for consistency with other enemies
 	Animation defaultTopAnim;
 	Animation botAnimLeft;
 	Animation botAnimRight;
+
+	int shootdelay;
 };
 
 #endif // __ENEMY_GREENSOLDIER_H__

@@ -28,7 +28,8 @@ private:
 
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
-	//Animation (empty);
+	Animation topAnim;
+	Animation botAnim;
 };
 
 #endif // __ENEMY_REDSOLDIER_H__
