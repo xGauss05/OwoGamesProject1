@@ -1013,6 +1013,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			default:
 				break;
 			}
+			break;
+
 
 		}
 	}
