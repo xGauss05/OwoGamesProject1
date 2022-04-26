@@ -91,6 +91,13 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 485, -1450, 20, 30 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 448, -1550, 65, 32 }, Collider::Type::WALL);
 
+	//Borders
+	App->collisions->AddCollider({ 0, -1865, 256, 325}, Collider::Type::WALL);
+	App->collisions->AddCollider({ 768, -1865, 256, 325 }, Collider::Type::WALL);
+
+	App->collisions->AddCollider({ 420, -3320, 60, 520 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 992, -3320, 60, 520 }, Collider::Type::WALL);
+
 	// Water
 		//First
 	App->collisions->AddCollider({ 80, 210, 325, 30 }, Collider::Type::WATER);
