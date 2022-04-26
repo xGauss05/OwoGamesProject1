@@ -17,6 +17,7 @@
 #include "SceneTitle.h"
 #include "SceneLevel1.h"
 #include "SceneWin.h"
+#include "SceneLose.h"
 
 Application::Application() {
 	// The order in which the modules are added is very important.
@@ -31,15 +32,16 @@ Application::Application() {
 	modules[5] = title = new SceneTitle(false);
 	modules[6] = level1 = new SceneLevel1(false);
 	modules[7] = win = new SceneWin(false);
-	modules[8] = player = new ModulePlayer(false);
-	modules[9] = particles = new ModuleParticles(true);
-	modules[10] = enemies = new ModuleEnemies(false);
-	modules[11] = powerups = new ModulePowerup(false);
+	modules[8] = lose = new SceneLose(false);
 
-	modules[12] = collisions = new ModuleCollisions(true);
-	modules[13] = fade = new ModuleFadeToBlack(true);
-	modules[14] = fonts = new ModuleFonts(true);
-	modules[15] = render = new ModuleRender(true);
+	modules[9] = player = new ModulePlayer(false);
+	modules[10] = particles = new ModuleParticles(true);
+	modules[11] = enemies = new ModuleEnemies(false);
+	modules[12] = powerups = new ModulePowerup(false);
+	modules[13] = collisions = new ModuleCollisions(true);
+	modules[14] = fade = new ModuleFadeToBlack(true);
+	modules[15] = fonts = new ModuleFonts(true);
+	modules[16] = render = new ModuleRender(true);
 
 }
 

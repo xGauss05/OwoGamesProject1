@@ -30,6 +30,9 @@ typedef unsigned short ushort;
 #define WIN_RESIZABLE 0
 #define VSYNC 1
 
+// Gameplay variables
+#define DEATH_ANIM_DURATION 185
+
 // Camera Configuration (for debug purposes)
 #define CAMERA_SPEED 2
 
