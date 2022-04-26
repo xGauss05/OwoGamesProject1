@@ -254,8 +254,8 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	waterAnimBot.speed = 0.1f;
 
 	//trench animation
-	trenchAnimBot.PushBack({ 160, 256, 32, 32 });
-	trenchAnimBot.PushBack({ 192, 256, 32, 32 });
+	trenchAnimBot.PushBack({ 160, 288, 32, 32 });
+	trenchAnimBot.PushBack({ 192, 288, 32, 32 });
 	trenchAnimBot.loop = true;
 	trenchAnimBot.speed = 0.1f;
 
@@ -621,9 +621,25 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			position.y -= speed;
 			movementDir = UP;
-			if (currentAnimBot != &upAnimBot) {
+			
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &upAnimBot) {
 				currentAnimBot = &upAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
+			
 		}
 
 		// Move UP_RIGHT
@@ -634,9 +650,24 @@ update_status ModulePlayer::Update() {
 			position.y -= speed;
 			position.x += speed;
 			movementDir = UP_RIGHT;
-			if (currentAnimBot != &upRightAnimBot) {
-				currentAnimBot = &upRightAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &upRightAnimBot) {
+					currentAnimBot = &upRightAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
+			
 		}
 
 		// Move RIGHT
@@ -646,9 +677,24 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
 			position.x += speed;
 			movementDir = RIGHT;
-			if (currentAnimBot != &rightAnimBot) {
-				currentAnimBot = &rightAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &rightAnimBot) {
+					currentAnimBot = &rightAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
+			
 		}
 
 		// Move DOWN_RIGHT
@@ -659,9 +705,24 @@ update_status ModulePlayer::Update() {
 			position.y += speed;
 			position.x += speed;
 			movementDir = DOWN_RIGHT;
-			if (currentAnimBot != &downRightAnimBot) {
-				currentAnimBot = &downRightAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &downRightAnimBot) {
+					currentAnimBot = &downRightAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
+			
 		}
 
 		// Move DOWN
@@ -671,9 +732,24 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			position.y += speed;
 			movementDir = DOWN;
-			if (currentAnimBot != &downAnimBot) {
-				currentAnimBot = &downAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &downAnimBot) {
+					currentAnimBot = &downAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
+			
 		}
 
 		// Move DOWN_LEFT
@@ -684,9 +760,24 @@ update_status ModulePlayer::Update() {
 			position.y += speed;
 			position.x -= speed;
 			movementDir = DOWN_LEFT;
-			if (currentAnimBot != &downLeftAnimBot) {
-				currentAnimBot = &downLeftAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &downLeftAnimBot) {
+					currentAnimBot = &downLeftAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
+			
 		}
 
 		// Move LEFT
@@ -696,9 +787,24 @@ update_status ModulePlayer::Update() {
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			position.x -= speed;
 			movementDir = LEFT;
-			if (currentAnimBot != &leftAnimBot) {
-				currentAnimBot = &leftAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &leftAnimBot) {
+					currentAnimBot = &leftAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
+			
 		}
 
 		// Move UP_LEFT
@@ -709,9 +815,24 @@ update_status ModulePlayer::Update() {
 			position.y -= speed;
 			position.x -= speed;
 			movementDir = UP_LEFT;
-			if (currentAnimBot != &upLeftAnimBot) {
-				currentAnimBot = &upLeftAnimBot;
+			switch (place) {
+			case Place::LAND:
+				if (currentAnimBot != &upLeftAnimBot) {
+					currentAnimBot = &upLeftAnimBot;
+				}
+				break;
+			case Place::WATER:
+				if (currentAnimBot != &waterAnimBot) {
+					currentAnimBot = &waterAnimBot;
+				}
+				break;
+			case Place::TRENCH:
+				if (currentAnimBot != &trenchAnimBot) {
+					currentAnimBot = &trenchAnimBot;
+				}
+				break;
 			}
+			
 		}
 
 		// Activate top/bot anim when moving
@@ -957,6 +1078,7 @@ update_status ModulePlayer::PostUpdate() {
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
+	place = Place::LAND;
 	if (c1 == collider) {
 		switch (c2->type) {
 		case Collider::Type::ENEMY:
@@ -1013,13 +1135,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			break;
 
 		case Collider::Type::WATER:
-			//currentAnimBot = &waterAnimBot;
+			currentAnimBot = &waterAnimBot;
 			place = Place::WATER;
 			break;
 
 		case Collider::Type::TRENCH:
-			//currentAnimBot = &trenchAnimBot;
-			place == Place::TRENCH;
+			currentAnimBot = &trenchAnimBot;
+			place = Place::TRENCH;
 			break;
 
 		}

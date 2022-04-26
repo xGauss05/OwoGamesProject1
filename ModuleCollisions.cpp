@@ -175,7 +175,7 @@ void ModuleCollisions::DebugDraw() {
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 100, alpha);
 			break;
 		case Collider::Type::TRENCH:
-			App->render->DrawQuad(colliders[i]->rect, 0, 0, 0, alpha);
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 100, alpha);
 		}
 	}
 }
