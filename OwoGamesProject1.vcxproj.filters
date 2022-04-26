@@ -119,9 +119,6 @@
     <ClCompile Include="SceneTitle.cpp">
       <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="SceneStart.cpp">
-      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="SceneLevel1.cpp">
       <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
     </ClCompile>
@@ -218,9 +215,6 @@
       <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="SceneTitle.h">
-      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneStart.h">
       <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="SceneLevel1.h">

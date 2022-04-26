@@ -35,6 +35,9 @@ update_status SceneLose::Update() {
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->title, 0);
 	}
+	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_REPEAT) {
+		return update_status::UPDATE_STOP;
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 
