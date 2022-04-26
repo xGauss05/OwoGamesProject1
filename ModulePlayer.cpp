@@ -1030,13 +1030,18 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			break;
 
 		case Collider::Type::WATER:
-			currentAnimBot = &waterAnimBot;
+			//currentAnimBot = &waterAnimBot;
+			place = Place::WATER;
 			break;
 
 		case Collider::Type::TRENCH:
-			currentAnimBot = &trenchAnimBot;
+			//currentAnimBot = &trenchAnimBot;
+			place == Place::TRENCH;
 			break;
 
+		}
+		if (c2->type != Collider::Type::WATER && c2->type != Collider::Type::TRENCH) {
+			place = Place::LAND;
 		}
 	}
 }

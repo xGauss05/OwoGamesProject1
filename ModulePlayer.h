@@ -20,6 +20,10 @@ enum Weapon {
 	NORMAL, HEAVY_RIFLE, FLAMETHROWER
 };
 
+enum Place {
+	LAND, WATER, TRENCH
+};
+
 class ModulePlayer : public Module {
 public:
 	// Constructor
@@ -62,6 +66,9 @@ public:
 
 	// Sets the weapon that the player has
 	Weapon weapon;
+
+	// Set place player is in
+	Place place;
 
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
