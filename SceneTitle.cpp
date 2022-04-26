@@ -32,7 +32,6 @@ bool SceneTitle::Start() {
 	bombsAnimation.PushBack({ 64, 160, 16, 16 });
 	bombsAnimation.PushBack({ 80, 160, 16, 16 });
 	bombsAnimation.PushBack({ 96, 160, 16, 16 });
-		
 	bombsAnimation.PushBack({ 0  , 176, 32, 64 });
 	bombsAnimation.PushBack({ 32 , 176, 32, 64 });
 	bombsAnimation.PushBack({ 64 , 176, 32, 64 });
@@ -40,8 +39,10 @@ bool SceneTitle::Start() {
 	bombsAnimation.PushBack({ 128, 176, 32, 64 });
 	bombsAnimation.PushBack({ 160, 176, 32, 64 });
 	bombsAnimation.PushBack({ 192, 176, 32, 64 });
-		
+	bombsAnimation.loop = false;
+
 	planesAnim.PushBack({ 224, 112, 128, 128 });
+	planesAnim.loop = false;
 
 	playerMiniAnim.PushBack({ 0  , 0, 32, 32 });
 	playerMiniAnim.PushBack({ 32 , 0, 32, 32 });
@@ -55,6 +56,14 @@ bool SceneTitle::Start() {
 	playerMiniAnim.PushBack({ 288, 0, 32, 32 });
 	playerMiniAnim.PushBack({ 320, 0, 32, 32 });
 	playerMiniAnim.PushBack({ 352, 0, 32, 32 });
+	playerMiniAnim.loop = false;
+	playerMiniAnim.speed = 0.1f;
+
+	boatAnim.PushBack({ 0 , 64, 32, 96 });
+	boatAnim.PushBack({ 32, 64, 32, 96 });
+	boatAnim.PushBack({ 64, 64, 32, 96 });
+	boatAnim.PushBack({ 96, 64, 32, 96 });
+	boatAnim.speed = 0.1f;
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
