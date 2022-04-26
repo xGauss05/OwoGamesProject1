@@ -39,6 +39,10 @@ public:
 public:
 	// The current position in the world
 	iPoint position;
+	float angle;
+
+	// The distance in pixels to the player
+	iPoint distance;
 
 	// The enemy's texture
 	SDL_Texture* texture = nullptr;

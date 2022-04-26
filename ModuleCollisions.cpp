@@ -5,6 +5,11 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 
+#include "ModuleEnemies.h"
+#include "Enemy.h"
+#include <math.h>
+
+#include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_Scancode.h"
 
 ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
@@ -176,6 +181,18 @@ void ModuleCollisions::DebugDraw() {
 			break;
 		case Collider::Type::TRENCH:
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 100, alpha);
+		}
+	}
+
+	for (size_t i = 0; i < MAX_ENEMIES; i++)
+	{
+		if (App->enemies->enemies[i] != nullptr)
+		{
+			App->render->DrawLine(	App->enemies->enemies[i]->position.x + 16,
+									App->enemies->enemies[i]->position.y + 32,
+									App->enemies->enemies[i]->position.x + 16 + 20 * cos(App->enemies->enemies[i]->angle * (M_PI/180)),
+									App->enemies->enemies[i]->position.y + 32 + 20 * sin(App->enemies->enemies[i]->angle * (M_PI / 180)),
+									0, 255, 0, 255);
 		}
 	}
 }

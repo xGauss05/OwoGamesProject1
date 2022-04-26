@@ -6,6 +6,10 @@
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 
+#include "SDL/include/SDL_render.h"
+#include "ModulePlayer.h"
+#include <math.h>
+
 Enemy::Enemy(int x, int y) : position(x, y) {
 	spawnPos = position;
 	enemyDeadFx = App->audio->LoadFx("sounds/sfx/194.wav");
@@ -29,6 +33,9 @@ void Enemy::Update() {
 
 	if (collider != nullptr)
 		collider->SetPos(position.x, position.y);
+
+
+	lookAtPlayer();
 }
 
 void Enemy::Draw() {
@@ -40,7 +47,21 @@ void Enemy::Draw() {
 
 void Enemy::lookAtPlayer()
 {
+	distance.x = App->player->position.x - this->position.x;
+	distance.y = App->player->position.y - this->position.y;
 
+	if (distance.x < 0)
+	{
+		angle = 180 + atan(distance.y / distance.x) * (180 / M_PI);
+	}
+	else if (distance.y >= 0 && distance.x > 0)
+	{
+		angle = atan(distance.y / distance.x) * (180 / M_PI);
+	}
+	else if (distance.y < 0 && distance.x > 0)
+	{
+		angle = 360 + atan(distance.y / distance.x) * (180 / M_PI);
+	}
 }
 //void Enemy::OnCollision(Collider* collider) {
 //	
