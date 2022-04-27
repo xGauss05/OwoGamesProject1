@@ -169,10 +169,14 @@ bool ModuleRender::DrawLine(int x1, int y1, int x2, int y2, Uint8 r, Uint8 g, Ui
 		x2 -= (camera.y * speed);
 	}
 
-	if (SDL_RenderDrawLine(renderer, x1, y1, x2, y2) != 0) {
+	/*if (SDL_RenderDrawLine(renderer,
+		(int)(-camera.x * speed * 2) + x1 * SCREEN_SIZE,
+		(int)(-camera.y * speed * 2) + y1 * SCREEN_SIZE,
+		(int)(-camera.x * speed * 2) + x2 * SCREEN_SIZE,
+		(int)(-camera.y * speed * 2) + y2 * SCREEN_SIZE) != 0) {
 		LOG("Cannot draw line to screen. SDL_RenderDrawLine error: %s", SDL_GetError());
 		ret = false;
-	}
+	}*/
 
 	return ret;
 }
