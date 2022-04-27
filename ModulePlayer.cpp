@@ -8,6 +8,7 @@
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleFonts.h"
 
 #include "Globals.h"
 
@@ -335,7 +336,10 @@ bool ModulePlayer::Start() {
 	// Player collider
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 64 }, Collider::Type::PLAYER, this);
 
-	return true;
+	// UI for 0.5
+	App->fonts->Load("img/sprites/font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
+
+	return ret;
 }
 
 void ModulePlayer::shootNormal() {
@@ -1134,6 +1138,13 @@ update_status ModulePlayer::PostUpdate() {
 		App->render->Blit(weaponTexture, position.x - 16, position.y + 20, &rect);
 		break;
 	}
+
+	// UI for 0.5
+	App->fonts->BlitText(10, 10, 0, "POINTS");
+	App->fonts->BlitText(10, 20, 0, "000000");
+	App->fonts->BlitText(SCREEN_WIDTH - 80, 10, 0, "AMMO");
+	App->fonts->BlitText(SCREEN_WIDTH - 80, 20, 0, "WIP");
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -1217,5 +1228,6 @@ bool ModulePlayer::CleanUp() {
 	App->audio->UnloadFx(playerDeadFx);
 	App->audio->UnloadFx(heavyRifleFx);
 	App->audio->UnloadFx(flamethrowerFx);
+	App->fonts->UnLoad(0);
 	return true;
 }
