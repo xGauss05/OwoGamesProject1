@@ -24,21 +24,21 @@ bool SceneTitle::Start() {
 
 	introAssets = App->textures->Load("img/sprites/intro_assets.png");
 
-	bombsAnimation.PushBack({ 0 , 160, 16, 16 });
-	bombsAnimation.PushBack({ 16, 160, 16, 16 });
-	bombsAnimation.PushBack({ 32, 160, 16, 16 });
-	bombsAnimation.PushBack({ 48, 160, 16, 16 });
-	bombsAnimation.PushBack({ 64, 160, 16, 16 });
-	bombsAnimation.PushBack({ 80, 160, 16, 16 });
-	bombsAnimation.PushBack({ 96, 160, 16, 16 });
-	bombsAnimation.PushBack({ 0  , 176, 32, 64 });
-	bombsAnimation.PushBack({ 32 , 176, 32, 64 });
-	bombsAnimation.PushBack({ 64 , 176, 32, 64 });
-	bombsAnimation.PushBack({ 96 , 176, 32, 64 });
-	bombsAnimation.PushBack({ 128, 176, 32, 64 });
-	bombsAnimation.PushBack({ 160, 176, 32, 64 });
-	bombsAnimation.PushBack({ 192, 176, 32, 64 });
-	bombsAnimation.loop = false;
+	bombsAnim.PushBack({ 0 , 160, 16, 16 });
+	bombsAnim.PushBack({ 16, 160, 16, 16 });
+	bombsAnim.PushBack({ 32, 160, 16, 16 });
+	bombsAnim.PushBack({ 48, 160, 16, 16 });
+	bombsAnim.PushBack({ 64, 160, 16, 16 });
+	bombsAnim.PushBack({ 80, 160, 16, 16 });
+	bombsAnim.PushBack({ 96, 160, 16, 16 });
+	bombsAnim.PushBack({ 0  , 176, 32, 64 });
+	bombsAnim.PushBack({ 32 , 176, 32, 64 });
+	bombsAnim.PushBack({ 64 , 176, 32, 64 });
+	bombsAnim.PushBack({ 96 , 176, 32, 64 });
+	bombsAnim.PushBack({ 128, 176, 32, 64 });
+	bombsAnim.PushBack({ 160, 176, 32, 64 });
+	bombsAnim.PushBack({ 192, 176, 32, 64 });
+	bombsAnim.loop = false;
 
 	planesAnim.PushBack({ 224, 112, 128, 128 });
 	planesAnim.loop = false;
@@ -66,22 +66,61 @@ bool SceneTitle::Start() {
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
+
+	assetsPoint[0] = planes[0];
+	assetsPoint[1] = planes[1];
+	assetsPoint[2] = planes[2];
+	assetsPoint[3] = boat;
+	assetsPoint[4] = bombs[0];
+	assetsPoint[5] = bombs[1];
+	assetsPoint[6] = bombs[2];
+	assetsPoint[7] = bombs[3];
+	assetsPoint[8] = bombs[4];
+	assetsPoint[9] = bombs[5];
+	assetsPoint[10] = bombs[6];
+	assetsPoint[11] = bombs[7];
+	assetsPoint[12] = playerMini;
+
+	assetsAnim[0] = planesAnim;
+	assetsAnim[1] = planesAnim;
+	assetsAnim[2] = planesAnim;
+	assetsAnim[3] = boatAnim;
+	assetsAnim[4] = bombsAnim;
+	assetsAnim[5] = bombsAnim;
+	assetsAnim[6] = bombsAnim;
+	assetsAnim[7] = bombsAnim;
+	assetsAnim[8] = bombsAnim;
+	assetsAnim[9] = bombsAnim;
+	assetsAnim[10] = bombsAnim;
+	assetsAnim[11] = bombsAnim;
+	assetsAnim[12] = playerMiniAnim;
+
 	return ret;
 }
 
 update_status SceneTitle::Update() {
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
+
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || duration >= SCENE_DURATION) {
 		App->fade->FadeToBlack(this, (Module*)App->level1, 0);
 	}
 	if(App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_REPEAT) {
 		return update_status::UPDATE_STOP;
 	}
+
+	++duration;
+
 	return update_status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
 update_status SceneTitle::PostUpdate() {
 	App->render->Blit(bgTexture, 0, 0, NULL);
+
+	/*for (int i = 0; i < 13; ++i) {
+		SDL_Rect rect = assetsAnim[i].GetCurrentFrame();
+		App->render->Blit(introAssets, assetsPoint[i].x, assetsPoint[i].y, &rect);
+	}
+	*/
 	return update_status::UPDATE_CONTINUE;
 }
 
