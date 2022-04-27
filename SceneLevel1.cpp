@@ -27,8 +27,8 @@ bool SceneLevel1::Start() {
 
 	// Entities --- Add enemies/powerups here
 
-	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 300, -60);
-	App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 230, -60);
+	//App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 300, -60);
+	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 230, -60);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -60);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 180, -500);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);
@@ -149,7 +149,7 @@ bool SceneLevel1::CleanUp() {
 	App->enemies->Disable();
 	App->powerups->Disable();
 	App->collisions->Disable();
-	App->particles->Disable();
+	//App->particles->Disable();
 	App->textures->Unload(bgTexture);
 	bgTexture = nullptr;
 	// Handle memory leaks

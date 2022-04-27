@@ -1053,6 +1053,7 @@ update_status ModulePlayer::Update() {
 		// need to implement death behaviour
 		currentAnimTop = &deathAnimTop;
 		currentAnimBot = &deathAnimBot;
+		App->audio->PlayFx(deadFx);
 		deathCooldown++;
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
 			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->lose, 0);

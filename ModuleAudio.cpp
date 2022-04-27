@@ -44,7 +44,7 @@ bool ModuleAudio::Init() {
 
 // Called before quitting
 bool ModuleAudio::CleanUp() {
-	LOG("Freeing sound FX, closing Mixer and Audio subsystem");
+	LOG("Freeing sound FX, closing Mixer and Audio subsystem. ");
 
 	if (music != NULL) {
 		Mix_FreeMusic(music);
