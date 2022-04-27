@@ -141,8 +141,11 @@ void Enemy_RedSoldier::Update()
 }
 
 void Enemy_RedSoldier::OnCollision(Collider* collider) {
-	App->audio->PlayFx(enemyDeadFx);
-	//App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, position.x, position.y);
+	if (collider->type == Collider::Type::PLAYER_SHOT) {
+		App->audio->PlayFx(enemyDeadFx);
+		App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, position.x, position.y);
+	}
+	
 
 	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
 	//App->audio->PlayFx(enemyDeadFx);
