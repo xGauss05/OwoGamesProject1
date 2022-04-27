@@ -36,6 +36,11 @@ public:
 	// Loads the necessary textures for the player
 	bool Start() override;
 
+	// Functions to shoot the corresponding weapon
+	void shootNormal();
+	void shootHeavyRifle();
+	void shootFlamethrower();
+
 	// Called at the middle of the application loop
 	// Processes new input and handles player movement
 	update_status Update() override;

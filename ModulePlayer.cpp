@@ -335,140 +335,92 @@ bool ModulePlayer::Start() {
 	return ret;
 }
 
-void shootNormal() {
-	switch (App->player->facing) {
+void ModulePlayer::shootNormal() {
+	switch (facing) {
 	case Directions::UP:
-	{
-		App->particles->AddParticle(App->particles->shot_up, App->player->position.x + 19, App->player->position.y, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->shot_up, position.x + 19, position.y, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::UP_RIGHT:
-	{
-		App->particles->AddParticle(App->particles->shot_up_right, App->player->position.x + 29, App->player->position.y + 11, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->shot_up_right, position.x + 29, position.y + 11, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::UP_LEFT:
-	{
-		App->particles->AddParticle(App->particles->shot_up_left, App->player->position.x - 1, App->player->position.y, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->shot_up_left, position.x - 1, position.y, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::DOWN:
-	{
-		App->particles->AddParticle(App->particles->shot_down, App->player->position.x + 9, App->player->position.y + 50, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->shot_down, position.x + 9, position.y + 50, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::DOWN_RIGHT:
-	{
-		App->particles->AddParticle(App->particles->shot_down_right, App->player->position.x + 25, App->player->position.y + 42, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->shot_down_right, position.x + 25, position.y + 42, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::DOWN_LEFT:
-	{
-		App->particles->AddParticle(App->particles->shot_down_left, App->player->position.x, App->player->position.y + 31, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->shot_down_left, position.x, position.y + 31, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::RIGHT:
-	{
-		App->particles->AddParticle(App->particles->shot_right, App->player->position.x + 26, App->player->position.y + 23, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->shot_right, position.x + 26, position.y + 23, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::LEFT:
-	{
-		App->particles->AddParticle(App->particles->shot_left, App->player->position.x, App->player->position.y + 24, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->shot_left, position.x, position.y + 24, Collider::Type::PLAYER_SHOT);
+		break;
 	}
 }
 
-void shootHeavyRifle() {
-	App->player->ammunition--;
-	switch (App->player->facing) {
+void ModulePlayer::shootHeavyRifle() {
+	ammunition--;
+	switch (facing) {
 	case Directions::UP:
-	{
-		App->particles->AddParticle(App->particles->hrifle_up, App->player->position.x + 13, App->player->position.y, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->hrifle_up, position.x + 13, position.y, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::UP_RIGHT:
-	{
-		App->particles->AddParticle(App->particles->hrifle_up_right, App->player->position.x + 32, App->player->position.y, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->hrifle_up_right, position.x + 32, position.y, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::UP_LEFT:
-	{
-		App->particles->AddParticle(App->particles->hrifle_up_left, App->player->position.x, App->player->position.y, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->hrifle_up_left, position.x, position.y, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::DOWN:
-	{
-		App->particles->AddParticle(App->particles->hrifle_down, App->player->position.x + 13, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->hrifle_down, position.x + 13, position.y + 64, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::DOWN_RIGHT:
-	{
-		App->particles->AddParticle(App->particles->hrifle_down_right, App->player->position.x + 32, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->hrifle_down_right, position.x + 32, position.y + 64, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::DOWN_LEFT:
-	{
-		App->particles->AddParticle(App->particles->hrifle_down_left, App->player->position.x, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->hrifle_down_left, position.x, position.y + 64, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::RIGHT:
-	{
-		App->particles->AddParticle(App->particles->hrifle_right, App->player->position.x + 32, App->player->position.y + 29, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->hrifle_right, position.x + 32, position.y + 29, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::LEFT:
-	{
-		App->particles->AddParticle(App->particles->hrifle_left, App->player->position.x, App->player->position.y + 29, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->hrifle_left, position.x, position.y + 29, Collider::Type::PLAYER_SHOT);
+		break;
 	}
 }
 
-void shootFlamethrower() {
-	App->player->ammunition--;
-	switch (App->player->facing) {
+void ModulePlayer::shootFlamethrower() {
+	ammunition--;
+	switch (facing) {
 	case Directions::UP:
-	{
-		App->particles->AddParticle(App->particles->fthrower_up, App->player->position.x + 13, App->player->position.y, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->fthrower_up, position.x + 13, position.y, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::UP_RIGHT:
-	{
-		App->particles->AddParticle(App->particles->fthrower_up_right, App->player->position.x + 32, App->player->position.y, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->fthrower_up_right, position.x + 32, position.y, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::UP_LEFT:
-	{
-		App->particles->AddParticle(App->particles->fthrower_up_left, App->player->position.x, App->player->position.y, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->fthrower_up_left, position.x, position.y, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::DOWN:
-	{
-		App->particles->AddParticle(App->particles->fthrower_down, App->player->position.x + 13, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->fthrower_down, position.x + 13, position.y + 64, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::DOWN_RIGHT:
-	{
-		App->particles->AddParticle(App->particles->fthrower_down_right, App->player->position.x + 32, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->fthrower_down_right, position.x + 32, position.y + 64, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::DOWN_LEFT:
-	{
-		App->particles->AddParticle(App->particles->fthrower_down_left, App->player->position.x, App->player->position.y + 64, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->fthrower_down_left, position.x, position.y + 64, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::RIGHT:
-	{
-		App->particles->AddParticle(App->particles->fthrower_right, App->player->position.x + 32, App->player->position.y + 29, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->fthrower_right, position.x + 32, position.y + 29, Collider::Type::PLAYER_SHOT);
+		break;
 	case Directions::LEFT:
-	{
-		App->particles->AddParticle(App->particles->fthrower_left, App->player->position.x, App->player->position.y + 29, Collider::Type::PLAYER_SHOT);
-	}
-	break;
+		App->particles->AddParticle(App->particles->fthrower_left, position.x, position.y + 29, Collider::Type::PLAYER_SHOT);
+		break;
 	}
 }
 
@@ -634,22 +586,21 @@ update_status ModulePlayer::Update() {
 
 			switch (place) {
 			case Place::LAND:
-				if (currentAnimBot != &upAnimBot) {
+				if (currentAnimBot != &upAnimBot)
 					currentAnimBot = &upAnimBot;
-				}
+
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
+				if (currentAnimBot != &waterAnimBot)
 					currentAnimBot = &waterAnimBot;
-				}
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
-
 		}
 
 		// Move UP_RIGHT
@@ -662,22 +613,21 @@ update_status ModulePlayer::Update() {
 			movementDir = UP_RIGHT;
 			switch (place) {
 			case Place::LAND:
-				if (currentAnimBot != &upRightAnimBot) {
+				if (currentAnimBot != &upRightAnimBot)
 					currentAnimBot = &upRightAnimBot;
-				}
+
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
+				if (currentAnimBot != &waterAnimBot)
 					currentAnimBot = &waterAnimBot;
-				}
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
-
 		}
 
 		// Move RIGHT
@@ -689,22 +639,21 @@ update_status ModulePlayer::Update() {
 			movementDir = RIGHT;
 			switch (place) {
 			case Place::LAND:
-				if (currentAnimBot != &rightAnimBot) {
+				if (currentAnimBot != &rightAnimBot)
 					currentAnimBot = &rightAnimBot;
-				}
+
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
+				if (currentAnimBot != &waterAnimBot)
 					currentAnimBot = &waterAnimBot;
-				}
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
-
 		}
 
 		// Move DOWN_RIGHT
@@ -717,22 +666,21 @@ update_status ModulePlayer::Update() {
 			movementDir = DOWN_RIGHT;
 			switch (place) {
 			case Place::LAND:
-				if (currentAnimBot != &downRightAnimBot) {
+				if (currentAnimBot != &downRightAnimBot)
 					currentAnimBot = &downRightAnimBot;
-				}
+
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
+				if (currentAnimBot != &waterAnimBot)
 					currentAnimBot = &waterAnimBot;
-				}
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
-
 		}
 
 		// Move DOWN
@@ -744,22 +692,21 @@ update_status ModulePlayer::Update() {
 			movementDir = DOWN;
 			switch (place) {
 			case Place::LAND:
-				if (currentAnimBot != &downAnimBot) {
+				if (currentAnimBot != &downAnimBot)
 					currentAnimBot = &downAnimBot;
-				}
+
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
+				if (currentAnimBot != &waterAnimBot)
 					currentAnimBot = &waterAnimBot;
-				}
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
-
 		}
 
 		// Move DOWN_LEFT
@@ -772,22 +719,21 @@ update_status ModulePlayer::Update() {
 			movementDir = DOWN_LEFT;
 			switch (place) {
 			case Place::LAND:
-				if (currentAnimBot != &downLeftAnimBot) {
+				if (currentAnimBot != &downLeftAnimBot)
 					currentAnimBot = &downLeftAnimBot;
-				}
+
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
+				if (currentAnimBot != &waterAnimBot)
 					currentAnimBot = &waterAnimBot;
-				}
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
-
 		}
 
 		// Move LEFT
@@ -799,22 +745,21 @@ update_status ModulePlayer::Update() {
 			movementDir = LEFT;
 			switch (place) {
 			case Place::LAND:
-				if (currentAnimBot != &leftAnimBot) {
+				if (currentAnimBot != &leftAnimBot)
 					currentAnimBot = &leftAnimBot;
-				}
+
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
+				if (currentAnimBot != &waterAnimBot)
 					currentAnimBot = &waterAnimBot;
-				}
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
-
 		}
 
 		// Move UP_LEFT
@@ -831,6 +776,7 @@ update_status ModulePlayer::Update() {
 		switch (facing) {
 		case UP:
 			currentAnimTop = &upAnimTop;
+
 			switch (place) {
 			case Place::LAND:
 				if (movementDir == DOWN) {
@@ -860,6 +806,7 @@ update_status ModulePlayer::Update() {
 			break;
 		case DOWN:
 			currentAnimTop = &downAnimTop;
+
 			switch (place) {
 			case Place::LAND:
 				if (movementDir == UP) {
@@ -953,6 +900,7 @@ update_status ModulePlayer::Update() {
 			break;
 		case UP_RIGHT:
 			currentAnimTop = &upRightAnimTop;
+
 			switch (place) {
 			case Place::LAND:
 				if (movementDir == DOWN_LEFT) {
@@ -1078,28 +1026,25 @@ update_status ModulePlayer::Update() {
 		idleAnimBot.frames[0] = currentAnimBot->GetCurrentFrame();
 	}
 
-	if (ammunition == 0) {
+	if (ammunition == 0)
 		weapon = Weapon::NORMAL;
-	}
+
 
 	if (!dead) {
 		if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 			switch (weapon) {
 			case Weapon::FLAMETHROWER:
-			{
 				App->audio->PlayFx(flamethrowerFx);
 				shootFlamethrower();
-			} break;
+				break;
 			case Weapon::HEAVY_RIFLE:
-			{
 				App->audio->PlayFx(heavyRifleFx);
 				shootHeavyRifle();
-			} break;
+				break;
 			case Weapon::NORMAL:
-			{
 				App->audio->PlayFx(shotFx);
 				shootNormal();
-			}break;
+				break;
 			}
 		}
 	}
@@ -1158,11 +1103,9 @@ update_status ModulePlayer::PostUpdate() {
 	case Directions::RIGHT:
 		App->render->Blit(weaponTexture, position.x + 10, position.y + 8, &rect);
 		break;
-
 	case Directions::UP_RIGHT:
 		App->render->Blit(weaponTexture, position.x + 15, position.y + 2, &rect);
 		break;
-
 	}
 
 	rect = currentAnimBot->GetCurrentFrame();
@@ -1203,8 +1146,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			}
 			break;
 		case Collider::Type::POWER_UP:
-			// sound pick up at Powerup.cpp
-			// weapon changes at each Powerup_(weaponname).cpp
+			// Sound pick up at Powerup.cpp
+			// Weapon changes at each Powerup_(weaponname).cpp
 			c2->pendingToDelete = true;
 			ammunition = MAX_AMMO;
 			break;
@@ -1254,6 +1197,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			break;
 
 		}
+
 		if (c2->type != Collider::Type::WATER && c2->type != Collider::Type::TRENCH) {
 			place = Place::LAND;
 		}
