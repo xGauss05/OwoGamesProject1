@@ -1205,3 +1205,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		}
 	}
 }
+
+bool ModulePlayer::CleanUp() {
+	App->textures->Unload(playerTexture);
+	App->textures->Unload(weaponTexture);
+	App->audio->UnloadFx(shotFx);
+	App->audio->UnloadFx(deadFx);
+	App->audio->UnloadFx(heavyRifleFx);
+	App->audio->UnloadFx(flamethrowerFx);
+	return true;
+}

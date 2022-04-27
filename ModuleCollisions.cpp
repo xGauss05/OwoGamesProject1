@@ -199,7 +199,7 @@ void ModuleCollisions::DebugDraw() {
 
 // Called before quitting
 bool ModuleCollisions::CleanUp() {
-	LOG("Freeing all colliders");
+	LOG("Freeing all colliders. ");
 
 	for (uint i = 0; i < MAX_COLLIDERS; ++i) {
 		if (colliders[i] != nullptr) {

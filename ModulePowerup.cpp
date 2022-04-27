@@ -17,8 +17,7 @@ ModulePowerup::ModulePowerup(bool startEnabled) : Module(startEnabled) {
 		powerUps[i] = nullptr;
 }
 
-ModulePowerup::~ModulePowerup() {
-}
+ModulePowerup::~ModulePowerup() {}
 
 bool ModulePowerup::Start() {
 	texture = App->textures->Load("img/sprites/weapon.png");

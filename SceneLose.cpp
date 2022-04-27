@@ -48,6 +48,7 @@ update_status SceneLose::PostUpdate() {
 }
 
 bool SceneLose::CleanUp() {
-
+	App->textures->Unload(bgTexture);
+	bgTexture = nullptr;
 	return true;
 }

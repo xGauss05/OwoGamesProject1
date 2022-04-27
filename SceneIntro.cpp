@@ -51,6 +51,8 @@ update_status SceneIntro::PostUpdate() {
 }
 
 bool SceneIntro::CleanUp() {
+	App->textures->Unload(bgTexture);
+	bgTexture = nullptr;
 	return true;
 }
 

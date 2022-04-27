@@ -8,7 +8,7 @@
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
-
+#include "SceneIntro.h"
 #include "SDL/include/SDL_scancode.h"
 
 SceneTitle::SceneTitle(bool startEnabled) : Module(startEnabled) {
@@ -19,7 +19,6 @@ SceneTitle::~SceneTitle() {}
 // Load assets
 bool SceneTitle::Start() {
 	bool ret = true;
-
 	bgTexture = App->textures->Load("img/sprites/title.png");
 	App->audio->PlayMusic("sounds/bgm/112.ogg", 1.0f);
 
@@ -87,6 +86,9 @@ update_status SceneTitle::PostUpdate() {
 }
 
 bool SceneTitle::CleanUp() {
-	
+	App->textures->Unload(bgTexture);
+	App->textures->Unload(introAssets);
+	bgTexture = nullptr;
+	introAssets = nullptr;
 	return true;
 }

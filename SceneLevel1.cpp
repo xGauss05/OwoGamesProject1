@@ -25,7 +25,6 @@ bool SceneLevel1::Start() {
 	bgTexture = App->textures->Load("img/sprites/map.png");
 	App->audio->PlayMusic("sounds/bgm/106.ogg", 1.0f); // bgm Farm
 
-
 	// Entities --- Add enemies/powerups here
 
 	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 300, -60);
@@ -151,6 +150,8 @@ bool SceneLevel1::CleanUp() {
 	App->powerups->Disable();
 	App->collisions->Disable();
 	App->particles->Disable();
+	App->textures->Unload(bgTexture);
+	bgTexture = nullptr;
 	// Handle memory leaks
 
 	return true;
