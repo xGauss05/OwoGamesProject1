@@ -1134,6 +1134,8 @@ update_status ModulePlayer::Update() {
 		return update_status::UPDATE_STOP;
 	}
 
+	place = Place::LAND;
+
 	// Updates player collider position
 	collider->SetPos(position.x, position.y);
 	currentAnimTop->Update();
@@ -1187,7 +1189,7 @@ update_status ModulePlayer::PostUpdate() {
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
-	place = Place::LAND;
+	
 	if (c1 == collider) {
 		switch (c2->type) {
 		case Collider::Type::ENEMY:
