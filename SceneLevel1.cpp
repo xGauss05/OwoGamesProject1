@@ -149,7 +149,7 @@ bool SceneLevel1::CleanUp() {
 	App->enemies->Disable();
 	App->powerups->Disable();
 	App->collisions->Disable();
-	//App->particles->Disable();
+	App->particles->Disable();
 	App->textures->Unload(bgTexture);
 	bgTexture = nullptr;
 	// Handle memory leaks

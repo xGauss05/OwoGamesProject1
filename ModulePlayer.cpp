@@ -19,6 +19,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	facing = Directions::UP;
 	weapon = Weapon::NORMAL;
 	movementDir = Directions::UP;
+	place = Place::LAND;
 
 	// idle animation - just one sprite
 	idleAnimTop.PushBack({ 0, 0, 32, 32 });
@@ -306,22 +307,24 @@ ModulePlayer::~ModulePlayer() {
 bool ModulePlayer::Start() {
 	LOG("Loading player textures");
 
-	bool ret = true;
-
 	playerTexture = App->textures->Load("img/sprites/player.png"); // player spritesheet
 	weaponTexture = App->textures->Load("img/sprites/weapon.png"); // weapon spritesheet
+
 	currentAnimTop = &idleAnimTop;
 	currentAnimBot = &idleAnimBot;
 	currentWeaponAnim = &upNorWeaponAnim;
+
 	facing = Directions::UP;
 	weapon = Weapon::NORMAL;
 	movementDir = Directions::UP;
+	place = Place::LAND;
+
 	dead = false;
 	godMode = false;
 
 	// Initiate player audios here
 	shotFx = App->audio->LoadFx("sounds/sfx/142.wav"); // shot sfx
-	deadFx = App->audio->LoadFx("sounds/sfx/195.wav"); // dead sfx
+	playerDeadFx = App->audio->LoadFx("sounds/sfx/195.wav"); // dead sfx
 	heavyRifleFx = App->audio->LoadFx("sounds/sfx/153.wav");
 	flamethrowerFx = App->audio->LoadFx("sounds/sfx/136.wav");
 
@@ -332,7 +335,7 @@ bool ModulePlayer::Start() {
 	// Player collider
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 64 }, Collider::Type::PLAYER, this);
 
-	return ret;
+	return true;
 }
 
 void ModulePlayer::shootNormal() {
@@ -1029,7 +1032,6 @@ update_status ModulePlayer::Update() {
 	if (ammunition == 0)
 		weapon = Weapon::NORMAL;
 
-
 	if (!dead) {
 		if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 			switch (weapon) {
@@ -1053,9 +1055,11 @@ update_status ModulePlayer::Update() {
 		// need to implement death behaviour
 		currentAnimTop = &deathAnimTop;
 		currentAnimBot = &deathAnimBot;
-		App->audio->PlayFx(deadFx);
+		App->audio->PlayFx(playerDeadFx);
 		deathCooldown++;
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
+			currentAnimBot->Reset();
+			currentAnimTop->Reset();
 			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->lose, 0);
 		}
 	}
@@ -1074,6 +1078,7 @@ update_status ModulePlayer::Update() {
 	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN && dead == false) {
 		// Handle insta lose
 		dead = true;
+
 	}
 
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_REPEAT) {
@@ -1133,20 +1138,18 @@ update_status ModulePlayer::PostUpdate() {
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
-	
+
 	if (c1 == collider) {
 		switch (c2->type) {
 		case Collider::Type::ENEMY:
-			if (godMode == false) {
-				App->audio->PlayFx(deadFx);
+			if (godMode == false)
 				this->dead = true;
-			}
+
 			break;
 		case Collider::Type::ENEMY_SHOT:
-			if (godMode == false) {
-				App->audio->PlayFx(deadFx);
+			if (godMode == false)
 				this->dead = true;
-			}
+
 			break;
 		case Collider::Type::POWER_UP:
 			// Sound pick up at Powerup.cpp
@@ -1211,7 +1214,7 @@ bool ModulePlayer::CleanUp() {
 	App->textures->Unload(playerTexture);
 	App->textures->Unload(weaponTexture);
 	App->audio->UnloadFx(shotFx);
-	App->audio->UnloadFx(deadFx);
+	App->audio->UnloadFx(playerDeadFx);
 	App->audio->UnloadFx(heavyRifleFx);
 	App->audio->UnloadFx(flamethrowerFx);
 	return true;

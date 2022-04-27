@@ -24,7 +24,7 @@ public:
 	}
 
 	void Reset() {
-		currentFrame = 0;
+		this->currentFrame = 0;
 	}
 
 	bool HasFinished() {

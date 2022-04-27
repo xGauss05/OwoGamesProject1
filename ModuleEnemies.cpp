@@ -59,11 +59,16 @@ update_status ModuleEnemies::PostUpdate()
 bool ModuleEnemies::CleanUp()
 {
 	LOG("Freeing all enemies");
+	App->textures->Unload(greenEnemyTexture);
+	App->textures->Unload(redEnemyTexture);
+	App->audio->UnloadFx(enemyDestroyedFx);
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (enemies[i] != nullptr)
 		{
+			App->textures->Unload(enemies[i]->texture);
+			App->audio->UnloadFx(enemies[i]->enemyDeadFx);
 			delete enemies[i];
 			enemies[i] = nullptr;
 		}

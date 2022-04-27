@@ -17,10 +17,11 @@ ModulePowerup::ModulePowerup(bool startEnabled) : Module(startEnabled) {
 		powerUps[i] = nullptr;
 }
 
-ModulePowerup::~ModulePowerup() {}
+ModulePowerup::~ModulePowerup() {
+}
 
 bool ModulePowerup::Start() {
-	
+
 	texture = App->textures->Load("img/sprites/weapon.png");
 	pickUpFx = App->audio->LoadFx("sounds/sfx/165.wav");
 
@@ -49,9 +50,12 @@ update_status ModulePowerup::PostUpdate() {
 
 bool ModulePowerup::CleanUp() {
 	LOG("Freeing all powerups");
-
+	App->audio->UnloadFx(pickUpFx);
+	App->textures->Unload(texture);
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] != nullptr) {
+			App->audio->UnloadFx(powerUps[i]->pickUpFx);
+			App->textures->Unload(powerUps[i]->texture);
 			delete powerUps[i];
 			powerUps[i] = nullptr;
 		}
@@ -131,7 +135,7 @@ void ModulePowerup::SpawnPowerup(const PowerupSpawnpoint& info) {
 void ModulePowerup::OnCollision(Collider* c1, Collider* c2) {
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] != nullptr && powerUps[i]->GetCollider() == c1) {
-			
+
 			powerUps[i]->OnCollision(c2);
 			delete powerUps[i];
 			powerUps[i] = nullptr;

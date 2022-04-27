@@ -148,7 +148,7 @@ public:
 
 	// Sound effects indices
 	uint shotFx = 0;
-	uint deadFx = 0;
+	uint playerDeadFx = 0;
 	uint heavyRifleFx = 0;
 	uint flamethrowerFx = 0;
 };
