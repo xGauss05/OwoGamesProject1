@@ -11,7 +11,7 @@
 #include "ModuleFonts.h"
 
 #include "Globals.h"
-
+#include <string>
 #include "SDL/include/SDL_scancode.h"
 
 ushort deathCooldown = 0;
@@ -21,6 +21,8 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	weapon = Weapon::NORMAL;
 	movementDir = Directions::UP;
 	place = Place::LAND;
+	
+	score = 0;
 
 	// idle animation - just one sprite
 	idleAnimTop.PushBack({ 0, 0, 32, 32 });
@@ -307,6 +309,7 @@ ModulePlayer::~ModulePlayer() {
 
 bool ModulePlayer::Start() {
 	LOG("Loading player textures");
+	score = 0;
 
 	playerTexture = App->textures->Load("img/sprites/player.png"); // player spritesheet
 	weaponTexture = App->textures->Load("img/sprites/weapon.png"); // weapon spritesheet
@@ -339,7 +342,7 @@ bool ModulePlayer::Start() {
 	// UI for 0.5
 	App->fonts->Load("img/sprites/font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
 
-	return ret;
+	return true;
 }
 
 void ModulePlayer::shootNormal() {
@@ -1141,7 +1144,9 @@ update_status ModulePlayer::PostUpdate() {
 
 	// UI for 0.5
 	App->fonts->BlitText(10, 10, 0, "POINTS");
-	App->fonts->BlitText(10, 20, 0, "000000");
+	std::string temp = std::to_string(score);
+	char const* num_char = temp.c_str();
+	App->fonts->BlitText(10, 20, 0, num_char);
 	App->fonts->BlitText(SCREEN_WIDTH - 80, 10, 0, "AMMO");
 	App->fonts->BlitText(SCREEN_WIDTH - 80, 20, 0, "WIP");
 
