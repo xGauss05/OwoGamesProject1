@@ -389,13 +389,13 @@ void ModulePlayer::shootHeavyRifle() {
 		App->particles->AddParticle(App->particles->hrifle_up_left, position.x - 1, position.y, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::DOWN:
-		App->particles->AddParticle(App->particles->hrifle_down, position.x, position.y, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->hrifle_down, position.x+7, position.y+15, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::DOWN_RIGHT:
 		App->particles->AddParticle(App->particles->hrifle_down_right, position.x + 25, position.y + 42, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::DOWN_LEFT:
-		App->particles->AddParticle(App->particles->hrifle_down_left, position.x-7, position.y + 31, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->hrifle_down_left, position.x-16, position.y + 31, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::RIGHT:
 		App->particles->AddParticle(App->particles->hrifle_right, position.x + 26, position.y + 23, Collider::Type::PLAYER_SHOT);
