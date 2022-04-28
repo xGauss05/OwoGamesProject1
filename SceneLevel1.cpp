@@ -24,8 +24,8 @@ bool SceneLevel1::Start() {
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("img/sprites/map.png");
-	App->audio->PlayMusic("sounds/bgm/106.ogg", 1.0f); // bgm Farm
+	bgTexture = App->textures->Load("Assets/img/sprites/map.png");
+	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 
 	// Entities --- Add enemies/powerups here
 

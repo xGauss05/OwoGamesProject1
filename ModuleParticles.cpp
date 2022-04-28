@@ -17,7 +17,7 @@ ModuleParticles::~ModuleParticles() {}
 
 bool ModuleParticles::Start() {
 	LOG("Loading particles");
-	texture = App->textures->Load("img/sprites/bullets.png");
+	texture = App->textures->Load("Assets/img/sprites/bullets.png");
 
 	// Put the animations here, 
 	// Variables need to be declared in the header

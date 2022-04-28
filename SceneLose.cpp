@@ -23,8 +23,8 @@ SceneLose::~SceneLose() {
 // Load assets
 bool SceneLose::Start() {
 	bool ret = true;
-	bgTexture = App->textures->Load("img/sprites/lose.png");
-	App->audio->PlayMusic("sounds/bgm/124.ogg", 1.0f);
+	bgTexture = App->textures->Load("Assets/img/sprites/lose.png");
+	App->audio->PlayMusic("Assets/sounds/bgm/124.ogg", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;

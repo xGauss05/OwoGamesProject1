@@ -19,10 +19,10 @@ SceneTitle::~SceneTitle() {}
 // Load assets
 bool SceneTitle::Start() {
 	bool ret = true;
-	bgTexture = App->textures->Load("img/sprites/title.png");
-	App->audio->PlayMusic("sounds/bgm/112.ogg", 1.0f);
+	bgTexture = App->textures->Load("Assets/img/sprites/title.png");
+	App->audio->PlayMusic("Assets/sounds/bgm/112.ogg", 1.0f);
 	duration = 0;
-	introAssets = App->textures->Load("img/sprites/intro_assets.png");
+	introAssets = App->textures->Load("Assets/img/sprites/intro_assets.png");
 
 	bombsAnim.PushBack({ 0 , 160, 16, 16 });
 	bombsAnim.PushBack({ 16, 160, 16, 16 });

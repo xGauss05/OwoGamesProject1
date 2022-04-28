@@ -22,9 +22,9 @@ ModuleEnemies::~ModuleEnemies() {}
 
 bool ModuleEnemies::Start()
 {
-	greenEnemyTexture = App->textures->Load("img/sprites/Guerrilla War Enemy Spritesheet.png");
-	redEnemyTexture = App->textures->Load("img/sprites/Guerrilla War Enemy Red Spritesheet.png");
-	enemyDestroyedFx = App->audio->LoadFx("sounds/sfx/194.wav");
+	greenEnemyTexture = App->textures->Load("Assets/img/sprites/Guerrilla War Enemy Spritesheet.png");
+	redEnemyTexture = App->textures->Load("Assets/img/sprites/Guerrilla War Enemy Red Spritesheet.png");
+	enemyDestroyedFx = App->audio->LoadFx("Assets/sounds/sfx/194.wav");
 
 	return true;
 }

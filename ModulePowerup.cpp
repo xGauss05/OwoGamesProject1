@@ -22,8 +22,8 @@ ModulePowerup::~ModulePowerup() {
 
 bool ModulePowerup::Start() {
 
-	texture = App->textures->Load("img/sprites/weapon.png");
-	pickUpFx = App->audio->LoadFx("sounds/sfx/165.wav");
+	texture = App->textures->Load("Assets/img/sprites/weapon.png");
+	pickUpFx = App->audio->LoadFx("Assets/sounds/sfx/165.wav");
 
 	return true;
 }

@@ -23,8 +23,8 @@ SceneWin::~SceneWin() {
 // Load assets
 bool SceneWin::Start() {
 	bool ret = true;
-	bgTexture = App->textures->Load("img/sprites/win.png");
-	App->audio->PlayMusic("sounds/bgm/127.ogg", 1.0f);
+	bgTexture = App->textures->Load("Assets/img/sprites/win.png");
+	App->audio->PlayMusic("Assets/sounds/bgm/127.ogg", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
