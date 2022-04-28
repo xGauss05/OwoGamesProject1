@@ -25,17 +25,19 @@ const Collider* Enemy::GetCollider() const {
 }
 
 void Enemy::Update() {
+	lookAtPlayer();
+
 	if (currentAnimTop != nullptr)
 		currentAnimTop->Update();
 
 	if (currentAnimBot != nullptr)
-	currentAnimBot->Update();
+		currentAnimBot->Update();
 
 	if (collider != nullptr)
 		collider->SetPos(position.x, position.y);
 
 
-	lookAtPlayer();
+	
 }
 
 void Enemy::Draw() {

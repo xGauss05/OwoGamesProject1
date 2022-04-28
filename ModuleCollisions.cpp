@@ -181,7 +181,11 @@ void ModuleCollisions::DebugDraw() {
 			break;
 		case Collider::Type::TRENCH:
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 100, alpha);
+			break;
+		default:
+			break;
 		}
+
 	}
 
 	for (size_t i = 0; i < MAX_ENEMIES; i++)

@@ -120,8 +120,8 @@ bool ModuleParticles::Start() {
 	hrifle_up_right.speed.x = 5;
 	hrifle_up_right.speed.y = -5;
 
-	hrifle_down.anim.PushBack({ 12,237,-9,-29 });
-	hrifle_down.anim.PushBack({ 28,237,-9,-29 });
+	hrifle_down.anim.PushBack({ 5,208,9,29 });
+	hrifle_down.anim.PushBack({ 21,208,9,29 });
 	hrifle_down.anim.loop = true;
 	hrifle_down.lifetime = 30;
 	hrifle_down.anim.speed = 0.2f;
@@ -317,7 +317,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collid
 			// Adding the particle's collider
 			if (colliderType != Collider::Type::NONE)
 				p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
-
+			
 			particles[i] = p;
 			break;
 		}
