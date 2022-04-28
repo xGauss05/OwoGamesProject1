@@ -12,9 +12,11 @@
 
 #define Y_BG_POSITION -3920
 
-SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled) {}
+SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled) {
+}
 
-SceneLevel1::~SceneLevel1() {}
+SceneLevel1::~SceneLevel1() {
+}
 
 // Load assets
 bool SceneLevel1::Start() {
@@ -33,11 +35,11 @@ bool SceneLevel1::Start() {
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 180, -500);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 230, -600);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 260, 300 );
+	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 260, 300);
 
 	// Colliders --- Make collision boxes here
 	// Left colliders
-	App->collisions->AddCollider({0, 140, 60, 100}, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, 140, 60, 100 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 0, 110, 90, 30 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 0, 75, 120, 35 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 0, -20, 150, 95 }, Collider::Type::WALL);
@@ -72,12 +74,12 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 300, -290, 210, 295 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 325, -475, 185, 185 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 295, -810, 215, 335 }, Collider::Type::WALL);
-		//85 right
+	//85 right
 	App->collisions->AddCollider({ 400, -840, 235, 30 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 445, -875, 190, 35 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 535, -1025, 100, 150 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 555, -1315, 80, 290 }, Collider::Type::WALL);
-		//130 right
+	//130 right
 	App->collisions->AddCollider({ 585, -1375, 180, 60 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 560, -1575, 205, 200 }, Collider::Type::WALL);
 
@@ -92,7 +94,7 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 448, -1550, 65, 32 }, Collider::Type::WALL);
 
 	//Borders
-	App->collisions->AddCollider({ 0, -1865, 256, 325}, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, -1865, 256, 325 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 768, -1865, 256, 325 }, Collider::Type::WALL);
 
 	App->collisions->AddCollider({ 420, -3320, 60, 520 }, Collider::Type::WALL);
@@ -106,15 +108,15 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 165, 110, 185, 30 }, Collider::Type::WATER);
 	App->collisions->AddCollider({ 195, 75, 140, 35 }, Collider::Type::WATER);
 	App->collisions->AddCollider({ 215, 35, 105, 40 }, Collider::Type::WATER);
-		//Second
+	//Second
 	App->collisions->AddCollider({ 255, -1625, 140, 20 }, Collider::Type::WATER);
 	App->collisions->AddCollider({ 605, -1625, 140, 20 }, Collider::Type::WATER);
-		//Third
+	//Third
 	App->collisions->AddCollider({ 480, -3286, 260, 405 }, Collider::Type::WATER);
 	App->collisions->AddCollider({ 795, -3286, 260, 405 }, Collider::Type::WATER);
 
 	//Trenches
-	App->collisions->AddCollider({140, -945, 160, 30 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 140, -945, 160, 30 }, Collider::Type::TRENCH);
 	App->collisions->AddCollider({ 255, -1840, 180, 25 }, Collider::Type::TRENCH);
 	App->collisions->AddCollider({ 560, -1840, 180, 25 }, Collider::Type::TRENCH);
 	App->collisions->AddCollider({ 430, -2450, 100, 25 }, Collider::Type::TRENCH);
@@ -122,12 +124,11 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 525, -2545, 160, 25 }, Collider::Type::TRENCH);
 	App->collisions->AddCollider({ 720, -2765, 100, 25 }, Collider::Type::TRENCH);
 	App->collisions->AddCollider({ 690, -3440, 135, 25 }, Collider::Type::TRENCH);
-	
+
 	App->player->Enable();
 	App->enemies->Enable();
 	App->powerups->Enable();
 	App->collisions->Enable();
-	App->particles->Enable();
 	return ret;
 }
 
@@ -145,11 +146,10 @@ update_status SceneLevel1::PostUpdate() {
 
 bool SceneLevel1::CleanUp() {
 	// Disables the player, enemies and powerups.	
-	App->player->Disable();
-	App->enemies->Disable();
-	App->powerups->Disable();
 	App->collisions->Disable();
-	App->particles->Disable();
+	App->powerups->Disable();
+   	App->enemies->Disable();
+	App->player->Disable();
 	App->textures->Unload(bgTexture);
 	bgTexture = nullptr;
 	// Handle memory leaks

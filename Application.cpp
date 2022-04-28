@@ -36,7 +36,7 @@ Application::Application() {
 
 	modules[9] = player = new ModulePlayer(false);
 	modules[10] = enemies = new ModuleEnemies(false);
-	modules[11] = particles = new ModuleParticles(false);
+	modules[11] = particles = new ModuleParticles(true);
 	modules[12] = powerups = new ModulePowerup(false);
 	modules[13] = collisions = new ModuleCollisions(false);
 	modules[14] = fade = new ModuleFadeToBlack(true);
