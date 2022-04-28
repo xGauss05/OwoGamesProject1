@@ -129,6 +129,10 @@ bool SceneLevel1::Start() {
 	App->enemies->Enable();
 	App->powerups->Enable();
 	App->collisions->Enable();
+
+	App->render->camera.x = App->player->position.x - SCREEN_WIDTH / 2 + 16;
+	App->render->camera.y = App->player->position.y - SCREEN_HEIGHT / 1.5f;
+
 	return ret;
 }
 
