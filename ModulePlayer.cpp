@@ -14,7 +14,6 @@
 #include <string>
 #include "SDL/include/SDL_scancode.h"
 
-ushort deathCooldown = 0;
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	facing = Directions::UP;
@@ -24,6 +23,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	
 	ammunition = 0;
 	score = 0;
+	
 
 	// idle animation - just one sprite
 	idleAnimTop.PushBack({ 0, 0, 32, 32 });
@@ -312,6 +312,7 @@ bool ModulePlayer::Start() {
 	LOG("Loading player textures");
 	score = 0;
 	ammunition = 0;
+	deathCooldown = 0;
 
 	playerTexture = App->textures->Load("img/sprites/player.png"); // player spritesheet
 	weaponTexture = App->textures->Load("img/sprites/weapon.png"); // weapon spritesheet
@@ -1064,7 +1065,9 @@ update_status ModulePlayer::Update() {
 		// need to implement death behaviour
 		currentAnimTop = &deathAnimTop;
 		currentAnimBot = &deathAnimBot;
-		App->audio->PlayFx(playerDeadFx);
+		if (deathCooldown == 0) {
+			App->audio->PlayFx(playerDeadFx);
+		}
 		deathCooldown++;
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
 			currentAnimBot->Reset();

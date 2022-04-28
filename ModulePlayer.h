@@ -135,6 +135,8 @@ public:
 	Animation leftNorWeaponAnim, leftPowWeaponAnim;
 	Animation leftShotNorWeaponAnim, leftShotPowWeaponAnim;
 
+	ushort deathCooldown = 0;
+
 
 	// The player's collider
 	Collider* collider = nullptr;
