@@ -94,6 +94,8 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 448, -1550, 65, 32 }, Collider::Type::WALL);
 
 	//Borders
+	App->collisions->AddCollider({ 0, 240, 500, 10 }, Collider::Type::WALL);
+
 	App->collisions->AddCollider({ 0, -1865, 256, 325 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 768, -1865, 256, 325 }, Collider::Type::WALL);
 
