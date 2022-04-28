@@ -17,9 +17,11 @@ ModulePowerup::ModulePowerup(bool startEnabled) : Module(startEnabled) {
 		powerUps[i] = nullptr;
 }
 
-ModulePowerup::~ModulePowerup() {}
+ModulePowerup::~ModulePowerup() {
+}
 
 bool ModulePowerup::Start() {
+
 	texture = App->textures->Load("img/sprites/weapon.png");
 	pickUpFx = App->audio->LoadFx("sounds/sfx/165.wav");
 
@@ -48,9 +50,12 @@ update_status ModulePowerup::PostUpdate() {
 
 bool ModulePowerup::CleanUp() {
 	LOG("Freeing all powerups");
-
+	App->audio->UnloadFx(pickUpFx);
+	App->textures->Unload(texture);
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] != nullptr) {
+			App->audio->UnloadFx(powerUps[i]->pickUpFx);
+			App->textures->Unload(powerUps[i]->texture);
 			delete powerUps[i];
 			powerUps[i] = nullptr;
 		}
@@ -96,7 +101,7 @@ void ModulePowerup::HandlePowerupsDespawn() {
 		if (powerUps[i] != nullptr) {
 			// Delete the powerup when it has reached the end of the screen
 			if (powerUps[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN) {
-				LOG("DeSpawning powerup at %d", powerUps[i]->position.x * SCREEN_SIZE);
+				LOG("DeSpawning powerup at %d. ", powerUps[i]->position.x * SCREEN_SIZE);
 
 				delete powerUps[i];
 				powerUps[i] = nullptr;
@@ -112,13 +117,16 @@ void ModulePowerup::SpawnPowerup(const PowerupSpawnpoint& info) {
 			switch (info.type) {
 			case POWERUP_TYPE::HEAVY_RIFLE:
 				powerUps[i] = new Powerup_HeavyRifle(info.x, info.y);
+				powerUps[i]->texture = this->texture;
+				powerUps[i]->pickUpFx = this->pickUpFx;
 				break;
 			case POWERUP_TYPE::FLAMETHROWER:
 				powerUps[i] = new Powerup_Flamethrower(info.x, info.y);
+				powerUps[i]->texture = this->texture;
+				powerUps[i]->pickUpFx = this->pickUpFx;
 				break;
 			}
-			powerUps[i]->texture = this->texture;
-			powerUps[i]->pickUpFx = this->pickUpFx;
+
 			break;
 		}
 	}

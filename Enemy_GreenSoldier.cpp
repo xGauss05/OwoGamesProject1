@@ -3,10 +3,11 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 #include "ModuleAudio.h"
-
+#include "ModulePlayer.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h" //(Testing)
 
+#define GREENSOLDIER_SCORE 100
 Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y) : Enemy(x, y)
 {
 	defaultTopAnim.PushBack({ 0, 0,32,32 });
@@ -56,8 +57,10 @@ void Enemy_GreenSoldier::Update()
 }
 
 void Enemy_GreenSoldier::OnCollision(Collider* collider) {
-	App->audio->PlayFx(enemyDeadFx);
-
+	if (collider->type == Collider::Type::PLAYER_SHOT) {
+		App->audio->PlayFx(enemyDeadFx);
+		App->player->score += 100;
+	}
 	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
 	//App->audio->PlayFx(enemyDeadFx);
 }

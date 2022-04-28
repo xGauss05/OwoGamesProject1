@@ -4,10 +4,12 @@
 #include "ModuleCollisions.h"
 #include "ModuleAudio.h"
 
+#include "ModulePlayer.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h" //(Testing)
 #include "ModulePowerup.h" //(Testing)
 
+#define REDSOLDIER_SCORE 300;
 Enemy_RedSoldier::Enemy_RedSoldier(int x, int y) : Enemy(x, y) 
 {
 	topAnim.PushBack({ 0,0,32,32 });
@@ -141,8 +143,12 @@ void Enemy_RedSoldier::Update()
 }
 
 void Enemy_RedSoldier::OnCollision(Collider* collider) {
-	App->audio->PlayFx(enemyDeadFx);
-	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, position.x, position.y);
+	if (collider->type == Collider::Type::PLAYER_SHOT) {
+		App->audio->PlayFx(enemyDeadFx);
+		App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, position.x, position.y);
+		App->player->score += 300;
+	}
+	
 
 	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
 	//App->audio->PlayFx(enemyDeadFx);
@@ -168,7 +174,7 @@ void Enemy_RedSoldier::Shoot()
 		case Directions::UP_LEFT:
 			App->particles->AddParticle(App->particles->shot_up_left, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
 			break;
-
+			// bug
 		case Directions::RIGHT:
 			App->particles->AddParticle(App->particles->shot_right, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
 			break;
@@ -185,6 +191,8 @@ void Enemy_RedSoldier::Shoot()
 			break;
 		case Directions::DOWN:
 			App->particles->AddParticle(App->particles->shot_down, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
+			break;
+		default:
 			break;
 		}
 

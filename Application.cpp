@@ -35,10 +35,10 @@ Application::Application() {
 	modules[8] = lose = new SceneLose(false);
 
 	modules[9] = player = new ModulePlayer(false);
-	modules[10] = particles = new ModuleParticles(true);
-	modules[11] = enemies = new ModuleEnemies(false);
+	modules[10] = enemies = new ModuleEnemies(false);
+	modules[11] = particles = new ModuleParticles(true);
 	modules[12] = powerups = new ModulePowerup(false);
-	modules[13] = collisions = new ModuleCollisions(true);
+	modules[13] = collisions = new ModuleCollisions(false);
 	modules[14] = fade = new ModuleFadeToBlack(true);
 	modules[15] = fonts = new ModuleFonts(true);
 	modules[16] = render = new ModuleRender(true);

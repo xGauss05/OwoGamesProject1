@@ -46,10 +46,13 @@ public:
 	Animation boatAnim;
 
 	iPoint bombs[8];
-	Animation bombsAnimation;
+	Animation bombsAnim;
 
 	iPoint playerMini;
 	Animation playerMiniAnim;
+
+	iPoint assetsPoint[13];
+	Animation assetsAnim[13];
 };
 
 #endif // __MODULE_SCENETITLE_H__

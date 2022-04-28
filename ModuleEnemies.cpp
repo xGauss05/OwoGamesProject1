@@ -59,11 +59,16 @@ update_status ModuleEnemies::PostUpdate()
 bool ModuleEnemies::CleanUp()
 {
 	LOG("Freeing all enemies");
+	App->textures->Unload(greenEnemyTexture);
+	App->textures->Unload(redEnemyTexture);
+	App->audio->UnloadFx(enemyDestroyedFx);
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (enemies[i] != nullptr)
 		{
+			App->textures->Unload(enemies[i]->texture);
+			App->audio->UnloadFx(enemies[i]->enemyDeadFx);
 			delete enemies[i];
 			enemies[i] = nullptr;
 		}
@@ -141,13 +146,14 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 			case ENEMY_TYPE::GREENSOLDIER:
 				enemies[i] = new Enemy_GreenSoldier(info.x, info.y);
 				enemies[i]->texture = greenEnemyTexture;
+				enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
 				break;
 			case ENEMY_TYPE::REDSOLDIER:
 				enemies[i] = new Enemy_RedSoldier(info.x, info.y);
 				enemies[i]->texture = redEnemyTexture;
+				enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
 				break;
 			}
-			enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
 			break;
 		}
 	}

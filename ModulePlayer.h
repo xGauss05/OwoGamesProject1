@@ -60,6 +60,8 @@ public:
 	// The speed in which we move the player (pixels per frame)
 	int speed = 1;
 
+	uint score;
+
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* playerTexture = nullptr;
 	SDL_Texture* weaponTexture = nullptr;
@@ -148,7 +150,7 @@ public:
 
 	// Sound effects indices
 	uint shotFx = 0;
-	uint deadFx = 0;
+	uint playerDeadFx = 0;
 	uint heavyRifleFx = 0;
 	uint flamethrowerFx = 0;
 };
