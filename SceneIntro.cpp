@@ -19,7 +19,7 @@ bool SceneIntro::Start() {
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("img/sprites/introduction.png");
+	bgTexture = App->textures->Load("Assets/img/sprites/introduction.png");
 	durationTimer = 0;
 	// App->audio->PlayMusic("musicname here", 1.0f);
 

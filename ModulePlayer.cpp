@@ -314,8 +314,8 @@ bool ModulePlayer::Start() {
 	ammunition = 0;
 	deathCooldown = 0;
 
-	playerTexture = App->textures->Load("img/sprites/player.png"); // player spritesheet
-	weaponTexture = App->textures->Load("img/sprites/weapon.png"); // weapon spritesheet
+	playerTexture = App->textures->Load("Assets/img/sprites/player.png"); // player spritesheet
+	weaponTexture = App->textures->Load("Assets/img/sprites/weapon.png"); // weapon spritesheet
 
 	currentAnimTop = &idleAnimTop;
 	currentAnimBot = &idleAnimBot;
@@ -330,10 +330,10 @@ bool ModulePlayer::Start() {
 	godMode = false;
 
 	// Initiate player audios here
-	shotFx = App->audio->LoadFx("sounds/sfx/142.wav"); // shot sfx
-	playerDeadFx = App->audio->LoadFx("sounds/sfx/195.wav"); // dead sfx
-	heavyRifleFx = App->audio->LoadFx("sounds/sfx/153.wav");
-	flamethrowerFx = App->audio->LoadFx("sounds/sfx/136.wav");
+	shotFx = App->audio->LoadFx("Assets/sounds/sfx/142.wav"); // shot sfx
+	playerDeadFx = App->audio->LoadFx("Assets/sounds/sfx/195.wav"); // dead sfx
+	heavyRifleFx = App->audio->LoadFx("Assets/sounds/sfx/153.wav");
+	flamethrowerFx = App->audio->LoadFx("Assets/sounds/sfx/136.wav");
 
 	// Initial position
 	position.x = 240;
@@ -343,7 +343,7 @@ bool ModulePlayer::Start() {
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 64 }, Collider::Type::PLAYER, this);
 
 	// UI for 0.5
-	App->fonts->Load("img/sprites/font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
+	App->fonts->Load("Assets/img/sprites/font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
 
 	return true;
 }
