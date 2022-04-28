@@ -22,6 +22,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	movementDir = Directions::UP;
 	place = Place::LAND;
 	
+	ammunition = 0;
 	score = 0;
 
 	// idle animation - just one sprite
@@ -310,6 +311,7 @@ ModulePlayer::~ModulePlayer() {
 bool ModulePlayer::Start() {
 	LOG("Loading player textures");
 	score = 0;
+	ammunition = 0;
 
 	playerTexture = App->textures->Load("img/sprites/player.png"); // player spritesheet
 	weaponTexture = App->textures->Load("img/sprites/weapon.png"); // weapon spritesheet
@@ -1148,7 +1150,13 @@ update_status ModulePlayer::PostUpdate() {
 	char const* num_char = temp.c_str();
 	App->fonts->BlitText(10, 20, 0, num_char);
 	App->fonts->BlitText(SCREEN_WIDTH - 80, 10, 0, "AMMO");
-	App->fonts->BlitText(SCREEN_WIDTH - 80, 20, 0, "WIP");
+	if (weapon == Weapon::NORMAL) {
+		App->fonts->BlitText(SCREEN_WIDTH - 80, 20, 0, "INF");
+	} else {
+		temp = std::to_string(ammunition);
+		num_char = temp.c_str();
+		App->fonts->BlitText(SCREEN_WIDTH - 80, 20, 0, num_char);
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }
