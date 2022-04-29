@@ -9,6 +9,11 @@
 #include "Enemy.h"
 #include <math.h>
 
+#include "ModulePlayer.h"
+#include "ModuleFonts.h"
+#include <string>
+using namespace std;
+
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_Scancode.h"
 
@@ -199,6 +204,13 @@ void ModuleCollisions::DebugDraw() {
 									0, 255, 0, 255);
 		}
 	}
+
+	//Position debug
+	App->fonts->BlitText(10, 30, 0, "X.");
+	App->fonts->BlitText(25, 30, 0, std::to_string(App->player->position.x).c_str());
+
+	App->fonts->BlitText(10, 40, 0, "Y.");
+	App->fonts->BlitText(25, 40, 0, std::to_string(App->player->position.y).c_str());
 }
 
 // Called before quitting
