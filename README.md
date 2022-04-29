@@ -1,17 +1,25 @@
 # A small Guerrilla War project
 This is a project for the arcade game 'Guerrilla War' created by Owo Games. We don't own any of the files used in this project. Guerrilla War (Guevara) and all of the content used for the project is the property of SNK. Every piece of content is used and can be used by anyone for non-commercial projects. Created by Owo Games for educational purposes.
-## Game instructions
-*to do*
 
-## Before executing
-- Set the path to $(ProjectDir)/Game/
+## Game instructions
+The main objective of the game is to reach the final part while shooting your way up the enemies you encounter. Whenever the boss is defeated, you won!
+
+## Before executing the code
 - Remember to change the solution platform to x86.
+- Set the path to $(ProjectDir)/Game/
 
 ## Controls
 + W, A, S, D : Movement controls
-+ ARROWS KEYS: Sets the direction where the player looks
++ I, J, K, L : Sets the direction where the player looks
 + SPACE BAR: Shoot
-+ E: Throw grenade
++ E: Throw grenade (TBI)
+
+## Debug controls
++ F1: Enable/Disable God Mode
++ F2: Show all colliders
++ F3: Instant win
++ F4: Instant lose
++ F5: Camera debug (while enabled, move the camera with ARROW KEYS)
 
 ## Team members
 + Project Repository: [Link](https://github.com/xGauss05/OwoGamesProject1)
