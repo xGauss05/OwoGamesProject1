@@ -26,10 +26,11 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::WALL][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER_SHOT] = false;
-	matrix[Collider::Type::WALL][Collider::Type::ENEMY_SHOT] = true;
+	matrix[Collider::Type::WALL][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::WALL][Collider::Type::POWER_UP] = false;
 	matrix[Collider::Type::WALL][Collider::Type::WATER] = false;
 	matrix[Collider::Type::WALL][Collider::Type::TRENCH] = false;
+	matrix[Collider::Type::WALL][Collider::Type::BARRICADE] = false;
 
 	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
@@ -39,6 +40,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::PLAYER][Collider::Type::POWER_UP] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::WATER] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::TRENCH] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::BARRICADE] = true;
 
 	matrix[Collider::Type::ENEMY][Collider::Type::WALL] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = true;
@@ -48,6 +50,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::ENEMY][Collider::Type::POWER_UP] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::WATER] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::TRENCH] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::BARRICADE] = true;
 
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::WALL] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER] = false;
@@ -57,8 +60,9 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::POWER_UP] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::WATER] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::TRENCH] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BARRICADE] = true;
 
-	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::WALL] = true;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::WALL] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER_SHOT] = false;
@@ -66,6 +70,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::POWER_UP] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::WATER] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::TRENCH] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BARRICADE] = true;
 
 	matrix[Collider::Type::POWER_UP][Collider::Type::WALL] = false;
 	matrix[Collider::Type::POWER_UP][Collider::Type::PLAYER] = true;
@@ -75,6 +80,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::POWER_UP][Collider::Type::POWER_UP] = false;
 	matrix[Collider::Type::POWER_UP][Collider::Type::WATER] = false;
 	matrix[Collider::Type::POWER_UP][Collider::Type::TRENCH] = false;
+	matrix[Collider::Type::POWER_UP][Collider::Type::BARRICADE] = false;
 	
 
 	matrix[Collider::Type::WATER][Collider::Type::WALL] = false;
@@ -85,6 +91,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::WATER][Collider::Type::POWER_UP] = false;
 	matrix[Collider::Type::WATER][Collider::Type::WATER] = false;
 	matrix[Collider::Type::WATER][Collider::Type::TRENCH] = false;
+	matrix[Collider::Type::WATER][Collider::Type::BARRICADE] = false;
 
 	matrix[Collider::Type::TRENCH][Collider::Type::WALL] = false;
 	matrix[Collider::Type::TRENCH][Collider::Type::PLAYER] = true;
@@ -94,6 +101,17 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::TRENCH][Collider::Type::POWER_UP] = false;
 	matrix[Collider::Type::TRENCH][Collider::Type::WATER] = false;
 	matrix[Collider::Type::TRENCH][Collider::Type::TRENCH] = false;
+	matrix[Collider::Type::TRENCH][Collider::Type::BARRICADE] = false;
+
+	matrix[Collider::Type::BARRICADE][Collider::Type::WALL] = false;
+	matrix[Collider::Type::BARRICADE][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::BARRICADE][Collider::Type::ENEMY] = true;
+	matrix[Collider::Type::BARRICADE][Collider::Type::PLAYER_SHOT] = true;
+	matrix[Collider::Type::BARRICADE][Collider::Type::ENEMY_SHOT] = true;
+	matrix[Collider::Type::BARRICADE][Collider::Type::POWER_UP] = false;
+	matrix[Collider::Type::BARRICADE][Collider::Type::WATER] = false;
+	matrix[Collider::Type::BARRICADE][Collider::Type::TRENCH] = false;
+	matrix[Collider::Type::BARRICADE][Collider::Type::BARRICADE] = false;
 }
 
 // Destructor
@@ -169,6 +187,9 @@ void ModuleCollisions::DebugDraw() {
 		case Collider::Type::PLAYER: // green
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
+		case Collider::Type::HOSTAGE: // green
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
+			break;
 		case Collider::Type::ENEMY: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
@@ -186,6 +207,9 @@ void ModuleCollisions::DebugDraw() {
 			break;
 		case Collider::Type::TRENCH:
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 100, alpha);
+			break;
+		case Collider::Type::BARRICADE:
+			App->render->DrawQuad(colliders[i]->rect, 0, 0, 0, alpha);
 			break;
 		default:
 			break;

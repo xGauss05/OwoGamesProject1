@@ -85,13 +85,13 @@ bool SceneLevel1::Start() {
 
 
 	// Rock
-	App->collisions->AddCollider({ 128, -425, 65, 20 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 255, -425, 65, 20 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 285, -840, 65, 20 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 128, -920, 95, 20 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 415, -1415, 65, 20 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 485, -1450, 20, 30 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 448, -1550, 65, 32 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 128, -425, 65, 20 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 255, -425, 65, 20 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 285, -840, 65, 20 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 128, -920, 95, 20 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 415, -1415, 65, 20 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 485, -1450, 20, 30 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 448, -1550, 65, 32 }, Collider::Type::BARRICADE);
 
 	//Borders
 	//App->collisions->AddCollider({ 0, 240, 500, 10 }, Collider::Type::WALL);
