@@ -32,10 +32,10 @@ bool SceneLevel1::Start() {
 	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 300, -60);
 	App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 230, -60);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -60);
-	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 180, -500);
-	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 230, -600);
-	//App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 260, 300);
+	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 180, -500);
+	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);
+	//App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 230, -600);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 260, 300);
 
 	// Colliders --- Make collision boxes here
 	// Left colliders
@@ -94,7 +94,7 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 448, -1550, 65, 32 }, Collider::Type::BARRICADE);
 
 	//Borders
-	App->collisions->AddCollider({ 0, 240, 500, 10 }, Collider::Type::WALL);
+	//App->collisions->AddCollider({ 0, 240, 500, 10 }, Collider::Type::WALL);
 
 	App->collisions->AddCollider({ 0, -1865, 256, 325 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 768, -1865, 256, 325 }, Collider::Type::WALL);

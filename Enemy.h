@@ -39,7 +39,8 @@ public:
 public:
 	// The current position in the world
 	iPoint position;
-	float angle;
+	float alpha;
+	float degrees;
 
 	// The distance in pixels to the player
 	iPoint distance;

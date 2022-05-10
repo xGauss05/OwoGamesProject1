@@ -187,6 +187,9 @@ void ModuleCollisions::DebugDraw() {
 		case Collider::Type::PLAYER: // green
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
+		case Collider::Type::HOSTAGE: // green
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
+			break;
 		case Collider::Type::ENEMY: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
@@ -214,14 +217,15 @@ void ModuleCollisions::DebugDraw() {
 
 	}
 
+	
 	for (size_t i = 0; i < MAX_ENEMIES; i++)
 	{
 		if (App->enemies->enemies[i] != nullptr)
 		{
 			App->render->DrawLine(	App->enemies->enemies[i]->position.x + 16,
 									App->enemies->enemies[i]->position.y + 32,
-									App->enemies->enemies[i]->position.x + 16 + 20 * cos(App->enemies->enemies[i]->angle * (M_PI/180)),
-									App->enemies->enemies[i]->position.y + 32 + 20 * sin(App->enemies->enemies[i]->angle * (M_PI / 180)),
+									App->enemies->enemies[i]->position.x + 16 + 20 * cos(App->enemies->enemies[i]->degrees * (M_PI/180)),
+									App->enemies->enemies[i]->position.y + 32 + 20 * sin(App->enemies->enemies[i]->degrees * (M_PI / 180)),
 									0, 255, 0, 255);
 		}
 	}
