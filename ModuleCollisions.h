@@ -5,6 +5,7 @@
 
 #include "Module.h"
 #include "Collider.h"
+#include "ModuleDebug.h"
 
 class ModuleCollisions : public Module {
 public:
@@ -20,13 +21,13 @@ public:
 	// Checks for new collisions and calls its listeners
 	update_status PreUpdate();
 
-	// Called at the middle of the application loop
-	// Switches the debug mode on/off
-	update_status Update();
+	//// Called at the middle of the application loop
+	//// Switches the debug mode on/off
+	////update_status Update();
 
-	// Called at the end of the application loop
-	// Draw all colliders (if debug mode is enabled)
-	update_status PostUpdate();
+	//// Called at the end of the application loop
+	//// Draw all colliders (if debug mode is enabled)
+	////update_status PostUpdate();
 
 	// Removes all existing colliders
 	bool CleanUp();
@@ -34,8 +35,8 @@ public:
 	// Adds a new collider to the list
 	Collider* AddCollider(SDL_Rect rect, Collider::Type type, Module* listener = nullptr);
 
-	// Draws all existing colliders with some transparency
-	void DebugDraw();
+	//// Draws all existing colliders with some transparency
+	////void DebugDraw();
 
 private:
 	// All existing colliders in the scene
@@ -45,8 +46,10 @@ private:
 	// If set two false, collider 1 will ignore collider 2
 	bool matrix[Collider::Type::MAX][Collider::Type::MAX];
 
-	// Simple debugging flag to draw all colliders
-	bool debug = false;
+	//// Simple debugging flag to draw all colliders
+	////bool debug = false;
+
+	friend void ModuleDebug::DebugDraw();
 };
 
 #endif // __MODULE_COLLISIONS_H__

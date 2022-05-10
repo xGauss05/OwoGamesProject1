@@ -109,6 +109,10 @@ update_status ModuleInput::PreUpdate() {
 				}
 			}
 		}
+		else
+		{
+			controllers[i] = nullptr;
+		}
 	}
 
 	return update_status::UPDATE_CONTINUE;

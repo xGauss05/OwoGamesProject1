@@ -1043,7 +1043,7 @@ update_status ModulePlayer::Update() {
 		weapon = Weapon::NORMAL;
 
 	if (!dead) {
-		if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || App->input->controllers[0]->buttons[SDL_CONTROLLER_BUTTON_A] == KEY_DOWN) {
+		if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 			switch (weapon) {
 			case Weapon::FLAMETHROWER:
 				App->audio->PlayFx(flamethrowerFx);

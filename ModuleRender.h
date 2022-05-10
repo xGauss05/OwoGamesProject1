@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "SDL/include/SDL_Rect.h"
 #include "Globals.h"
+#include "ModuleDebug.h"
 
 struct SDL_Texture;
 struct SDL_Renderer;
@@ -61,6 +62,8 @@ public:
 
 private: 
 	bool debugCamera = false;
+
+	friend void ModuleDebug::DebugDraw();
 };
 
 #endif //__MODULE_RENDER_H__

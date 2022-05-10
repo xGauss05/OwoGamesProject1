@@ -2,6 +2,7 @@
 #define __MODULE_ENEMIES_H__
 
 #include "Module.h"
+#include "ModuleDebug.h"
 
 #define MAX_ENEMIES		100
 
@@ -75,7 +76,7 @@ private:
 	// The audio fx for destroying an enemy (generic)
 	int enemyDestroyedFx = 0;
 
-	friend class ModuleCollisions;
+	friend void ModuleDebug::DebugDraw();
 };
 
 #endif // __MODULE_ENEMIES_H__
