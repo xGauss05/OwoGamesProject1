@@ -52,18 +52,12 @@ void Enemy::lookAtPlayer()
 	distance.x = App->player->position.x - this->position.x;
 	distance.y = App->player->position.y - this->position.y;
 
-	if (distance.x < 0)
-	{
-		angle = 180 + atan(distance.y / distance.x) * (180 / M_PI);
-	}
-	else if (distance.y >= 0 && distance.x > 0)
-	{
-		angle = atan(distance.y / distance.x) * (180 / M_PI);
-	}
-	else if (distance.y < 0 && distance.x > 0)
-	{
-		angle = 360 + atan(distance.y / distance.x) * (180 / M_PI);
-	}
+	alpha = atan2(distance.y, distance.x);
+
+	degrees = alpha / (M_PI / 180.0f);
+
+	if (degrees < 0)
+		degrees += 360.0f;
 }
 //void Enemy::OnCollision(Collider* collider) {
 //	
