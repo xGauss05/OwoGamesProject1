@@ -13,6 +13,8 @@
 Enemy::Enemy(int x, int y) : position(x, y) {
 	spawnPos = position;
 	enemyDeadFx = App->audio->LoadFx("Assets/sounds/sfx/194.wav");
+
+	alpha = degrees = 0.0f;
 }
 
 Enemy::~Enemy() {
