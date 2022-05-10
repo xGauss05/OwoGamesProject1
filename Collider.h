@@ -16,6 +16,7 @@ struct Collider {
 		ENEMY_SHOT,
 		WATER,
 		TRENCH,
+		BARRICADE,
 
 		MAX
 	};
