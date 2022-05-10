@@ -128,6 +128,9 @@
     <ClCompile Include="SceneLose.cpp">
       <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Powerup_Hostage.cpp">
+      <Filter>Archivos de origen\Entities\Powerups</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -225,6 +228,9 @@
     </ClInclude>
     <ClInclude Include="SceneLose.h">
       <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Powerup_Hostage.h">
+      <Filter>Archivos de origen\Entities\Powerups</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
