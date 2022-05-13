@@ -1,14 +1,19 @@
 #include "ModulePowerup.h"
 
 #include "Application.h"
+#include "Globals.h"
 
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
+#include "ModuleCollisions.h"
 
 #include "Powerup.h"
 #include "Powerup_HeavyRifle.h"
 #include "Powerup_Flamethrower.h"
+#include "Powerup_Hostage.h"
+
+
 
 #define SPAWN_MARGIN	50
 
@@ -22,8 +27,10 @@ ModulePowerup::~ModulePowerup() {
 
 bool ModulePowerup::Start() {
 
-	texture = App->textures->Load("Assets/img/sprites/weapon.png");
-	pickUpFx = App->audio->LoadFx("Assets/sounds/sfx/165.wav");
+	weaponTexture = App->textures->Load("Assets/img/sprites/weapon.png");
+	hostageTexture = App->textures->Load("Assets/img/sprites/hostage.png");
+	weaponPickUpFx = App->audio->LoadFx("Assets/sounds/sfx/165.wav");
+	hostagePickUpFx = App->audio->LoadFx("Assets/sounds/sfx/181.wav");
 
 	return true;
 }
@@ -50,8 +57,8 @@ update_status ModulePowerup::PostUpdate() {
 
 bool ModulePowerup::CleanUp() {
 	LOG("Freeing all powerups");
-	App->audio->UnloadFx(pickUpFx);
-	App->textures->Unload(texture);
+	App->audio->UnloadFx(weaponPickUpFx);
+	App->textures->Unload(weaponTexture);
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] != nullptr) {
 			App->audio->UnloadFx(powerUps[i]->pickUpFx);
@@ -117,16 +124,19 @@ void ModulePowerup::SpawnPowerup(const PowerupSpawnpoint& info) {
 			switch (info.type) {
 			case POWERUP_TYPE::HEAVY_RIFLE:
 				powerUps[i] = new Powerup_HeavyRifle(info.x, info.y);
-				powerUps[i]->texture = this->texture;
-				powerUps[i]->pickUpFx = this->pickUpFx;
+				powerUps[i]->texture = this->weaponTexture;
+				powerUps[i]->pickUpFx = this->weaponPickUpFx;
 				break;
 			case POWERUP_TYPE::FLAMETHROWER:
 				powerUps[i] = new Powerup_Flamethrower(info.x, info.y);
-				powerUps[i]->texture = this->texture;
-				powerUps[i]->pickUpFx = this->pickUpFx;
+				powerUps[i]->texture = this->weaponTexture;
+				powerUps[i]->pickUpFx = this->weaponPickUpFx;
 				break;
+			case POWERUP_TYPE::HOSTAGE:
+				powerUps[i] = new Powerup_Hostage(info.x, info.y);
+				powerUps[i]->texture = this->hostageTexture;
+				powerUps[i]->pickUpFx = this->hostagePickUpFx;
 			}
-
 			break;
 		}
 	}
@@ -137,8 +147,22 @@ void ModulePowerup::OnCollision(Collider* c1, Collider* c2) {
 		if (powerUps[i] != nullptr && powerUps[i]->GetCollider() == c1) {
 
 			powerUps[i]->OnCollision(c2);
-			delete powerUps[i];
-			powerUps[i] = nullptr;
+			if (powerUps[i]->GetCollider()->type == Collider::Type::HOSTAGE) {
+
+				if (cooldown >= HOSTAGE_COOLDOWN) {
+					delete powerUps[i];
+					powerUps[i] = nullptr;
+					cooldown = 0;
+				}
+			} else {
+
+				cooldown++;
+			}
+			if (powerUps[i]->GetCollider()->type != Collider::Type::HOSTAGE) {
+				delete powerUps[i];
+				powerUps[i] = nullptr;
+			}
+
 			break;
 		}
 	}

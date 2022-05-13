@@ -6,7 +6,7 @@
 #define MAX_POWERUPS	100
 
 enum class POWERUP_TYPE {
-	NO_TYPE, HEAVY_RIFLE, FLAMETHROWER
+	NO_TYPE, HEAVY_RIFLE, FLAMETHROWER, HOSTAGE
 };
 
 struct PowerupSpawnpoint {
@@ -50,7 +50,8 @@ public:
 
 	// Destroys any powerups that have moved outside the camera limits
 	void HandlePowerupsDespawn();
-
+public:
+	ushort cooldown;
 private:
 	// Spawns a new powerup using the data from the queue
 	void SpawnPowerup(const PowerupSpawnpoint& info);
@@ -63,10 +64,12 @@ private:
 	Powerup* powerUps[MAX_POWERUPS] = { nullptr };
 
 	// The powerups sprite sheet
-	SDL_Texture* texture = nullptr;
-	
+	SDL_Texture* weaponTexture = nullptr;
+	SDL_Texture* hostageTexture = nullptr;
+
 	// The audio fx for picking up a powerup
-	int pickUpFx = 0;
+	int weaponPickUpFx = 0;
+	int hostagePickUpFx = 0;
 };
 
 #endif // __MODULE_POWERUP_H__
