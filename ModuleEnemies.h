@@ -15,6 +15,7 @@ struct EnemySpawnpoint
 {
 	ENEMY_TYPE type = ENEMY_TYPE::NO_TYPE;
 	int x, y;
+	unsigned short behaviour = 0;
 };
 
 class Enemy;
@@ -50,7 +51,7 @@ public:
 	void OnCollision(Collider* c1, Collider* c2) override;
 
 	// Add an enemy into the queue to be spawned later
-	bool AddEnemy(ENEMY_TYPE type, int x, int y);
+	bool AddEnemy(ENEMY_TYPE type, int x, int y, unsigned short behaviour = 0);
 
 	// Iterates the queue and checks for camera position
 	void HandleEnemiesSpawn();

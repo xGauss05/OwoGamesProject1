@@ -1,4 +1,4 @@
-#include "Enemy_GreenSoldier.h"
+#include "BossPhase1.h"
 
 #include "Application.h"
 #include "ModuleCollisions.h"
@@ -7,10 +7,11 @@
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h" //(Testing)
 
-#define GREENSOLDIER_SCORE 100
-Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y, unsigned short behaviour) : Enemy(x, y)
+#define BOSSPHASE1_SCORE 100
+
+BossPhase1::BossPhase1(int x, int y) : Enemy(x, y)
 {
-	defaultTopAnim.PushBack({ 0, 0,32,32 });
+	/*defaultTopAnim.PushBack({ 0, 0,32,32 });
 	defaultTopAnim.PushBack({ 32, 0,32,32 });
 	defaultTopAnim.PushBack({ 64, 0,32,32 });
 	defaultTopAnim.speed = 0.1f;
@@ -36,14 +37,13 @@ Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y, unsigned short behaviour) :
 
 	path.PushBack({ -0.5f, 0 }, 100, &botAnimLeft);
 	path.PushBack({ 0.5f, 0 }, 100, &botAnimRight);
-
+	*/
 
 	//collider = App->collisions->AddCollider({ 0, 0, 36, 72 }, Collider::Type::ENEMY, (Module*)App->enemies);
 	collider = App->collisions->AddCollider({ 0, 0, 32, 64 }, Collider::Type::ENEMY, (Module*)App->enemies);
-	this->behaviour = behaviour;
 }
 
-void Enemy_GreenSoldier::Update()
+void BossPhase1::Update()
 {
 	path.Update();
 	currentAnimBot = path.GetCurrentAnimation();
@@ -57,7 +57,7 @@ void Enemy_GreenSoldier::Update()
 	Enemy::Update();
 }
 
-void Enemy_GreenSoldier::OnCollision(Collider* collider) {
+void BossPhase1::OnCollision(Collider* collider) {
 	if (collider->type == Collider::Type::PLAYER_SHOT) {
 		App->audio->PlayFx(enemyDeadFx);
 		App->player->score += 100;
@@ -66,26 +66,13 @@ void Enemy_GreenSoldier::OnCollision(Collider* collider) {
 	//App->audio->PlayFx(enemyDeadFx);
 }
 
-void Enemy_GreenSoldier::Shoot()
+void BossPhase1::Shoot()
 {
-	switch (behaviour)
+	if (shootdelay >= 50)
 	{
-	case 0:
-		if (shootdelay >= 50)
-		{
-			App->particles->AddParticle(App->particles->grenade, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
-			shootdelay = 0;
-		}
-		break;
-	case 1:
-		if (shootdelay >= 50)
-		{
-			App->particles->AddParticle(App->particles->enemy_shot, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
-			shootdelay = 0;
-		}
-		break;
+		App->particles->AddParticle(App->particles->grenade, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
+		shootdelay = 0;
 	}
-	
 
 	shootdelay++;
 }
