@@ -16,10 +16,21 @@ public:
 
 	void OnCollision(Collider* collider) override;
 
+	void Draw() override;
+
 	int deadFx;
 	int idleFx;
+protected:
+	Animation* currentAnimTop = nullptr;
+	Animation* currentAnimBot = nullptr;
+
+	Animation idleAnimTop, idleAnimBot;
+	Animation deathAnimTop, deathAnimBot;
+	Animation pickUpAnimTop, pickUpAnimBot;
+
 private:
 	uint idleFxCooldown = 0;
+
 };
 
 #endif // __POWERUP_HOSTAGE_H__
