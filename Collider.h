@@ -18,6 +18,7 @@ struct Collider {
 		TRENCH,
 		HOSTAGE,
 		BARRICADE,
+		NON_DEST_BAR,
 		
 
 		MAX
