@@ -10,7 +10,7 @@
 #include "ModulePowerup.h" //(Testing)
 
 #define REDSOLDIER_SCORE 300;
-Enemy_RedSoldier::Enemy_RedSoldier(int x, int y) : Enemy(x, y) 
+Enemy_RedSoldier::Enemy_RedSoldier(int x, int y) : Enemy(x, y)
 {
 	topAnim.PushBack({ 0,0,32,32 });
 	currentAnimTop = &topAnim;

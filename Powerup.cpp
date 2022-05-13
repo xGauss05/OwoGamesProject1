@@ -8,13 +8,7 @@
 Powerup::Powerup(int x, int y) : position(x, y) {
 	spawnPos = position;
 	pickUpFx = App->audio->LoadFx("Assets/sounds/sfx/165.wav");
-	weaponAnim.PushBack({ 0, 132, 22, 23 });
-	weaponAnim.PushBack({ 32, 132, 22, 23 });
-	weaponAnim.PushBack({ 64, 132, 22, 23 });
-	weaponAnim.PushBack({ 32, 132, 22, 23 });
-	weaponAnim.speed = 0.05f;
-	weaponAnim.loop = true;
-	currentAnim = &weaponAnim;
+	
 }
 
 Powerup::~Powerup() {

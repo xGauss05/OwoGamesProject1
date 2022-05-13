@@ -77,7 +77,7 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, unsigned short behaviour)
 {
 	bool ret = false;
 
@@ -88,6 +88,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y)
 			spawnQueue[i].type = type;
 			spawnQueue[i].x = x;
 			spawnQueue[i].y = y;
+			spawnQueue[i].behaviour = behaviour;
 			ret = true;
 			break;
 		}
@@ -144,7 +145,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 			switch (info.type)
 			{
 			case ENEMY_TYPE::GREENSOLDIER:
-				enemies[i] = new Enemy_GreenSoldier(info.x, info.y);
+				enemies[i] = new Enemy_GreenSoldier(info.x, info.y, info.behaviour);
 				enemies[i]->texture = greenEnemyTexture;
 				enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
 				break;
