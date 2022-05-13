@@ -110,11 +110,17 @@ void ModuleDebug::DebugDraw() {
 	//Position debug
 	App->fonts->BlitText(10, DEBUG_BOX, 0, "PLAYER");
 
-	App->fonts->BlitText(10, DEBUG_BOX + 20, 0, "X.");
-	App->fonts->BlitText(25, DEBUG_BOX + 20, 0, std::to_string(App->player->position.x).c_str());
+	App->fonts->BlitText(10, DEBUG_BOX + 10, 0, "X.");
+	App->fonts->BlitText(25, DEBUG_BOX + 10, 0, std::to_string(App->player->position.x).c_str());
 
-	App->fonts->BlitText(10, DEBUG_BOX + 30, 0, "Y.");
-	App->fonts->BlitText(25, DEBUG_BOX + 30, 0, std::to_string(App->player->position.y).c_str());
+	App->fonts->BlitText(10, DEBUG_BOX + 20, 0, "Y.");
+	App->fonts->BlitText(25, DEBUG_BOX + 20, 0, std::to_string(App->player->position.y).c_str());
+
+	App->fonts->BlitText(10, DEBUG_BOX + 30, 0, "CAMERA X.");
+	App->fonts->BlitText(80, DEBUG_BOX + 30, 0, std::to_string(App->render->camera.x).c_str());
+
+	App->fonts->BlitText(10, DEBUG_BOX + 40, 0, "CAMERA Y.");
+	App->fonts->BlitText(80, DEBUG_BOX + 40, 0, std::to_string(App->render->camera.y).c_str());
 
 	//Controller debug
 	App->fonts->BlitText(10, DEBUG_BOX + 50, 0, "CONTROLLER");
