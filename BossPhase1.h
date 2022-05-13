@@ -1,15 +1,15 @@
-#ifndef __ENEMY_GREENSOLDIER_H__
-#define __ENEMY_GREENSOLDIER_H__
+#ifndef __BOSSPHASE1_H__
+#define __BOSSPHASE1_H__
 
 #include "Enemy.h"
 #include "Path.h"
 
-class Enemy_GreenSoldier : public Enemy
+class BossPhase1 : public Enemy
 {
 public:
 	// Constructor (x y coordinates in the world)
 	// Creates animation and movement data and the collider
-	Enemy_GreenSoldier(int x, int y, unsigned short behaviour);
+	BossPhase1(int x, int y);
 
 	// The enemy is going to follow the different steps in the path
 	// Position will be updated depending on the speed defined at each step
@@ -24,12 +24,10 @@ private:
 	// And an animation for each step
 	Path path;
 
-	Animation defaultTopAnim;
-	Animation botAnimLeft;
-	Animation botAnimRight;
+	Animation topAnim;
+	Animation botAnim;
 
-	unsigned short behaviour;
 	int shootdelay;
 };
 
-#endif // __ENEMY_GREENSOLDIER_H__
+#endif // __BOSSPHASE1__
