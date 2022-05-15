@@ -29,10 +29,13 @@ public:
 	// Disables the player, the enemies and the powerups.
 	bool CleanUp();
 
+	void DrawParalax();
+
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 
+	SDL_Texture* paralaxTexture = nullptr;
 };
 
 #endif // __MODULE_SCENE1_H__

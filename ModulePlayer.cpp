@@ -10,6 +10,8 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
 
+#include "SceneLevel1.h"
+
 #include "Globals.h"
 #include <string>
 #include "SDL/include/SDL_scancode.h"
@@ -1145,6 +1147,11 @@ update_status ModulePlayer::PostUpdate() {
 	case Directions::DOWN_LEFT:
 		App->render->Blit(weaponTexture, position.x - 16, position.y + 20, &rect);
 		break;
+	}
+
+	// Paralax
+	if (App->level1->IsEnabled()) {
+		App->level1->DrawParalax();
 	}
 
 	// UI for 0.5
