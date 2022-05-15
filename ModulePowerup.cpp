@@ -147,22 +147,8 @@ void ModulePowerup::OnCollision(Collider* c1, Collider* c2) {
 		if (powerUps[i] != nullptr && powerUps[i]->GetCollider() == c1) {
 
 			powerUps[i]->OnCollision(c2);
-			if (powerUps[i]->GetCollider()->type == Collider::Type::HOSTAGE) {
-
-				if (cooldown >= HOSTAGE_COOLDOWN) {
-					delete powerUps[i];
-					powerUps[i] = nullptr;
-					cooldown = 0;
-				}
-			} else {
-
-				cooldown++;
-			}
-			if (powerUps[i]->GetCollider()->type != Collider::Type::HOSTAGE) {
-				delete powerUps[i];
-				powerUps[i] = nullptr;
-			}
-
+			delete powerUps[i];
+			powerUps[i] = nullptr;
 			break;
 		}
 	}

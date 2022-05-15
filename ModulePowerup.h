@@ -50,8 +50,7 @@ public:
 
 	// Destroys any powerups that have moved outside the camera limits
 	void HandlePowerupsDespawn();
-public:
-	ushort cooldown;
+
 private:
 	// Spawns a new powerup using the data from the queue
 	void SpawnPowerup(const PowerupSpawnpoint& info);

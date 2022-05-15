@@ -97,6 +97,7 @@ void Powerup_Hostage::OnCollision(Collider* collider) {
 			currentAnimBot = &deathAnimBot;
 		}
 	}
+
 	if (collider->type == Collider::Type::PLAYER) {
 		App->audio->PlayFx(pickUpFx);
 		App->player->score += 1000;
