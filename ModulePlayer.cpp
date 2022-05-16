@@ -315,6 +315,7 @@ bool ModulePlayer::Start() {
 	score = 0;
 	ammunition = 0;
 	deathCooldown = 0;
+	grenades = MAX_GRENADES;
 
 	playerTexture = App->textures->Load("Assets/img/sprites/player.png"); // player spritesheet
 	weaponTexture = App->textures->Load("Assets/img/sprites/weapon.png"); // weapon spritesheet
@@ -349,6 +350,8 @@ bool ModulePlayer::Start() {
 
 	return true;
 }
+
+
 
 void ModulePlayer::shootNormal() {
 	switch (facing) {
@@ -435,6 +438,52 @@ void ModulePlayer::shootFlamethrower() {
 		break;
 	case Directions::LEFT:
 		App->particles->AddParticle(App->particles->fthrower_left, position.x, position.y + 29, Collider::Type::PLAYER_SHOT);
+		break;
+	}
+}
+
+void ModulePlayer::throwGrenade() {
+	grenades--;
+	switch (facing) {
+	case Directions::UP:
+		App->particles->grenade.speed.x = 0;
+		App->particles->grenade.speed.y = -2;
+		App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y, Collider::Type::NONE);
+		break;
+	case Directions::UP_RIGHT:
+		App->particles->grenade.speed.x = 2;
+		App->particles->grenade.speed.y = -2;
+		App->particles->AddParticle(App->particles->grenade, position.x + 32, position.y, Collider::Type::NONE);
+		break;
+	case Directions::UP_LEFT:
+		App->particles->grenade.speed.x = -2;
+		App->particles->grenade.speed.y = -2;
+		App->particles->AddParticle(App->particles->grenade, position.x, position.y, Collider::Type::NONE);
+		break;
+	case Directions::DOWN:
+		App->particles->grenade.speed.x = 0;
+		App->particles->grenade.speed.y = 2;
+		App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y + 64, Collider::Type::NONE);
+		break;
+	case Directions::DOWN_RIGHT:
+		App->particles->grenade.speed.x = 2;
+		App->particles->grenade.speed.y = 2;
+		App->particles->AddParticle(App->particles->grenade, position.x + 32, position.y + 64, Collider::Type::NONE);
+		break;
+	case Directions::DOWN_LEFT:
+		App->particles->grenade.speed.x = -2;
+		App->particles->grenade.speed.y = 2;
+		App->particles->AddParticle(App->particles->grenade, position.x, position.y + 64, Collider::Type::NONE);
+		break;
+	case Directions::RIGHT:
+		App->particles->grenade.speed.x = 2;
+		App->particles->grenade.speed.y = 0;
+		App->particles->AddParticle(App->particles->grenade, position.x + 32, position.y + 29, Collider::Type::NONE);
+		break;
+	case Directions::LEFT:
+		App->particles->grenade.speed.x = -2;
+		App->particles->grenade.speed.y = 0;
+		App->particles->AddParticle(App->particles->grenade, position.x, position.y + 29, Collider::Type::NONE);
 		break;
 	}
 }
@@ -1061,6 +1110,11 @@ update_status ModulePlayer::Update() {
 				break;
 			}
 		}
+		if (App->input->keys[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN) {
+			if (grenades > 0) {
+				throwGrenade();
+			}
+		}
 	}
 
 	if (dead) {
@@ -1167,6 +1221,10 @@ update_status ModulePlayer::PostUpdate() {
 		num_char = temp.c_str();
 		App->fonts->BlitText(SCREEN_WIDTH - 80, 20, 0, num_char);
 	}
+	App->fonts->BlitText(SCREEN_WIDTH - 80, 30, 0, "GRENADES");
+	temp = std::to_string(grenades);
+	num_char = temp.c_str();
+	App->fonts->BlitText(SCREEN_WIDTH - 80, 40, 0, num_char);
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -1190,6 +1248,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			// Weapon changes at each Powerup_(weaponname).cpp
 			c2->pendingToDelete = true;
 			ammunition = MAX_AMMO;
+			grenades = MAX_GRENADES;
 			break;
 		case Collider::Type::WALL:
 			switch (movementDir) {

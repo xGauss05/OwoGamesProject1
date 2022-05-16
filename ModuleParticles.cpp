@@ -238,7 +238,7 @@ bool ModuleParticles::Start() {
 	grenade.anim.PushBack({160,160,16,16});
 	grenade.anim.PushBack({176,160,16,16});
 	grenade.anim.loop = true;
-	grenade.lifetime = 30;
+	grenade.lifetime = 90;
 	grenade.anim.speed = 0.2f;
 	grenade.speed.x = 0;
 	grenade.speed.y = 5;

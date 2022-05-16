@@ -9,7 +9,7 @@ struct SDL_Texture;
 struct Collider;
 
 #define MAX_AMMO	50
-
+#define MAX_GRENADES 50
 enum Directions {
 	UP, DOWN, RIGHT, 
 	LEFT, UP_RIGHT, UP_LEFT, 
@@ -40,6 +40,7 @@ public:
 	void shootNormal();
 	void shootHeavyRifle();
 	void shootFlamethrower();
+	void throwGrenade();
 
 	// Called at the middle of the application loop
 	// Processes new input and handles player movement
@@ -60,7 +61,7 @@ public:
 	// The speed in which we move the player (pixels per frame)
 	int speed = 1;
 
-	uint score;
+	
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* playerTexture = nullptr;
@@ -149,6 +150,12 @@ public:
 
 	// Amount of shots available. Max defined in MAX_AMMO
 	ushort ammunition = 0;
+
+	// Score of the player
+	uint score;
+
+	// Amount of grenades available. Max defined in MAX_GRENADES
+	ushort grenades = MAX_GRENADES;
 
 	// Sound effects indices
 	uint shotFx = 0;
