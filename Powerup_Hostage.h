@@ -21,7 +21,6 @@ public:
 	int deadFx;
 	int idleFx;
 protected:
-	Animation* currentAnimTop = nullptr;
 	Animation* currentAnimBot = nullptr;
 
 	Animation idleAnimTop, idleAnimBot;

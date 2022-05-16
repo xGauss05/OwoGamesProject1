@@ -54,7 +54,7 @@ Powerup_Hostage::Powerup_Hostage(int x, int y) : Powerup(x, y) {
 	pickUpAnimBot.speed = 0.05f;
 	pickUpAnimBot.loop = false;
 
-	currentAnimTop = &idleAnimTop;
+	currentAnim = &idleAnimTop;
 	currentAnimBot = &idleAnimBot;
 
 }
@@ -68,10 +68,6 @@ void Powerup_Hostage::Update() {
 
 	if (currentAnimBot != nullptr) {
 		currentAnimBot->Update();
-	}
-
-	if (currentAnimTop != nullptr) {
-		currentAnimTop->Update();
 	}
 
 	Powerup::Update();
@@ -89,35 +85,36 @@ void Powerup_Hostage::OnCollision(Collider* collider) {
 		}
 		
 		// add -500 score animation
-		if (currentAnimTop != &deathAnimTop) {
-			currentAnimTop = &deathAnimTop;
+		if (currentAnim != &deathAnimTop) {
+			currentAnim = &deathAnimTop;
 		}
 
 		if (currentAnimBot != &deathAnimBot) {
 			currentAnimBot = &deathAnimBot;
 		}
+		collider->pendingToDelete = true;
 	}
 
 	if (collider->type == Collider::Type::PLAYER) {
 		App->audio->PlayFx(pickUpFx);
 		App->player->score += 1000;
-		if (currentAnimTop != &pickUpAnimTop) {
-			currentAnimTop = &pickUpAnimTop;
+		if (currentAnim != &pickUpAnimTop) {
+			currentAnim = &pickUpAnimTop;
 		}
 
 		if (currentAnimBot != &pickUpAnimBot) {
 			currentAnimBot = &pickUpAnimBot;
 		}
-		// add +1000 socre animation
+		// add +1000 score animation
+		collider->pendingToDelete = true;
 	}
 }
 
 void Powerup_Hostage::Draw() {
-	if (currentAnimTop != nullptr) {
-		App->render->Blit(texture, position.x, position.y, &(currentAnimTop->GetCurrentFrame()));
-	}
-
+	
 	if (currentAnimBot != nullptr) {
 		App->render->Blit(texture, position.x, position.y + 26, &(currentAnimBot->GetCurrentFrame()));
 	}
+
+	Powerup::Draw();
 }

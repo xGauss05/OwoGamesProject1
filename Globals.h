@@ -40,7 +40,7 @@ typedef unsigned short ushort;
 #define SCENE_DURATION 500
 
 // Hostage
-#define IDLEFX_COOLDOWN 500
+#define IDLEFX_COOLDOWN 750
 #define HOSTAGE_COOLDOWN 50000
 
 #endif // __GLOBALS_H__
