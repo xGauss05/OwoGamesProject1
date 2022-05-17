@@ -25,6 +25,3 @@ void Powerup_HeavyRifle::OnCollision(Collider* collider) {
 	App->audio->PlayFx(pickUpFx);
 	App->player->weapon = Weapon::HEAVY_RIFLE;
 }
-
-// + 1000
-// - 500

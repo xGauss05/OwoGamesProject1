@@ -92,7 +92,7 @@ void Powerup_Hostage::OnCollision(Collider* collider) {
 		if (currentAnimBot != &deathAnimBot) {
 			currentAnimBot = &deathAnimBot;
 		}
-		collider->pendingToDelete = true;
+	
 	}
 
 	if (collider->type == Collider::Type::PLAYER) {
@@ -106,7 +106,7 @@ void Powerup_Hostage::OnCollision(Collider* collider) {
 			currentAnimBot = &pickUpAnimBot;
 		}
 		// add +1000 score animation
-		collider->pendingToDelete = true;
+
 	}
 }
 

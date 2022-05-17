@@ -1250,6 +1250,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			ammunition = MAX_AMMO;
 			grenades = MAX_GRENADES;
 			break;
+		case Collider::Type::HOSTAGE :
+			c2->pendingToDelete = true;
+			break;
 		case Collider::Type::WALL:
 			switch (movementDir) {
 			case UP:

@@ -15,6 +15,14 @@ Particle::~Particle() {
 		collider->pendingToDelete = true;
 }
 
+void Particle::setExplodes() {
+	this->explodes = true;
+}
+
+void Particle::setIsExplosion() {
+	this->isExplosion = true;
+}
+
 bool Particle::Update() {
 	bool ret = true;
 	frameCount++;

@@ -49,7 +49,8 @@ public:
 
 private:
 	// Particles spritesheet loaded into an SDL Texture
-	SDL_Texture* texture = nullptr;
+	SDL_Texture* bulletsTexture = nullptr;
+	SDL_Texture* explosionTexture = nullptr;
 
 	// An array to store and handle all the particles
 	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };
@@ -61,22 +62,26 @@ public:
 	Particle enemy_shot;
 
 	// Normal player shots
-	Particle shot_up,			shot_up_left,			shot_up_right,
-			 shot_down,			shot_down_left,			shot_down_right,
-			 shot_left,			shot_right;
+	Particle shot_up, shot_up_left, shot_up_right,
+		shot_down, shot_down_left, shot_down_right,
+		shot_left, shot_right;
 
 	// Heavy Rifle player shots
-	Particle hrifle_up,			hrifle_up_left,			hrifle_up_right,
-			 hrifle_down,		hrifle_down_left,		hrifle_down_right,
-			 hrifle_left,		hrifle_right;
+	Particle hrifle_up, hrifle_up_left, hrifle_up_right,
+		hrifle_down, hrifle_down_left, hrifle_down_right,
+		hrifle_left, hrifle_right;
 
 	// Flamethrower player shots
-	Particle fthrower_up,		fthrower_up_left,		fthrower_up_right,
-			 fthrower_down,		fthrower_down_left,		fthrower_down_right,
-			 fthrower_left,		fthrower_right;
+	Particle fthrower_up, fthrower_up_left, fthrower_up_right,
+		fthrower_down, fthrower_down_left, fthrower_down_right,
+		fthrower_left, fthrower_right;
 
 	// Generic grenade
 	Particle grenade;
+
+	// Explosion
+	Particle grenExplosion;
+
 };
 
 #endif // !__MODULEPARTICLES_H__
