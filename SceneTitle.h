@@ -54,7 +54,7 @@ public:
 	Animation playerMiniAnim;
 
 	iPoint* assetsPoint[MAX_ASSETS_TITLE];
-	Animation* assetsAnim[MAX_ASSETS_TITLE];
+	Animation assetsAnim[MAX_ASSETS_TITLE];
 };
 
 #endif // __MODULE_SCENETITLE_H__
