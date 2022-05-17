@@ -444,6 +444,7 @@ void ModulePlayer::shootFlamethrower() {
 
 void ModulePlayer::throwGrenade() {
 	grenades--;
+	App->particles->grenade.explodes = true;
 	switch (facing) {
 	case Directions::UP:
 		App->particles->grenade.speed.x = 0;

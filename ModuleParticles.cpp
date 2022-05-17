@@ -296,7 +296,7 @@ bool ModuleParticles::Start() {
 	grenade.speed.y = 5;
 	grenade.explodes = true;
 	grenade.isExplosion = false;
-	grenade.setExplodes();
+	//grenade.setExplodes();
 
 	grenExplosion.anim.PushBack({ 0,0,64,64 });
 	grenExplosion.anim.PushBack({ 64,0,64,64 });
@@ -309,7 +309,8 @@ bool ModuleParticles::Start() {
 	grenExplosion.lifetime = 90;
 	grenExplosion.speed.x = 0;
 	grenExplosion.speed.y = 0;
-	grenExplosion.setIsExplosion();
+	grenExplosion.isExplosion = true;
+	//grenExplosion.setIsExplosion();
 	return true;
 }
 
@@ -349,13 +350,10 @@ update_status ModuleParticles::Update() {
 		if (particle == nullptr)	continue;
 
 		// Call particle Update. If it has reached its lifetime, destroy it
-		if (!particle->Update()) {
-			int x = particle->position.x;
-			int y = particle->position.y;
-			if (particle->explodes) {
-				
-				App->particles->AddParticle(App->particles->grenExplosion, x, y, Collider::Type::PLAYER_SHOT);
-			} 
+ 		if (!particle->Update()) {
+			if (particle->explodes && !particle->isExplosion) {
+				App->particles->AddParticle(App->particles->grenExplosion, particle->position.x, particle->position.y, Collider::Type::PLAYER_SHOT);
+			}
 			delete particle;
 			particles[i] = nullptr;
 		}
@@ -373,14 +371,12 @@ update_status ModuleParticles::PostUpdate() {
 			if (particle->explodes && !particle->isExplosion ||
 				!particle->explodes && !particle->isExplosion) {
 				App->render->Blit(bulletsTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
-			}
-			else if (!particle->explodes && particle->isExplosion) {
+			} else if (!particle->explodes && particle->isExplosion) {
 				App->render->Blit(explosionTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 			}
-			
+
 		}
 	}
-
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -389,7 +385,11 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collid
 		// Finding an empty slot for a new particle
 		if (particles[i] == nullptr) {
 			Particle* p = new Particle(particle);
-
+			if (p->explodes) {
+				LOG("THIS SHIT EXPLODED");
+			} else {
+				LOG("THIS SHIT NO EXPLODED");
+			}
 			p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
 			p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
 			p->position.y = y;
@@ -403,3 +403,4 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collid
 		}
 	}
 }
+

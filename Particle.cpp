@@ -8,7 +8,7 @@ Particle::Particle() {
 }
 
 Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), speed(p.speed),
-frameCount(p.frameCount), lifetime(p.lifetime) {}
+frameCount(p.frameCount), lifetime(p.lifetime), explodes(p.explodes), isExplosion(p.isExplosion) {}
 
 Particle::~Particle() {
 	if (collider != nullptr)
@@ -16,11 +16,11 @@ Particle::~Particle() {
 }
 
 void Particle::setExplodes() {
-	this->explodes = true;
+	this->explodes = !this->explodes;
 }
 
 void Particle::setIsExplosion() {
-	this->isExplosion = true;
+	this->isExplosion = !this->isExplosion;
 }
 
 bool Particle::Update() {
@@ -35,7 +35,7 @@ bool Particle::Update() {
 		anim.Update();
 
 		// If the particle has a specific lifetime, check when it has to be destroyed
-		if (lifetime > 0) {
+ 		if (lifetime > 0) {
 			if (frameCount >= lifetime)
 				ret = false;
 		}
