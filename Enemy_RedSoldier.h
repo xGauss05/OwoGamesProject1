@@ -26,14 +26,6 @@ private:
 
 	int shootdelay;
 
-	enum Directions {
-		UP, DOWN, RIGHT,
-		LEFT, UP_RIGHT, UP_LEFT,
-		DOWN_RIGHT, DOWN_LEFT
-	};
-
-	Directions looking;
-
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
 	Animation topAnim;

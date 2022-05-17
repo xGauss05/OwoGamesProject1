@@ -28,6 +28,7 @@ const Collider* Enemy::GetCollider() const {
 
 void Enemy::Update() {
 	lookAtPlayer();
+	updateDirection();
 
 	if (currentAnimTop != nullptr)
 		currentAnimTop->Update();
@@ -60,6 +61,41 @@ void Enemy::lookAtPlayer()
 
 	if (degrees < 0)
 		degrees += 360.0f;
+}
+
+void Enemy::updateDirection()
+{
+	// Down
+	if (degrees > 247.5 && degrees < 292.5)
+		looking = Directions::UP;
+
+	// Down right
+	else if (degrees > 292.5 && degrees < 337.5)
+		looking = Directions::UP_RIGHT;
+
+	// Down left
+	else if (degrees > 202.5 && degrees < 247.5)
+		looking = Directions::UP_LEFT;
+
+	// Right
+	else if (degrees > 337.5 || degrees < 22.5)
+		looking = Directions::RIGHT;
+
+	// Left
+	else if (degrees > 157.5 && degrees < 202.5)
+		looking = Directions::LEFT;
+
+	// Up right
+	else if (degrees > 22.5 && degrees < 67.5)
+		looking = Directions::DOWN_RIGHT;
+
+	// Up left
+	else if (degrees > 112.5 && degrees < 157.5)
+		looking = Directions::DOWN_LEFT;
+
+	// Up
+	else if (degrees > 67.5 && degrees < 112.5)
+		looking = Directions::DOWN;
 }
 //void Enemy::OnCollision(Collider* collider) {
 //	

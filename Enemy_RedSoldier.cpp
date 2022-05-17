@@ -51,43 +51,6 @@ Enemy_RedSoldier::Enemy_RedSoldier(int x, int y) : Enemy(x, y)
 
 void Enemy_RedSoldier::Update()
 {
-	#pragma region Update Direction
-
-	// Down
-	if (degrees > 247.5 && degrees < 292.5)
-		looking = Directions::UP;
-	
-	// Down right
-	else if (degrees > 292.5 && degrees < 337.5)
-		looking = Directions::UP_RIGHT;
-	
-	// Down left
-	else if (degrees > 202.5 && degrees < 247.5)
-		looking = Directions::UP_LEFT;
-	
-	// Right
-	else if (degrees > 337.5 || degrees < 22.5)
-		looking = Directions::RIGHT;
-
-	// Left
-	else if (degrees > 157.5 && degrees < 202.5)
-		looking = Directions::LEFT;
-
-	// Up right
-	else if (degrees > 22.5 && degrees < 67.5)
-		looking = Directions::DOWN_RIGHT;
-	
-	// Up left
-	else if (degrees > 112.5 && degrees < 157.5)
-		looking = Directions::DOWN_LEFT;
-
-	// Up
-	else if (degrees > 67.5 && degrees < 112.5)
-		looking = Directions::DOWN;
-
-#pragma endregion
-
-
 	#pragma region Update Animation
 
 	switch (looking)

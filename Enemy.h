@@ -32,15 +32,23 @@ public:
 
 	//Calculate enemy rotation with respect to the player
 	void lookAtPlayer();
+	void updateDirection();
 
 	//The way each enemy shoots, defined by the specific classes
 	virtual void Shoot() = 0;
 
 public:
-	// The current position in the world
+	// The current position and orientation in the world
+	enum Directions {
+		UP, DOWN, RIGHT,
+		LEFT, UP_RIGHT, UP_LEFT,
+		DOWN_RIGHT, DOWN_LEFT
+	};
+	
 	iPoint position;
 	float alpha;
 	float degrees;
+	Directions looking;
 
 	// The distance in pixels to the player
 	iPoint distance;

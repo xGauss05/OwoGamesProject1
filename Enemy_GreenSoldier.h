@@ -30,6 +30,7 @@ private:
 
 	unsigned short behaviour;
 	int shootdelay;
+	int grenadeDelay;
 };
 
 #endif // __ENEMY_GREENSOLDIER_H__

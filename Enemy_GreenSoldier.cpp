@@ -50,6 +50,40 @@ void Enemy_GreenSoldier::Update()
 
 	position = spawnPos + path.GetRelativePosition();
 
+#pragma region Update Direction
+
+	// Down
+	if (degrees > 247.5 && degrees < 292.5)
+		looking = Directions::UP;
+
+	// Down right
+	else if (degrees > 292.5 && degrees < 337.5)
+		looking = Directions::UP_RIGHT;
+
+	// Down left
+	else if (degrees > 202.5 && degrees < 247.5)
+		looking = Directions::UP_LEFT;
+
+	// Right
+	else if (degrees > 337.5 || degrees < 22.5)
+		looking = Directions::RIGHT;
+
+	// Left
+	else if (degrees > 157.5 && degrees < 202.5)
+		looking = Directions::LEFT;
+
+	// Up right
+	else if (degrees > 22.5 && degrees < 67.5)
+		looking = Directions::DOWN_RIGHT;
+
+	// Up left
+	else if (degrees > 112.5 && degrees < 157.5)
+		looking = Directions::DOWN_LEFT;
+
+	// Up
+	else if (degrees > 67.5 && degrees < 112.5)
+		looking = Directions::DOWN;
+
 	Shoot();
 
 	// Call to the base class. It must be called at the end
@@ -71,11 +105,54 @@ void Enemy_GreenSoldier::Shoot()
 	switch (behaviour)
 	{
 	case 0:
-		if (shootdelay >= 50)
+		if (grenadeDelay >= 100)
 		{
-			App->particles->AddParticle(App->particles->grenade, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
-			shootdelay = 0;
+			switch (looking)
+			{
+			case Directions::UP:
+				App->particles->grenade.speed.x = 0;
+				App->particles->grenade.speed.y = -2;
+				App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y, Collider::Type::NONE);
+				break;
+			case Directions::UP_RIGHT:
+				App->particles->grenade.speed.x = 2;
+				App->particles->grenade.speed.y = -2;
+				App->particles->AddParticle(App->particles->grenade, position.x + 32, position.y, Collider::Type::NONE);
+				break;
+			case Directions::UP_LEFT:
+				App->particles->grenade.speed.x = -2;
+				App->particles->grenade.speed.y = -2;
+				App->particles->AddParticle(App->particles->grenade, position.x, position.y, Collider::Type::NONE);
+				break;
+			case Directions::DOWN:
+				App->particles->grenade.speed.x = 0;
+				App->particles->grenade.speed.y = 2;
+				App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y + 64, Collider::Type::NONE);
+				break;
+			case Directions::DOWN_RIGHT:
+				App->particles->grenade.speed.x = 2;
+				App->particles->grenade.speed.y = 2;
+				App->particles->AddParticle(App->particles->grenade, position.x + 32, position.y + 64, Collider::Type::NONE);
+				break;
+			case Directions::DOWN_LEFT:
+				App->particles->grenade.speed.x = -2;
+				App->particles->grenade.speed.y = 2;
+				App->particles->AddParticle(App->particles->grenade, position.x, position.y + 64, Collider::Type::NONE);
+				break;
+			case Directions::RIGHT:
+				App->particles->grenade.speed.x = 2;
+				App->particles->grenade.speed.y = 0;
+				App->particles->AddParticle(App->particles->grenade, position.x + 32, position.y + 29, Collider::Type::NONE);
+				break;
+			case Directions::LEFT:
+				App->particles->grenade.speed.x = -2;
+				App->particles->grenade.speed.y = 0;
+				App->particles->AddParticle(App->particles->grenade, position.x, position.y + 29, Collider::Type::NONE);
+				break;
+			}
+			grenadeDelay = 0;
 		}
+		grenadeDelay++;
 		break;
 	case 1:
 		if (shootdelay >= 50)
@@ -83,9 +160,7 @@ void Enemy_GreenSoldier::Shoot()
 			App->particles->AddParticle(App->particles->enemy_shot, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
 			shootdelay = 0;
 		}
+		shootdelay++;
 		break;
 	}
-	
-
-	shootdelay++;
 }
