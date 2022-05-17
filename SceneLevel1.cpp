@@ -68,6 +68,19 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 415, -1565, 25, 140 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 255, -1565, 160, 25 }, Collider::Type::WALL);
 
+	App->collisions->AddCollider({ 255, -2365, 150, 25 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 372, -2390, 25, 50 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 350, -2465, 25, 75 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 375, -2520, 37, 55 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 600, -2770, 25, 85 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 570, -2800, 30, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 540, -2830, 30, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 510, -2860, 30, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 480, -2830, 30, 30 }, Collider::Type::WALL);
+
+	App->collisions->AddCollider({ 480, -3370, 85, 25 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 565, -3420, 25, 50 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 540, -3525, 25, 105 }, Collider::Type::WALL);
 
 
 	// Right colliders
@@ -90,15 +103,117 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 560, -1575, 25, 200 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 570, -1575, 190, 20 }, Collider::Type::WALL);
 
+	App->collisions->AddCollider({ 660, -2395, 243, 60 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 733, -2425, 86, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 827, -2457, 20, 32 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 853, -2762, 25, 305 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 875, -2800, 30, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 905, -2830, 30, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 935, -2860, 30, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 965, -2830, 30, 30 }, Collider::Type::WALL);
+
 
 	// Rock
-	App->collisions->AddCollider({ 128, -425, 65, 20 }, Collider::Type::BARRICADE);
-	App->collisions->AddCollider({ 255, -425, 65, 20 }, Collider::Type::BARRICADE);
-	App->collisions->AddCollider({ 285, -840, 65, 20 }, Collider::Type::BARRICADE);
-	App->collisions->AddCollider({ 128, -920, 95, 20 }, Collider::Type::BARRICADE);
-	App->collisions->AddCollider({ 415, -1415, 65, 20 }, Collider::Type::BARRICADE);
-	App->collisions->AddCollider({ 485, -1450, 20, 30 }, Collider::Type::BARRICADE);
-	App->collisions->AddCollider({ 448, -1550, 65, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 128, -425, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 160, -425, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 255, -425, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 287, -425, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 285, -840, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 317, -840, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 128, -920, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 160, -920, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 192, -920, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 415, -1415, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 447, -1415, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 485, -1455, 15, 32 }, Collider::Type::BARRICADE);
+	
+	App->collisions->AddCollider({ 255, -1815, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 287, -1815, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 319, -1815, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 351, -1815, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 383, -1815, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 415, -1815, 32, 15 }, Collider::Type::BARRICADE);
+
+	App->collisions->AddCollider({ 540, -1815, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 572, -1815, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 604, -1815, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 636, -1815, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 668, -1815, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 700, -1815, 32, 15 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 732, -1815, 32, 15 }, Collider::Type::BARRICADE);
+
+
+
+	//triangle
+	App->collisions->AddCollider({ 448, -1550, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 480, -1550, 32, 32 }, Collider::Type::BARRICADE);
+
+	App->collisions->AddCollider({ 320, -1940, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 352, -1940, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 384, -1940, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 416, -1940, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 546, -1940, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 578, -1940, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 610, -1940, 32, 32 }, Collider::Type::BARRICADE);
+
+	App->collisions->AddCollider({ 352, -2070, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 578, -2070, 32, 32 }, Collider::Type::BARRICADE);
+
+	App->collisions->AddCollider({ 416, -2102, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 448, -2102, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 480, -2102, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 448, -2134, 32, 32 }, Collider::Type::BARRICADE);
+
+	App->collisions->AddCollider({ 320, -2230, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 320, -2198, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 352, -2230, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 352, -2198, 32, 32 }, Collider::Type::BARRICADE);
+
+	App->collisions->AddCollider({ 578, -2355, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 610, -2355, 32, 32 }, Collider::Type::BARRICADE);
+
+	App->collisions->AddCollider({ 578, -2862, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 610, -2862, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 610, -2830, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 642, -2830, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 674, -2830, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 706, -2830, 32, 32 }, Collider::Type::BARRICADE);
+
+	App->collisions->AddCollider({ 802, -2830, 32, 32 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 834, -2830, 32, 32 }, Collider::Type::BARRICADE);
+
+	//Fence
+	App->collisions->AddCollider({ 255, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 287, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 319, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 351, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 383, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 415, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 447, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 479, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 511, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 543, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 575, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 607, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 639, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 671, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 703, -1890, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 735, -1890, 32, 45 }, Collider::Type::BARRICADE);
+
+	App->collisions->AddCollider({ 255, -2275, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 287, -2275, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 319, -2275, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 351, -2275, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 383, -2275, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 415, -2275, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 511, -2275, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 543, -2275, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 575, -2275, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 607, -2275, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 639, -2275, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 671, -2275, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 703, -2275, 32, 45 }, Collider::Type::BARRICADE);
+	App->collisions->AddCollider({ 735, -2275, 32, 45 }, Collider::Type::BARRICADE);
 
 	// Non destroyable barricade
 	App->collisions->AddCollider({ 575, -1680, 65, 30 }, Collider::Type::NON_DEST_BAR);
@@ -160,6 +275,7 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 525, -2545, 160, 25 }, Collider::Type::TRENCH);
 	App->collisions->AddCollider({ 720, -2765, 100, 25 }, Collider::Type::TRENCH);
 	App->collisions->AddCollider({ 690, -3440, 135, 25 }, Collider::Type::TRENCH);
+	
 
 	App->player->Enable();
 	App->enemies->Enable();
