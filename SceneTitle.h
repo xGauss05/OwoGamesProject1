@@ -5,6 +5,8 @@
 #include "Animation.h"
 #include "p2Point.h"
 
+#define MAX_ASSETS_TITLE 13
+
 struct SDL_Texture;
 
 class SceneTitle : public Module {
@@ -51,8 +53,8 @@ public:
 	iPoint playerMini;
 	Animation playerMiniAnim;
 
-	iPoint assetsPoint[13];
-	Animation assetsAnim[13];
+	iPoint* assetsPoint[MAX_ASSETS_TITLE];
+	Animation* assetsAnim[MAX_ASSETS_TITLE];
 };
 
 #endif // __MODULE_SCENETITLE_H__
