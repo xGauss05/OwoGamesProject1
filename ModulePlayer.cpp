@@ -1294,6 +1294,74 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			currentAnimBot = &trenchAnimBot;
 			place = Place::TRENCH;
 			break;
+		case Collider::Type::BARRICADE:
+			switch (movementDir) {
+			case UP:
+				position.y += speed;
+				break;
+			case DOWN:
+				position.y -= speed;
+				break;
+			case RIGHT:
+				position.x -= speed;
+				break;
+			case LEFT:
+				position.x += speed;
+				break;
+			case UP_RIGHT:
+				position.y += speed;
+				position.x -= speed;
+				break;
+			case UP_LEFT:
+				position.y += speed;
+				position.x += speed;
+				break;
+			case DOWN_RIGHT:
+				position.y -= speed;
+				position.x -= speed;
+				break;
+			case DOWN_LEFT:
+				position.y -= speed;
+				position.x += speed;
+				break;
+			default:
+				break;
+			}
+			break;
+		case Collider::Type::NON_DEST_BAR:
+			switch (movementDir) {
+			case UP:
+				position.y += speed;
+				break;
+			case DOWN:
+				position.y -= speed;
+				break;
+			case RIGHT:
+				position.x -= speed;
+				break;
+			case LEFT:
+				position.x += speed;
+				break;
+			case UP_RIGHT:
+				position.y += speed;
+				position.x -= speed;
+				break;
+			case UP_LEFT:
+				position.y += speed;
+				position.x += speed;
+				break;
+			case DOWN_RIGHT:
+				position.y -= speed;
+				position.x -= speed;
+				break;
+			case DOWN_LEFT:
+				position.y -= speed;
+				position.x += speed;
+				break;
+			default:
+				break;
+			}
+			break;
 
 		}
 
