@@ -138,7 +138,6 @@ public:
 
 	ushort deathCooldown = 0;
 
-
 	// The player's collider
 	Collider* collider = nullptr;
 
@@ -162,6 +161,7 @@ public:
 	uint playerDeadFx = 0;
 	uint heavyRifleFx = 0;
 	uint flamethrowerFx = 0;
+	uint throwGrenadeFx = 0;
 };
 
 #endif //!__MODULE_PLAYER_H__

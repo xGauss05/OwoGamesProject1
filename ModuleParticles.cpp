@@ -306,7 +306,6 @@ bool ModuleParticles::Start() {
 	grenExplosion.anim.PushBack({ 320,0,64,64 });
 	grenExplosion.anim.loop = false;
 	grenExplosion.anim.speed = 0.1f;
-	grenExplosion.lifetime = 90;
 	grenExplosion.speed.x = 0;
 	grenExplosion.speed.y = 0;
 	grenExplosion.isExplosion = true;
@@ -352,7 +351,7 @@ update_status ModuleParticles::Update() {
 		// Call particle Update. If it has reached its lifetime, destroy it
  		if (!particle->Update()) {
 			if (particle->explodes && !particle->isExplosion) {
-				App->particles->AddParticle(App->particles->grenExplosion, particle->position.x, particle->position.y, Collider::Type::PLAYER_SHOT);
+				App->particles->AddParticle(App->particles->grenExplosion, particle->position.x-26, particle->position.y-26, Collider::Type::PLAYER_SHOT);
 			}
 			delete particle;
 			particles[i] = nullptr;
@@ -385,11 +384,6 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collid
 		// Finding an empty slot for a new particle
 		if (particles[i] == nullptr) {
 			Particle* p = new Particle(particle);
-			if (p->explodes) {
-				LOG("THIS SHIT EXPLODED");
-			} else {
-				LOG("THIS SHIT NO EXPLODED");
-			}
 			p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
 			p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
 			p->position.y = y;
