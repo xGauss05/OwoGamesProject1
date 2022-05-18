@@ -52,6 +52,7 @@ private:
 	// Particles spritesheet loaded into an SDL Texture
 	SDL_Texture* bulletsTexture = nullptr;
 	SDL_Texture* explosionTexture = nullptr;
+	SDL_Texture* hostageTexture = nullptr;
 
 	// An array to store and handle all the particles
 	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };
@@ -83,6 +84,11 @@ public:
 	// Explosion
 	Particle grenExplosion;
 
+	// Hostage "particles"
+	Particle hostageDeathTop, hostageDeathBot;
+	Particle hostagePickUpTop, hostagePickUpBot;
+
+	// SFX from the grenade explosion
 	uint grenadeExplosionFx = 0;
 
 };

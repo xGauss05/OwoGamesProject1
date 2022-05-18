@@ -24,7 +24,6 @@ protected:
 	Animation* currentAnimBot = nullptr;
 
 	Animation idleAnimTop, idleAnimBot;
-	Animation deathAnimTop, deathAnimBot;
 	Animation pickUpAnimTop, pickUpAnimBot;
 
 private:

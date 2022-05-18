@@ -20,6 +20,7 @@ bool ModuleParticles::Start() {
 	LOG("Loading particles");
 	bulletsTexture = App->textures->Load("Assets/img/sprites/bullets.png");
 	explosionTexture = App->textures->Load("Assets/img/sprites/explosions.png");
+	hostageTexture = App->textures->Load("Assets/img/sprites/hostage.png");
 
 	grenadeExplosionFx = App->audio->LoadFx("Assets/sounds/sfx/186.wav");
 
@@ -311,94 +312,131 @@ bool ModuleParticles::Start() {
 	grenExplosion.speed.y = 0;
 	grenExplosion.isExplosion = true;
 	//grenExplosion.setIsExplosion();
+
+	// Hostage "particles"
+
+
+	hostagePickUpTop.anim.PushBack({ 0 ,76,26,26 });
+	hostagePickUpTop.anim.PushBack({ 0 ,76,26,26 });
+	hostagePickUpTop.anim.PushBack({ 0 ,76,26,26 });
+	hostagePickUpTop.anim.PushBack({ 0 ,76,26,26 });
+	hostagePickUpTop.anim.speed = 0.05f;
+	hostagePickUpTop.anim.loop = false;
+	hostagePickUpTop.isHostage = true;
+
+	hostagePickUpBot.anim.PushBack({ 0,102,26, 26 });
+	hostagePickUpBot.anim.PushBack({ 0,102,26, 26 });
+	hostagePickUpBot.anim.PushBack({ 0,102,26, 26 });
+	hostagePickUpBot.anim.PushBack({ 0,102,26, 26 });
+	hostagePickUpBot.anim.speed = 0.05f;
+	hostagePickUpBot.anim.loop = false;
+	hostagePickUpBot.isHostage = true;
+
+	hostageDeathTop.anim.PushBack({ 0,  128, 26, 26 });
+	hostageDeathTop.anim.PushBack({ 32, 128, 26, 26 });
+	hostageDeathTop.anim.PushBack({ 64, 128, 26, 26 });
+	hostageDeathTop.anim.PushBack({ 96, 128, 26, 26 });
+	hostageDeathTop.anim.speed = 0.05f;
+	hostageDeathTop.anim.loop = false;
+	hostageDeathTop.isHostage = true;
+
+	hostageDeathBot.anim.PushBack({ 0,  160, 26, 26 });
+	hostageDeathBot.anim.PushBack({ 32, 160, 26, 26 });
+	hostageDeathBot.anim.PushBack({ 64, 160, 26, 26 });
+	hostageDeathBot.anim.PushBack({ 96, 160, 26, 26 });
+	hostageDeathBot.anim.speed = 0.05f;
+	hostageDeathBot.anim.loop = false;
+	hostageDeathBot.isHostage = true;
 	return true;
-}
-
-bool ModuleParticles::CleanUp() {
-	LOG("Unloading particles");
-
-	// Delete all remaining active particles on application exit 
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
-		if (particles[i] != nullptr) {
-			delete particles[i];
-			particles[i] = nullptr;
-		}
 	}
 
-	return true;
-}
+		bool ModuleParticles::CleanUp() {
+		LOG("Unloading particles");
 
-void ModuleParticles::OnCollision(Collider* c1, Collider* c2) {
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
-		// Always destroy particles that collide
-		if (particles[i] != nullptr && particles[i]->collider == c1) {
-			if (c2->type == Collider::Type::PLAYER) {
-				// c1->type == Collider:Type::ENEMY_SHOT
-			}
-			if (!particles[i]->isExplosion) {
+		// Delete all remaining active particles on application exit 
+		for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
+			if (particles[i] != nullptr) {
 				delete particles[i];
 				particles[i] = nullptr;
 			}
-			break;
 		}
 
+		return true;
 	}
-}
 
-update_status ModuleParticles::Update() {
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
-		Particle* particle = particles[i];
-
-		if (particle == nullptr)	continue;
-
-		// Call particle Update. If it has reached its lifetime, destroy it
- 		if (!particle->Update()) {
-			if (particle->explodes && !particle->isExplosion) {
-				App->particles->AddParticle(App->particles->grenExplosion, particle->position.x-26, particle->position.y-26, Collider::Type::PLAYER_SHOT);
-				App->audio->PlayFx(grenadeExplosionFx);
+	void ModuleParticles::OnCollision(Collider* c1, Collider* c2) {
+		for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
+			// Always destroy particles that collide
+			if (particles[i] != nullptr && particles[i]->collider == c1) {
+				if (c2->type == Collider::Type::PLAYER) {
+					// c1->type == Collider:Type::ENEMY_SHOT
+				}
+				if (!particles[i]->isExplosion && !particles[i]->isHostage) {
+					delete particles[i];
+					particles[i] = nullptr;
+				}
+				break;
 			}
-			delete particle;
-			particles[i] = nullptr;
 		}
 	}
 
-	return update_status::UPDATE_CONTINUE;
-}
+	update_status ModuleParticles::Update() {
+		for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
+			Particle* particle = particles[i];
 
-update_status ModuleParticles::PostUpdate() {
-	// Iterating all particle array and drawing any active particles
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
-		Particle* particle = particles[i];
+			if (particle == nullptr)	continue;
 
-		if (particle != nullptr && particle->isAlive) {
-			if (particle->explodes && !particle->isExplosion ||
-				!particle->explodes && !particle->isExplosion) {
-				App->render->Blit(bulletsTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
-			} else if (!particle->explodes && particle->isExplosion) {
-				App->render->Blit(explosionTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			// Call particle Update. If it has reached its lifetime, destroy it
+			if (!particle->Update()) {
+				if (particle->explodes && !particle->isExplosion) {
+					App->particles->AddParticle(App->particles->grenExplosion, particle->position.x - 26, particle->position.y - 26, Collider::Type::PLAYER_SHOT);
+					App->audio->PlayFx(grenadeExplosionFx);
+				}
+
+				delete particle;
+				particles[i] = nullptr;
 			}
+		}
 
+		return update_status::UPDATE_CONTINUE;
+	}
+
+	update_status ModuleParticles::PostUpdate() {
+		// Iterating all particle array and drawing any active particles
+		for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
+			Particle* particle = particles[i];
+
+			if (particle != nullptr && particle->isAlive) {
+				if (particle->explodes && !particle->isExplosion && !particle->isHostage ||
+					!particle->explodes && !particle->isExplosion && !particle->isHostage) {
+					App->render->Blit(bulletsTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+				} else if (!particle->explodes && particle->isExplosion) {
+					App->render->Blit(explosionTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+				} else if (particle->isHostage) {
+					App->render->Blit(hostageTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+				}
+
+			}
+		}
+		return update_status::UPDATE_CONTINUE;
+	}
+
+	void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType, uint delay) {
+		for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
+			// Finding an empty slot for a new particle
+			if (particles[i] == nullptr) {
+				Particle* p = new Particle(particle);
+				p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
+				p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
+				p->position.y = y;
+
+				// Adding the particle's collider
+				if (colliderType != Collider::Type::NONE)
+					p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
+
+				particles[i] = p;
+				break;
+			}
 		}
 	}
-	return update_status::UPDATE_CONTINUE;
-}
-
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType, uint delay) {
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
-		// Finding an empty slot for a new particle
-		if (particles[i] == nullptr) {
-			Particle* p = new Particle(particle);
-			p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
-			p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
-			p->position.y = y;
-
-			// Adding the particle's collider
-			if (colliderType != Collider::Type::NONE)
-				p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
-
-			particles[i] = p;
-			break;
-		}
-	}
-}
 

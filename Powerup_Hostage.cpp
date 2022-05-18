@@ -5,6 +5,7 @@
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModuleParticles.h"
 
 Powerup_Hostage::Powerup_Hostage(int x, int y) : Powerup(x, y) {
 	collider = App->collisions->AddCollider({ 0,0,26,26 * 2 }, Collider::Type::HOSTAGE, (Module*)App->powerups);
@@ -25,34 +26,6 @@ Powerup_Hostage::Powerup_Hostage(int x, int y) : Powerup(x, y) {
 	idleAnimBot.PushBack({ 96, 32, 26, 26 });
 	idleAnimBot.speed = 0.05f;
 	idleAnimBot.loop = true;
-
-	deathAnimTop.PushBack({ 0,  128, 26, 26 });
-	deathAnimTop.PushBack({ 32, 128, 26, 26 });
-	deathAnimTop.PushBack({ 64, 128, 26, 26 });
-	deathAnimTop.PushBack({ 96, 128, 26, 26 });
-	deathAnimTop.speed = 0.05f;
-	deathAnimTop.loop = false;
-
-	deathAnimBot.PushBack({ 0,  160, 26, 26 });
-	deathAnimBot.PushBack({ 32, 160, 26, 26 });
-	deathAnimBot.PushBack({ 64, 160, 26, 26 });
-	deathAnimBot.PushBack({ 96, 160, 26, 26 });
-	deathAnimBot.speed = 0.05f;
-	deathAnimBot.loop = false;
-
-	pickUpAnimBot.PushBack({});
-	pickUpAnimBot.PushBack({});
-	pickUpAnimBot.PushBack({});
-	pickUpAnimBot.PushBack({});
-	pickUpAnimBot.speed = 0.05f;
-	pickUpAnimBot.loop = false;
-
-	pickUpAnimBot.PushBack({});
-	pickUpAnimBot.PushBack({});
-	pickUpAnimBot.PushBack({});
-	pickUpAnimBot.PushBack({});
-	pickUpAnimBot.speed = 0.05f;
-	pickUpAnimBot.loop = false;
 
 	currentAnim = &idleAnimTop;
 	currentAnimBot = &idleAnimBot;
@@ -85,28 +58,19 @@ void Powerup_Hostage::OnCollision(Collider* collider) {
 		}
 		
 		// add -500 score animation
-		if (currentAnim != &deathAnimTop) {
-			currentAnim = &deathAnimTop;
-		}
 
-		if (currentAnimBot != &deathAnimBot) {
-			currentAnimBot = &deathAnimBot;
-		}
+		App->particles->AddParticle(App->particles->hostageDeathTop, position.x, position.y, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->hostageDeathBot, position.x, position.y + 26, Collider::Type::NONE);
 	
 	}
 
 	if (collider->type == Collider::Type::PLAYER) {
 		App->audio->PlayFx(pickUpFx);
 		App->player->score += 1000;
-		if (currentAnim != &pickUpAnimTop) {
-			currentAnim = &pickUpAnimTop;
-		}
 
-		if (currentAnimBot != &pickUpAnimBot) {
-			currentAnimBot = &pickUpAnimBot;
-		}
 		// add +1000 score animation
-
+		App->particles->AddParticle(App->particles->hostagePickUpTop, position.x, position.y, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->hostagePickUpBot, position.x, position.y + 26, Collider::Type::NONE);
 	}
 }
 

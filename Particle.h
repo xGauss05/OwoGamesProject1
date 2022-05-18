@@ -40,8 +40,14 @@ public:
 	// Particles will be set to not alive until "spawnTime" is reached
 	bool isAlive = false;
 
+	// Defines if the particle explodes. (Leaves an explosion particle)
 	bool explodes = false;
+
+	// Defines if the particle is an explosion. (Has a collider)
 	bool isExplosion = false;
+	
+	// Define if the particle is part of the Hostage Powerup entity
+	bool isHostage = false;
 
 	// Defines the amout of frames this particle has been active
 	// Negative values mean the particle is waiting to be activated
