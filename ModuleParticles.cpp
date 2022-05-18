@@ -335,8 +335,10 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2) {
 			if (c2->type == Collider::Type::PLAYER) {
 				// c1->type == Collider:Type::ENEMY_SHOT
 			}
-			delete particles[i];
-			particles[i] = nullptr;
+			if (!particles[i]->isExplosion) {
+				delete particles[i];
+				particles[i] = nullptr;
+			}
 			break;
 		}
 

@@ -25,7 +25,6 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	ammunition = 0;
 	score = 0;
 
-
 	// idle animation - just one sprite
 	idleAnimTop.PushBack({ 0, 0, 32, 32 });
 	idleAnimBot.PushBack({ 256, 0, 32, 32 });
@@ -917,14 +916,15 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
-					currentAnimBot = &waterAnimBot;
-				}
+				if (currentAnimBot != &waterAnimBot)
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
 			break;
@@ -947,14 +947,14 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
+				if (currentAnimBot != &waterAnimBot)
 					currentAnimBot = &waterAnimBot;
-				}
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
 			break;
@@ -981,14 +981,14 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
+				if (currentAnimBot != &waterAnimBot)
 					currentAnimBot = &waterAnimBot;
-				}
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
 			break;
@@ -1011,14 +1011,14 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
+				if (currentAnimBot != &waterAnimBot)
 					currentAnimBot = &waterAnimBot;
-				}
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
 			break;
@@ -1041,14 +1041,14 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
+				if (currentAnimBot != &waterAnimBot)
 					currentAnimBot = &waterAnimBot;
-				}
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
 			break;
@@ -1071,14 +1071,14 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
+				if (currentAnimBot != &waterAnimBot)
 					currentAnimBot = &waterAnimBot;
-				}
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
 			break;
@@ -1131,14 +1131,14 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
+				if (currentAnimBot != &waterAnimBot)
 					currentAnimBot = &waterAnimBot;
-				}
+
 				break;
 			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
+				if (currentAnimBot != &trenchAnimBot)
 					currentAnimBot = &trenchAnimBot;
-				}
+
 				break;
 			}
 			break;
@@ -1215,8 +1215,11 @@ update_status ModulePlayer::Update() {
 
 	if (dead) {
 		// need to implement death behaviour
-		currentAnimTop = &deathAnimTop;
-		currentAnimBot = &deathAnimBot;
+		if (currentAnimTop != &deathAnimTop)
+			currentAnimTop = &deathAnimTop;
+		if (currentAnimBot != &deathAnimBot)
+			currentAnimBot = &deathAnimBot;
+
 		if (deathCooldown == 0) {
 			App->audio->PlayFx(playerDeadFx);
 		}
@@ -1239,10 +1242,9 @@ update_status ModulePlayer::Update() {
 	}
 
 	// Insta lose cheat
-	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN && dead == false) {
+	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN && !dead) {
 		// Handle insta lose
 		dead = true;
-
 	}
 
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_REPEAT) {
@@ -1250,6 +1252,10 @@ update_status ModulePlayer::Update() {
 	}
 
 	place = Place::LAND;
+
+	if (isThrowing && currentAnimTop->HasFinished()) {
+		isThrowing = false;
+	}
 
 	// Updates player collider position
 	collider->SetPos(position.x, position.y);
