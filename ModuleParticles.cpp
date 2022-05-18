@@ -21,6 +21,8 @@ bool ModuleParticles::Start() {
 	bulletsTexture = App->textures->Load("Assets/img/sprites/bullets.png");
 	explosionTexture = App->textures->Load("Assets/img/sprites/explosions.png");
 
+	grenadeExplosionFx = App->audio->LoadFx("Assets/sounds/sfx/186.wav");
+
 	// Put the animations here, 
 	// Variables need to be declared in the header
 
@@ -352,6 +354,7 @@ update_status ModuleParticles::Update() {
  		if (!particle->Update()) {
 			if (particle->explodes && !particle->isExplosion) {
 				App->particles->AddParticle(App->particles->grenExplosion, particle->position.x-26, particle->position.y-26, Collider::Type::PLAYER_SHOT);
+				App->audio->PlayFx(grenadeExplosionFx);
 			}
 			delete particle;
 			particles[i] = nullptr;

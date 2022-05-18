@@ -6,6 +6,7 @@
 #include "Globals.h"
 #include "Particle.h"
 #include "Collider.h"
+#include "ModuleAudio.h"
 
 #define MAX_ACTIVE_PARTICLES 500
 
@@ -81,6 +82,8 @@ public:
 
 	// Explosion
 	Particle grenExplosion;
+
+	uint grenadeExplosionFx = 0;
 
 };
 
