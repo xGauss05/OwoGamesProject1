@@ -134,6 +134,24 @@ public:
 	Animation leftNorWeaponAnim, leftPowWeaponAnim;
 	Animation leftShotNorWeaponAnim, leftShotPowWeaponAnim;
 
+	// Throw grenade animations ---
+	// Up
+	Animation upThrowGrenade;
+	// Up-Right
+	Animation upRightThrowGrenade;
+	// Up-Left
+	Animation upLeftThrowGrenade;
+	// Down
+	Animation downThrowGrenade;
+	// Down-Right
+	Animation downRightThrowGrenade;
+	// Down-Right
+	Animation downLeftThrowGrenade;
+	// Right
+	Animation rightThrowGrenade;
+	// Left
+	Animation leftThrowGrenade;
+
 	ushort deathCooldown = 0;
 
 	// The player's collider
@@ -145,11 +163,17 @@ public:
 	// God mode flag
 	bool godMode = false;
 
+	// Flag for throwing grenade state
+	bool isThrowing = false;
+
 	// Amount of shots available. Max defined in MAX_AMMO
 	ushort ammunition = 0;
 
 	// Score of the player
 	uint score;
+
+	// Lives of the playes
+	uint lives;
 
 	// Amount of grenades available. Max defined in MAX_GRENADES
 	ushort grenades = MAX_GRENADES;

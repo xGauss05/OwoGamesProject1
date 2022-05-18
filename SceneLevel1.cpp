@@ -313,6 +313,6 @@ bool SceneLevel1::CleanUp() {
 	return true;
 }
 
-void SceneLevel1::DrawParalax() {
+void SceneLevel1::DrawParallax() {
 	App->render->Blit(paralaxTexture, 0, Y_BG_POSITION, NULL);
 }

@@ -297,7 +297,6 @@ bool ModuleParticles::Start() {
 	grenade.speed.x = 0;
 	grenade.speed.y = 5;
 	grenade.explodes = true;
-	grenade.isExplosion = false;
 	//grenade.setExplodes();
 
 	grenExplosion.anim.PushBack({ 0,0,64,64 });

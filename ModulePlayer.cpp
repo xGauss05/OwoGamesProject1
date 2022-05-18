@@ -16,7 +16,6 @@
 #include <string>
 #include "SDL/include/SDL_scancode.h"
 
-
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	facing = Directions::UP;
 	weapon = Weapon::NORMAL;
@@ -305,6 +304,64 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	downLeftShotPowWeaponAnim.PushBack({ 160,96, 32,32 });
 	rightShotPowWeaponAnim.PushBack({ 64,96, 32,32 });
 	leftShotPowWeaponAnim.PushBack({ 192,96, 32,32 });
+
+	// Throw grenade animations
+	upThrowGrenade.PushBack({ 320, 0, 32, 32 });
+	upThrowGrenade.PushBack({ 352, 0, 32, 32 });
+	upThrowGrenade.PushBack({ 384, 0, 32, 32 });
+	upThrowGrenade.PushBack({ 416, 0, 32, 32 });
+	upThrowGrenade.PushBack({ 448, 0, 32, 32 });
+	upThrowGrenade.speed = 0.1f;
+	upThrowGrenade.loop = false;
+
+	upRightThrowGrenade.PushBack({ 320, 32, 32, 32 });
+	upRightThrowGrenade.PushBack({ 352, 32, 32, 32 });
+	upRightThrowGrenade.PushBack({ 384, 32, 32, 32 });
+	upRightThrowGrenade.PushBack({ 416, 32, 32, 32 });
+	upRightThrowGrenade.PushBack({ 448, 32, 32, 32 });
+	upRightThrowGrenade.speed = 0.1f;
+	upRightThrowGrenade.loop = false;
+
+	rightThrowGrenade.PushBack({ 320, 64, 32, 32 });
+	rightThrowGrenade.PushBack({ 352, 64, 32, 32 });
+	rightThrowGrenade.PushBack({ 384, 64, 32, 32 });
+	rightThrowGrenade.PushBack({ 416, 64, 32, 32 });
+	rightThrowGrenade.PushBack({ 448, 64, 32, 32 });
+	rightThrowGrenade.speed = 0.1f;
+	rightThrowGrenade.loop = false;
+
+	downRightThrowGrenade.PushBack({ 320, 96, 32, 32 });
+	downRightThrowGrenade.PushBack({ 352, 96, 32, 32 });
+	downRightThrowGrenade.PushBack({ 384, 96, 32, 32 });
+	downRightThrowGrenade.PushBack({ 416, 96, 32, 32 });
+	downRightThrowGrenade.PushBack({ 448, 96, 32, 32 });
+	downRightThrowGrenade.speed = 0.1f;
+	downRightThrowGrenade.loop = false;
+
+	downThrowGrenade.PushBack({ 320, 128, 32, 32 });
+	downThrowGrenade.PushBack({ 352, 128, 32, 32 });
+	downThrowGrenade.PushBack({ 384, 128, 32, 32 });
+	downThrowGrenade.PushBack({ 416, 128, 32, 32 });
+	downThrowGrenade.PushBack({ 448, 128, 32, 32 });
+	downThrowGrenade.speed = 0.1f;
+	downThrowGrenade.loop = false;
+
+	downLeftThrowGrenade.PushBack({ 320, 160, 32, 32 });
+	downLeftThrowGrenade.PushBack({ 352, 160, 32, 32 });
+	downLeftThrowGrenade.PushBack({ 384, 160, 32, 32 });
+	downLeftThrowGrenade.PushBack({ 416, 160, 32, 32 });
+	downLeftThrowGrenade.PushBack({ 448, 160, 32, 32 });
+	downLeftThrowGrenade.speed = 0.1f;
+	downLeftThrowGrenade.loop = false;
+
+	leftThrowGrenade.PushBack({ 320, 192, 32, 32 });
+	leftThrowGrenade.PushBack({ 352, 192, 32, 32 });
+	leftThrowGrenade.PushBack({ 384, 192, 32, 32 });
+	leftThrowGrenade.PushBack({ 416, 192, 32, 32 });
+	leftThrowGrenade.PushBack({ 448, 192, 32, 32 });
+	leftThrowGrenade.speed = 0.1f;
+	leftThrowGrenade.loop = false;
+
 }
 
 ModulePlayer::~ModulePlayer() {
@@ -331,6 +388,7 @@ bool ModulePlayer::Start() {
 
 	dead = false;
 	godMode = false;
+	isThrowing = false;
 
 	// Initiate player audios here
 	shotFx = App->audio->LoadFx("Assets/sounds/sfx/142.wav"); // shot sfx
@@ -442,9 +500,10 @@ void ModulePlayer::shootFlamethrower() {
 }
 
 void ModulePlayer::throwGrenade() {
+	isThrowing = true;
 	grenades--;
 	App->audio->PlayFx(throwGrenadeFx);
-	App->particles->grenade.explodes = true;
+	//App->particles->grenade.explodes = true;
 	switch (facing) {
 	case Directions::UP:
 		App->particles->grenade.speed.x = 0;
@@ -1111,7 +1170,43 @@ update_status ModulePlayer::Update() {
 				break;
 			}
 		}
+
 		if (App->input->keys[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN) {
+			switch (facing) {
+			case UP:
+				if (currentAnimTop != &upThrowGrenade)
+					currentAnimTop = &upThrowGrenade;
+				break;
+			case UP_RIGHT:
+				if (currentAnimTop != &upRightThrowGrenade)
+					currentAnimTop = &upRightThrowGrenade;
+				break;
+			case UP_LEFT:
+				if (currentAnimTop != &upLeftThrowGrenade)
+					currentAnimTop = &upLeftThrowGrenade;
+				break;
+			case DOWN:
+				if (currentAnimTop != &downThrowGrenade)
+					currentAnimTop = &downThrowGrenade;
+				break;
+			case DOWN_RIGHT:
+				if (currentAnimTop != &downRightThrowGrenade)
+					currentAnimTop = &downRightThrowGrenade;
+				break;
+			case DOWN_LEFT:
+				if (currentAnimTop != &downLeftThrowGrenade)
+					currentAnimTop = &downLeftThrowGrenade;
+				break;
+			case RIGHT:
+				if (currentAnimTop != &rightThrowGrenade)
+					currentAnimTop = &rightThrowGrenade;
+				break;
+			case LEFT:
+				if (currentAnimTop != &leftThrowGrenade)
+					currentAnimTop = &leftThrowGrenade;
+				break;
+			}
+
 			if (grenades > 0) {
 				throwGrenade();
 			}
@@ -1166,6 +1261,7 @@ update_status ModulePlayer::Update() {
 }
 
 update_status ModulePlayer::PostUpdate() {
+	// Weapon textures --
 	SDL_Rect rect = currentWeaponAnim->GetCurrentFrame();
 	switch (facing) {
 	case Directions::LEFT:
@@ -1204,12 +1300,12 @@ update_status ModulePlayer::PostUpdate() {
 		break;
 	}
 
-	// Paralax
+	// Parallax
 	if (App->level1->IsEnabled()) {
-		App->level1->DrawParalax();
+		App->level1->DrawParallax();
 	}
 
-	// UI for 0.5
+	// UI ---
 	App->fonts->BlitText(10, 10, 0, "POINTS");
 	std::string temp = std::to_string(score);
 	char const* num_char = temp.c_str();
@@ -1231,7 +1327,6 @@ update_status ModulePlayer::PostUpdate() {
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
-
 	if (c1 == collider) {
 		switch (c2->type) {
 		case Collider::Type::ENEMY:
