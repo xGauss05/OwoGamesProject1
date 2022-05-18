@@ -314,20 +314,18 @@ bool ModuleParticles::Start() {
 	//grenExplosion.setIsExplosion();
 
 	// Hostage "particles"
-
-
-	hostagePickUpTop.anim.PushBack({ 0 ,76,26,26 });
-	hostagePickUpTop.anim.PushBack({ 0 ,76,26,26 });
-	hostagePickUpTop.anim.PushBack({ 0 ,76,26,26 });
-	hostagePickUpTop.anim.PushBack({ 0 ,76,26,26 });
+	hostagePickUpTop.anim.PushBack({ 0 ,64,26,26 });
+	hostagePickUpTop.anim.PushBack({ 32 ,64,26,26 });
+	hostagePickUpTop.anim.PushBack({ 64 ,64,26,26 });
+	hostagePickUpTop.anim.PushBack({ 96 ,64,26,26 });
 	hostagePickUpTop.anim.speed = 0.05f;
 	hostagePickUpTop.anim.loop = false;
 	hostagePickUpTop.isHostage = true;
 
-	hostagePickUpBot.anim.PushBack({ 0,102,26, 26 });
-	hostagePickUpBot.anim.PushBack({ 0,102,26, 26 });
-	hostagePickUpBot.anim.PushBack({ 0,102,26, 26 });
-	hostagePickUpBot.anim.PushBack({ 0,102,26, 26 });
+	hostagePickUpBot.anim.PushBack({ 0,96,26, 26 });
+	hostagePickUpBot.anim.PushBack({ 32,96,26, 26 });
+	hostagePickUpBot.anim.PushBack({ 64,96,26, 26 });
+	hostagePickUpBot.anim.PushBack({ 96,96,26, 26 });
 	hostagePickUpBot.anim.speed = 0.05f;
 	hostagePickUpBot.anim.loop = false;
 	hostagePickUpBot.isHostage = true;
@@ -348,95 +346,95 @@ bool ModuleParticles::Start() {
 	hostageDeathBot.anim.loop = false;
 	hostageDeathBot.isHostage = true;
 	return true;
+}
+
+bool ModuleParticles::CleanUp() {
+	LOG("Unloading particles");
+
+	// Delete all remaining active particles on application exit 
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
+		if (particles[i] != nullptr) {
+			delete particles[i];
+			particles[i] = nullptr;
+		}
 	}
 
-		bool ModuleParticles::CleanUp() {
-		LOG("Unloading particles");
+	return true;
+}
 
-		// Delete all remaining active particles on application exit 
-		for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
-			if (particles[i] != nullptr) {
+void ModuleParticles::OnCollision(Collider* c1, Collider* c2) {
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
+		// Always destroy particles that collide
+		if (particles[i] != nullptr && particles[i]->collider == c1) {
+			if (c2->type == Collider::Type::PLAYER) {
+				// c1->type == Collider:Type::ENEMY_SHOT
+			}
+			if (!particles[i]->isExplosion && !particles[i]->isHostage) {
 				delete particles[i];
 				particles[i] = nullptr;
 			}
+			break;
 		}
-
-		return true;
 	}
+}
 
-	void ModuleParticles::OnCollision(Collider* c1, Collider* c2) {
-		for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
-			// Always destroy particles that collide
-			if (particles[i] != nullptr && particles[i]->collider == c1) {
-				if (c2->type == Collider::Type::PLAYER) {
-					// c1->type == Collider:Type::ENEMY_SHOT
-				}
-				if (!particles[i]->isExplosion && !particles[i]->isHostage) {
-					delete particles[i];
-					particles[i] = nullptr;
-				}
-				break;
+update_status ModuleParticles::Update() {
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
+		Particle* particle = particles[i];
+
+		if (particle == nullptr)	continue;
+
+		// Call particle Update. If it has reached its lifetime, destroy it
+		if (!particle->Update()) {
+			if (particle->explodes && !particle->isExplosion) {
+				App->particles->AddParticle(App->particles->grenExplosion, particle->position.x - 26, particle->position.y - 26, Collider::Type::PLAYER_SHOT);
+				App->audio->PlayFx(grenadeExplosionFx);
 			}
+
+			delete particle;
+			particles[i] = nullptr;
 		}
 	}
 
-	update_status ModuleParticles::Update() {
-		for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
-			Particle* particle = particles[i];
+	return update_status::UPDATE_CONTINUE;
+}
 
-			if (particle == nullptr)	continue;
+update_status ModuleParticles::PostUpdate() {
+	// Iterating all particle array and drawing any active particles
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
+		Particle* particle = particles[i];
 
-			// Call particle Update. If it has reached its lifetime, destroy it
-			if (!particle->Update()) {
-				if (particle->explodes && !particle->isExplosion) {
-					App->particles->AddParticle(App->particles->grenExplosion, particle->position.x - 26, particle->position.y - 26, Collider::Type::PLAYER_SHOT);
-					App->audio->PlayFx(grenadeExplosionFx);
-				}
-
-				delete particle;
-				particles[i] = nullptr;
+		if (particle != nullptr && particle->isAlive) {
+			if (particle->explodes && !particle->isExplosion && !particle->isHostage ||
+				!particle->explodes && !particle->isExplosion && !particle->isHostage) {
+				App->render->Blit(bulletsTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			} else if (!particle->explodes && particle->isExplosion) {
+				App->render->Blit(explosionTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			} else if (particle->isHostage) {
+				App->render->Blit(hostageTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 			}
-		}
 
-		return update_status::UPDATE_CONTINUE;
-	}
-
-	update_status ModuleParticles::PostUpdate() {
-		// Iterating all particle array and drawing any active particles
-		for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
-			Particle* particle = particles[i];
-
-			if (particle != nullptr && particle->isAlive) {
-				if (particle->explodes && !particle->isExplosion && !particle->isHostage ||
-					!particle->explodes && !particle->isExplosion && !particle->isHostage) {
-					App->render->Blit(bulletsTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
-				} else if (!particle->explodes && particle->isExplosion) {
-					App->render->Blit(explosionTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
-				} else if (particle->isHostage) {
-					App->render->Blit(hostageTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
-				}
-
-			}
-		}
-		return update_status::UPDATE_CONTINUE;
-	}
-
-	void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType, uint delay) {
-		for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
-			// Finding an empty slot for a new particle
-			if (particles[i] == nullptr) {
-				Particle* p = new Particle(particle);
-				p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
-				p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
-				p->position.y = y;
-
-				// Adding the particle's collider
-				if (colliderType != Collider::Type::NONE)
-					p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
-
-				particles[i] = p;
-				break;
-			}
 		}
 	}
+	return update_status::UPDATE_CONTINUE;
+}
+
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType, uint delay) {
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
+		// Finding an empty slot for a new particle
+		if (particles[i] == nullptr) {
+			Particle* p = new Particle(particle);
+			p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
+			p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
+			p->position.y = y;
+
+			// Adding the particle's collider
+			if (colliderType != Collider::Type::NONE)
+				p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
+
+			particles[i] = p;
+			break;
+		}
+	}
+}
 
