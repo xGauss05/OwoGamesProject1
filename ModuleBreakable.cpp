@@ -11,6 +11,7 @@
 #include "Breakable_Bridge.h"
 #include "Breakable_Fence.h"
 
+#include "Collider.h"
 #define SPAWN_MARGIN	50
 
 ModuleBreakable::ModuleBreakable(bool startEnabled) : Module(startEnabled) {
@@ -23,7 +24,7 @@ ModuleBreakable::~ModuleBreakable() {
 }
 
 bool ModuleBreakable::Start() {
-	//breakableTexture = App->textures->Load("Assets/enemies.png");
+	breakableTexture = App->textures->Load("Assets/img/sprites/Guerrilla War Enemy Spritesheet.png");
 	//enemyDestroyedFx = App->audio->LoadFx("Assets/explosion.wav");
 
 	return true;
@@ -53,7 +54,7 @@ update_status ModuleBreakable::PostUpdate() {
 
 // Called before quitting
 bool ModuleBreakable::CleanUp() {
-	LOG("Freeing all enemies");
+	LOG("Freeing all breakables");
 
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
 		if (breakables[i] != nullptr) {
@@ -82,25 +83,25 @@ bool ModuleBreakable::AddBreakable(BREAKABLE_TYPE type, int x, int y) {
 }
 
 void ModuleBreakable::HandleBreakablesSpawn() {
-	// Iterate all the enemies queue
+	// Iterate all the breakable queue
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
 		if (spawnQueue[i].type != BREAKABLE_TYPE::NO_TYPE) {
-			// Spawn a new enemy if the screen has reached a spawn position
+			// Spawn a new breakable if the screen has reached a spawn position
 			if (spawnQueue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN) {
 				LOG("Spawning breakable at %d", spawnQueue[i].x * SCREEN_SIZE);
 
 				SpawnBreakable(spawnQueue[i]);
-				spawnQueue[i].type = BREAKABLE_TYPE::NO_TYPE; // Removing the newly spawned enemy from the queue
+				spawnQueue[i].type = BREAKABLE_TYPE::NO_TYPE; // Removing the newly spawned breakable from the queue
 			}
 		}
 	}
 }
 
 void ModuleBreakable::HandleBreakablesDespawn() {
-	// Iterate existing enemies
+	// Iterate existing breakables
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
 		if (breakables[i] != nullptr) {
-			// Delete the enemy when it has reached the end of the screen
+			// Delete the breakable when it has reached the end of the screen
 			if (breakables[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN) {
 				LOG("DeSpawning breakable at %d", breakables[i]->position.x * SCREEN_SIZE);
 
@@ -112,18 +113,18 @@ void ModuleBreakable::HandleBreakablesDespawn() {
 }
 
 void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
-	// Find an empty slot in the enemies array
+	// Find an empty slot in the breakables array
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
 		if (breakables[i] == nullptr) {
 			switch (info.type) {
 			case BREAKABLE_TYPE::BARRICADE:
-				//breakables[i] = new Enemy_RedBird(info.x, info.y);
+				breakables[i] = new Breakable_Barricade(info.x, info.y);
 				break;
 			case BREAKABLE_TYPE::BRIDGE:
-				//breakables[i] = new Enemy_BrownShip(info.x, info.y);
+				breakables[i] = new Breakable_Bridge(info.x, info.y);
 				break;
 			case BREAKABLE_TYPE::FENCE:
-				//breakables[i] = new Enemy_Mech(info.x, info.y);
+				breakables[i] = new Breakable_Fence(info.x, info.y);
 				break;
 			}
 			breakables[i]->texture = breakableTexture;
@@ -136,10 +137,11 @@ void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 void ModuleBreakable::OnCollision(Collider* c1, Collider* c2) {
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
 		if (breakables[i] != nullptr && breakables[i]->GetCollider() == c1) {
-			breakables[i]->OnCollision(c2); //Notify the enemy of a collision
-
-			delete breakables[i];
-			breakables[i] = nullptr;
+			breakables[i]->OnCollision(c2); // Notify the breakable of a collision
+			if (c2->type == Collider::Type::EXPLOSION) {
+				delete breakables[i];
+				breakables[i] = nullptr;
+			}
 			break;
 		}
 	}

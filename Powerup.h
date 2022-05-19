@@ -40,6 +40,7 @@ public:
 	// Sound fx when pick up
 	int pickUpFx = 0;
 	Animation* currentAnim = nullptr;
+
 protected:
 	// A ptr to the current animation
 	

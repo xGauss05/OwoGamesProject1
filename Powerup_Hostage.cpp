@@ -49,7 +49,8 @@ void Powerup_Hostage::Update() {
 void Powerup_Hostage::OnCollision(Collider* collider) {
 	if (collider->type == Collider::Type::ENEMY_SHOT ||
 		collider->type == Collider::Type::ENEMY ||
-		collider->type == Collider::Type::PLAYER_SHOT) {
+		collider->type == Collider::Type::PLAYER_SHOT ||
+		collider->type == Collider::Type::EXPLOSION) {
 		App->audio->PlayFx(deadFx);
 		if (App->player->score >= 500) {
 			App->player->score -= 500;
@@ -61,7 +62,6 @@ void Powerup_Hostage::OnCollision(Collider* collider) {
 
 		App->particles->AddParticle(App->particles->hostageDeathTop, position.x, position.y, Collider::Type::NONE);
 		App->particles->AddParticle(App->particles->hostageDeathBot, position.x, position.y + 26, Collider::Type::NONE);
-	
 	}
 
 	if (collider->type == Collider::Type::PLAYER) {
@@ -75,7 +75,6 @@ void Powerup_Hostage::OnCollision(Collider* collider) {
 }
 
 void Powerup_Hostage::Draw() {
-	
 	if (currentAnimBot != nullptr) {
 		App->render->Blit(texture, position.x, position.y + 26, &(currentAnimBot->GetCurrentFrame()));
 	}

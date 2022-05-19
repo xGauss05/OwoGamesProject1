@@ -9,11 +9,13 @@ public:
 	// Creates animation and movement data and the collider
 	Powerup_Flamethrower(int x, int y);
 
-	// The enemy is going to follow the different steps in the path
+	// The powerup is going to follow the different steps in the path
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
+
 	void OnCollision(Collider* collider) override;
 private:
+
 };
 
 #endif // __POWERUP_FLAMETHROWER_H__
