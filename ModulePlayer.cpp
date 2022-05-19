@@ -371,6 +371,7 @@ bool ModulePlayer::Start() {
 	score = 0;
 	ammunition = 0;
 	deathCooldown = 0;
+	lives = 2;
 	grenades = MAX_GRENADES;
 
 	playerTexture = App->textures->Load("Assets/img/sprites/player.png"); // player spritesheet
@@ -1225,9 +1226,14 @@ update_status ModulePlayer::Update() {
 		}
 		deathCooldown++;
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
-			currentAnimBot->Reset();
-			currentAnimTop->Reset();
-			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->lose, 0);
+			deathAnimTop.Reset();
+			deathAnimBot.Reset();
+			if (lives == 0) {
+				App->fade->FadeToBlack((Module*)App->level1, (Module*)App->lose, 0);
+			} else {
+				dead = false;
+				deathCooldown = 0;
+			}
 		}
 	}
 
@@ -1245,6 +1251,7 @@ update_status ModulePlayer::Update() {
 	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN && !dead) {
 		// Handle insta lose
 		dead = true;
+		lives--;
 	}
 
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_REPEAT) {
@@ -1324,12 +1331,15 @@ update_status ModulePlayer::PostUpdate() {
 	App->fonts->BlitText(120, 10, 0, "30000");
 	App->fonts->BlitText(SCREEN_WIDTH - 75, SCREEN_HEIGHT - 15, 0, "CREDITS 0");
 
-	if (lives == 1) {
-		//App->fonts->BlitText(SCREEN_WIDTH - 75, SCREEN_HEIGHT - 15, 0, "CREDITS 0");
-	} else if (lives == 2) {
-		//App->fonts->BlitText(SCREEN_WIDTH - 75, SCREEN_HEIGHT - 15, 0, "CREDITS 0");
-
+	if (lives >= 1) {
+		// need to change to lives icon
+		App->fonts->BlitText(5, SCREEN_HEIGHT - 25, 0, "H");
 	}
+	if (lives >= 2) {
+		// need to change to lives icon
+		App->fonts->BlitText(15, SCREEN_HEIGHT - 25, 0, "H");
+	}
+
 	// need to change for the grenade icon
 	App->fonts->BlitText(5, 45, 0, "GRENADES");
 	temp = std::to_string(grenades);
@@ -1343,7 +1353,7 @@ update_status ModulePlayer::PostUpdate() {
 		num_char = temp.c_str();
 		App->fonts->BlitText(5, 75, 0, num_char);
 	}
-	
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -1351,14 +1361,22 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	if (c1 == collider) {
 		switch (c2->type) {
 		case Collider::Type::ENEMY:
-			if (godMode == false)
+			if (godMode == false) {
 				this->dead = true;
-
+				lives--;
+			}
 			break;
 		case Collider::Type::ENEMY_SHOT:
-			if (godMode == false)
+			if (godMode == false) {
 				this->dead = true;
-
+				lives--;
+			}
+			break;
+		case Collider::Type::EXPLOSION:
+			if (godMode == false) {
+				this->dead = true;
+				lives--;
+			}
 			break;
 		case Collider::Type::POWER_UP:
 			// Sound pick up at Powerup.cpp
