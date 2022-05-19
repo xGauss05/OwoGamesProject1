@@ -141,6 +141,10 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="BossPhase1.cpp" />
+    <ClCompile Include="Breakable.cpp" />
+    <ClCompile Include="Breakable_Barricade.cpp" />
+    <ClCompile Include="Breakable_Bridge.cpp" />
+    <ClCompile Include="Breakable_Fence.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_GreenSoldier.cpp" />
@@ -149,6 +153,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Module.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
+    <ClCompile Include="ModuleBreakable.cpp" />
     <ClCompile Include="ModuleCollisions.cpp" />
     <ClCompile Include="ModuleDebug.cpp" />
     <ClCompile Include="ModuleEnemies.cpp" />
@@ -177,6 +182,10 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="BossPhase1.h" />
+    <ClInclude Include="Breakable.h" />
+    <ClInclude Include="Breakable_Barricade.h" />
+    <ClInclude Include="Breakable_Bridge.h" />
+    <ClInclude Include="Breakable_Fence.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_GreenSoldier.h" />
@@ -185,6 +194,7 @@
     <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
+    <ClInclude Include="ModuleBreakable.h" />
     <ClInclude Include="ModuleCollisions.h" />
     <ClInclude Include="ModuleDebug.h" />
     <ClInclude Include="ModuleEnemies.h" />

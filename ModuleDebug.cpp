@@ -77,7 +77,7 @@ void ModuleDebug::DebugDraw() {
 		case Collider::Type::TRENCH:
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 0, 100, alpha);
 			break;
-		case Collider::Type::BARRICADE:
+		case Collider::Type::BREAKABLE:
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 100, 0, alpha);
 			break;
 		case Collider::Type::NON_DEST_BAR:

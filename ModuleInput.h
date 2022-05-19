@@ -7,11 +7,7 @@
 #pragma comment( lib, "SDL/libx86/SDL2main.lib" )
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
 
-
 #include "SDL_Mixer/include/SDL_mixer.h"
-
-
-
 
 #include "Module.h"
 #include "Globals.h"

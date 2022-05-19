@@ -17,9 +17,9 @@ struct Collider {
 		WATER,
 		TRENCH,
 		HOSTAGE,
-		BARRICADE,
+		BREAKABLE,
 		NON_DEST_BAR,
-		
+		EXPLOSION,
 
 		MAX
 	};

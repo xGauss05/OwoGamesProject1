@@ -1399,7 +1399,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			currentAnimBot = &trenchAnimBot;
 			place = Place::TRENCH;
 			break;
-		case Collider::Type::BARRICADE:
+		case Collider::Type::BREAKABLE:
 			switch (movementDir) {
 			case UP:
 				position.y += speed;

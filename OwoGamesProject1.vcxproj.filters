@@ -36,6 +36,9 @@
     <Filter Include="Archivos de origen\Modules\Gameplay\Scenes">
       <UniqueIdentifier>{357942ff-5878-47bb-a059-c32fcdcccd15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Entities\Breakables">
+      <UniqueIdentifier>{35389294-3563-4e34-9f4c-41c35b9ac133}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -136,6 +139,21 @@
     </ClCompile>
     <ClCompile Include="BossPhase1.cpp">
       <Filter>Archivos de origen\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable.cpp">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable_Barricade.cpp">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable_Bridge.cpp">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable_Fence.cpp">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBreakable.cpp">
+      <Filter>Archivos de origen\Modules\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +261,21 @@
     </ClInclude>
     <ClInclude Include="BossPhase1.h">
       <Filter>Archivos de origen\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable.h">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable_Barricade.h">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable_Bridge.h">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable_Fence.h">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBreakable.h">
+      <Filter>Archivos de origen\Modules\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

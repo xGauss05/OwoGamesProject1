@@ -11,6 +11,7 @@
 #include "ModuleRender.h"
 #include "ModuleEnemies.h"
 #include "ModulePowerup.h"
+#include "ModuleBreakable.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
 #include "ModuleDebug.h"
@@ -39,11 +40,12 @@ Application::Application() {
 	modules[10] = enemies = new ModuleEnemies(false);
 	modules[11] = particles = new ModuleParticles(true);
 	modules[12] = powerups = new ModulePowerup(false);
-	modules[13] = collisions = new ModuleCollisions(false);
-	modules[14] = fade = new ModuleFadeToBlack(true);
-	modules[15] = fonts = new ModuleFonts(true);
-	modules[16] = debug = new ModuleDebug(true);
-	modules[17] = render = new ModuleRender(true);
+	modules[13] = breakables = new ModuleBreakable(false);
+	modules[14] = collisions = new ModuleCollisions(false);
+	modules[15] = fade = new ModuleFadeToBlack(true);
+	modules[16] = fonts = new ModuleFonts(true);
+	modules[17] = debug = new ModuleDebug(true);
+	modules[18] = render = new ModuleRender(true);
 }
 
 Application::~Application() {
