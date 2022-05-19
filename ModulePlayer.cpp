@@ -1150,7 +1150,7 @@ update_status ModulePlayer::Update() {
 		idleAnimBot.frames[0] = currentAnimBot->GetCurrentFrame();
 	}
 
-	if (ammunition == 0)
+	if (ammunition == 0 && weapon != Weapon::NORMAL)
 		weapon = Weapon::NORMAL;
 
 	if (!dead) {
@@ -1312,23 +1312,38 @@ update_status ModulePlayer::PostUpdate() {
 	}
 
 	// UI ---
-	App->fonts->BlitText(10, 10, 0, "POINTS");
+	App->fonts->BlitText(15, 20, 0, "1 UP");
 	std::string temp = std::to_string(score);
 	char const* num_char = temp.c_str();
-	App->fonts->BlitText(10, 20, 0, num_char);
-	App->fonts->BlitText(SCREEN_WIDTH - 80, 10, 0, "AMMO");
-	if (weapon == Weapon::NORMAL) {
-		App->fonts->BlitText(SCREEN_WIDTH - 80, 20, 0, "INF");
-	} else {
-		temp = std::to_string(ammunition);
-		num_char = temp.c_str();
-		App->fonts->BlitText(SCREEN_WIDTH - 80, 20, 0, num_char);
+	App->fonts->BlitText(15, 30, 0, num_char);
+
+	// decorative UI
+	App->fonts->BlitText(SCREEN_WIDTH - 45, 20, 0, "2 UP");
+	App->fonts->BlitText(SCREEN_WIDTH - 20, 30, 0, "0");
+	App->fonts->BlitText(80, 10, 0, "HI");
+	App->fonts->BlitText(120, 10, 0, "30000");
+	App->fonts->BlitText(SCREEN_WIDTH - 75, SCREEN_HEIGHT - 15, 0, "CREDITS 0");
+
+	if (lives == 1) {
+		//App->fonts->BlitText(SCREEN_WIDTH - 75, SCREEN_HEIGHT - 15, 0, "CREDITS 0");
+	} else if (lives == 2) {
+		//App->fonts->BlitText(SCREEN_WIDTH - 75, SCREEN_HEIGHT - 15, 0, "CREDITS 0");
+
 	}
-	App->fonts->BlitText(SCREEN_WIDTH - 80, 30, 0, "GRENADES");
+	// need to change for the grenade icon
+	App->fonts->BlitText(5, 45, 0, "GRENADES");
 	temp = std::to_string(grenades);
 	num_char = temp.c_str();
-	App->fonts->BlitText(SCREEN_WIDTH - 80, 40, 0, num_char);
+	App->fonts->BlitText(5, 55, 0, num_char);
 
+	if (weapon != Weapon::NORMAL) {
+		// need to change for the ammo icon
+		App->fonts->BlitText(5, 65, 0, "AMMO");
+		temp = std::to_string(ammunition);
+		num_char = temp.c_str();
+		App->fonts->BlitText(5, 75, 0, num_char);
+	}
+	
 	return update_status::UPDATE_CONTINUE;
 }
 

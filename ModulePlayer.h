@@ -10,6 +10,7 @@ struct Collider;
 
 #define MAX_AMMO	50
 #define MAX_GRENADES 50
+
 enum Directions {
 	UP, DOWN, RIGHT, 
 	LEFT, UP_RIGHT, UP_LEFT, 
@@ -157,7 +158,7 @@ public:
 	// The player's collider
 	Collider* collider = nullptr;
 
-	// A flag to detect when the player has been destroyed
+	// A flag to detect when the player has been killed
 	bool dead = false;
 
 	// God mode flag
@@ -172,13 +173,13 @@ public:
 	// Score of the player
 	uint score;
 
-	// Lives of the playes
-	uint lives;
+	// Lives of the player
+	ushort lives = 2;
 
 	// Amount of grenades available. Max defined in MAX_GRENADES
 	ushort grenades = MAX_GRENADES;
 
-	// Sound effects indices
+	// Sound effects indexes
 	uint shotFx = 0;
 	uint playerDeadFx = 0;
 	uint heavyRifleFx = 0;
