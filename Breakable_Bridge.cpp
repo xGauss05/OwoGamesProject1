@@ -8,8 +8,6 @@
 
 Breakable_Bridge::Breakable_Bridge(int x, int y) : Breakable(x, y) {
 	collider = App->collisions->AddCollider({ 0, 0, 23, 23 }, Collider::Type::BREAKABLE, (Module*)App->breakables);
-
-
 }
 
 void Breakable_Bridge::Update() {

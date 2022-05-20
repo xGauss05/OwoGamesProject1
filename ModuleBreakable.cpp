@@ -24,8 +24,7 @@ ModuleBreakable::~ModuleBreakable() {
 }
 
 bool ModuleBreakable::Start() {
-	breakableTexture = App->textures->Load("Assets/img/sprites/Guerrilla War Enemy Spritesheet.png");
-	//enemyDestroyedFx = App->audio->LoadFx("Assets/explosion.wav");
+	breakableTexture = App->textures->Load("Assets/img/sprites/breakables.png");
 
 	return true;
 }
@@ -128,7 +127,6 @@ void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 				break;
 			}
 			breakables[i]->texture = breakableTexture;
-			breakables[i]->destroyedFx = enemyDestroyedFx;
 			break;
 		}
 	}

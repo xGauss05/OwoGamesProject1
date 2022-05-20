@@ -71,8 +71,6 @@ private:
 	// The enemies sprite sheet
 	SDL_Texture* breakableTexture = nullptr;
 
-	// The audio fx for destroying an enemy
-	int enemyDestroyedFx = 0;
 };
 
 #endif // __MODULE_BREAKABLE_H__
