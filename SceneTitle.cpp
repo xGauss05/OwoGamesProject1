@@ -21,7 +21,7 @@ bool SceneTitle::Start() {
 	bool ret = true;
 
 	// Placeholder
-	bgTexture = App->textures->Load("Assets/img/sprites/title.png");
+	bgTexture = App->textures->Load("Assets/img/sprites/WIP_title_map.png");
 	
 	App->audio->PlayMusic("Assets/sounds/bgm/112.ogg", 1.0f);
 	duration = 0;
@@ -60,7 +60,7 @@ bool SceneTitle::Start() {
 	playerMiniAnim.PushBack({ 320, 0, 32, 32 });
 	playerMiniAnim.PushBack({ 352, 0, 32, 32 });
 	playerMiniAnim.loop = false;
-	playerMiniAnim.speed = 0.1f;
+	playerMiniAnim.speed = 0.21f;
 
 	boatAnim.PushBack({ 0 , 64, 32, 96 });
 	boatAnim.PushBack({ 32, 64, 32, 96 });
@@ -100,8 +100,8 @@ bool SceneTitle::Start() {
 	assetsAnim[11] = planesAnim;
 	assetsAnim[12] = planesAnim;
 
-	boat.x = (SCREEN_WIDTH / 2) - 16;
-	boat.y = (SCREEN_HEIGHT / 2) + 32;
+	boat.x = (SCREEN_WIDTH / 2) - 8;
+	boat.y = (SCREEN_HEIGHT / 2) + 64;
 
 	planes[0].x = (SCREEN_WIDTH / 2) - 64;
 	planes[0].y = SCREEN_HEIGHT + 96;
@@ -110,15 +110,15 @@ bool SceneTitle::Start() {
 	planes[2].x = SCREEN_WIDTH - 96;
 	planes[2].y = SCREEN_HEIGHT + 128 + 96;
 
-	playerMini.x = SCREEN_WIDTH;
+	playerMini.x = -32;
 	bombs[0].x = SCREEN_WIDTH;
-	bombs[1].x = -16;
+	bombs[1].x = -32;
 	bombs[2].x = SCREEN_WIDTH;
-	bombs[3].x = -16;
+	bombs[3].x = -32;
 	bombs[4].x = SCREEN_WIDTH;
-	bombs[5].x = -16;
+	bombs[5].x = -32;
 	bombs[6].x = SCREEN_WIDTH;
-	bombs[7].x = -16;
+	bombs[7].x = -32;
 
 
 	return ret;
@@ -134,70 +134,88 @@ update_status SceneTitle::Update() {
 		return update_status::UPDATE_STOP;
 	}
 
-	if (duration < 400) {
+	if (duration < 360) {
+		App->render->camera.y -= 2;
+	}
+	if (duration < 400 && duration >= 360) {
 		App->render->camera.y -= 1;
 	}
-	if (duration < 405) {
+	if (duration < 360) {
+		boat.y -= 2;
+	}
+	if (duration < 405 && duration >= 360) {
 		boat.y -= 1;
 	}
 	
 	if (duration == 180) {
-		bombs[0].x = 104;
-		bombs[0].y = -4;
 		assetsAnim[2].Reset();
+		bombs[0].x = (SCREEN_WIDTH / 2) - 8;
+		bombs[0].y = -176;
 	}
-	if (duration == 188) {
-		bombs[1].x = 104;
-		bombs[1].y = -12;
+	if (duration == 185) {
 		assetsAnim[3].Reset();
+		bombs[1].x = (SCREEN_WIDTH / 2) - 8;
+		bombs[1].y = -206;
 	}
-	if (duration == 196) {
-		bombs[2].x = 104;
-		bombs[2].y = -20;
+	if (duration == 200) {
 		assetsAnim[4].Reset();
+		bombs[2].x = (SCREEN_WIDTH / 2) - 8;
+		bombs[2].y = -236;
 	}
-	if (duration == 204) {
-		bombs[3].x = 104;
-		bombs[3].y = -28;
+	if (duration == 210) {
 		assetsAnim[5].Reset();
-	}
-	if (duration == 212) {
-		bombs[4].x = 104;
-		bombs[4].y = -36;
-		assetsAnim[6].Reset();
+		bombs[3].x = (SCREEN_WIDTH / 2) - 8;
+		bombs[3].y = -266;
 	}
 	if (duration == 220) {
-		bombs[5].x = 104;
-		bombs[5].y = -44;
+		assetsAnim[6].Reset();
+		bombs[4].x = (SCREEN_WIDTH / 2) - 8;
+		bombs[4].y = -296;
+	}
+	if (duration == 230) {
 		assetsAnim[7].Reset();
+		bombs[5].x = (SCREEN_WIDTH / 2) - 8;
+		bombs[5].y = -326;
 	}
-	if (duration == 228) {
-		bombs[6].x = 104;
-		bombs[6].y = -52;
+	if (duration == 240) {
 		assetsAnim[8].Reset();
+		bombs[6].x = (SCREEN_WIDTH / 2) - 8;
+		bombs[6].y = -356;
 	}
-	if (duration == 236) {
-		bombs[7].x = 104;
-		bombs[7].y = -60;
+	if (duration == 250) {
 		assetsAnim[9].Reset();
+		bombs[7].x = (SCREEN_WIDTH / 2) - 8;
+		bombs[7].y = -386;
+	}
+	if (duration == 425) {
+		assetsAnim[1].Reset();
+		playerMini.x = boat.x;
+		playerMini.y = boat.y + 16;
 	}
 
 	for (int i = 0; i < 8; ++i) {
 		if (i % 2 == 0) {
 			if (assetsAnim[i + 2].GetCurrentFrameNum() < 6) {
 				bombs[i].x += 1;
+				bombs[i].y -= 2;
 			}
 		}
 		else {
 			if (assetsAnim[i + 2].GetCurrentFrameNum() < 6) {
 				bombs[i].x -= 1;
+				bombs[i].y -= 2;
 			}
 		}
 	}
 
-	planes[0].y -= 3;
-	planes[1].y -= 3;
-	planes[2].y -= 3;
+	if (assetsAnim[1].GetCurrentFrameNum() < 8) {
+		playerMini.x -= 1;
+		playerMini.y -= 1;
+	}
+
+	planes[0].y -= 4;
+	planes[1].y -= 4;
+	planes[2].y -= 4;
 
 	for (int i = 0; i < MAX_ASSETS_TITLE; ++i) {
 		assetsAnim[i].Update();
@@ -213,7 +231,7 @@ update_status SceneTitle::Update() {
 
 // Update: draw background
 update_status SceneTitle::PostUpdate() {
-	//App->render->Blit(bgTexture, 0, 0, NULL);
+	App->render->Blit(bgTexture, 0, SCREEN_HEIGHT - 1144, NULL);
 
 	for (int i = 0; i < MAX_ASSETS_TITLE; ++i) {
 		SDL_Rect rect = assetsAnim[i].GetCurrentFrame();

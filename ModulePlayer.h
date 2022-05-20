@@ -154,7 +154,7 @@ public:
 	Animation leftThrowGrenade;
 
 	ushort deathCooldown = 0;
-
+	ushort invincibleCooldown = 0;
 	// The player's collider
 	Collider* collider = nullptr;
 

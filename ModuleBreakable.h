@@ -7,7 +7,8 @@
 
 enum class BREAKABLE_TYPE {
 	NO_TYPE,
-	BARRICADE,
+	BARRICADE_H,
+	BARRICADE_V,
 	BRIDGE,
 	FENCE,
 };
@@ -71,8 +72,6 @@ private:
 	// The enemies sprite sheet
 	SDL_Texture* breakableTexture = nullptr;
 
-	// The audio fx for destroying an enemy
-	int enemyDestroyedFx = 0;
 };
 
 #endif // __MODULE_BREAKABLE_H__

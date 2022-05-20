@@ -16,39 +16,39 @@ public:
 	// Destructor
 	virtual ~Breakable();
 
-	// Returns the enemy's collider
+	// Returns the breakable's collider
 	const Collider* GetCollider() const;
 
-	// Called from inhering enemies' Udpate
+	// Called from inhering breakable' Udpate
 	// Updates animation and collider position
 	virtual void Update();
 
-	// Called from ModuleEnemies' Update
+	// Called from ModuleBreakables' Update
 	virtual void Draw();
 
 	// Collision response
-	// Triggers an animation and a sound fx
 	virtual void OnCollision(Collider* collider);
 
 public:
 	// The current position in the world
 	iPoint position;
 
-	// The enemy's texture
+	// The breakable's texture
 	SDL_Texture* texture = nullptr;
-
-	// Sound fx when destroyed
-	int destroyedFx = 0;
 
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
 
-	// The enemy's collider
+	// Breakable animation
+	Animation animation;
+
+	// The breakable's collider
 	Collider* collider = nullptr;
 
 	// Original spawn position. Stored for movement calculations
 	iPoint spawnPos;
+
 };
 
 #endif // __BREAKABLE_H__

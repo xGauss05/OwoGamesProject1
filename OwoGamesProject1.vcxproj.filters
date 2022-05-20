@@ -143,7 +143,7 @@
     <ClCompile Include="Breakable.cpp">
       <Filter>Archivos de origen\Entities\Breakables</Filter>
     </ClCompile>
-    <ClCompile Include="Breakable_Barricade.cpp">
+    <ClCompile Include="Breakable_Barricade_H.cpp">
       <Filter>Archivos de origen\Entities\Breakables</Filter>
     </ClCompile>
     <ClCompile Include="Breakable_Bridge.cpp">
@@ -157,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="Enemy_Tackler.cpp">
       <Filter>Archivos de origen\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable_Barricade_V.cpp">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -268,7 +271,7 @@
     <ClInclude Include="Breakable.h">
       <Filter>Archivos de origen\Entities\Breakables</Filter>
     </ClInclude>
-    <ClInclude Include="Breakable_Barricade.h">
+    <ClInclude Include="Breakable_Barricade_H.h">
       <Filter>Archivos de origen\Entities\Breakables</Filter>
     </ClInclude>
     <ClInclude Include="Breakable_Bridge.h">
@@ -282,6 +285,9 @@
     </ClInclude>
     <ClInclude Include="Enemy_Tackler.h">
       <Filter>Archivos de origen\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable_Barricade_V.h">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

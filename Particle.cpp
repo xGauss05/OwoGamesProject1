@@ -1,5 +1,4 @@
 #include "Particle.h"
-
 #include "Collider.h"
 
 Particle::Particle() {
@@ -15,14 +14,6 @@ isHostage(p.isHostage) {
 Particle::~Particle() {
 	if (collider != nullptr)
 		collider->pendingToDelete = true;
-}
-
-void Particle::setExplodes() {
-	this->explodes = !this->explodes;
-}
-
-void Particle::setIsExplosion() {
-	this->isExplosion = !this->isExplosion;
 }
 
 bool Particle::Update() {

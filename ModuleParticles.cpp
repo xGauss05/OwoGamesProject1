@@ -240,6 +240,7 @@ bool ModuleParticles::Start() {
 	fthrower_right.speed.x = 5;
 	fthrower_right.speed.y = 0;
 
+	// Grenade player/enemy shots
 	grenade.anim.PushBack({ 0,160,16,16 });
 	grenade.anim.PushBack({ 16,160,16,16 });
 	grenade.anim.PushBack({ 32,160,16,16 });
@@ -303,6 +304,7 @@ bool ModuleParticles::Start() {
 	hostageDeathBot.anim.speed = 0.05f;
 	hostageDeathBot.anim.loop = false;
 	hostageDeathBot.isHostage = true;
+
 	return true;
 }
 
@@ -324,8 +326,11 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2) {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && particles[i]->collider == c1) {
-			if (c2->type == Collider::Type::PLAYER) {
-				// c1->type == Collider:Type::ENEMY_SHOT
+			if (c2->type == Collider::Type::BREAKABLE) {
+				if (particles[i]->explodes && !particles[i]->isExplosion) {
+					App->particles->AddParticle(App->particles->grenExplosion, particles[i]->position.x - 26, particles[i]->position.y - 26, Collider::Type::EXPLOSION);
+					App->audio->PlayFx(grenadeExplosionFx);
+				}
 			}
 			if (!particles[i]->isExplosion && !particles[i]->isHostage) {
 				delete particles[i];
