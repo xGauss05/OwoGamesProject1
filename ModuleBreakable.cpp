@@ -7,7 +7,8 @@
 #include "ModuleAudio.h"
 
 #include "Breakable.h"
-#include "Breakable_Barricade.h"
+#include "Breakable_Barricade_H.h"
+#include "Breakable_Barricade_V.h"
 #include "Breakable_Bridge.h"
 #include "Breakable_Fence.h"
 
@@ -116,8 +117,11 @@ void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
 		if (breakables[i] == nullptr) {
 			switch (info.type) {
-			case BREAKABLE_TYPE::BARRICADE:
-				breakables[i] = new Breakable_Barricade(info.x, info.y);
+			case BREAKABLE_TYPE::BARRICADE_H:
+				breakables[i] = new Breakable_Barricade_H(info.x, info.y);
+				break;
+			case BREAKABLE_TYPE::BARRICADE_V:
+				breakables[i] = new Breakable_Barricade_V(info.x, info.y);
 				break;
 			case BREAKABLE_TYPE::BRIDGE:
 				breakables[i] = new Breakable_Bridge(info.x, info.y);

@@ -45,7 +45,7 @@ bool SceneLevel1::Start() {
 	//App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 310, 300);
 
 	// Breakables ---
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 260, -60);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 260, -60);
 	//App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 260, -60);
 	//App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 300, -60);
 	// Colliders --- Make collision boxes here

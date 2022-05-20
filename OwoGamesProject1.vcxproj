@@ -142,7 +142,8 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="BossPhase1.cpp" />
     <ClCompile Include="Breakable.cpp" />
-    <ClCompile Include="Breakable_Barricade.cpp" />
+    <ClCompile Include="Breakable_Barricade_H.cpp" />
+    <ClCompile Include="Breakable_Barricade_V.cpp" />
     <ClCompile Include="Breakable_Bridge.cpp" />
     <ClCompile Include="Breakable_Fence.cpp" />
     <ClCompile Include="Collider.cpp" />
@@ -183,7 +184,8 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="BossPhase1.h" />
     <ClInclude Include="Breakable.h" />
-    <ClInclude Include="Breakable_Barricade.h" />
+    <ClInclude Include="Breakable_Barricade_H.h" />
+    <ClInclude Include="Breakable_Barricade_V.h" />
     <ClInclude Include="Breakable_Bridge.h" />
     <ClInclude Include="Breakable_Fence.h" />
     <ClInclude Include="Collider.h" />
