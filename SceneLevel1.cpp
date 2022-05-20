@@ -29,13 +29,12 @@ bool SceneLevel1::Start() {
 	paralaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.png");
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 
-	// Entities --- Add enemies/powerups/breakables here
-	// Power Ups ---
-	//App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 300, -60);
-	//App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 240, -60);
-	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 230, -60);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 300, -60);
 
-	// Enemies ---
+	// Entities --- Add enemies/powerups here
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 300, -60);
+	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 240, -60);
+	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 230, -60);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -60);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 180, -500);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);
@@ -44,10 +43,6 @@ bool SceneLevel1::Start() {
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, 300, 1);
 	//App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 310, 300);
 
-	// Breakables ---
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 260, -60);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 260, -60);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 300, -60);
 	// Colliders --- Make collision boxes here
 	// Left colliders
 	App->collisions->AddCollider({ 30, 140, 30, 100 }, Collider::Type::WALL);
@@ -131,111 +126,108 @@ bool SceneLevel1::Start() {
 
 
 	// Rock
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 128, -430);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 160, -430);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 256, -430);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 288, -430);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 288, -840);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 320, -840);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 128, -936);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 160, -936);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 192, -936);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 416, -1415);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 448, -1415);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 480, -1455);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 128, -430);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 160, -430);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 256, -430);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 288, -430);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 288, -840);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 320, -840);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 128, -930);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 160, -930);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 192, -930);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 416, -1415);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 448, -1415);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 480, -1455);
 
-	
-	//App->collisions->AddCollider({ 415, -1415, 32, 15 }, Collider::Type::BREAKABLE);
-	//App->collisions->AddCollider({ 447, -1415, 32, 15 }, Collider::Type::BREAKABLE);
-	//App->collisions->AddCollider({ 485, -1455, 15, 32 }, Collider::Type::BREAKABLE);
-	
-	App->collisions->AddCollider({ 255, -1815, 32, 15 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 287, -1815, 32, 15 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 319, -1815, 32, 15 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 351, -1815, 32, 15 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 383, -1815, 32, 15 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 415, -1815, 32, 15 }, Collider::Type::BREAKABLE);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 255, -1815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 287, -1815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 319, -1815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 351, -1815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 383, -1815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 415, -1815);
 
-	App->collisions->AddCollider({ 540, -1815, 32, 15 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 572, -1815, 32, 15 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 604, -1815, 32, 15 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 636, -1815, 32, 15 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 668, -1815, 32, 15 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 700, -1815, 32, 15 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 732, -1815, 32, 15 }, Collider::Type::BREAKABLE);
-
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 540, -1815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 572, -1815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 604, -1815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 636, -1815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 668, -1815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 700, -1815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 732, -1815);
 
 
 	//triangle
-	App->collisions->AddCollider({ 448, -1550, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 480, -1550, 32, 32 }, Collider::Type::BREAKABLE);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 448, -1550);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 480, -1550);
 
-	App->collisions->AddCollider({ 320, -1940, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 352, -1940, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 384, -1940, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 416, -1940, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 546, -1940, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 578, -1940, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 610, -1940, 32, 32 }, Collider::Type::BREAKABLE);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 320, -1940);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -1940);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 384, -1940);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 416, -1940);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 546, -1940);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 578, -1940);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 610, -1940);
 
-	App->collisions->AddCollider({ 352, -2070, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 578, -2070, 32, 32 }, Collider::Type::BREAKABLE);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -2070);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 578, -2070);
 
-	App->collisions->AddCollider({ 416, -2102, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 448, -2102, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 480, -2102, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 448, -2134, 32, 32 }, Collider::Type::BREAKABLE);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 416, -2102);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 448, -2102);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 480, -2102);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 448, -2102);
 
-	App->collisions->AddCollider({ 320, -2230, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 320, -2198, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 352, -2230, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 352, -2198, 32, 32 }, Collider::Type::BREAKABLE);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 320, -2230);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 320, -2230);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -2230);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -2230);
 
-	App->collisions->AddCollider({ 578, -2355, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 610, -2355, 32, 32 }, Collider::Type::BREAKABLE);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 578, -2355);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 610, -2355);
 
-	App->collisions->AddCollider({ 578, -2862, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 610, -2862, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 610, -2830, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 642, -2830, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 674, -2830, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 706, -2830, 32, 32 }, Collider::Type::BREAKABLE);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 578, -2862);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 610, -2862);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 610, -2830);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 642, -2830);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 674, -2830);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 706, -2830);
 
-	App->collisions->AddCollider({ 802, -2830, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 834, -2830, 32, 32 }, Collider::Type::BREAKABLE);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 802, -2830);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 834, -2830);
+
 
 	//Fence
-	App->collisions->AddCollider({ 255, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 287, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 319, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 351, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 383, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 415, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 447, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 479, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 511, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 543, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 575, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 607, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 639, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 671, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 703, -1890, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 735, -1890, 32, 45 }, Collider::Type::BREAKABLE);
 
-	App->collisions->AddCollider({ 255, -2275, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 287, -2275, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 319, -2275, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 351, -2275, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 383, -2275, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 415, -2275, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 511, -2275, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 543, -2275, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 575, -2275, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 607, -2275, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 639, -2275, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 671, -2275, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 703, -2275, 32, 45 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 735, -2275, 32, 45 }, Collider::Type::BREAKABLE);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 255, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 287, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 319, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 351, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 383, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 415, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 447, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 479, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 511, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 543, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 575, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 607, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 639, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 671, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 703, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 735, -1890);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 255, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 287, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 319, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 351, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 383, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 415, -2275);
+	
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 511, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 543, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 575, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 607, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 639, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 671, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 703, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 735, -2275);
 
 	// Non destroyable barricade
 	App->collisions->AddCollider({ 575, -1680, 65, 30 }, Collider::Type::NON_DEST_BAR);
@@ -248,7 +240,7 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 255, -2165, 30, 195 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 255, -2225, 60, 60 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 670, -2225, 30, 255 }, Collider::Type::NON_DEST_BAR);
-	App->collisions->AddCollider({ 255, -2320, 95, 30 }, Collider::Type::NON_DEST_BAR);
+	App->collisions->AddCollider({ 255, -2320, 95, 30  }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 670, -2320, 195, 30 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 515, -2645, 130, 60 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 610, -2675, 30, 30 }, Collider::Type::NON_DEST_BAR);
@@ -275,6 +267,7 @@ bool SceneLevel1::Start() {
 
 	// Water
 		//First
+
 	App->collisions->AddCollider({ 80, 210, 325, 30 }, Collider::Type::WATER);
 	App->collisions->AddCollider({ 110, 180, 260, 30 }, Collider::Type::WATER);
 	App->collisions->AddCollider({ 140, 140, 225, 40 }, Collider::Type::WATER);
@@ -330,7 +323,7 @@ bool SceneLevel1::Start() {
 	App->powerups->Enable();
 	App->breakables->Enable();
 	App->collisions->Enable();
-
+	
 	App->render->camera.x = App->player->position.x - SCREEN_WIDTH / 2 + 16;
 	App->render->camera.y = App->player->position.y - SCREEN_HEIGHT / 1.5f;
 
@@ -354,7 +347,7 @@ bool SceneLevel1::CleanUp() {
 	App->collisions->Disable();
 	App->breakables->Disable();
 	App->powerups->Disable();
-	App->enemies->Disable();
+   	App->enemies->Disable();
 	App->player->Disable();
 	App->textures->Unload(bgTexture);
 	bgTexture = nullptr;
