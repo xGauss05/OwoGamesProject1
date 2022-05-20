@@ -139,6 +139,7 @@ void ModuleBreakable::OnCollision(Collider* c1, Collider* c2) {
 		if (breakables[i] != nullptr && breakables[i]->GetCollider() == c1) {
 			breakables[i]->OnCollision(c2); // Notify the breakable of a collision
 			if (c2->type == Collider::Type::EXPLOSION) {
+				
 				delete breakables[i];
 				breakables[i] = nullptr;
 			}

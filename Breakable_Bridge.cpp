@@ -18,6 +18,6 @@ void Breakable_Bridge::Update() {
 
 void Breakable_Bridge::OnCollision(Collider* collider) {
 	if (collider->type == Collider::Type::EXPLOSION) {
-		this->collider->type = Collider::Type::WATER;
+		App->collisions->AddCollider({ this->position.x, this->position.y, 23, 23 }, Collider::Type::WATER);
 	}
 }

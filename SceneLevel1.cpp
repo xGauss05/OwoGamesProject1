@@ -29,13 +29,16 @@ bool SceneLevel1::Start() {
 	paralaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.png");
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 300, -60);
 
-	// Entities --- Add enemies/powerups here
+
+	// Entities --- Add enemies/powerups/breakables here
+	// Power Ups ---
 	//App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 300, -60);
 	//App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 240, -60);
 	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 230, -60);
-	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -60);
+
+	// Enemies ---
+	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -60);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 180, -500);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);
 	//App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 230, -600);
@@ -43,6 +46,10 @@ bool SceneLevel1::Start() {
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, 300, 1);
 	//App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 310, 300);
 
+	// Breakables ---
+	//App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 300, -60);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 260, -60);
+	//App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 300, -60);
 	// Colliders --- Make collision boxes here
 	// Left colliders
 	App->collisions->AddCollider({ 30, 140, 30, 100 }, Collider::Type::WALL);
@@ -129,7 +136,7 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 415, -1415, 32, 15 }, Collider::Type::BREAKABLE);
 	App->collisions->AddCollider({ 447, -1415, 32, 15 }, Collider::Type::BREAKABLE);
 	App->collisions->AddCollider({ 485, -1455, 15, 32 }, Collider::Type::BREAKABLE);
-	
+
 	App->collisions->AddCollider({ 255, -1815, 32, 15 }, Collider::Type::BREAKABLE);
 	App->collisions->AddCollider({ 287, -1815, 32, 15 }, Collider::Type::BREAKABLE);
 	App->collisions->AddCollider({ 319, -1815, 32, 15 }, Collider::Type::BREAKABLE);
@@ -229,7 +236,7 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 255, -2165, 30, 195 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 255, -2225, 60, 60 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 670, -2225, 30, 255 }, Collider::Type::NON_DEST_BAR);
-	App->collisions->AddCollider({ 255, -2320, 95, 30  }, Collider::Type::NON_DEST_BAR);
+	App->collisions->AddCollider({ 255, -2320, 95, 30 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 670, -2320, 195, 30 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 515, -2645, 130, 60 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 610, -2675, 30, 30 }, Collider::Type::NON_DEST_BAR);
@@ -278,14 +285,14 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 525, -2545, 160, 25 }, Collider::Type::TRENCH);
 	App->collisions->AddCollider({ 720, -2765, 100, 25 }, Collider::Type::TRENCH);
 	App->collisions->AddCollider({ 690, -3440, 135, 25 }, Collider::Type::TRENCH);
-	
+
 
 	App->player->Enable();
 	App->enemies->Enable();
 	App->powerups->Enable();
 	App->breakables->Enable();
 	App->collisions->Enable();
-	
+
 	App->render->camera.x = App->player->position.x - SCREEN_WIDTH / 2 + 16;
 	App->render->camera.y = App->player->position.y - SCREEN_HEIGHT / 1.5f;
 
@@ -309,7 +316,7 @@ bool SceneLevel1::CleanUp() {
 	App->collisions->Disable();
 	App->breakables->Disable();
 	App->powerups->Disable();
-   	App->enemies->Disable();
+	App->enemies->Disable();
 	App->player->Disable();
 	App->textures->Unload(bgTexture);
 	bgTexture = nullptr;

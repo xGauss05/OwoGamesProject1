@@ -1261,7 +1261,8 @@ update_status ModulePlayer::Update() {
 	}
 
 	// Insta lose cheat
-	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN && !dead) {
+	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN && 
+		!dead) {
 		// Handle insta lose
 		dead = true;
 		lives--;
