@@ -22,9 +22,6 @@ public:
 	// Handles the logic of the particle
 	// Returns false when the particle reaches its lifetime
 	bool Update();
-
-	void setExplodes();
-	void setIsExplosion();
 	
 public:
 	// Defines the position in the screen

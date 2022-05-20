@@ -83,6 +83,9 @@ void ModuleDebug::DebugDraw() {
 		case Collider::Type::NON_DEST_BAR:
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 100, 255, 0, alpha);
 			break;
+		case Collider::Type::EXPLOSION:
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 255/2, 0, alpha);
+			break;
 		default:
 			break;
 		}

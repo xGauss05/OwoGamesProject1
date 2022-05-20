@@ -240,6 +240,7 @@ bool ModuleParticles::Start() {
 	fthrower_right.speed.x = 5;
 	fthrower_right.speed.y = 0;
 
+	// Grenade player/enemy shots
 	grenade.anim.PushBack({ 0,160,16,16 });
 	grenade.anim.PushBack({ 16,160,16,16 });
 	grenade.anim.PushBack({ 32,160,16,16 });
@@ -253,7 +254,7 @@ bool ModuleParticles::Start() {
 	grenade.anim.PushBack({ 160,160,16,16 });
 	grenade.anim.PushBack({ 176,160,16,16 });
 	grenade.anim.loop = true;
-	grenade.lifetime = 90;
+	grenade.lifetime = 60;
 	grenade.anim.speed = 0.2f;
 	grenade.speed.x = 0;
 	grenade.speed.y = 5;
@@ -303,6 +304,7 @@ bool ModuleParticles::Start() {
 	hostageDeathBot.anim.speed = 0.05f;
 	hostageDeathBot.anim.loop = false;
 	hostageDeathBot.isHostage = true;
+
 	return true;
 }
 
