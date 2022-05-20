@@ -9,6 +9,7 @@
 #include "Enemy.h"
 #include "Enemy_GreenSoldier.h"
 #include "Enemy_RedSoldier.h"
+#include "Enemy_Tackler.h"
 
 #define SPAWN_MARGIN	50
 
@@ -152,6 +153,11 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 			case ENEMY_TYPE::REDSOLDIER:
 				enemies[i] = new Enemy_RedSoldier(info.x, info.y);
 				enemies[i]->texture = redEnemyTexture;
+				enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
+				break;
+			case ENEMY_TYPE::TACKLER:
+				enemies[i] = new Enemy_Tackler(info.x, info.y);
+				enemies[i]->texture = greenEnemyTexture;
 				enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
 				break;
 			}

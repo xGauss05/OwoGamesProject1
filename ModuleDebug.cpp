@@ -23,10 +23,13 @@ update_status ModuleDebug::Update() {
 	if (debug)
 	{
 		if (App->input->keys[SDL_SCANCODE_T] == KEY_DOWN)
-			text = !text;
+			variables = !variables;
 
 		if (App->input->keys[SDL_SCANCODE_C] == KEY_DOWN)
 			camLimits = !camLimits;
+
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_DOWN)
+			spawn = !spawn;
 	}
 
 	return update_status::UPDATE_CONTINUE;
@@ -102,8 +105,31 @@ void ModuleDebug::DebugDraw() {
 		}
 	}
 
-	App->fonts->BlitText(10, 50 , 0, "PRESS T FOR VARIABLES");
-	App->fonts->BlitText(10, 60 , 0, "PRESS C FOR CAM LIMITS");
+	App->fonts->BlitText(10, 100 , 0, "PRESS T FOR VARIABLES");
+	App->fonts->BlitText(10, 110 , 0, "PRESS C FOR CAM LIMITS");
+	App->fonts->BlitText(10, 120 , 0, "PRESS I FOR SPAWN MENU");
+
+	//Spawn Enemies 
+	if (spawn)
+	{
+		App->fonts->BlitText(10, 130, 0, "SPAWN.");
+		App->fonts->BlitText(60, 130, 0, "1.GREENSOLDIER");
+		App->fonts->BlitText(60, 140, 0, "2.REDSOLDIER");
+		App->fonts->BlitText(60, 150, 0, "3.TACKLER");
+
+		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
+		}
+		if (App->input->keys[SDL_SCANCODE_2] == KEY_DOWN)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
+		}
+		if (App->input->keys[SDL_SCANCODE_3] == KEY_DOWN)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, App->player->position.x, App->player->position.y - 400, 0);
+		}
+	}
 
 	//Camera limits debug
 	if (camLimits)
@@ -119,7 +145,7 @@ void ModuleDebug::DebugDraw() {
 	}
 
 	//Variables debug
-	if (text)
+	if (variables)
 	{
 		App->fonts->BlitText(10, DEBUG_BOX + -40, 0, "VARIABLES");
 

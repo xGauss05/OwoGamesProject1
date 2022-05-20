@@ -46,7 +46,7 @@ Enemy_RedSoldier::Enemy_RedSoldier(int x, int y) : Enemy(x, y)
 	path.PushBack({ 0, 1.0f }, 50);
 
 
-	collider = App->collisions->AddCollider({ 0, 0, 36, 72 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0, 0, 32, 64 }, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
 void Enemy_RedSoldier::Update()
@@ -127,37 +127,46 @@ void Enemy_RedSoldier::Shoot()
 		switch (looking)
 		{
 		case Directions::UP:
-			App->particles->AddParticle(App->particles->shot_up, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
+			App->particles->enemy_shot.speed.x = 0;
+			App->particles->enemy_shot.speed.y = -SHOT_SPEED_STRAIGHT;
 			break;
 
 		case Directions::UP_RIGHT:
-			App->particles->AddParticle(App->particles->shot_up_right, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
+			App->particles->enemy_shot.speed.x = SHOT_SPEED_DIAGONAL;
+			App->particles->enemy_shot.speed.y = -SHOT_SPEED_DIAGONAL;
 			break;
 
 		case Directions::UP_LEFT:
-			App->particles->AddParticle(App->particles->shot_up_left, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
+			App->particles->enemy_shot.speed.x = -SHOT_SPEED_DIAGONAL;
+			App->particles->enemy_shot.speed.y = -SHOT_SPEED_DIAGONAL;
 			break;
-			// bug
+			
 		case Directions::RIGHT:
-			App->particles->AddParticle(App->particles->shot_right, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
+			App->particles->enemy_shot.speed.x = SHOT_SPEED_STRAIGHT;
+			App->particles->enemy_shot.speed.y = 0;
 			break;
 
 		case Directions::LEFT:
-			App->particles->AddParticle(App->particles->shot_left, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
+			App->particles->enemy_shot.speed.x = -SHOT_SPEED_STRAIGHT;
+			App->particles->enemy_shot.speed.y = 0;
 			break;
 
 		case Directions::DOWN_RIGHT:
-			App->particles->AddParticle(App->particles->shot_down_right, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
+			App->particles->enemy_shot.speed.x = SHOT_SPEED_DIAGONAL;
+			App->particles->enemy_shot.speed.y = SHOT_SPEED_DIAGONAL;
 			break;
 		case Directions::DOWN_LEFT:
-			App->particles->AddParticle(App->particles->shot_down_left, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
+			App->particles->enemy_shot.speed.x = -SHOT_SPEED_DIAGONAL;
+			App->particles->enemy_shot.speed.y = SHOT_SPEED_DIAGONAL;
 			break;
 		case Directions::DOWN:
-			App->particles->AddParticle(App->particles->shot_down, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
+			App->particles->enemy_shot.speed.x = 0;
+			App->particles->enemy_shot.speed.y = SHOT_SPEED_STRAIGHT;
 			break;
 		default:
 			break;
 		}
+		App->particles->AddParticle(App->particles->enemy_shot, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
 
 		shootdelay = 0;
 	}

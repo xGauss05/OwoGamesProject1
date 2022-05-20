@@ -29,8 +29,9 @@ private:
 	// Simple debugging flag to draw all colliders
 	bool debug;
 
-	bool text = false;
+	bool variables = false;
 	bool camLimits = false;
+	bool spawn = false;
 };
 
 #endif // __MODULE_DEBUG_H__

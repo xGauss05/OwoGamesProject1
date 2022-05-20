@@ -112,44 +112,37 @@ void Enemy_GreenSoldier::Shoot()
 			case Directions::UP:
 				App->particles->grenade.speed.x = 0;
 				App->particles->grenade.speed.y = -2;
-				App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y, Collider::Type::NONE);
 				break;
 			case Directions::UP_RIGHT:
 				App->particles->grenade.speed.x = 2;
 				App->particles->grenade.speed.y = -2;
-				App->particles->AddParticle(App->particles->grenade, position.x + 32, position.y, Collider::Type::NONE);
 				break;
 			case Directions::UP_LEFT:
 				App->particles->grenade.speed.x = -2;
 				App->particles->grenade.speed.y = -2;
-				App->particles->AddParticle(App->particles->grenade, position.x, position.y, Collider::Type::NONE);
 				break;
 			case Directions::DOWN:
 				App->particles->grenade.speed.x = 0;
 				App->particles->grenade.speed.y = 2;
-				App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y + 64, Collider::Type::NONE);
 				break;
 			case Directions::DOWN_RIGHT:
 				App->particles->grenade.speed.x = 2;
 				App->particles->grenade.speed.y = 2;
-				App->particles->AddParticle(App->particles->grenade, position.x + 32, position.y + 64, Collider::Type::NONE);
 				break;
 			case Directions::DOWN_LEFT:
 				App->particles->grenade.speed.x = -2;
 				App->particles->grenade.speed.y = 2;
-				App->particles->AddParticle(App->particles->grenade, position.x, position.y + 64, Collider::Type::NONE);
 				break;
 			case Directions::RIGHT:
 				App->particles->grenade.speed.x = 2;
 				App->particles->grenade.speed.y = 0;
-				App->particles->AddParticle(App->particles->grenade, position.x + 32, position.y + 29, Collider::Type::NONE);
 				break;
 			case Directions::LEFT:
 				App->particles->grenade.speed.x = -2;
 				App->particles->grenade.speed.y = 0;
-				App->particles->AddParticle(App->particles->grenade, position.x, position.y + 29, Collider::Type::NONE);
 				break;
 			}
+			App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y, Collider::Type::NONE);
 			grenadeDelay = 0;
 		}
 		grenadeDelay++;

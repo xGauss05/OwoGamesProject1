@@ -7,6 +7,9 @@
 struct SDL_Texture;
 struct Collider;
 
+#define SHOT_SPEED_STRAIGHT 3
+#define SHOT_SPEED_DIAGONAL 2.12f
+
 class Enemy {
 public:
 	// Constructor

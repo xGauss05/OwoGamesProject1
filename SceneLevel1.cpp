@@ -32,16 +32,16 @@ bool SceneLevel1::Start() {
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE, 300, -60);
 
 	// Entities --- Add enemies/powerups here
-	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 300, -60);
-	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 240, -60);
+	//App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 300, -60);
+	//App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 240, -60);
 	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 230, -60);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -60);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 180, -500);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);
 	//App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 230, -600);
-	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 210, 300, 0);
-	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, 300, 1);
-	//App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 310, 300);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 210, 300, 0); //Debug
+	App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, 260, 300); //Debug
+	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 310, 300); //Debug
 
 	// Colliders --- Make collision boxes here
 	// Left colliders
