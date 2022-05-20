@@ -1230,20 +1230,26 @@ update_status ModulePlayer::Update() {
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
 			deathAnimTop.Reset();
 			deathAnimBot.Reset();
-			godMode = false;
+			//godMode = false;
 			if (lives == 0) {
 				App->fade->FadeToBlack((Module*)App->level1, (Module*)App->lose, 0);
 			} else {
 				dead = false;
-				deathCooldown = 0;
+				//deathCooldown = 0;
 			}
 		}
 	}
 
+	// Invincible frames
+	if (deathCooldown >= DEATH_ANIM_DURATION) {
+		invincibleCooldown++;
+		if (invincibleCooldown >= INVINCIBLE_DURATION) {
+			godMode = false;
+			deathCooldown = 0;
+			invincibleCooldown = 0;
+		}
+	}
 	
-
-	
-
 	// God mode cheat
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN) {
 		godMode = !godMode;
