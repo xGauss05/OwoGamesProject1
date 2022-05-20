@@ -25,7 +25,6 @@ bool ModuleInput::Init() {
 	#pragma region Controller initialization
 
 	//Count the numbers of compatible controllers to display it
-	int controllerCount = 0;
 	for (int i = 0; i < SDL_NumJoysticks(); ++i) { if (SDL_IsGameController(i)) { controllerCount++; } }
 	SDL_Log("Controllers found: %i\n", controllerCount);
 

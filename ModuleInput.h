@@ -53,6 +53,7 @@ public:
 
 	SDL_GameController* SDLcontrollers[MAX_CONTROLLERS];
 	GameController* controllers[MAX_CONTROLLERS];
+	int controllerCount = 0;
 };
 
 #endif // __ModuleInput_H__

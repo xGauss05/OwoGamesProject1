@@ -16,20 +16,30 @@ using namespace std;
 ModuleDebug::ModuleDebug(bool startEnabled) : Module(startEnabled) { debug = false; }
 ModuleDebug::~ModuleDebug() {}
 
+bool ModuleDebug::Start()
+{
+	if (App->input->controllerCount != 0)
+	{
+		debugBox -= 60;
+	}
+
+	return true;
+}
+
 update_status ModuleDebug::Update() {
 	if (App->input->keys[SDL_SCANCODE_F2] == KEY_DOWN)
 		debug = !debug;
 
 	if (debug)
 	{
-		if (App->input->keys[SDL_SCANCODE_T] == KEY_DOWN)
+		if (App->input->keys[SDL_SCANCODE_Z] == KEY_DOWN)
 			variables = !variables;
+
+		if (App->input->keys[SDL_SCANCODE_X] == KEY_DOWN)
+			spawn = !spawn;
 
 		if (App->input->keys[SDL_SCANCODE_C] == KEY_DOWN)
 			camLimits = !camLimits;
-
-		if (App->input->keys[SDL_SCANCODE_I] == KEY_DOWN)
-			spawn = !spawn;
 	}
 
 	return update_status::UPDATE_CONTINUE;
@@ -108,17 +118,17 @@ void ModuleDebug::DebugDraw() {
 		}
 	}
 
-	App->fonts->BlitText(10, 100 , 0, "PRESS T FOR VARIABLES");
-	App->fonts->BlitText(10, 110 , 0, "PRESS C FOR CAM LIMITS");
-	App->fonts->BlitText(10, 120 , 0, "PRESS I FOR SPAWN MENU");
+	App->fonts->BlitText(10, spawnBox , 0, "PRESS Z FOR VARIABLES");
+	App->fonts->BlitText(10, spawnBox + 10, 0, "PRESS X FOR SPAWN MENU");
+	App->fonts->BlitText(10, spawnBox + 20, 0, "PRESS C FOR CAM LIMITS");
 
 	//Spawn Enemies 
 	if (spawn)
 	{
-		App->fonts->BlitText(10, 130, 0, "SPAWN.");
-		App->fonts->BlitText(60, 130, 0, "1.GREENSOLDIER");
-		App->fonts->BlitText(60, 140, 0, "2.REDSOLDIER");
-		App->fonts->BlitText(60, 150, 0, "3.TACKLER");
+		App->fonts->BlitText(10, spawnBox + 40, 0, "SPAWN.");
+		App->fonts->BlitText(60, spawnBox + 40, 0, "1.GREENSOLDIER");
+		App->fonts->BlitText(60, spawnBox + 50, 0, "2.REDSOLDIER");
+		App->fonts->BlitText(60, spawnBox + 60, 0, "3.TACKLER");
 
 		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN)
 		{
@@ -150,90 +160,88 @@ void ModuleDebug::DebugDraw() {
 	//Variables debug
 	if (variables)
 	{
-		App->fonts->BlitText(10, DEBUG_BOX + -40, 0, "VARIABLES");
-
-		App->fonts->BlitText(10, DEBUG_BOX + -30, 0, "-GOD MODE");
+		App->fonts->BlitText(10, debugBox, 0, "-GOD MODE");
 		if (!App->player->godMode)
-			App->fonts->BlitText(90, DEBUG_BOX + -30, 0, "OFF");
+			App->fonts->BlitText(90, debugBox, 0, "OFF");
 		else
-			App->fonts->BlitText(90, DEBUG_BOX + -30, 0, "ON");
+			App->fonts->BlitText(90, debugBox, 0, "ON");
 		//	App->fonts->BlitText(90, DEBUG_BOX + -30, 0, "ON");
 
-		App->fonts->BlitText(10, DEBUG_BOX + -20, 0, "-FREE CAM");
+		App->fonts->BlitText(10, debugBox + 10, 0, "-FREE CAM");
 		if (!App->render->debugCamera)
-			App->fonts->BlitText(90, DEBUG_BOX + -20, 0, "OFF");
+			App->fonts->BlitText(90, debugBox + 10, 0, "OFF");
 		else
-			App->fonts->BlitText(90, DEBUG_BOX + -20, 0, "ON");
-		//App->fonts->BlitText(90, DEBUG_BOX + -20, 0, "ON");
+			App->fonts->BlitText(90, debugBox + 10, 0, "ON");
 
 		//Position debug
-		App->fonts->BlitText(10, DEBUG_BOX, 0, "PLAYER");
+		App->fonts->BlitText(10, debugBox + 30, 0, "PLAYER");
 
-		App->fonts->BlitText(10, DEBUG_BOX + 10, 0, "X.");
-		App->fonts->BlitText(25, DEBUG_BOX + 10, 0, std::to_string(App->player->position.x).c_str());
+		App->fonts->BlitText(10, debugBox + 40, 0, "X.");
+		App->fonts->BlitText(25, debugBox + 40, 0, std::to_string(App->player->position.x).c_str());
 
-		App->fonts->BlitText(10, DEBUG_BOX + 20, 0, "Y.");
-		App->fonts->BlitText(25, DEBUG_BOX + 20, 0, std::to_string(App->player->position.y).c_str());
+		App->fonts->BlitText(10, debugBox + 50, 0, "Y.");
+		App->fonts->BlitText(25, debugBox + 50, 0, std::to_string(App->player->position.y).c_str());
 
-		App->fonts->BlitText(10, DEBUG_BOX + 30, 0, "CAMERA X.");
-		App->fonts->BlitText(80, DEBUG_BOX + 30, 0, std::to_string(App->render->camera.x).c_str());
+		App->fonts->BlitText(10, debugBox + 60, 0, "CAMERA X.");
+		App->fonts->BlitText(80, debugBox + 60, 0, std::to_string(App->render->camera.x).c_str());
 
-		App->fonts->BlitText(10, DEBUG_BOX + 40, 0, "CAMERA Y.");
-		App->fonts->BlitText(80, DEBUG_BOX + 40, 0, std::to_string(App->render->camera.y).c_str());
+		App->fonts->BlitText(10, debugBox + 70, 0, "CAMERA Y.");
+		App->fonts->BlitText(80, debugBox + 70, 0, std::to_string(App->render->camera.y).c_str());
 
 		//Controller debug
-		App->fonts->BlitText(10, DEBUG_BOX + 50, 0, "CONTROLLER");
 
-		if (App->input->controllers[0] != nullptr)
+		if (App->input->controllerCount != 0)
 		{
-			App->fonts->BlitText(10, DEBUG_BOX + 70, 0, "J1.X");
-			App->fonts->BlitText(50, DEBUG_BOX + 70, 0, std::to_string(App->input->controllers[0]->j1_x).c_str());
+			App->fonts->BlitText(10, debugBox + 90, 0, "CONTROLLER");
 
-			App->fonts->BlitText(10, DEBUG_BOX + 80, 0, "J1.Y");
-			App->fonts->BlitText(50, DEBUG_BOX + 80, 0, std::to_string(App->input->controllers[0]->j1_y).c_str());
+			App->fonts->BlitText(10, debugBox + 100, 0, "J1.X");
+			App->fonts->BlitText(50, debugBox + 100, 0, std::to_string(App->input->controllers[0]->j1_x).c_str());
+
+			App->fonts->BlitText(10, debugBox + 110, 0, "J1.Y");
+			App->fonts->BlitText(50, debugBox + 110, 0, std::to_string(App->input->controllers[0]->j1_y).c_str());
 
 			if (App->input->controllers[0]->j1_y < -10000)
-				App->fonts->BlitText(185, DEBUG_BOX + 65, 0, "U");
+				App->fonts->BlitText(185, debugBox + 90, 0, "U");
 
 			else if (App->input->controllers[0]->j1_y > 10000)
-				App->fonts->BlitText(185, DEBUG_BOX + 85, 0, "D");
+				App->fonts->BlitText(185, debugBox + 110, 0, "D");
 
 			if (App->input->controllers[0]->j1_x < -10000)
-				App->fonts->BlitText(175, DEBUG_BOX + 75, 0, "L");
+				App->fonts->BlitText(175, debugBox + 100, 0, "L");
 
 			else if (App->input->controllers[0]->j1_x > 10000)
-				App->fonts->BlitText(195, DEBUG_BOX + 75, 0, "R");
+				App->fonts->BlitText(195, debugBox + 100, 0, "R");
 
 			//
 
-			App->fonts->BlitText(10, DEBUG_BOX + 100, 0, "J2.X");
-			App->fonts->BlitText(50, DEBUG_BOX + 100, 0, std::to_string(App->input->controllers[0]->j2_x).c_str());
+			App->fonts->BlitText(10, debugBox + 120, 0, "J2.X");
+			App->fonts->BlitText(50, debugBox + 120, 0, std::to_string(App->input->controllers[0]->j2_x).c_str());
 
-			App->fonts->BlitText(10, DEBUG_BOX + 110, 0, "J2.Y");
-			App->fonts->BlitText(50, DEBUG_BOX + 110, 0, std::to_string(App->input->controllers[0]->j2_y).c_str());
+			App->fonts->BlitText(10, debugBox + 130, 0, "J2.Y");
+			App->fonts->BlitText(50, debugBox + 130, 0, std::to_string(App->input->controllers[0]->j2_y).c_str());
 
 			if (App->input->controllers[0]->j2_y < -10000)
-				App->fonts->BlitText(185, DEBUG_BOX + 95, 0, "U");
+				App->fonts->BlitText(185, debugBox + 120, 0, "U");
 
 			else if (App->input->controllers[0]->j2_y > 10000)
-				App->fonts->BlitText(185, DEBUG_BOX + 115, 0, "D");
+				App->fonts->BlitText(185, debugBox + 140, 0, "D");
 
 			if (App->input->controllers[0]->j2_x < -10000)
-				App->fonts->BlitText(175, DEBUG_BOX + 105, 0, "L");
+				App->fonts->BlitText(175, debugBox + 130, 0, "L");
 
 			else if (App->input->controllers[0]->j2_x > 10000)
-				App->fonts->BlitText(195, DEBUG_BOX + 105, 0, "R");
+				App->fonts->BlitText(195, debugBox + 130, 0, "R");
 
 			//
 
-			App->fonts->BlitText(10, DEBUG_BOX + 130, 0, "L TRIGGER");
-			App->fonts->BlitText(90, DEBUG_BOX + 130, 0, std::to_string(App->input->controllers[0]->LT).c_str());
+			App->fonts->BlitText(10, debugBox + 140, 0, "L TRIGGER");
+			App->fonts->BlitText(90, debugBox + 140, 0, std::to_string(App->input->controllers[0]->LT).c_str());
 
-			App->fonts->BlitText(10, DEBUG_BOX + 140, 0, "R TRIGGER");
-			App->fonts->BlitText(90, DEBUG_BOX + 140, 0, std::to_string(App->input->controllers[0]->RT).c_str());
+			App->fonts->BlitText(10, debugBox + 150, 0, "R TRIGGER");
+			App->fonts->BlitText(90, debugBox + 150, 0, std::to_string(App->input->controllers[0]->RT).c_str());
 
 		}
 		else
-			App->fonts->BlitText(10, DEBUG_BOX + 70, 0, "CONTROLLER NOT FOUND");
+			App->fonts->BlitText(10, debugBox + 90, 0, "CONTROLLER NOT FOUND");
 	}
 }

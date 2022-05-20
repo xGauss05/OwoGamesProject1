@@ -13,6 +13,8 @@ public:
 	// Destructor
 	~ModuleDebug();
 
+	bool Start() override;
+
 	// Called at the middle of the application loop
 	// Switches the debug mode on/off
 	update_status Update();
@@ -25,6 +27,9 @@ public:
 	void DebugDraw();
 
 private:
+
+	int debugBox = 250;
+	int spawnBox = 70;
 
 	// Simple debugging flag to draw all colliders
 	bool debug;
