@@ -137,7 +137,7 @@ bool SceneLevel1::Start() {
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 192, -930);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 416, -1415);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 448, -1415);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 480, -1455);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_V, 480, -1455);
 
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 255, -1815);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 287, -1815);
