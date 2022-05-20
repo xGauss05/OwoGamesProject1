@@ -1215,7 +1215,9 @@ update_status ModulePlayer::Update() {
 	}
 
 	if (dead) {
-		// need to implement death behaviour
+		godMode = true;
+		deathCooldown++;
+
 		if (currentAnimTop != &deathAnimTop)
 			currentAnimTop = &deathAnimTop;
 		if (currentAnimBot != &deathAnimBot)
@@ -1224,10 +1226,11 @@ update_status ModulePlayer::Update() {
 		if (deathCooldown == 0) {
 			App->audio->PlayFx(playerDeadFx);
 		}
-		deathCooldown++;
+
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
 			deathAnimTop.Reset();
 			deathAnimBot.Reset();
+			godMode = false;
 			if (lives == 0) {
 				App->fade->FadeToBlack((Module*)App->level1, (Module*)App->lose, 0);
 			} else {
@@ -1236,6 +1239,10 @@ update_status ModulePlayer::Update() {
 			}
 		}
 	}
+
+	
+
+	
 
 	// God mode cheat
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN) {

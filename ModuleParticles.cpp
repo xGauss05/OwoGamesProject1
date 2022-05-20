@@ -324,8 +324,11 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2) {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && particles[i]->collider == c1) {
-			if (c2->type == Collider::Type::PLAYER) {
-				// c1->type == Collider:Type::ENEMY_SHOT
+			if (c2->type == Collider::Type::BREAKABLE) {
+				if (particles[i]->explodes && !particles[i]->isExplosion) {
+					App->particles->AddParticle(App->particles->grenExplosion, particles[i]->position.x - 26, particles[i]->position.y - 26, Collider::Type::EXPLOSION);
+					App->audio->PlayFx(grenadeExplosionFx);
+				}
 			}
 			if (!particles[i]->isExplosion && !particles[i]->isHostage) {
 				delete particles[i];
