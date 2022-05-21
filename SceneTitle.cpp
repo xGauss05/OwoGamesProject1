@@ -21,7 +21,7 @@ bool SceneTitle::Start() {
 	bool ret = true;
 
 	// Placeholder
-	bgTexture = App->textures->Load("Assets/img/sprites/WIP_title_map.png");
+	bgTexture = App->textures->Load("Assets/img/sprites/title_map.png");
 	
 	App->audio->PlayMusic("Assets/sounds/bgm/112.ogg", 1.0f);
 	duration = 0;
