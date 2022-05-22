@@ -27,6 +27,13 @@ public:
 		this->currentFrame = 0;
 	}
 
+	void FullReset() {
+		this->currentFrame = 0;
+		this->totalFrames = 0;
+		this->loopCount = 0;
+		this->pingpongDirection = 1;
+	}
+
 	bool HasFinished() {
 		return !loop && !pingpong && loopCount > 0;
 	}

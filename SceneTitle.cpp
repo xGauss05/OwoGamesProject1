@@ -26,6 +26,7 @@ bool SceneTitle::Start() {
 	App->audio->PlayMusic("Assets/sounds/bgm/112.ogg", 1.0f);
 	duration = 0;
 	
+	bombsAnim.FullReset();
 	bombsAnim.PushBack({ 0 , 160, 16, 16 });
 	bombsAnim.PushBack({ 16, 160, 16, 16 });
 	bombsAnim.PushBack({ 32, 160, 16, 16 });
@@ -42,12 +43,12 @@ bool SceneTitle::Start() {
 	bombsAnim.PushBack({ 192, 176, 32, 64 });
 	bombsAnim.speed = 0.15f;
 	bombsAnim.loop = false;
-	bombsAnim.Reset();
-
+	
+	planesAnim.FullReset();
 	planesAnim.PushBack({ 224, 112, 128, 128 });
 	planesAnim.loop = false;
-	planesAnim.Reset();
 
+	playerMiniAnim.FullReset();
 	playerMiniAnim.PushBack({ 0  , 0, 32, 32 });
 	playerMiniAnim.PushBack({ 32 , 0, 32, 32 });
 	playerMiniAnim.PushBack({ 64 , 0, 32, 32 });
@@ -62,15 +63,14 @@ bool SceneTitle::Start() {
 	playerMiniAnim.PushBack({ 352, 0, 32, 32 });
 	playerMiniAnim.loop = false;
 	playerMiniAnim.speed = 0.21f;
-	playerMiniAnim.Reset();
 
+	boatAnim.FullReset();
 	boatAnim.PushBack({ 0 , 64, 32, 96 });
 	boatAnim.PushBack({ 32, 64, 32, 96 });
 	boatAnim.PushBack({ 64, 64, 32, 96 });
 	boatAnim.PushBack({ 96, 64, 32, 96 });
 	boatAnim.loop = true;
 	boatAnim.speed = 0.1f;
-	boatAnim.Reset();
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
