@@ -1216,6 +1216,11 @@ update_status ModulePlayer::Update() {
 
 	if (dead) {
 		godMode = true;
+
+		if (deathCooldown == 0) {
+			App->audio->PlayFx(playerDeadFx);
+		}
+
 		deathCooldown++;
 
 		if (currentAnimTop != &deathAnimTop)
@@ -1223,9 +1228,7 @@ update_status ModulePlayer::Update() {
 		if (currentAnimBot != &deathAnimBot)
 			currentAnimBot = &deathAnimBot;
 
-		if (deathCooldown == 0) {
-			App->audio->PlayFx(playerDeadFx);
-		}
+
 
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
 			deathAnimTop.Reset();
