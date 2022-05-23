@@ -126,33 +126,33 @@ bool SceneLevel1::Start() {
 
 
 	// Rock
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 128, -430);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 160, -430);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 256, -430);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 288, -430);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 288, -840);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 320, -840);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 128, -432);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 160, -432);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 256, -432);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 288, -432);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 288, -848);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 320, -848);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 128, -930);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 160, -930);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 192, -930);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 416, -1415);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 448, -1415);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 416, -1424);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 448, -1424);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_V, 480, -1455);
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 255, -1815);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 287, -1815);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 319, -1815);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 351, -1815);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 383, -1815);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 415, -1815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 256, -1822);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 288, -1822);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 320, -1822);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 352, -1822);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 384, -1822);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 416, -1822);
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 540, -1815);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 572, -1815);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 604, -1815);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 636, -1815);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 668, -1815);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 700, -1815);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 732, -1815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 540, -1822);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 572, -1822);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 604, -1822);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 636, -1822);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 668, -1822);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 700, -1822);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 732, -1822);
 
 
 	//triangle
@@ -292,31 +292,32 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 690, -3440, 135, 5 }, Collider::Type::TRENCH);
 
 	//bridge
-	App->collisions->AddCollider({ 734, -3278, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 734, -3246, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 734, -3214, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 734, -3182, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 734, -3150, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 734, -3118, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 734, -3086, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 734, -3054, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 734, -3022, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 734, -2990, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 734, -2958, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 734, -2926, 32, 32 }, Collider::Type::BREAKABLE);
 
-	App->collisions->AddCollider({ 766, -3278, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 766, -3246, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 766, -3214, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 766, -3182, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 766, -3150, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 766, -3118, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 766, -3086, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 766, -3054, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 766, -3022, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 766, -2990, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 766, -2958, 32, 32 }, Collider::Type::BREAKABLE);
-	App->collisions->AddCollider({ 766, -2926, 32, 32 }, Collider::Type::BREAKABLE);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 734, -3278);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 734, -3246);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 734, -3214);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 734, -3182);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 734, -3150);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 734, -3118);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 734, -3086);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 734, -3054);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 734, -3022);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 734, -2990);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 734, -2958);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 734, -2926);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3278);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3246);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3214);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3182);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3150);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3118);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3086);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3054);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3022);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -2990);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -2958);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -2926);
 
 	App->player->Enable();
 	App->enemies->Enable();
