@@ -8,7 +8,7 @@
 
 Breakable_Barricade_V::Breakable_Barricade_V(int x, int y) : Breakable(x, y) {
 	collider = App->collisions->AddCollider({ 0, 0, 32, 32 }, Collider::Type::BREAKABLE, (Module*)App->breakables);
-	animation.PushBack({ 0,0,32,32 });
+	animation.PushBack({ 32,0,32,32 });
 	currentAnim = &animation;
 }
 
