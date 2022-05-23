@@ -185,6 +185,10 @@ public:
 	uint heavyRifleFx = 0;
 	uint flamethrowerFx = 0;
 	uint throwGrenadeFx = 0;
+
+	// Fonts indexes
+	uint font = 0;
+	uint ui_font = 0;
 };
 
 #endif //!__MODULE_PLAYER_H__

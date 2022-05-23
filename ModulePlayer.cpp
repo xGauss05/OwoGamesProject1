@@ -407,8 +407,8 @@ bool ModulePlayer::Start() {
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 64 }, Collider::Type::PLAYER, this);
 
 	// UI for 0.5
-	App->fonts->Load("Assets/img/sprites/font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
-
+	font = App->fonts->Load("Assets/img/sprites/font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
+	ui_font = App->fonts->Load("Assets/img/sprites/UI_font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
 	return true;
 }
 
@@ -1341,39 +1341,39 @@ update_status ModulePlayer::PostUpdate() {
 	}
 
 	// UI ---
-	App->fonts->BlitText(15, 20, 0, "1 UP");
+	App->fonts->BlitText(15, 20, font, "1 UP");
 	std::string temp = std::to_string(score);
 	char const* num_char = temp.c_str();
-	App->fonts->BlitText(15, 30, 0, num_char);
+	App->fonts->BlitText(15, 30, font, num_char);
 
 	// decorative UI
-	App->fonts->BlitText(SCREEN_WIDTH - 45, 20, 0, "2 UP");
-	App->fonts->BlitText(SCREEN_WIDTH - 20, 30, 0, "0");
-	App->fonts->BlitText(80, 10, 0, "HI");
-	App->fonts->BlitText(120, 10, 0, "30000");
-	App->fonts->BlitText(SCREEN_WIDTH - 75, SCREEN_HEIGHT - 15, 0, "CREDITS 0");
+	App->fonts->BlitText(SCREEN_WIDTH - 45, 20, font, "2 UP");
+	App->fonts->BlitText(SCREEN_WIDTH - 20, 30, font, "0");
+	App->fonts->BlitText(80, 10, font, "HI");
+	App->fonts->BlitText(120, 10, font, "30000");
+	App->fonts->BlitText(SCREEN_WIDTH - 75, SCREEN_HEIGHT - 15, font, "CREDITS 0");
 
 	if (lives >= 1) {
 		// need to change to lives icon
-		App->fonts->BlitText(5, SCREEN_HEIGHT - 25, 0, "H");
+		App->fonts->BlitText(5, SCREEN_HEIGHT - 25, font, "H");
 	}
 	if (lives >= 2) {
 		// need to change to lives icon
-		App->fonts->BlitText(15, SCREEN_HEIGHT - 25, 0, "H");
+		App->fonts->BlitText(15, SCREEN_HEIGHT - 25, font, "H");
 	}
 
 	// need to change for the grenade icon
-	App->fonts->BlitText(5, 45, 0, "GRENADES");
+	App->fonts->BlitText(5, 45, font, "GRENADES");
 	temp = std::to_string(grenades);
 	num_char = temp.c_str();
-	App->fonts->BlitText(5, 55, 0, num_char);
+	App->fonts->BlitText(5, 55, font, num_char);
 
 	if (weapon != Weapon::NORMAL) {
 		// need to change for the ammo icon
-		App->fonts->BlitText(5, 65, 0, "AMMO");
+		App->fonts->BlitText(5, 65, font, "AMMO");
 		temp = std::to_string(ammunition);
 		num_char = temp.c_str();
-		App->fonts->BlitText(5, 75, 0, num_char);
+		App->fonts->BlitText(5, 75, font, num_char);
 	}
 
 	return update_status::UPDATE_CONTINUE;
