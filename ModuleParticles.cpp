@@ -267,7 +267,7 @@ bool ModuleParticles::Start() {
 	grenExplosion.anim.PushBack({ 256,0,64,64 });
 	grenExplosion.anim.PushBack({ 320,0,64,64 });
 	grenExplosion.anim.loop = false;
-	grenExplosion.anim.speed = 0.1f;
+	grenExplosion.anim.speed = 0.45f;
 	grenExplosion.speed.x = 0;
 	grenExplosion.speed.y = 0;
 	grenExplosion.isExplosion = true;

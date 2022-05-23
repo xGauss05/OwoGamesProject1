@@ -1216,12 +1216,12 @@ update_status ModulePlayer::Update() {
 		}
 	}
 
+	// If the player is dead
 	if (dead) {
 		godMode = true;
 
-		if (deathCooldown == 0) {
+		if (deathCooldown == 0)
 			App->audio->PlayFx(playerDeadFx);
-		}
 
 		deathCooldown++;
 
@@ -1229,8 +1229,6 @@ update_status ModulePlayer::Update() {
 			currentAnimTop = &deathAnimTop;
 		if (currentAnimBot != &deathAnimBot)
 			currentAnimBot = &deathAnimBot;
-
-
 
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
 			deathAnimTop.Reset();
@@ -1240,6 +1238,8 @@ update_status ModulePlayer::Update() {
 				App->fade->FadeToBlack((Module*)App->level1, (Module*)App->lose, 0);
 			} else {
 				dead = false;
+				grenades = MAX_GRENADES;
+				this->position.y +=200;
 				//deathCooldown = 0;
 			}
 		}
@@ -1248,13 +1248,14 @@ update_status ModulePlayer::Update() {
 	// Invincible frames
 	if (deathCooldown >= DEATH_ANIM_DURATION) {
 		invincibleCooldown++;
+		this->position.y--;
 		if (invincibleCooldown >= INVINCIBLE_DURATION) {
 			godMode = false;
 			deathCooldown = 0;
 			invincibleCooldown = 0;
 		}
 	}
-	
+
 	// God mode cheat
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN) {
 		godMode = !godMode;
@@ -1266,9 +1267,9 @@ update_status ModulePlayer::Update() {
 	}
 
 	// Insta lose cheat
-	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN && 
+	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN &&
 		invincibleCooldown == 0 &&
-		!dead ) {
+		!dead) {
 		// Handle insta lose
 		dead = true;
 		lives--;
