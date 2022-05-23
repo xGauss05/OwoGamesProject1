@@ -29,8 +29,8 @@ bool SceneLevel1::Start() {
 	paralaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.png");
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 300, -60);
-
+	//App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 300, -60);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 210, -60);
 	// Entities --- Add enemies/powerups here
 	//App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 300, -60);
 	//App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 240, -60);
