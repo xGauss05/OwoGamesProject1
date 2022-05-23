@@ -139,7 +139,7 @@ update_status SceneTitle::Update() {
 	}
 
 	if (duration < 360) {
-		App->render->camera.y -= 2;
+		App->render->camera.y -= 1 * SCREEN_SIZE;
 	}
 	if (duration < 400 && duration >= 360) {
 		App->render->camera.y -= 1;

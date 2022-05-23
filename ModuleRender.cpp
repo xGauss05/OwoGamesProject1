@@ -46,6 +46,8 @@ update_status ModuleRender::PreUpdate() {
 	//Clear rendering target
 	SDL_RenderClear(renderer);
 
+	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+
 	return update_status::UPDATE_CONTINUE;
 }
 
