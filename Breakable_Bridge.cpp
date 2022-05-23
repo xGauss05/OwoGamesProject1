@@ -7,7 +7,7 @@
 #include "ModulePlayer.h"
 
 Breakable_Bridge::Breakable_Bridge(int x, int y) : Breakable(x, y) {
-	collider = App->collisions->AddCollider({ 0, 0, 64, 32 }, Collider::Type::BREAKABLE, (Module*)App->breakables);
+	collider = App->collisions->AddCollider({ 0, 0, 64, 32 }, Collider::Type::BREAKABLE_BRIDGE, (Module*)App->breakables);
 	animation.PushBack({ 64,32,64,32 });
 	currentAnim = &animation;
 }

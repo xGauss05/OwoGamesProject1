@@ -18,8 +18,10 @@ struct Collider {
 		TRENCH,
 		HOSTAGE,
 		BREAKABLE,
+		BREAKABLE_BRIDGE, // YOU ARE HERE
 		NON_DEST_BAR,
 		EXPLOSION,
+
 
 		MAX
 	};
