@@ -42,8 +42,8 @@ Application::Application() {
 	modules[12] = powerups = new ModulePowerup(false);
 	modules[13] = breakables = new ModuleBreakable(false);
 	modules[14] = collisions = new ModuleCollisions(false);
-	modules[15] = fade = new ModuleFadeToBlack(true);
-	modules[16] = fonts = new ModuleFonts(true);
+	modules[15] = fonts = new ModuleFonts(true);
+	modules[16] = fade = new ModuleFadeToBlack(true);
 	modules[17] = debug = new ModuleDebug(true);
 	modules[18] = render = new ModuleRender(true);
 }

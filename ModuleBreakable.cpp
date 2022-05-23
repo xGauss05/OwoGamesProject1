@@ -56,8 +56,11 @@ update_status ModuleBreakable::PostUpdate() {
 bool ModuleBreakable::CleanUp() {
 	LOG("Freeing all breakables");
 
+	App->textures->Unload(breakableTexture);
+
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
 		if (breakables[i] != nullptr) {
+			App->textures->Unload(breakables[i]->texture);
 			delete breakables[i];
 			breakables[i] = nullptr;
 		}
@@ -83,7 +86,7 @@ bool ModuleBreakable::AddBreakable(BREAKABLE_TYPE type, int x, int y) {
 }
 
 void ModuleBreakable::HandleBreakablesSpawn() {
-	// Iterate all the breakable queue
+	// Iterate all the breakables queue
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
 		if (spawnQueue[i].type != BREAKABLE_TYPE::NO_TYPE) {
 			// Spawn a new breakable if the screen has reached a spawn position

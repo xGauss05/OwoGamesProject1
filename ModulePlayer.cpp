@@ -368,9 +368,11 @@ ModulePlayer::~ModulePlayer() {
 
 bool ModulePlayer::Start() {
 	LOG("Loading player textures");
+	//App->fonts->Enable();
 	score = 0;
 	ammunition = 0;
 	deathCooldown = 0;
+	invincibleCooldown = 0;
 	lives = 2;
 	grenades = MAX_GRENADES;
 
@@ -1265,7 +1267,8 @@ update_status ModulePlayer::Update() {
 
 	// Insta lose cheat
 	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN && 
-		!dead) {
+		invincibleCooldown == 0 &&
+		!dead ) {
 		// Handle insta lose
 		dead = true;
 		lives--;
@@ -1527,6 +1530,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 }
 
 bool ModulePlayer::CleanUp() {
+	//App->fonts->Disable();
 	App->textures->Unload(playerTexture);
 	App->textures->Unload(weaponTexture);
 	App->audio->UnloadFx(shotFx);

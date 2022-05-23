@@ -344,11 +344,12 @@ update_status SceneLevel1::PostUpdate() {
 
 bool SceneLevel1::CleanUp() {
 	// Disables the player, enemies and powerups.	
-	App->collisions->Disable();
+	
 	App->breakables->Disable();
 	App->powerups->Disable();
    	App->enemies->Disable();
 	App->player->Disable();
+	App->collisions->Disable();
 	App->textures->Unload(bgTexture);
 	bgTexture = nullptr;
 	// Handle memory leaks
