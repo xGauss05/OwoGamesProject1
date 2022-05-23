@@ -401,7 +401,7 @@ bool ModulePlayer::Start() {
 
 	// Initial position
 	position.x = 240;
-	position.y = 120;
+	position.y = -30;
 
 	// Player collider
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 64 }, Collider::Type::PLAYER, this);
