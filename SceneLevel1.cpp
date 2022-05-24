@@ -40,7 +40,8 @@ bool SceneLevel1::Start() {
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 280, -500);
 	//App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 230, -600);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 210, 300, 0); //Debug
-	App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, 260, 300); //Debug
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 250, 300, 1); //Debug
+	//App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, 260, 300); //Debug
 	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 310, 300); //Debug
 
 	// Colliders --- Make collision boxes here

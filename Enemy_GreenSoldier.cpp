@@ -8,8 +8,13 @@
 #include "ModuleEnemies.h" //(Testing)
 
 #define GREENSOLDIER_SCORE 100
-Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y, unsigned short behaviour) : Enemy(x, y)
+Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y, ushort behaviour) : Enemy(x, y)
 {
+	//if (behaviour == 0 || behaviour == 1)
+	//{
+	//
+	//}
+
 	defaultTopAnim.PushBack({ 0, 0,32,32 });
 	defaultTopAnim.PushBack({ 32, 0,32,32 });
 	defaultTopAnim.PushBack({ 64, 0,32,32 });

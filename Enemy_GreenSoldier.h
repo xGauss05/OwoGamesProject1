@@ -1,6 +1,8 @@
 #ifndef __ENEMY_GREENSOLDIER_H__
 #define __ENEMY_GREENSOLDIER_H__
 
+#include "Globals.h"
+
 #include "Enemy.h"
 #include "Path.h"
 
@@ -9,7 +11,7 @@ class Enemy_GreenSoldier : public Enemy
 public:
 	// Constructor (x y coordinates in the world)
 	// Creates animation and movement data and the collider
-	Enemy_GreenSoldier(int x, int y, unsigned short behaviour);
+	Enemy_GreenSoldier(int x, int y, ushort behaviour);
 
 	// The enemy is going to follow the different steps in the path
 	// Position will be updated depending on the speed defined at each step
@@ -28,7 +30,7 @@ private:
 	Animation botAnimLeft;
 	Animation botAnimRight;
 
-	unsigned short behaviour;
+	ushort behaviour;
 	int shootdelay;
 	int grenadeDelay;
 };
