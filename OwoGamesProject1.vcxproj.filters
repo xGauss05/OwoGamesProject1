@@ -161,6 +161,12 @@
     <ClCompile Include="Breakable_Barricade_V.cpp">
       <Filter>Archivos de origen\Entities\Breakables</Filter>
     </ClCompile>
+    <ClCompile Include="Breakable_Barbed_1.cpp">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable_Barbed_2.cpp">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -287,6 +293,12 @@
       <Filter>Archivos de origen\Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Breakable_Barricade_V.h">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable_Barbed_1.h">
+      <Filter>Archivos de origen\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable_Barbed_2.h">
       <Filter>Archivos de origen\Entities\Breakables</Filter>
     </ClInclude>
   </ItemGroup>
