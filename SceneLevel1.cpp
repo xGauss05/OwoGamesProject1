@@ -26,14 +26,16 @@ bool SceneLevel1::Start() {
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/img/sprites/map.png");
-	paralaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.png");
+	paralaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.pn g");
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 
 	//App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 300, -60);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 210, -60);
+	//App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 210, -60);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 210, -60);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 210, -92);
 	// Entities --- Add enemies/powerups here
 	//App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 300, -60);
-	//App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 240, -60);
+	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 240, -60);
 	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 230, -60);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -60);
 	//App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 180, -500);

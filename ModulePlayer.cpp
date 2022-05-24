@@ -1244,6 +1244,8 @@ update_status ModulePlayer::Update() {
 				dead = false;
 				grenades = MAX_GRENADES;
 				this->position.y +=200;
+				if (weapon != Weapon::NORMAL)
+					weapon = Weapon::NORMAL;
 				//deathCooldown = 0;
 			}
 		}

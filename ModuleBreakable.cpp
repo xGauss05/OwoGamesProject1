@@ -11,6 +11,8 @@
 #include "Breakable_Barricade_V.h"
 #include "Breakable_Bridge.h"
 #include "Breakable_Fence.h"
+#include "Breakable_Barbed_1.h"
+#include "Breakable_Barbed_2.h"
 
 #include "Collider.h"
 #define SPAWN_MARGIN	50
@@ -131,6 +133,12 @@ void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 				break;
 			case BREAKABLE_TYPE::FENCE:
 				breakables[i] = new Breakable_Fence(info.x, info.y);
+				break;
+			case BREAKABLE_TYPE::BARBED_1:
+				breakables[i] = new Breakable_Barbed_1(info.x, info.y);
+				break;
+			case BREAKABLE_TYPE::BARBED_2:
+				breakables[i] = new Breakable_Barbed_2(info.x, info.y);
 				break;
 			}
 			breakables[i]->texture = breakableTexture;
