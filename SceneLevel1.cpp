@@ -26,7 +26,7 @@ bool SceneLevel1::Start() {
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/img/sprites/map.png");
-	paralaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.pn g");
+	paralaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.png");
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 
 	//App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 300, -60);

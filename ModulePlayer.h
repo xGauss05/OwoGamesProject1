@@ -167,11 +167,17 @@ public:
 	// Flag for throwing grenade state
 	bool isThrowing = false;
 
+	// Flag to prevent the player from moving
+	bool immovable = false;
+
 	// Amount of shots available. Max defined in MAX_AMMO
 	ushort ammunition = 0;
 
 	// Score of the player
 	uint score;
+
+	// Spawn point where it needs to spawn
+	ushort spawnPoint;
 
 	// Lives of the player
 	ushort lives = 2;
