@@ -154,42 +154,42 @@ update_status SceneTitle::Update() {
 	if (duration == 180) {
 		assetsAnim[2].Reset();
 		bombs[0].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[0].y = -176 * 2; //-176
+		bombs[0].y = -528; //-176
 	}
 	if (duration == 185) {
 		assetsAnim[3].Reset();
 		bombs[1].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[1].y = -206 * 2; //-206
+		bombs[1].y = -588; //-206
 	}
 	if (duration == 200) {
 		assetsAnim[4].Reset();
 		bombs[2].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[2].y = -236 * 2; //-236
+		bombs[2].y = -648; //-236
 	}
 	if (duration == 210) {
 		assetsAnim[5].Reset();
 		bombs[3].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[3].y = -266 * 2; //-266
+		bombs[3].y = -708; //-266
 	}
 	if (duration == 220) {
 		assetsAnim[6].Reset();
 		bombs[4].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[4].y = -296 * 2; //-296
+		bombs[4].y = -768; //-296
 	}
 	if (duration == 230) {
 		assetsAnim[7].Reset();
 		bombs[5].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[5].y = -326 * 2; //-326
+		bombs[5].y = -828; //-326
 	}
 	if (duration == 240) {
 		assetsAnim[8].Reset();
 		bombs[6].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[6].y = -356 * 2; //-356
+		bombs[6].y = -888; //-356
 	}
 	if (duration == 250) {
 		assetsAnim[9].Reset();
 		bombs[7].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[7].y = -386 * 2; //-386
+		bombs[7].y = -948; //-386
 	}
 	if (duration == 425) {
 		assetsAnim[1].Reset();
