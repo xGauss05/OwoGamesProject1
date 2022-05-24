@@ -408,7 +408,7 @@ bool ModulePlayer::Start() {
 
 	// UI for 0.5
 	font = App->fonts->Load("Assets/img/sprites/font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
-	ui_logos = App->fonts->Load("Assets/img/sprites/logos.png", "ABCDEFGHIJKLMNOPQR                  ", 6); 
+	ui_logos = App->fonts->Load("Assets/img/sprites/logos.png", "ABCDEFGHIJKLMNOPQR                  ", 6);
 	// F - for lives icons
 	// GH MN for gun icon
 	// I J OP for grenade icon
@@ -709,7 +709,7 @@ update_status ModulePlayer::Update() {
 		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE && 
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE &&
 			!(deathCooldown >= DEATH_ANIM_DURATION)) {
 			position.y -= speed;
 			movementDir = UP;
@@ -1243,7 +1243,7 @@ update_status ModulePlayer::Update() {
 			} else {
 				dead = false;
 				grenades = MAX_GRENADES;
-				this->position.y +=200;
+				this->position.y += 200;
 				if (weapon != Weapon::NORMAL)
 					weapon = Weapon::NORMAL;
 				//deathCooldown = 0;
@@ -1418,37 +1418,41 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			c2->pendingToDelete = true;
 			break;
 		case Collider::Type::WALL:
-			switch (movementDir) {
-			case UP:
-				position.y += speed;
-				break;
-			case DOWN:
-				position.y -= speed;
-				break;
-			case RIGHT:
-				position.x -= speed;
-				break;
-			case LEFT:
-				position.x += speed;
-				break;
-			case UP_RIGHT:
-				position.y += speed;
-				position.x -= speed;
-				break;
-			case UP_LEFT:
-				position.y += speed;
-				position.x += speed;
-				break;
-			case DOWN_RIGHT:
-				position.y -= speed;
-				position.x -= speed;
-				break;
-			case DOWN_LEFT:
-				position.y -= speed;
-				position.x += speed;
-				break;
-			default:
-				break;
+			if (invincibleCooldown >= INVINCIBLE_DURATION) {
+				godMode = false;
+				deathCooldown = 0;
+				invincibleCooldown = 0;
+
+				switch (movementDir) {
+				case UP:
+					position.y += speed;
+					break;
+				case DOWN:
+					position.y -= speed;
+					break;
+				case RIGHT:
+					position.x -= speed;
+					break;
+				case LEFT:
+					position.x += speed;
+					break;
+				case UP_RIGHT:
+					position.y += speed;
+					position.x -= speed;
+					break;
+				case UP_LEFT:
+					position.y += speed;
+					position.x += speed;
+					break;
+				case DOWN_RIGHT:
+					position.y -= speed;
+					position.x -= speed;
+					break;
+				case DOWN_LEFT:
+					position.y -= speed;
+					position.x += speed;
+					break;
+				}
 			}
 			break;
 
@@ -1540,6 +1544,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		}
 	}
 }
+
 
 bool ModulePlayer::CleanUp() {
 	//App->fonts->Disable();
