@@ -10,7 +10,7 @@
 #include "Breakable_Barricade_H.h"
 #include "Breakable_Barricade_V.h"
 #include "Breakable_Bridge.h"
-#include "Breakable_Fence.h"
+
 #include "Breakable_Barbed_1.h"
 #include "Breakable_Barbed_2.h"
 
@@ -131,9 +131,9 @@ void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 			case BREAKABLE_TYPE::BRIDGE:
 				breakables[i] = new Breakable_Bridge(info.x, info.y);
 				break;
-			case BREAKABLE_TYPE::FENCE:
+			/*case BREAKABLE_TYPE::FENCE:
 				breakables[i] = new Breakable_Fence(info.x, info.y);
-				break;
+				break;*/
 			case BREAKABLE_TYPE::BARBED_1:
 				breakables[i] = new Breakable_Barbed_1(info.x, info.y);
 				break;

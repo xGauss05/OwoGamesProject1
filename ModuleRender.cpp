@@ -95,7 +95,7 @@ update_status ModuleRender::Update() {
 		//camera.x = App->player->position.x - SCREEN_WIDTH / 2 + 16;				// (+ 16 to center in the character 32 pixels width)
 		//camera.y = App->player->position.y - SCREEN_HEIGHT / 1.5f;
 	}
-
+	
 
 	return update_status::UPDATE_CONTINUE;
 }

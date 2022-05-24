@@ -147,7 +147,10 @@
     <ClCompile Include="Breakable_Barricade_H.cpp" />
     <ClCompile Include="Breakable_Barricade_V.cpp" />
     <ClCompile Include="Breakable_Bridge.cpp" />
-    <ClCompile Include="Breakable_Fence.cpp" />
+    <ClCompile Include="Breakable_Fence_1.cpp" />
+    <ClCompile Include="Breakable_Fence_2.cpp" />
+    <ClCompile Include="Breakable_Fence_3.cpp" />
+    <ClCompile Include="Breakable_Fence_4.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_GreenSoldier.cpp" />
@@ -192,7 +195,10 @@
     <ClInclude Include="Breakable_Barricade_H.h" />
     <ClInclude Include="Breakable_Barricade_V.h" />
     <ClInclude Include="Breakable_Bridge.h" />
-    <ClInclude Include="Breakable_Fence.h" />
+    <ClInclude Include="Breakable_Fence_1.h" />
+    <ClInclude Include="Breakable_Fence_2.h" />
+    <ClInclude Include="Breakable_Fence_3.h" />
+    <ClInclude Include="Breakable_Fence_4.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_GreenSoldier.h" />
