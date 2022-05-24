@@ -145,51 +145,51 @@ update_status SceneTitle::Update() {
 		App->render->camera.y -= 1 * SCREEN_SIZE;
 	}
 	if (duration < 360) {
-		boat.y -= 4 * SCREEN_SIZE;
+		boat.y -= 4;
 	}
 	if (duration < 405 && duration >= 360) {
-		boat.y -= 2 * SCREEN_SIZE;
+		boat.y -= 2;
 	}
 	
 	if (duration == 180) {
 		assetsAnim[2].Reset();
 		bombs[0].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[0].y = -176 * 2 * SCREEN_SIZE; //-176
+		bombs[0].y = -176 * 2; //-176
 	}
 	if (duration == 185) {
 		assetsAnim[3].Reset();
 		bombs[1].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[1].y = -206 * 2 * SCREEN_SIZE; //-206
+		bombs[1].y = -206 * 2; //-206
 	}
 	if (duration == 200) {
 		assetsAnim[4].Reset();
 		bombs[2].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[2].y = -236 * 2 * SCREEN_SIZE; //-236
+		bombs[2].y = -236 * 2; //-236
 	}
 	if (duration == 210) {
 		assetsAnim[5].Reset();
 		bombs[3].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[3].y = -266 * 2 * SCREEN_SIZE; //-266
+		bombs[3].y = -266 * 2; //-266
 	}
 	if (duration == 220) {
 		assetsAnim[6].Reset();
 		bombs[4].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[4].y = -296 * 2 * SCREEN_SIZE; //-296
+		bombs[4].y = -296 * 2; //-296
 	}
 	if (duration == 230) {
 		assetsAnim[7].Reset();
 		bombs[5].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[5].y = -326 * 2 * SCREEN_SIZE; //-326
+		bombs[5].y = -326 * 2; //-326
 	}
 	if (duration == 240) {
 		assetsAnim[8].Reset();
 		bombs[6].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[6].y = -356 * 2 * SCREEN_SIZE; //-356
+		bombs[6].y = -356 * 2; //-356
 	}
 	if (duration == 250) {
 		assetsAnim[9].Reset();
 		bombs[7].x = (SCREEN_WIDTH / 2) - 8;
-		bombs[7].y = -386 * 2 * SCREEN_SIZE; //-386
+		bombs[7].y = -386 * 2; //-386
 	}
 	if (duration == 425) {
 		assetsAnim[1].Reset();
@@ -200,26 +200,26 @@ update_status SceneTitle::Update() {
 	for (int i = 0; i < 8; ++i) {
 		if (i % 2 == 0) {
 			if (assetsAnim[i + 2].GetCurrentFrameNum() < 6) {
-				bombs[i].x += 1 * SCREEN_SIZE;
-				bombs[i].y -= 4 * SCREEN_SIZE;
+				bombs[i].x += 1;
+				bombs[i].y -= 4;
 			}
 		}
 		else {
 			if (assetsAnim[i + 2].GetCurrentFrameNum() < 6) {
-				bombs[i].x -= 1 * SCREEN_SIZE;
-				bombs[i].y -= 4 * SCREEN_SIZE;
+				bombs[i].x -= 1;
+				bombs[i].y -= 4;
 			}
 		}
 	}
 
 	if (assetsAnim[1].GetCurrentFrameNum() < 8) {
-		playerMini.x -= 1 * SCREEN_SIZE;
-		playerMini.y -= 1 * SCREEN_SIZE;
+		playerMini.x -= 1;
+		playerMini.y -= 1;
 	}
 
-	planes[0].y -= 6 * SCREEN_SIZE;
-	planes[1].y -= 6 * SCREEN_SIZE;
-	planes[2].y -= 6 * SCREEN_SIZE;
+	planes[0].y -= 6;
+	planes[1].y -= 6;
+	planes[2].y -= 6;
 
 	for (int i = 0; i < MAX_ASSETS_TITLE; ++i) {
 		assetsAnim[i].Update();
