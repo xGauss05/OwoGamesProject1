@@ -46,7 +46,9 @@ update_status ModuleRender::PreUpdate() {
 	//Clear rendering target
 	SDL_RenderClear(renderer);
 
-	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+	if (WIN_FULLSCREEN_DESKTOP) {
+		SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -95,7 +97,7 @@ update_status ModuleRender::Update() {
 		//camera.x = App->player->position.x - SCREEN_WIDTH / 2 + 16;				// (+ 16 to center in the character 32 pixels width)
 		//camera.y = App->player->position.y - SCREEN_HEIGHT / 1.5f;
 	}
-
+	
 
 	return update_status::UPDATE_CONTINUE;
 }

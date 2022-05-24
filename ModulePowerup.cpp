@@ -13,8 +13,6 @@
 #include "Powerup_Flamethrower.h"
 #include "Powerup_Hostage.h"
 
-
-
 #define SPAWN_MARGIN	50
 
 ModulePowerup::ModulePowerup(bool startEnabled) : Module(startEnabled) {

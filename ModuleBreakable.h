@@ -11,6 +11,8 @@ enum class BREAKABLE_TYPE {
 	BARRICADE_V,
 	BRIDGE,
 	FENCE,
+	BARBED_1,
+	BARBED_2,
 };
 
 struct BreakableSpawnpoint {

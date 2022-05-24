@@ -59,7 +59,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::ENEMY][Collider::Type::POWER_UP] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::WATER] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::TRENCH] = false;
-	matrix[Collider::Type::ENEMY][Collider::Type::BREAKABLE] = true;
+	matrix[Collider::Type::ENEMY][Collider::Type::BREAKABLE] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::BREAKABLE_BRIDGE] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::NON_DEST_BAR] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::HOSTAGE] = true;
@@ -137,7 +137,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 
 	matrix[Collider::Type::BREAKABLE][Collider::Type::WALL] = false;
 	matrix[Collider::Type::BREAKABLE][Collider::Type::PLAYER] = true;
-	matrix[Collider::Type::BREAKABLE][Collider::Type::ENEMY] = true;
+	matrix[Collider::Type::BREAKABLE][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::BREAKABLE][Collider::Type::PLAYER_SHOT] = true;
 	matrix[Collider::Type::BREAKABLE][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::BREAKABLE][Collider::Type::POWER_UP] = false;
@@ -176,6 +176,21 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::HOSTAGE][Collider::Type::NON_DEST_BAR] = false;
 	matrix[Collider::Type::HOSTAGE][Collider::Type::HOSTAGE] = false;
 	matrix[Collider::Type::HOSTAGE][Collider::Type::EXPLOSION] = false;
+
+	matrix[Collider::Type::BREAKABLE_BRIDGE][Collider::Type::WALL] = false;
+	matrix[Collider::Type::BREAKABLE_BRIDGE][Collider::Type::PLAYER] = false;
+	matrix[Collider::Type::BREAKABLE_BRIDGE][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::BREAKABLE_BRIDGE][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::BREAKABLE_BRIDGE][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::BREAKABLE_BRIDGE][Collider::Type::POWER_UP] = false;
+	matrix[Collider::Type::BREAKABLE_BRIDGE][Collider::Type::WATER] = false;
+	matrix[Collider::Type::BREAKABLE_BRIDGE][Collider::Type::TRENCH] = false;
+	matrix[Collider::Type::BREAKABLE_BRIDGE][Collider::Type::BREAKABLE] = false;
+	matrix[Collider::Type::BREAKABLE_BRIDGE][Collider::Type::BREAKABLE_BRIDGE] = false;
+	matrix[Collider::Type::BREAKABLE_BRIDGE][Collider::Type::NON_DEST_BAR] = false;
+	matrix[Collider::Type::BREAKABLE_BRIDGE][Collider::Type::HOSTAGE] = false;
+	matrix[Collider::Type::BREAKABLE_BRIDGE][Collider::Type::EXPLOSION] = true;
+
 
 	matrix[Collider::Type::EXPLOSION][Collider::Type::WALL] = false;
 	matrix[Collider::Type::EXPLOSION][Collider::Type::PLAYER] = true;

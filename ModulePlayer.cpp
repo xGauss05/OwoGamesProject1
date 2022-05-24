@@ -373,6 +373,7 @@ bool ModulePlayer::Start() {
 	ammunition = 0;
 	deathCooldown = 0;
 	invincibleCooldown = 0;
+	spawnPoint = 0;
 	lives = 2;
 	grenades = MAX_GRENADES;
 
@@ -391,6 +392,7 @@ bool ModulePlayer::Start() {
 	dead = false;
 	godMode = false;
 	isThrowing = false;
+	immovable = false;
 
 	// Initiate player audios here
 	shotFx = App->audio->LoadFx("Assets/sounds/sfx/142.wav"); // shot sfx
@@ -408,7 +410,7 @@ bool ModulePlayer::Start() {
 
 	// UI for 0.5
 	font = App->fonts->Load("Assets/img/sprites/font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
-	ui_logos = App->fonts->Load("Assets/img/sprites/logos.png", "ABCDEFGHIJKLMNOPQR                  ", 6); 
+	ui_logos = App->fonts->Load("Assets/img/sprites/logos.png", "ABCDEFGHIJKLMNOPQR                  ", 6);
 	// F - for lives icons
 	// GH MN for gun icon
 	// I J OP for grenade icon
@@ -709,8 +711,8 @@ update_status ModulePlayer::Update() {
 		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE && 
-			!(deathCooldown >= DEATH_ANIM_DURATION)) {
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE &&
+			!immovable) {
 			position.y -= speed;
 			movementDir = UP;
 
@@ -737,7 +739,8 @@ update_status ModulePlayer::Update() {
 		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT &&
+			!immovable) {
 			position.y -= speed;
 			position.x += speed;
 			movementDir = UP_RIGHT;
@@ -764,7 +767,8 @@ update_status ModulePlayer::Update() {
 		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT &&
+			!immovable) {
 			position.x += speed;
 			movementDir = RIGHT;
 			switch (place) {
@@ -790,7 +794,8 @@ update_status ModulePlayer::Update() {
 		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT &&
+			!immovable) {
 			position.y += speed;
 			position.x += speed;
 			movementDir = DOWN_RIGHT;
@@ -817,7 +822,8 @@ update_status ModulePlayer::Update() {
 		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE &&
+			!immovable) {
 			position.y += speed;
 			movementDir = DOWN;
 			switch (place) {
@@ -843,7 +849,8 @@ update_status ModulePlayer::Update() {
 		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE &&
+			!immovable) {
 			position.y += speed;
 			position.x -= speed;
 			movementDir = DOWN_LEFT;
@@ -870,7 +877,8 @@ update_status ModulePlayer::Update() {
 		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE &&
+			!immovable) {
 			position.x -= speed;
 			movementDir = LEFT;
 			switch (place) {
@@ -896,7 +904,8 @@ update_status ModulePlayer::Update() {
 		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE &&
+			!immovable) {
 			position.y -= speed;
 			position.x -= speed;
 			movementDir = UP_LEFT;
@@ -1237,14 +1246,17 @@ update_status ModulePlayer::Update() {
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
 			deathAnimTop.Reset();
 			deathAnimBot.Reset();
-			//godMode = false;
+
 			if (lives == 0) {
 				App->fade->FadeToBlack((Module*)App->level1, (Module*)App->lose, 0);
 			} else {
 				dead = false;
 				grenades = MAX_GRENADES;
-				this->position.y +=200;
-				//deathCooldown = 0;
+				spawnPoint = this->position.y;
+				this->position.y += 150;
+				if (weapon != Weapon::NORMAL)
+					weapon = Weapon::NORMAL;
+				immovable = true;
 			}
 		}
 	}
@@ -1252,12 +1264,16 @@ update_status ModulePlayer::Update() {
 	// Invincible frames
 	if (deathCooldown >= DEATH_ANIM_DURATION) {
 		invincibleCooldown++;
-		this->position.y--;
+		if (spawnPoint >= this->position.y) {
+			this->position.y--;
+		} 
 		if (invincibleCooldown >= INVINCIBLE_DURATION) {
 			godMode = false;
 			deathCooldown = 0;
 			invincibleCooldown = 0;
 		}
+	} else {
+		immovable = false;
 	}
 
 	// God mode cheat
@@ -1416,37 +1432,37 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			c2->pendingToDelete = true;
 			break;
 		case Collider::Type::WALL:
-			switch (movementDir) {
-			case UP:
-				position.y += speed;
-				break;
-			case DOWN:
-				position.y -= speed;
-				break;
-			case RIGHT:
-				position.x -= speed;
-				break;
-			case LEFT:
-				position.x += speed;
-				break;
-			case UP_RIGHT:
-				position.y += speed;
-				position.x -= speed;
-				break;
-			case UP_LEFT:
-				position.y += speed;
-				position.x += speed;
-				break;
-			case DOWN_RIGHT:
-				position.y -= speed;
-				position.x -= speed;
-				break;
-			case DOWN_LEFT:
-				position.y -= speed;
-				position.x += speed;
-				break;
-			default:
-				break;
+			if (!(invincibleCooldown >= INVINCIBLE_DURATION)) {
+				switch (movementDir) {
+				case UP:
+					position.y += speed;
+					break;
+				case DOWN:
+					position.y -= speed;
+					break;
+				case RIGHT:
+					position.x -= speed;
+					break;
+				case LEFT:
+					position.x += speed;
+					break;
+				case UP_RIGHT:
+					position.y += speed;
+					position.x -= speed;
+					break;
+				case UP_LEFT:
+					position.y += speed;
+					position.x += speed;
+					break;
+				case DOWN_RIGHT:
+					position.y -= speed;
+					position.x -= speed;
+					break;
+				case DOWN_LEFT:
+					position.y -= speed;
+					position.x += speed;
+					break;
+				}
 			}
 			break;
 
