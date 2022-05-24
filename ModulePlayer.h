@@ -188,7 +188,7 @@ public:
 
 	// Fonts indexes
 	uint font = 0;
-	uint ui_font = 0;
+	uint ui_logos = 0;
 };
 
 #endif //!__MODULE_PLAYER_H__

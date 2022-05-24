@@ -408,7 +408,10 @@ bool ModulePlayer::Start() {
 
 	// UI for 0.5
 	font = App->fonts->Load("Assets/img/sprites/font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
-	ui_font = App->fonts->Load("Assets/img/sprites/UI_font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
+	ui_logos = App->fonts->Load("Assets/img/sprites/logos.png", "ABCDEFGHIJKLMNOPQR                  ", 6); 
+	// F - for lives icons
+	// GH MN for gun icon
+	// I J OP for grenade icon
 	return true;
 }
 
@@ -1355,25 +1358,27 @@ update_status ModulePlayer::PostUpdate() {
 
 	if (lives >= 1) {
 		// need to change to lives icon
-		App->fonts->BlitText(5, SCREEN_HEIGHT - 25, font, "H");
+		App->fonts->BlitText(5, SCREEN_HEIGHT - 25, ui_logos, "F");
 	}
 	if (lives >= 2) {
 		// need to change to lives icon
-		App->fonts->BlitText(15, SCREEN_HEIGHT - 25, font, "H");
+		App->fonts->BlitText(15, SCREEN_HEIGHT - 25, ui_logos, "F");
 	}
 
-	// need to change for the grenade icon
-	App->fonts->BlitText(5, 45, font, "GRENADES");
+	// IJ OP for grenade icon
+	App->fonts->BlitText(5, 45, ui_logos, "IJ");
+	App->fonts->BlitText(5, 52, ui_logos, "OP");
 	temp = std::to_string(grenades);
 	num_char = temp.c_str();
-	App->fonts->BlitText(5, 55, font, num_char);
+	App->fonts->BlitText(5, 59, font, num_char);
 
 	if (weapon != Weapon::NORMAL) {
-		// need to change for the ammo icon
-		App->fonts->BlitText(5, 65, font, "AMMO");
+		// GH MN for gun icon
+		App->fonts->BlitText(5, 66, ui_logos, "GH");
+		App->fonts->BlitText(5, 74, ui_logos, "MN");
 		temp = std::to_string(ammunition);
 		num_char = temp.c_str();
-		App->fonts->BlitText(5, 75, font, num_char);
+		App->fonts->BlitText(5, 81, font, num_char);
 	}
 
 	return update_status::UPDATE_CONTINUE;
@@ -1487,6 +1492,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			default:
 				break;
 			}
+			break;
+		case Collider::Type::BREAKABLE_BRIDGE:
+			place = Place::LAND;
 			break;
 		case Collider::Type::NON_DEST_BAR:
 			switch (movementDir) {
