@@ -1264,9 +1264,9 @@ update_status ModulePlayer::Update() {
 	// Invincible frames
 	if (deathCooldown >= DEATH_ANIM_DURATION) {
 		invincibleCooldown++;
-		if (spawnPoint >= this->position.y) {
+		if (spawnPoint < this->position.y) {
 			this->position.y--;
-		} 
+		}
 		if (invincibleCooldown >= INVINCIBLE_DURATION) {
 			godMode = false;
 			deathCooldown = 0;
@@ -1284,6 +1284,12 @@ update_status ModulePlayer::Update() {
 	// Insta win cheat
 	if (App->input->keys[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) {
 		App->fade->FadeToBlack((Module*)App->level1, (Module*)App->win, 0);
+	}
+
+	if (App->input->keys[SDL_SCANCODE_BACKSPACE] == KEY_STATE::KEY_DOWN) {
+		if (lives != 2) {
+			lives++;
+		}
 	}
 
 	// Insta lose cheat
@@ -1476,39 +1482,41 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			place = Place::TRENCH;
 			break;
 		case Collider::Type::BREAKABLE:
-			switch (movementDir) {
-			case UP:
-				position.y += speed;
-				break;
-			case DOWN:
-				position.y -= speed;
-				break;
-			case RIGHT:
-				position.x -= speed;
-				break;
-			case LEFT:
-				position.x += speed;
-				break;
-			case UP_RIGHT:
-				position.y += speed;
-				position.x -= speed;
-				break;
-			case UP_LEFT:
-				position.y += speed;
-				position.x += speed;
-				break;
-			case DOWN_RIGHT:
-				position.y -= speed;
-				position.x -= speed;
-				break;
-			case DOWN_LEFT:
-				position.y -= speed;
-				position.x += speed;
-				break;
-			default:
+			if (spawnPoint < this->position.y) {
+				switch (movementDir) {
+				case UP:
+					position.y += speed;
+					break;
+				case DOWN:
+					position.y -= speed;
+					break;
+				case RIGHT:
+					position.x -= speed;
+					break;
+				case LEFT:
+					position.x += speed;
+					break;
+				case UP_RIGHT:
+					position.y += speed;
+					position.x -= speed;
+					break;
+				case UP_LEFT:
+					position.y += speed;
+					position.x += speed;
+					break;
+				case DOWN_RIGHT:
+					position.y -= speed;
+					position.x -= speed;
+					break;
+				case DOWN_LEFT:
+					position.y -= speed;
+					position.x += speed;
+					break;
+				default:
+					break;
+				}
 				break;
 			}
-			break;
 		case Collider::Type::BREAKABLE_BRIDGE:
 			place = Place::LAND;
 			break;

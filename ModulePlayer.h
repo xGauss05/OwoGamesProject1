@@ -177,7 +177,7 @@ public:
 	uint score;
 
 	// Spawn point where it needs to spawn
-	ushort spawnPoint;
+	int spawnPoint;
 
 	// Lives of the player
 	ushort lives = 2;
