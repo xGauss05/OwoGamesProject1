@@ -55,8 +55,10 @@ update_status ModulePowerup::PostUpdate() {
 
 bool ModulePowerup::CleanUp() {
 	LOG("Freeing all powerups");
-	App->audio->UnloadFx(weaponPickUpFx);
 	App->textures->Unload(weaponTexture);
+	App->textures->Unload(hostageTexture);
+	App->audio->UnloadFx(weaponPickUpFx);
+	App->audio->UnloadFx(hostagePickUpFx);
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] != nullptr) {
 			App->audio->UnloadFx(powerUps[i]->pickUpFx);
