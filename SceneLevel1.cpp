@@ -358,7 +358,10 @@ bool SceneLevel1::CleanUp() {
    	App->enemies->Disable();
 	App->player->Disable();
 	App->collisions->Disable();
+
 	App->textures->Unload(bgTexture);
+	bgTexture = nullptr;
+	App->textures->Unload(paralaxTexture);
 	bgTexture = nullptr;
 	// Handle memory leaks
 
