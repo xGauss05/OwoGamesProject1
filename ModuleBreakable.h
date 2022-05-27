@@ -18,6 +18,7 @@ enum class BREAKABLE_TYPE {
 struct BreakableSpawnpoint {
 	BREAKABLE_TYPE type = BREAKABLE_TYPE::NO_TYPE;
 	int x, y;
+	ushort version = 0;
 };
 
 class Breakable;
@@ -52,7 +53,7 @@ public:
 	void OnCollision(Collider* c1, Collider* c2) override;
 
 	// Add an enemy into the queue to be spawned later
-	bool AddBreakable(BREAKABLE_TYPE type, int x, int y);
+	bool AddBreakable(BREAKABLE_TYPE type, int x, int y, ushort version = 0);
 
 	// Iterates the queue and checks for camera position
 	void HandleBreakablesSpawn();

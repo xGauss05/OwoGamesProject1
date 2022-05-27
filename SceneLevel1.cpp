@@ -32,7 +32,11 @@ bool SceneLevel1::Start() {
 	//App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 300, -60);
 	//App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 210, -60);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 210, -60);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 210, -92);
+	//App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 210, -92);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 210, -92, 1);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 178, -92, 2);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 146, -92, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 242, -92, 4);
 	// Entities --- Add enemies/powerups here
 	//App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 300, -60);
 	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 240, -60);

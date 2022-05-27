@@ -164,16 +164,7 @@
     <ClCompile Include="Breakable_Barbed_2.cpp">
       <Filter>Archivos de origen\Entities\Breakables</Filter>
     </ClCompile>
-    <ClCompile Include="Breakable_Fence_2.cpp">
-      <Filter>Archivos de origen\Entities\Breakables</Filter>
-    </ClCompile>
-    <ClCompile Include="Breakable_Fence_1.cpp">
-      <Filter>Archivos de origen\Entities\Breakables</Filter>
-    </ClCompile>
-    <ClCompile Include="Breakable_Fence_3.cpp">
-      <Filter>Archivos de origen\Entities\Breakables</Filter>
-    </ClCompile>
-    <ClCompile Include="Breakable_Fence_4.cpp">
+    <ClCompile Include="Breakable_Fence.cpp">
       <Filter>Archivos de origen\Entities\Breakables</Filter>
     </ClCompile>
   </ItemGroup>
@@ -307,16 +298,7 @@
     <ClInclude Include="Breakable_Barbed_2.h">
       <Filter>Archivos de origen\Entities\Breakables</Filter>
     </ClInclude>
-    <ClInclude Include="Breakable_Fence_1.h">
-      <Filter>Archivos de origen\Entities\Breakables</Filter>
-    </ClInclude>
-    <ClInclude Include="Breakable_Fence_2.h">
-      <Filter>Archivos de origen\Entities\Breakables</Filter>
-    </ClInclude>
-    <ClInclude Include="Breakable_Fence_3.h">
-      <Filter>Archivos de origen\Entities\Breakables</Filter>
-    </ClInclude>
-    <ClInclude Include="Breakable_Fence_4.h">
+    <ClInclude Include="Breakable_Fence.h">
       <Filter>Archivos de origen\Entities\Breakables</Filter>
     </ClInclude>
   </ItemGroup>
