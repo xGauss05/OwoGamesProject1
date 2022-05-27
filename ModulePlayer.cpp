@@ -1575,6 +1575,8 @@ bool ModulePlayer::CleanUp() {
 	App->audio->UnloadFx(playerDeadFx);
 	App->audio->UnloadFx(heavyRifleFx);
 	App->audio->UnloadFx(flamethrowerFx);
-	App->fonts->UnLoad(0);
+	App->audio->UnloadFx(throwGrenadeFx);
+	App->fonts->UnLoad(font);
+	App->fonts->UnLoad(ui_logos);
 	return true;
 }
