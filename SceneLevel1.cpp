@@ -332,8 +332,8 @@ bool SceneLevel1::Start() {
 	App->breakables->Enable();
 	App->collisions->Enable();
 	
-	App->render->camera.x = App->player->position.x - SCREEN_WIDTH / 2 + 16;
-	App->render->camera.y = App->player->position.y - SCREEN_HEIGHT / 1.5f;
+	App->render->camera.x = App->player->position.x - SCREEN_WIDTH / SCREEN_SIZE + 32/ SCREEN_SIZE;
+	App->render->camera.y = App->player->position.y - SCREEN_HEIGHT / 3* SCREEN_SIZE;
 
 	return ret;
 }
