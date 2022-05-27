@@ -10,7 +10,7 @@
 #include "Breakable_Barricade_H.h"
 #include "Breakable_Barricade_V.h"
 #include "Breakable_Bridge.h"
-
+#include "Breakable_Fence.h"
 #include "Breakable_Barbed_1.h"
 #include "Breakable_Barbed_2.h"
 
@@ -71,7 +71,7 @@ bool ModuleBreakable::CleanUp() {
 	return true;
 }
 
-bool ModuleBreakable::AddBreakable(BREAKABLE_TYPE type, int x, int y) {
+bool ModuleBreakable::AddBreakable(BREAKABLE_TYPE type, int x, int y, ushort version) {
 	bool ret = false;
 
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
@@ -79,6 +79,9 @@ bool ModuleBreakable::AddBreakable(BREAKABLE_TYPE type, int x, int y) {
 			spawnQueue[i].type = type;
 			spawnQueue[i].x = x;
 			spawnQueue[i].y = y;
+			if (version != 0) {
+				spawnQueue[i].version = version;
+			}
 			ret = true;
 			break;
 		}
@@ -134,9 +137,10 @@ void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 				breakables[i] = new Breakable_Bridge(info.x, info.y);
 				breakables[i]->texture = breakableTexture;
 				break;
-			/*case BREAKABLE_TYPE::FENCE:
-				breakables[i] = new Breakable_Fence(info.x, info.y);
-				break;*/
+			case BREAKABLE_TYPE::FENCE:
+				breakables[i] = new Breakable_Fence(info.x, info.y, info.version);
+				breakables[i]->texture = breakableTexture;
+				break;
 			case BREAKABLE_TYPE::BARBED_1:
 				breakables[i] = new Breakable_Barbed_1(info.x, info.y);
 				breakables[i]->texture = breakableTexture;
@@ -156,7 +160,7 @@ void ModuleBreakable::OnCollision(Collider* c1, Collider* c2) {
 		if (breakables[i] != nullptr && breakables[i]->GetCollider() == c1) {
 			breakables[i]->OnCollision(c2); // Notify the breakable of a collision
 			if (c2->type == Collider::Type::EXPLOSION) {
-				
+
 				delete breakables[i];
 				breakables[i] = nullptr;
 			}
