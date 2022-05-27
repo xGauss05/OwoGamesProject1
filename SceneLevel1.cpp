@@ -163,78 +163,78 @@ bool SceneLevel1::Start() {
 
 
 	//triangle
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 448, -1550);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 480, -1550);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 448, -1550);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 480, -1550);
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 320, -1940);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -1940);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 384, -1940);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 416, -1940);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 546, -1940);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 578, -1940);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 610, -1940);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 320, -1938);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 352, -1938);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 384, -1938);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 416, -1938);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 546, -1938);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 578, -1938);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 610, -1938);
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -2070);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 578, -2070);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 352, -2066);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 578, -2066);
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 416, -2102);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 448, -2102);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 480, -2102);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 448, -2102);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 416, -2098);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 448, -2098);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 480, -2098);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 448, -2130);
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 320, -2230);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 320, -2230);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -2230);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -2230);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 320, -2196);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 320, -2228);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 352, -2196);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 352, -2228);
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 578, -2355);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 610, -2355);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 578, -2355);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 610, -2355);
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 578, -2862);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 610, -2862);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 610, -2830);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 642, -2830);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 674, -2830);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 706, -2830);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 578, -2862);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 610, -2862);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 610, -2830);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 642, -2830);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 674, -2830);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 706, -2830);
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 802, -2830);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 834, -2830);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 802, -2830);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 834, -2830);
 
 
 	//Fence
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 255, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 287, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 319, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 351, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 383, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 415, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 447, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 479, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 511, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 543, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 575, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 607, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 639, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 671, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 703, -1890);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 735, -1890);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 256, -1902, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 288, -1902, 2);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 320, -1902, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -1902, 2);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 384, -1902, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 416, -1902, 2);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 448, -1902, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 480, -1902, 2);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 512, -1902, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 544, -1902, 2);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 576, -1902, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 608, -1902, 2);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 640, -1902, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 672, -1902, 2);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 704, -1902, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 736, -1902, 2);
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 255, -2275);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 287, -2275);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 319, -2275);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 351, -2275);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 383, -2275);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 415, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 256, -2286, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 288, -2286, 2);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 320, -2286, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -2286, 2);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 384, -2286, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 416, -2286, 4);
 	
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 511, -2275);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 543, -2275);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 575, -2275);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 607, -2275);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 639, -2275);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 671, -2275);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 703, -2275);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 735, -2275);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 512, -2286, 1);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 544, -2286, 2);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 576, -2286, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 608, -2286, 2);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 640, -2286, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 672, -2286, 2);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 704, -2286, 3);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 736, -2286, 2);
 
 	// Non destroyable barricade
 	App->collisions->AddCollider({ 575, -1680, 65, 30 }, Collider::Type::NON_DEST_BAR);
