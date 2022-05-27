@@ -76,21 +76,21 @@ update_status ModuleRender::Update() {
 
 	if (App->player->IsEnabled() && !debugCamera) {
 
-		if (App->player->position.x <= (camera.x + SCREEN_WIDTH / 2 - 16) - 30) //Last number is left offset
+		if (App->player->position.x <= (camera.x + SCREEN_WIDTH / SCREEN_SIZE  - 32/ SCREEN_SIZE) - 30) //Last number is left offset
 		{
-			camera.x--;
+			camera.x-= 0.5* SCREEN_SIZE;
 		}
-		if (App->player->position.x >= (camera.x + SCREEN_WIDTH / 2 - 16) + 30) //Last number is right offset
+		if (App->player->position.x >= (camera.x + SCREEN_WIDTH / SCREEN_SIZE - 32/ SCREEN_SIZE) + 30) //Last number is right offset
 		{
-			camera.x++;
+			camera.x+= 0.5* SCREEN_SIZE;
 		}
-		if (App->player->position.y <= (camera.y + SCREEN_HEIGHT / 1.5f) - 30) //Last number is upper offset
+		if (App->player->position.y <= (camera.y + SCREEN_HEIGHT / 3 * SCREEN_SIZE) - 30) //Last number is upper offset
 		{
-			camera.y--;
+			camera.y-= 0.5*SCREEN_SIZE;
 		}
-		if (App->player->position.y >= (camera.y + SCREEN_HEIGHT / 1.5f) + 30) //Last number is lower offset
+		if (App->player->position.y >= (camera.y + SCREEN_HEIGHT / 3 * SCREEN_SIZE) + 30) //Last number is lower offset
 		{
-			camera.y++;
+			camera.y+= 0.5* SCREEN_SIZE;
 		}
 
 

@@ -142,15 +142,33 @@ void ModuleDebug::DebugDraw() {
 	}
 
 	//Camera limits debug
-	if (camLimits) {
+
+	if (camLimits)
+	{
 		//Left offset
-		App->render->DrawLine((App->render->camera.x + SCREEN_WIDTH / 2 - 16) - 30, App->render->camera.y, (App->render->camera.x + SCREEN_WIDTH / 2 - 16) - 30, App->render->camera.y + SCREEN_HEIGHT, 50, 50, 255, 255, 1.0, true);
+		App->render->DrawLine(	(App->render->camera.x + SCREEN_WIDTH / 2 - 16) - 30,
+								App->render->camera.y,
+								(App->render->camera.x + SCREEN_WIDTH / 2 - 16) - 30,
+								App->render->camera.y + SCREEN_HEIGHT,
+								50, 50, 255, 255, 0.5 * SCREEN_SIZE, true);
 		//Right offset
-		App->render->DrawLine((App->render->camera.x + SCREEN_WIDTH / 2 - 16) + 30 + 32, App->render->camera.y, (App->render->camera.x + SCREEN_WIDTH / 2 - 16) + 30 + 32, App->render->camera.y + SCREEN_HEIGHT, 50, 50, 255, 255, 1.0, true);
+		App->render->DrawLine(	(App->render->camera.x + SCREEN_WIDTH / 2 - 16) + 30 + 32,
+								App->render->camera.y,
+								(App->render->camera.x + SCREEN_WIDTH / 2 - 16) + 30 + 32,
+								App->render->camera.y + SCREEN_HEIGHT,
+								50, 50, 255, 255, 0.5 * SCREEN_SIZE, true);
 		//Upper offset
-		App->render->DrawLine(App->render->camera.x, (App->render->camera.y + SCREEN_HEIGHT / 1.5f) - 30, App->render->camera.x + SCREEN_WIDTH, (App->render->camera.y + SCREEN_HEIGHT / 1.5f) - 30, 50, 50, 255, 255, 1.0, true);
+		App->render->DrawLine(	App->render->camera.x,
+								(App->render->camera.y + SCREEN_HEIGHT / 1.5f) - 30,
+								App->render->camera.x + SCREEN_WIDTH,
+								(App->render->camera.y + SCREEN_HEIGHT / 1.5f) - 30,
+								50, 50, 255, 255, 0.5 * SCREEN_SIZE, true);
 		//Lower offset
-		App->render->DrawLine(App->render->camera.x, (App->render->camera.y + SCREEN_HEIGHT / 1.5f) + 30 + 64, App->render->camera.x + SCREEN_WIDTH, (App->render->camera.y + SCREEN_HEIGHT / 1.5f) + 30 + 64, 50, 50, 255, 255, 1.0, true);
+		App->render->DrawLine(	App->render->camera.x,
+								(App->render->camera.y + SCREEN_HEIGHT / 1.5f) + 30 + 64,
+								App->render->camera.x + SCREEN_WIDTH,
+								(App->render->camera.y + SCREEN_HEIGHT / 1.5f) + 30 + 64,
+								50, 50, 255, 255, 0.5 * SCREEN_SIZE, true);
 	}
 
 	//Variables debug
