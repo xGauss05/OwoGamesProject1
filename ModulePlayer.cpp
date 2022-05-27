@@ -373,7 +373,7 @@ bool ModulePlayer::Start() {
 	ammunition = 0;
 	deathCooldown = 0;
 	invincibleCooldown = 0;
-	spawnPoint = 0;
+	spawnPoint = -INT_MAX;
 	lives = 2;
 	grenades = MAX_GRENADES;
 
@@ -1252,6 +1252,7 @@ update_status ModulePlayer::Update() {
 			} else {
 				dead = false;
 				grenades = MAX_GRENADES;
+				
 				spawnPoint = this->position.y;
 				this->position.y += 150;
 				if (weapon != Weapon::NORMAL)
@@ -1438,7 +1439,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			c2->pendingToDelete = true;
 			break;
 		case Collider::Type::WALL:
-			if (!(invincibleCooldown >= INVINCIBLE_DURATION)) {
+			if (invincibleCooldown == 0) {
 				switch (movementDir) {
 				case UP:
 					position.y += speed;
@@ -1473,16 +1474,19 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			break;
 
 		case Collider::Type::WATER:
-			currentAnimBot = &waterAnimBot;
-			place = Place::WATER;
+			if (currentAnimBot != &waterAnimBot)
+				currentAnimBot = &waterAnimBot;
+			if (place != Place::WATER)
+				place = Place::WATER;
 			break;
-
 		case Collider::Type::TRENCH:
-			currentAnimBot = &trenchAnimBot;
-			place = Place::TRENCH;
+			if (currentAnimBot != &trenchAnimBot)
+				currentAnimBot = &trenchAnimBot;
+			if (place != Place::TRENCH)
+				place = Place::TRENCH;
 			break;
 		case Collider::Type::BREAKABLE:
-			if (spawnPoint < this->position.y) {
+			if (invincibleCooldown == 0) {
 				switch (movementDir) {
 				case UP:
 					position.y += speed;
