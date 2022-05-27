@@ -128,9 +128,6 @@
     <ClCompile Include="SceneIntro.cpp">
       <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="SceneLose.cpp">
-      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Powerup_Hostage.cpp">
       <Filter>Archivos de origen\Entities\Powerups</Filter>
     </ClCompile>
@@ -260,9 +257,6 @@
       <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="SceneIntro.h">
-      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneLose.h">
       <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Powerup_Hostage.h">

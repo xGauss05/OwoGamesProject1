@@ -374,7 +374,7 @@ bool ModulePlayer::Start() {
 	deathCooldown = 0;
 	invincibleCooldown = 0;
 	spawnPoint = -INT_MAX;
-	lives = 2;
+	lives = 3;
 	grenades = MAX_GRENADES;
 
 	playerTexture = App->textures->Load("Assets/img/sprites/player.png"); // player spritesheet
@@ -393,6 +393,7 @@ bool ModulePlayer::Start() {
 	godMode = false;
 	isThrowing = false;
 	immovable = false;
+	continueGame = true;
 
 	// Initiate player audios here
 	shotFx = App->audio->LoadFx("Assets/sounds/sfx/142.wav"); // shot sfx
@@ -411,9 +412,9 @@ bool ModulePlayer::Start() {
 	// UI for 0.5
 	font = App->fonts->Load("Assets/img/sprites/font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
 	ui_logos = App->fonts->Load("Assets/img/sprites/logos.png", "ABCDEFGHIJKLMNOPQR                  ", 6);
-	// F - for lives icons
-	// GH MN for gun icon
-	// I J OP for grenade icon
+	// F     - lives icons
+	// GH MN - gun icon
+	// IJ OP - ºgrenade icon
 	return true;
 }
 
@@ -1246,13 +1247,20 @@ update_status ModulePlayer::Update() {
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
 			deathAnimTop.Reset();
 			deathAnimBot.Reset();
-
+			t1 = SDL_GetTicks();
 			if (lives == 0) {
-				App->fade->FadeToBlack((Module*)App->level1, (Module*)App->lose, 0);
+				if(SDL_GetTicks() - t1 / 1000.0f >= 1)
+					continueCooldown--;
+				if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
+					lives = 3;
+					continueCooldown = 9;
+				}
+				if (continueCooldown == 0)
+					App->fade->FadeToBlack((Module*)App->level1, (Module*)App->title, 0);
 			} else {
 				dead = false;
 				grenades = MAX_GRENADES;
-				
+
 				spawnPoint = this->position.y;
 				this->position.y += 150;
 				if (weapon != Weapon::NORMAL)
@@ -1263,18 +1271,20 @@ update_status ModulePlayer::Update() {
 	}
 
 	// Invincible frames
-	if (deathCooldown >= DEATH_ANIM_DURATION) {
-		invincibleCooldown++;
-		if (spawnPoint < this->position.y) {
-			this->position.y--;
+	if (lives != 0) {
+		if (deathCooldown >= DEATH_ANIM_DURATION) {
+			invincibleCooldown++;
+			if (spawnPoint < this->position.y) {
+				this->position.y--;
+			}
+			if (invincibleCooldown >= INVINCIBLE_DURATION) {
+				godMode = false;
+				deathCooldown = 0;
+				invincibleCooldown = 0;
+			}
+		} else {
+			immovable = false;
 		}
-		if (invincibleCooldown >= INVINCIBLE_DURATION) {
-			godMode = false;
-			deathCooldown = 0;
-			invincibleCooldown = 0;
-		}
-	} else {
-		immovable = false;
 	}
 
 	// God mode cheat
@@ -1288,7 +1298,7 @@ update_status ModulePlayer::Update() {
 	}
 
 	if (App->input->keys[SDL_SCANCODE_BACKSPACE] == KEY_STATE::KEY_DOWN) {
-		if (lives != 2) {
+		if (lives != 3) {
 			lives++;
 		}
 	}
@@ -1379,13 +1389,19 @@ update_status ModulePlayer::PostUpdate() {
 	App->fonts->BlitText(120, 10, font, "30000");
 	App->fonts->BlitText(SCREEN_WIDTH - 75, SCREEN_HEIGHT - 15, font, "CREDITS 0");
 
-	if (lives >= 1) {
+	if (lives >= 2) {
 		// need to change to lives icon
 		App->fonts->BlitText(5, SCREEN_HEIGHT - 25, ui_logos, "F");
 	}
-	if (lives >= 2) {
+	if (lives >= 3) {
 		// need to change to lives icon
 		App->fonts->BlitText(15, SCREEN_HEIGHT - 25, ui_logos, "F");
+	}
+	if (lives == 0) {
+		App->fonts->BlitText((SCREEN_WIDTH / 2) - 48, SCREEN_HEIGHT / 2, font, "CONTINUE");
+		temp = std::to_string(continueCooldown);
+		num_char = temp.c_str();
+		App->fonts->BlitText((SCREEN_WIDTH / 2) - 48, SCREEN_HEIGHT / 2 + 32, font, num_char);
 	}
 
 	// IJ OP for grenade icon

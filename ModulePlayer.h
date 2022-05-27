@@ -155,6 +155,7 @@ public:
 
 	ushort deathCooldown = 0;
 	ushort invincibleCooldown = 0;
+	ushort continueCooldown = 9;
 	// The player's collider
 	Collider* collider = nullptr;
 
@@ -170,6 +171,8 @@ public:
 	// Flag to prevent the player from moving
 	bool immovable = false;
 
+	bool continueGame = true;
+
 	// Amount of shots available. Max defined in MAX_AMMO
 	ushort ammunition = 0;
 
@@ -180,7 +183,7 @@ public:
 	int spawnPoint;
 
 	// Lives of the player
-	ushort lives = 2;
+	ushort lives = 3;
 
 	// Amount of grenades available. Max defined in MAX_GRENADES
 	ushort grenades = MAX_GRENADES;
@@ -191,7 +194,7 @@ public:
 	uint heavyRifleFx = 0;
 	uint flamethrowerFx = 0;
 	uint throwGrenadeFx = 0;
-
+	int t1 = 0;
 	// Fonts indexes
 	uint font = 0;
 	uint ui_logos = 0;
