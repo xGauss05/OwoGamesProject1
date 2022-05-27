@@ -7,7 +7,7 @@
 #include "ModulePlayer.h"
 
 Breakable_Fence::Breakable_Fence(int x, int y, unsigned short version) : Breakable(x, y) {
-	collider = App->collisions->AddCollider({ 0, 0, 64, 32 }, Collider::Type::BREAKABLE, (Module*)App->breakables);
+	collider = App->collisions->AddCollider({ 0, 0, 32, 32 }, Collider::Type::BREAKABLE, (Module*)App->breakables);
 	switch (version) {
 	case 1:
 		animation.PushBack({ 0,96,32,32 });
@@ -31,5 +31,5 @@ void Breakable_Fence::Update() {
 }
 
 void Breakable_Fence::OnCollision(Collider* collider) {
-	
+
 }

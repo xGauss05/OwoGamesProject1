@@ -13,13 +13,14 @@
 #include <string>
 using namespace std;
 
-ModuleDebug::ModuleDebug(bool startEnabled) : Module(startEnabled) { debug = false; }
-ModuleDebug::~ModuleDebug() {}
+ModuleDebug::ModuleDebug(bool startEnabled) : Module(startEnabled) {
+	debug = false;
+}
+ModuleDebug::~ModuleDebug() {
+}
 
-bool ModuleDebug::Start()
-{
-	if (App->input->controllerCount != 0)
-	{
+bool ModuleDebug::Start() {
+	if (App->input->controllerCount != 0) {
 		debugBox -= 60;
 	}
 
@@ -30,8 +31,7 @@ update_status ModuleDebug::Update() {
 	if (App->input->keys[SDL_SCANCODE_F2] == KEY_DOWN)
 		debug = !debug;
 
-	if (debug)
-	{
+	if (debug) {
 		if (App->input->keys[SDL_SCANCODE_Z] == KEY_DOWN)
 			variables = !variables;
 
@@ -90,14 +90,17 @@ void ModuleDebug::DebugDraw() {
 		case Collider::Type::TRENCH:
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 0, 100, alpha);
 			break;
-		case Collider::Type::BREAKABLE:
+		case Collider::Type::BREAKABLE: // orange
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 100, 0, alpha);
+			break;
+		case Collider::Type::BREAKABLE_BRIDGE: // orange
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 100, 0, alpha);
 			break;
 		case Collider::Type::NON_DEST_BAR:
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 100, 255, 0, alpha);
 			break;
 		case Collider::Type::EXPLOSION:
-			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 255/2, 0, alpha);
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 255 / 2, 0, alpha);
 			break;
 		default:
 			break;
@@ -106,47 +109,40 @@ void ModuleDebug::DebugDraw() {
 	}
 
 
-	for (size_t i = 0; i < MAX_ENEMIES; i++)
-	{
-		if (App->enemies->enemies[i] != nullptr)
-		{
+	for (size_t i = 0; i < MAX_ENEMIES; i++) {
+		if (App->enemies->enemies[i] != nullptr) {
 			App->render->DrawLine(App->enemies->enemies[i]->position.x + 16,
-				App->enemies->enemies[i]->position.y + 32,
-				App->enemies->enemies[i]->position.x + 16 + 20 * cos(App->enemies->enemies[i]->degrees * (M_PI / 180)),
-				App->enemies->enemies[i]->position.y + 32 + 20 * sin(App->enemies->enemies[i]->degrees * (M_PI / 180)),
-				0, 255, 0, 255);
+								  App->enemies->enemies[i]->position.y + 32,
+								  App->enemies->enemies[i]->position.x + 16 + 20 * cos(App->enemies->enemies[i]->degrees * (M_PI / 180)),
+								  App->enemies->enemies[i]->position.y + 32 + 20 * sin(App->enemies->enemies[i]->degrees * (M_PI / 180)),
+								  0, 255, 0, 255);
 		}
 	}
 
-	App->fonts->BlitText(10, spawnBox , 0, "PRESS Z FOR VARIABLES");
+	App->fonts->BlitText(10, spawnBox, 0, "PRESS Z FOR VARIABLES");
 	App->fonts->BlitText(10, spawnBox + 10, 0, "PRESS X FOR SPAWN MENU");
 	App->fonts->BlitText(10, spawnBox + 20, 0, "PRESS C FOR CAM LIMITS");
 
 	//Spawn Enemies 
-	if (spawn)
-	{
+	if (spawn) {
 		App->fonts->BlitText(10, spawnBox + 40, 0, "SPAWN.");
 		App->fonts->BlitText(60, spawnBox + 40, 0, "1.GREENSOLDIER");
 		App->fonts->BlitText(60, spawnBox + 50, 0, "2.REDSOLDIER");
 		App->fonts->BlitText(60, spawnBox + 60, 0, "3.TACKLER");
 
-		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN)
-		{
+		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN) {
 			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
 		}
-		if (App->input->keys[SDL_SCANCODE_2] == KEY_DOWN)
-		{
+		if (App->input->keys[SDL_SCANCODE_2] == KEY_DOWN) {
 			App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
 		}
-		if (App->input->keys[SDL_SCANCODE_3] == KEY_DOWN)
-		{
+		if (App->input->keys[SDL_SCANCODE_3] == KEY_DOWN) {
 			App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, App->player->position.x, App->player->position.y - 400, 0);
 		}
 	}
 
 	//Camera limits debug
-	if (camLimits)
-	{
+	if (camLimits) {
 		//Left offset
 		App->render->DrawLine((App->render->camera.x + SCREEN_WIDTH / 2 - 16) - 30, App->render->camera.y, (App->render->camera.x + SCREEN_WIDTH / 2 - 16) - 30, App->render->camera.y + SCREEN_HEIGHT, 50, 50, 255, 255, 1.0, true);
 		//Right offset
@@ -158,8 +154,7 @@ void ModuleDebug::DebugDraw() {
 	}
 
 	//Variables debug
-	if (variables)
-	{
+	if (variables) {
 		App->fonts->BlitText(10, debugBox, 0, "-GOD MODE");
 		if (!App->player->godMode)
 			App->fonts->BlitText(90, debugBox, 0, "OFF");
@@ -190,8 +185,7 @@ void ModuleDebug::DebugDraw() {
 
 		//Controller debug
 
-		if (App->input->controllerCount != 0)
-		{
+		if (App->input->controllerCount != 0) {
 			App->fonts->BlitText(10, debugBox + 90, 0, "CONTROLLER");
 
 			App->fonts->BlitText(10, debugBox + 100, 0, "J1.X");
@@ -240,8 +234,7 @@ void ModuleDebug::DebugDraw() {
 			App->fonts->BlitText(10, debugBox + 150, 0, "R TRIGGER");
 			App->fonts->BlitText(90, debugBox + 150, 0, std::to_string(App->input->controllers[0]->RT).c_str());
 
-		}
-		else
+		} else
 			App->fonts->BlitText(10, debugBox + 90, 0, "CONTROLLER NOT FOUND");
 	}
 }
