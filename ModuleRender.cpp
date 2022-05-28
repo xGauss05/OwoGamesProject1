@@ -30,10 +30,7 @@ bool ModuleRender::Init() {
 		ret = false;
 	}	
 	//camera.x += App->player->position.x;
-	//camera.y += App->player->position.y;
-
-	camera.x = App->player->position.x - SCREEN_WIDTH / 2;
-	camera.y = App->player->position.y - SCREEN_HEIGHT / 3;
+	//camera.y += App->player->position.y
 
 	return ret;
 }
@@ -76,26 +73,48 @@ update_status ModuleRender::Update() {
 
 	if (App->player->IsEnabled() && !debugCamera) {
 
-		if (App->player->position.x <= (camera.x + SCREEN_WIDTH / SCREEN_SIZE  - 32/ SCREEN_SIZE) - 30) //Last number is left offset
+		if (WIN_FULLSCREEN_DESKTOP)
 		{
-			camera.x-= 0.5* SCREEN_SIZE;
-		}
-		if (App->player->position.x >= (camera.x + SCREEN_WIDTH / SCREEN_SIZE - 32/ SCREEN_SIZE) + 30) //Last number is right offset
-		{
-			camera.x+= 0.5* SCREEN_SIZE;
-		}
-		if (App->player->position.y <= (camera.y + SCREEN_HEIGHT / 3 * SCREEN_SIZE) - 30) //Last number is upper offset
-		{
-			camera.y-= 0.5*SCREEN_SIZE;
-		}
-		if (App->player->position.y >= (camera.y + SCREEN_HEIGHT / 3 * SCREEN_SIZE) + 30) //Last number is lower offset
-		{
-			camera.y+= 0.5* SCREEN_SIZE;
+			//Fullscreen
+		//Left
+			if (App->player->position.x - camera.x * 2 <= SCREEN_WIDTH / 3 - 10)
+				camera.x--;
+
+			//Right
+			if (App->player->position.x - camera.x * 2 + 32 >= SCREEN_WIDTH / 1.5 + 10)
+				camera.x++;
+
+			//Up
+			if (App->player->position.y - camera.y * 2 <= SCREEN_HEIGHT / 1.4f - 60)
+				camera.y--;
+
+			//Down
+			if (App->player->position.y - camera.y * 2 + 64 >= SCREEN_HEIGHT / 1.4f + 60)
+				camera.y++;
 		}
 
+		//Windowed
+		else
+		{
+			//Left
+			if (App->player->position.x - camera.x <= SCREEN_WIDTH / 3 - 10)
+				camera.x--;
 
-		//camera.x = App->player->position.x - SCREEN_WIDTH / 2 + 16;				// (+ 16 to center in the character 32 pixels width)
-		//camera.y = App->player->position.y - SCREEN_HEIGHT / 1.5f;
+			//Right
+			if (App->player->position.x - camera.x + 32 >= SCREEN_WIDTH / 1.5 + 10)
+				camera.x++;
+
+			//Up
+			if (App->player->position.y - camera.y <= SCREEN_HEIGHT / 1.4f - 60)
+				camera.y--;
+
+			//Down
+			if (App->player->position.y - camera.y + 64 >= SCREEN_HEIGHT / 1.4f + 60)
+				camera.y++;
+		}
+
+		//camera.x = App->player->position.x / 2;
+		//camera.y = App->player->position.y / 2 - 100;
 	}
 	
 
