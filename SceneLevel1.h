@@ -36,7 +36,7 @@ public:
 	SDL_Texture* bgTexture = nullptr;
 
 	// The scence paralax texture loaded into an SDL_Texture
-	SDL_Texture* paralaxTexture = nullptr;
+	SDL_Texture* parallaxTexture = nullptr;
 	
 	// Bools to check if the music has changed
 	bool isLevelMusic = false;

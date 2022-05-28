@@ -26,7 +26,7 @@ bool SceneLevel1::Start() {
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/img/sprites/map.png");
-	paralaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.png");
+	parallaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.png");
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 
 
@@ -374,13 +374,13 @@ bool SceneLevel1::CleanUp() {
 
 	App->textures->Unload(bgTexture);
 	bgTexture = nullptr;
-	App->textures->Unload(paralaxTexture);
-	bgTexture = nullptr;
+	App->textures->Unload(parallaxTexture);
+	parallaxTexture = nullptr;
 	// Handle memory leaks
 
 	return true;
 }
 
 void SceneLevel1::DrawParallax() {
-	App->render->Blit(paralaxTexture, 0, Y_BG_POSITION, NULL);
+	App->render->Blit(parallaxTexture, 0, Y_BG_POSITION, NULL);
 }
