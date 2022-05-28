@@ -376,6 +376,7 @@ bool ModulePlayer::Start() {
 	spawnPoint = -INT_MAX;
 	lives = 3;
 	grenades = MAX_GRENADES;
+	t1 = SDL_GetTicks();
 
 	playerTexture = App->textures->Load("Assets/img/sprites/player.png"); // player spritesheet
 	weaponTexture = App->textures->Load("Assets/img/sprites/weapon.png"); // weapon spritesheet
@@ -557,7 +558,7 @@ void ModulePlayer::throwGrenade() {
 }
 
 update_status ModulePlayer::Update() {
-
+	
 	// Change Direction
 	if (App->input->keys[SDL_SCANCODE_I] != KEY_STATE::KEY_IDLE ||
 		App->input->keys[SDL_SCANCODE_J] != KEY_STATE::KEY_IDLE ||
@@ -1230,6 +1231,8 @@ update_status ModulePlayer::Update() {
 		}
 	}
 
+	
+	// t2-t1/ 1000.0f
 	// If the player is dead
 	if (dead) {
 		godMode = true;
@@ -1238,7 +1241,7 @@ update_status ModulePlayer::Update() {
 			App->audio->PlayFx(playerDeadFx);
 
 		deathCooldown++;
-
+		
 		if (currentAnimTop != &deathAnimTop)
 			currentAnimTop = &deathAnimTop;
 		if (currentAnimBot != &deathAnimBot)
@@ -1247,10 +1250,14 @@ update_status ModulePlayer::Update() {
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
 			deathAnimTop.Reset();
 			deathAnimBot.Reset();
-			t1 = SDL_GetTicks();
+			
+			
 			if (lives == 0) {
-				if(SDL_GetTicks() - t1 / 1000.0f >= 1)
+				int t2 = SDL_GetTicks();
+				if ((t2 - t1) / 1000.0f >= 1) {
 					continueCooldown--;
+					t1 = t2;
+				}
 				if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 					lives = 3;
 					continueCooldown = 9;
