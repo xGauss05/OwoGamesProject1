@@ -560,8 +560,252 @@ void ModulePlayer::throwGrenade() {
 	}
 }
 
-update_status ModulePlayer::Update() {
+Directions ModulePlayer::checkMovingDir() {
+	
+	Directions dir = movementDir;
+	/*
+	if (App->input->controllerCount > 0) {
+		for (int i = 0; i < App->input->controllerCount; ++i) {
+			if (App->input->controllers[i]->j2_x > 0) {
+				if (App->input->controllers[i]->j2_y > 0) {
+					dir = DOWN_RIGHT;
+				}
+				else if (App->input->controllers[i]->j2_y < 0) {
+					dir = UP_RIGHT;
+				}
+				else {
+					dir = RIGHT;
+				}
+			}
+			else if (App->input->controllers[i]->j2_x < 0) {
+				if (App->input->controllers[i]->j2_y > 0) {
+					dir = DOWN_LEFT;
+				}
+				else if (App->input->controllers[i]->j2_y < 0) {
+					dir = UP_LEFT;
+				}
+				else {
+					dir = LEFT;
+				}
+			}
+			else {
+				if (App->input->controllers[i]->j2_y > 0) {
+					dir = DOWN;
+				}
+				else if (App->input->controllers[i]->j2_y < 0) {
+					dir = UP;
+				}
+			}
+		}
+	}
 
+	if (App->input->keys[SDL_SCANCODE_W] != KEY_STATE::KEY_IDLE ||
+		App->input->keys[SDL_SCANCODE_A] != KEY_STATE::KEY_IDLE ||
+		App->input->keys[SDL_SCANCODE_S] != KEY_STATE::KEY_IDLE ||
+		App->input->keys[SDL_SCANCODE_D] != KEY_STATE::KEY_IDLE) {
+
+		// Direction to UP
+		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			dir = UP;
+		}
+		// Direction to UP_RIGHT
+		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+			dir = UP_RIGHT;
+		}
+		// Direction to RIGHT
+		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+			dir = RIGHT;
+		}
+		// Direction to DOWN_RIGHT
+		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+			dir = DOWN_RIGHT;
+		}
+		// Direction to DOWN
+		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			dir = Directions::DOWN;
+		}
+		// Direction to DOWN_LEFT
+		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			dir = DOWN_LEFT;
+		}
+		// Direction to LEFT
+		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			dir = LEFT;
+		}
+
+		// Direction to UP_LEFT
+		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+			dir = UP_LEFT;
+		}
+	}
+	*/
+	return dir;
+	
+}
+
+
+Directions ModulePlayer::checkFacingDir() {
+	
+	Directions dir = facing;
+	/*
+	if (App->input->controllerCount > 0) {
+		for (int i = 0; i < App->input->controllerCount; ++i) {
+			if (App->input->controllers[i]->j1_x > 0) {
+				if (App->input->controllers[i]->j1_y > 0) {
+					dir = DOWN_RIGHT;
+				}
+				else if (App->input->controllers[i]->j1_y < 0) {
+					dir = UP_RIGHT;
+				}
+				else {
+					dir = RIGHT;
+				}
+			}
+			else if (App->input->controllers[i]->j1_x < 0) {
+				if (App->input->controllers[i]->j1_y > 0) {
+					dir = DOWN_LEFT;
+				}
+				else if (App->input->controllers[i]->j1_y < 0) {
+					dir = UP_LEFT;
+				}
+				else {
+					dir = LEFT;
+				}
+			}
+			else {
+				if (App->input->controllers[i]->j1_y > 0) {
+					dir = DOWN;
+				}
+				else if (App->input->controllers[i]->j1_y < 0) {
+					dir = UP;
+				}
+			}
+		}
+	}
+
+	if (App->input->keys[SDL_SCANCODE_I] != KEY_STATE::KEY_IDLE ||
+		App->input->keys[SDL_SCANCODE_J] != KEY_STATE::KEY_IDLE ||
+		App->input->keys[SDL_SCANCODE_K] != KEY_STATE::KEY_IDLE ||
+		App->input->keys[SDL_SCANCODE_L] != KEY_STATE::KEY_IDLE) {
+	
+		// Direction to UP
+		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			dir = UP;
+		}
+		// Direction to UP_RIGHT
+		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
+			dir = UP_RIGHT;
+		}
+		// Direction to RIGHT
+		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
+			dir = RIGHT;
+		}
+		// Direction to DOWN_RIGHT
+		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
+			dir = DOWN_RIGHT;
+		}
+		// Direction to DOWN
+		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			dir = Directions::DOWN;
+		}
+		// Direction to DOWN_LEFT
+		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			dir = DOWN_LEFT;
+		}
+		// Direction to LEFT
+		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			dir = LEFT;
+		}
+	
+		// Direction to UP_LEFT
+		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
+			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+			dir = UP_LEFT;
+		}
+	}
+	*/
+	return dir;
+}
+
+
+update_status ModulePlayer::Update() {
+	/*
+	facing = checkFacingDir();
+
+	switch (facing) {
+	case Directions::UP:
+		
+		break;
+	case Directions::UP_RIGHT:
+		
+		break;
+	case Directions::RIGHT:
+		
+		break;
+	case Directions::DOWN_RIGHT:
+		
+		break;
+	case Directions::DOWN:
+
+		break;
+	case Directions::DOWN_LEFT:
+
+		break;
+	case Directions::LEFT:
+
+		break;
+	case Directions::UP_LEFT:
+
+		break;
+	}
+	*/
 	// Change Direction
 	if (App->input->keys[SDL_SCANCODE_I] != KEY_STATE::KEY_IDLE ||
 		App->input->keys[SDL_SCANCODE_J] != KEY_STATE::KEY_IDLE ||

@@ -43,6 +43,9 @@ public:
 	void shootFlamethrower();
 	void throwGrenade();
 
+	Directions checkMovingDir();
+	Directions checkFacingDir();
+
 	// Called at the middle of the application loop
 	// Processes new input and handles player movement
 	update_status Update() override;
