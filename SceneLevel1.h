@@ -35,8 +35,10 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 
+	// The scence paralax texture loaded into an SDL_Texture
 	SDL_Texture* paralaxTexture = nullptr;
-
+	
+	// Bools to check if the music has changed
 	bool isLevelMusic = false;
 	bool isContinueMusic = false;
 };
