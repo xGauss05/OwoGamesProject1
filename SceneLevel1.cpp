@@ -29,6 +29,7 @@ bool SceneLevel1::Start() {
 	paralaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.png");
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 
+
 	//App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 300, -60);
 	//App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 210, -60);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 210, -60);
@@ -226,7 +227,7 @@ bool SceneLevel1::Start() {
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -2286, 2);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 384, -2286, 3);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 416, -2286, 4);
-	
+
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 512, -2286, 1);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 544, -2286, 2);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 576, -2286, 3);
@@ -247,7 +248,7 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 255, -2165, 30, 195 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 255, -2225, 60, 60 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 670, -2225, 30, 255 }, Collider::Type::NON_DEST_BAR);
-	App->collisions->AddCollider({ 255, -2320, 95, 30  }, Collider::Type::NON_DEST_BAR);
+	App->collisions->AddCollider({ 255, -2320, 95, 30 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 670, -2320, 195, 30 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 515, -2645, 130, 60 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 610, -2675, 30, 30 }, Collider::Type::NON_DEST_BAR);
@@ -331,14 +332,26 @@ bool SceneLevel1::Start() {
 	App->powerups->Enable();
 	App->breakables->Enable();
 	App->collisions->Enable();
-	
-	App->render->camera.x = App->player->position.x - SCREEN_WIDTH / SCREEN_SIZE + 32/ SCREEN_SIZE;
-	App->render->camera.y = App->player->position.y - SCREEN_HEIGHT / 3* SCREEN_SIZE;
+
+	App->render->camera.x = App->player->position.x - SCREEN_WIDTH / SCREEN_SIZE + 32 / SCREEN_SIZE;
+	App->render->camera.y = App->player->position.y - SCREEN_HEIGHT / 3 * SCREEN_SIZE;
 
 	return ret;
 }
 
 update_status SceneLevel1::Update() {
+	if (App->player->lives == 0 && !isLevelMusic) {
+		isLevelMusic = true;
+		isContinueMusic = false;
+		App->audio->PlayMusic("Assets/sounds/bgm/124.ogg", 1.0f);
+	}
+
+	if (App->player->lives >= 1 && !isContinueMusic) {
+		isContinueMusic = true;
+		isLevelMusic = false;
+		App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -352,10 +365,10 @@ update_status SceneLevel1::PostUpdate() {
 
 bool SceneLevel1::CleanUp() {
 	// Disables the player, enemies and powerups.	
-	
+
 	App->breakables->Disable();
 	App->powerups->Disable();
-   	App->enemies->Disable();
+	App->enemies->Disable();
 	App->player->Disable();
 	App->collisions->Disable();
 

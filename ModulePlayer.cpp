@@ -371,6 +371,7 @@ bool ModulePlayer::Start() {
 	//App->fonts->Enable();
 	score = 0;
 	ammunition = 0;
+	continueCooldown = 9;
 	deathCooldown = 0;
 	invincibleCooldown = 0;
 	spawnPoint = -INT_MAX;
@@ -385,6 +386,9 @@ bool ModulePlayer::Start() {
 	currentAnimBot = &idleAnimBot;
 	currentWeaponAnim = &upNorWeaponAnim;
 
+	deathAnimTop.Reset();
+	deathAnimBot.Reset();
+
 	facing = Directions::UP;
 	weapon = Weapon::NORMAL;
 	movementDir = Directions::UP;
@@ -394,7 +398,6 @@ bool ModulePlayer::Start() {
 	godMode = false;
 	isThrowing = false;
 	immovable = false;
-	continueGame = true;
 
 	// Initiate player audios here
 	shotFx = App->audio->LoadFx("Assets/sounds/sfx/142.wav"); // shot sfx
@@ -558,7 +561,7 @@ void ModulePlayer::throwGrenade() {
 }
 
 update_status ModulePlayer::Update() {
-	
+
 	// Change Direction
 	if (App->input->keys[SDL_SCANCODE_I] != KEY_STATE::KEY_IDLE ||
 		App->input->keys[SDL_SCANCODE_J] != KEY_STATE::KEY_IDLE ||
@@ -1231,8 +1234,6 @@ update_status ModulePlayer::Update() {
 		}
 	}
 
-	
-	// t2-t1/ 1000.0f
 	// If the player is dead
 	if (dead) {
 		godMode = true;
@@ -1241,30 +1242,34 @@ update_status ModulePlayer::Update() {
 			App->audio->PlayFx(playerDeadFx);
 
 		deathCooldown++;
-		
+
 		if (currentAnimTop != &deathAnimTop)
 			currentAnimTop = &deathAnimTop;
 		if (currentAnimBot != &deathAnimBot)
 			currentAnimBot = &deathAnimBot;
 
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
-			deathAnimTop.Reset();
-			deathAnimBot.Reset();
-			
-			
+
 			if (lives == 0) {
+		
+
 				int t2 = SDL_GetTicks();
 				if ((t2 - t1) / 1000.0f >= 1) {
 					continueCooldown--;
-					t1 = t2;
+					t1 = t2;	
 				}
+
 				if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
 					lives = 3;
 					continueCooldown = 9;
 				}
+
 				if (continueCooldown == 0)
 					App->fade->FadeToBlack((Module*)App->level1, (Module*)App->title, 0);
+
 			} else {
+				deathAnimTop.Reset();
+				deathAnimBot.Reset();
 				dead = false;
 				grenades = MAX_GRENADES;
 
@@ -1405,10 +1410,13 @@ update_status ModulePlayer::PostUpdate() {
 		App->fonts->BlitText(15, SCREEN_HEIGHT - 25, ui_logos, "F");
 	}
 	if (lives == 0) {
-		App->fonts->BlitText((SCREEN_WIDTH / 2) - 48, SCREEN_HEIGHT / 2, font, "CONTINUE");
+		App->fonts->BlitText((SCREEN_WIDTH / 2) - 48, SCREEN_HEIGHT / 2, font, "CONTINUE?");
 		temp = std::to_string(continueCooldown);
 		num_char = temp.c_str();
-		App->fonts->BlitText((SCREEN_WIDTH / 2) - 48, SCREEN_HEIGHT / 2 + 32, font, num_char);
+		App->fonts->BlitText((SCREEN_WIDTH / 2) - 64, SCREEN_HEIGHT / 2 + 32, font, "WITHIN");
+		App->fonts->BlitText((SCREEN_WIDTH / 2), SCREEN_HEIGHT / 2 + 32, font, num_char);
+		App->fonts->BlitText((SCREEN_WIDTH / 2) + 32, SCREEN_HEIGHT / 2 + 32, font, "SECONDS");
+
 	}
 
 	// IJ OP for grenade icon

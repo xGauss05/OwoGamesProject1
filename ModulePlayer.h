@@ -85,7 +85,6 @@ public:
 	Animation* currentWeaponAnim = nullptr;
 
 	// Animations ---
-	
 	// Idle animation
 	Animation idleAnimTop, idleAnimBot;
 	// Up
@@ -152,10 +151,12 @@ public:
 	Animation rightThrowGrenade;
 	// Left
 	Animation leftThrowGrenade;
-
+	
+	// Countdowns
 	ushort deathCooldown = 0;
 	ushort invincibleCooldown = 0;
 	ushort continueCooldown = 9;
+
 	// The player's collider
 	Collider* collider = nullptr;
 
@@ -171,8 +172,6 @@ public:
 	// Flag to prevent the player from moving
 	bool immovable = false;
 
-	bool continueGame = true;
-
 	// Amount of shots available. Max defined in MAX_AMMO
 	ushort ammunition = 0;
 
@@ -181,6 +180,9 @@ public:
 
 	// Spawn point where it needs to spawn
 	int spawnPoint;
+
+	// Variable to calculate seconds
+	int t1 = 0;
 
 	// Lives of the player
 	ushort lives = 3;
@@ -194,7 +196,9 @@ public:
 	uint heavyRifleFx = 0;
 	uint flamethrowerFx = 0;
 	uint throwGrenadeFx = 0;
-	int t1 = 0;
+
+
+
 	// Fonts indexes
 	uint font = 0;
 	uint ui_logos = 0;

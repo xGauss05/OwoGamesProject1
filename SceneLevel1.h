@@ -36,6 +36,9 @@ public:
 	SDL_Texture* bgTexture = nullptr;
 
 	SDL_Texture* paralaxTexture = nullptr;
+
+	bool isLevelMusic = false;
+	bool isContinueMusic = false;
 };
 
 #endif // __MODULE_SCENE1_H__
