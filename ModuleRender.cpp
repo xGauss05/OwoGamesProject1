@@ -44,7 +44,7 @@ update_status ModuleRender::PreUpdate() {
 	SDL_RenderClear(renderer);
 
 	if (WIN_FULLSCREEN_DESKTOP) {
-		SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+		SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE);
 	}
 
 	return update_status::UPDATE_CONTINUE;
@@ -73,48 +73,21 @@ update_status ModuleRender::Update() {
 
 	if (App->player->IsEnabled() && !debugCamera) {
 
-		if (WIN_FULLSCREEN_DESKTOP)
-		{
-			//Fullscreen
 		//Left
-			if (App->player->position.x - camera.x * 2 <= SCREEN_WIDTH / 3 - 10)
-				camera.x--;
+		if (App->player->position.x - camera.x <= SCREEN_WIDTH / 3 - 10)
+			camera.x--;
 
-			//Right
-			if (App->player->position.x - camera.x * 2 + 32 >= SCREEN_WIDTH / 1.5 + 10)
-				camera.x++;
+		//Right
+		if (App->player->position.x - camera.x + 32 >= SCREEN_WIDTH / 1.5 + 10)
+			camera.x++;
 
-			//Up
-			if (App->player->position.y - camera.y * 2 <= SCREEN_HEIGHT / 1.4f - 60)
-				camera.y--;
+		//Up
+		if (App->player->position.y - camera.y <= SCREEN_HEIGHT / 1.4f - 60)
+			camera.y--;
 
-			//Down
-			if (App->player->position.y - camera.y * 2 + 64 >= SCREEN_HEIGHT / 1.4f + 60)
-				camera.y++;
-		}
-
-		//Windowed
-		else
-		{
-			//Left
-			if (App->player->position.x - camera.x <= SCREEN_WIDTH / 3 - 10)
-				camera.x--;
-
-			//Right
-			if (App->player->position.x - camera.x + 32 >= SCREEN_WIDTH / 1.5 + 10)
-				camera.x++;
-
-			//Up
-			if (App->player->position.y - camera.y <= SCREEN_HEIGHT / 1.4f - 60)
-				camera.y--;
-
-			//Down
-			if (App->player->position.y - camera.y + 64 >= SCREEN_HEIGHT / 1.4f + 60)
-				camera.y++;
-		}
-
-		//camera.x = App->player->position.x / 2;
-		//camera.y = App->player->position.y / 2 - 100;
+		//Down
+		if (App->player->position.y - camera.y + 64 >= SCREEN_HEIGHT / 1.4f + 60)
+			camera.y++;
 	}
 	
 
