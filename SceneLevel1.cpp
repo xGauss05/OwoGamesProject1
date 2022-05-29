@@ -139,20 +139,69 @@ bool SceneLevel1::Start() {
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 448, -1424);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_V, 480, -1455);
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 256, -1822);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 288, -1822);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 320, -1822);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 352, -1822);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 384, -1822);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 416, -1822);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 256, -1824);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 288, -1824);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 320, -1824);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 352, -1824);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 384, -1824);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 416, -1824);
 
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 540, -1822);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 572, -1822);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 604, -1822);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 636, -1822);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 668, -1822);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 700, -1822);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 732, -1822);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 542, -1824);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 574, -1824);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 606, -1824);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 638, -1824);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 670, -1824);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 702, -1824);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 734, -1824);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 416, -2432);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 448, -2432);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 480, -2432);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 512, -2432);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_V, 544, -2448);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 512, -2528);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 544, -2528);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 576, -2528);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 608, -2528);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 640, -2528);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 672, -2528);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_V, 704, -2544);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_V, 704, -2572);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 704, -2752);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 736, -2752);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 768, -2752);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 800, -2752);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 640, -2864);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 672, -2864);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 704, -2864);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 800, -2864);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 832, -2864);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 864, -2864);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 608, -3344);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 704, -3344);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 800, -3344);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_V, 608, -3376);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_V, 608, -3408);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 640, -3376);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 672, -3376);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 704, -3376);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 800, -3376);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 832, -3376);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 672, -3424);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 704, -3424);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 736, -3424);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 768, -3424);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 800, -3424);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 832, -3424);
 
 
 	//triangle
