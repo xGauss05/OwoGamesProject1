@@ -560,40 +560,48 @@ void ModulePlayer::throwGrenade() {
 	}
 }
 
-Directions ModulePlayer::checkMovingDir() {
+bool ModulePlayer::checkMovingDir() {
 	
-	Directions dir = movementDir;
+	bool isActing = false;
 	
 	if (App->input->controllerCount > 0) {
 		for (int i = 0; i < App->input->controllerCount; ++i) {
 			if (App->input->controllers[i]->j2_x > 0) {
 				if (App->input->controllers[i]->j2_y > 0) {
-					dir = DOWN_RIGHT;
+					movementDir = DOWN_RIGHT;
+					isActing = true;
 				}
 				else if (App->input->controllers[i]->j2_y < 0) {
-					dir = UP_RIGHT;
+					movementDir = UP_RIGHT;
+					isActing = true;
 				}
 				else {
-					dir = RIGHT;
+					movementDir = RIGHT;
+					isActing = true;
 				}
 			}
 			else if (App->input->controllers[i]->j2_x < 0) {
 				if (App->input->controllers[i]->j2_y > 0) {
-					dir = DOWN_LEFT;
+					movementDir = DOWN_LEFT;
+					isActing = true;
 				}
 				else if (App->input->controllers[i]->j2_y < 0) {
-					dir = UP_LEFT;
+					movementDir = UP_LEFT;
+					isActing = true;
 				}
 				else {
-					dir = LEFT;
+					movementDir = LEFT;
+					isActing = true;
 				}
 			}
 			else {
 				if (App->input->controllers[i]->j2_y > 0) {
-					dir = DOWN;
+					movementDir = DOWN;
+					isActing = true;
 				}
 				else if (App->input->controllers[i]->j2_y < 0) {
-					dir = UP;
+					movementDir = UP;
+					isActing = true;
 				}
 			}
 		}
@@ -609,49 +617,56 @@ Directions ModulePlayer::checkMovingDir() {
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
-			dir = UP;
+			movementDir = UP;
+			isActing = true;
 		}
 		// Direction to UP_RIGHT
 		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
-			dir = UP_RIGHT;
+			movementDir = UP_RIGHT;
+			isActing = true;
 		}
 		// Direction to RIGHT
 		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
-			dir = RIGHT;
+			movementDir = RIGHT;
+			isActing = true;
 		}
 		// Direction to DOWN_RIGHT
 		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
-			dir = DOWN_RIGHT;
+			movementDir = DOWN_RIGHT;
+			isActing = true;
 		}
 		// Direction to DOWN
 		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
-			dir = Directions::DOWN;
+			movementDir = Directions::DOWN;
+			isActing = true;
 		}
 		// Direction to DOWN_LEFT
 		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
-			dir = DOWN_LEFT;
+			movementDir = DOWN_LEFT;
+			isActing = true;
 		}
 		// Direction to LEFT
 		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
-			dir = LEFT;
+			movementDir = LEFT;
+			isActing = true;
 		}
 
 		// Direction to UP_LEFT
@@ -659,49 +674,59 @@ Directions ModulePlayer::checkMovingDir() {
 			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
-			dir = UP_LEFT;
+			movementDir = UP_LEFT;
+			isActing = true;
 		}
 	}
+
 	
-	return dir;
+	return isActing;
 	
 }
 
 
-Directions ModulePlayer::checkFacingDir() {
+bool ModulePlayer::checkFacingDir() {
 	
-	Directions dir = facing;
-	
+	bool isActing = false;
+
 	if (App->input->controllerCount > 0) {
 		for (int i = 0; i < App->input->controllerCount; ++i) {
 			if (App->input->controllers[i]->j1_x > 0) {
 				if (App->input->controllers[i]->j1_y > 0) {
-					dir = DOWN_RIGHT;
+					facing = DOWN_RIGHT;
+					isActing = true;
 				}
 				else if (App->input->controllers[i]->j1_y < 0) {
-					dir = UP_RIGHT;
+					facing = UP_RIGHT;
+					isActing = true;
 				}
 				else {
-					dir = RIGHT;
+					facing = RIGHT;
+					isActing = true;
 				}
 			}
 			else if (App->input->controllers[i]->j1_x < 0) {
 				if (App->input->controllers[i]->j1_y > 0) {
-					dir = DOWN_LEFT;
+					facing = DOWN_LEFT;
+					isActing = true;
 				}
 				else if (App->input->controllers[i]->j1_y < 0) {
-					dir = UP_LEFT;
+					facing = UP_LEFT;
+					isActing = true;
 				}
 				else {
-					dir = LEFT;
+					facing = LEFT;
+					isActing = true;
 				}
 			}
 			else {
 				if (App->input->controllers[i]->j1_y > 0) {
-					dir = DOWN;
+					facing = DOWN;
+					isActing = true;
 				}
 				else if (App->input->controllers[i]->j1_y < 0) {
-					dir = UP;
+					facing = UP;
+					isActing = true;
 				}
 			}
 		}
@@ -717,49 +742,56 @@ Directions ModulePlayer::checkFacingDir() {
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			dir = UP;
+			facing = UP;
+			isActing = true;
 		}
 		// Direction to UP_RIGHT
 		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-			dir = UP_RIGHT;
+			facing = UP_RIGHT;
+			isActing = true;
 		}
 		// Direction to RIGHT
 		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-			dir = RIGHT;
+			facing = RIGHT;
+			isActing = true;
 		}
 		// Direction to DOWN_RIGHT
 		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-			dir = DOWN_RIGHT;
+			facing = DOWN_RIGHT;
+			isActing = true;
 		}
 		// Direction to DOWN
 		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			dir = Directions::DOWN;
+			facing = DOWN;
+			isActing = true;
 		}
 		// Direction to DOWN_LEFT
 		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			dir = DOWN_LEFT;
+			facing = DOWN_LEFT;
+			isActing = true;
 		}
 		// Direction to LEFT
 		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			dir = LEFT;
+			facing = LEFT;
+			isActing = true;
 		}
 	
 		// Direction to UP_LEFT
@@ -767,704 +799,534 @@ Directions ModulePlayer::checkFacingDir() {
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
 			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			dir = UP_LEFT;
+			facing = UP_LEFT;
+			isActing = true;
 		}
 	}
 	
-	return dir;
+	return isActing;
 }
 
 
 update_status ModulePlayer::Update() {
 	
-	facing = checkFacingDir();
+	if (!dead) {
+		if (checkFacingDir()) {
+			switch (facing) {
+			case Directions::UP:
+				currentAnimTop = &upAnimTop;
+				currentAnimBot = &upAnimBot;
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &upNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &upPowWeaponAnim;
+				}
 
-	switch (facing) {
-	case Directions::UP:
-		currentAnimTop = &upAnimTop;
-		currentAnimBot = &upAnimBot;
-		if (weapon == Weapon::NORMAL) {
-			currentWeaponAnim = &upNorWeaponAnim;
-		} else {
-			currentWeaponAnim = &upPowWeaponAnim;
-		}
-		break;
-	case Directions::UP_RIGHT:
-		currentAnimTop = &upRightAnimTop;
-		currentAnimBot = &upRightAnimBot;
-		if (weapon == Weapon::NORMAL) {
-			currentWeaponAnim = &upRightNorWeaponAnim;
-		} else {
-			currentWeaponAnim = &upRightPowWeaponAnim;
-		}
-		break;
-	case Directions::RIGHT:
-		currentAnimTop = &rightAnimTop;
-		currentAnimBot = &rightAnimBot;
-		if (weapon == Weapon::NORMAL) {
-			currentWeaponAnim = &rightNorWeaponAnim;
-		} else {
-			currentWeaponAnim = &rightPowWeaponAnim;
-		}
-		break;
-	case Directions::DOWN_RIGHT:
-		currentAnimTop = &downRightAnimTop;
-		currentAnimBot = &downRightAnimBot;
-		if (weapon == Weapon::NORMAL) {
-			currentWeaponAnim = &downRightNorWeaponAnim;
-		} else {
-			currentWeaponAnim = &downRightPowWeaponAnim;
-		}
-		break;
-	case Directions::DOWN:
-		currentAnimTop = &downAnimTop;
-		currentAnimBot = &downAnimBot;
-		if (weapon == Weapon::NORMAL) {
-			currentWeaponAnim = &downNorWeaponAnim;
-		} else {
-			currentWeaponAnim = &downPowWeaponAnim;
-		}
-		break;
-	case Directions::DOWN_LEFT:
-		currentAnimTop = &downLeftAnimTop;
-		currentAnimBot = &downLeftAnimBot;
-		if (weapon == Weapon::NORMAL) {
-			currentWeaponAnim = &downLeftNorWeaponAnim;
-		} else {
-			currentWeaponAnim = &downLeftPowWeaponAnim;
-		}
-		break;
-	case Directions::LEFT:
-		currentAnimTop = &leftAnimTop;
-		currentAnimBot = &leftAnimBot;
-		if (weapon == Weapon::NORMAL) {
-			currentWeaponAnim = &leftNorWeaponAnim;
-		} else {
-			currentWeaponAnim = &leftPowWeaponAnim;
-		}
-		break;
-	case Directions::UP_LEFT:
-		currentAnimTop = &upLeftAnimTop;
-		currentAnimBot = &upLeftAnimBot;
-		if (weapon == Weapon::NORMAL) {
-			currentWeaponAnim = &upLeftNorWeaponAnim;
-		} else {
-			currentWeaponAnim = &upLeftPowWeaponAnim;
-		}
-		break;
-	}
-	
+				break;
+			case Directions::UP_RIGHT:
+				currentAnimTop = &upRightAnimTop;
+				currentAnimBot = &upRightAnimBot;
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &upRightNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &upRightPowWeaponAnim;
+				}
 
-	/*
-	// Change Direction
-	if (App->input->keys[SDL_SCANCODE_I] != KEY_STATE::KEY_IDLE ||
-		App->input->keys[SDL_SCANCODE_J] != KEY_STATE::KEY_IDLE ||
-		App->input->keys[SDL_SCANCODE_K] != KEY_STATE::KEY_IDLE ||
-		App->input->keys[SDL_SCANCODE_L] != KEY_STATE::KEY_IDLE) {
+				break;
+			case Directions::RIGHT:
+				currentAnimTop = &rightAnimTop;
+				currentAnimBot = &rightAnimBot;
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &rightNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &rightPowWeaponAnim;
+				}
 
-		// Direction to UP
-		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			facing = Directions::UP;
-			currentAnimTop = &upAnimTop;
-			currentAnimBot = &upAnimBot;
-			if (weapon == Weapon::NORMAL) {
-				currentWeaponAnim = &upNorWeaponAnim;
-			} else {
-				currentWeaponAnim = &upPowWeaponAnim;
+				break;
+			case Directions::DOWN_RIGHT:
+				currentAnimTop = &downRightAnimTop;
+				currentAnimBot = &downRightAnimBot;
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &downRightNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &downRightPowWeaponAnim;
+				}
+
+				break;
+			case Directions::DOWN:
+				currentAnimTop = &downAnimTop;
+				currentAnimBot = &downAnimBot;
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &downNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &downPowWeaponAnim;
+				}
+
+				break;
+			case Directions::DOWN_LEFT:
+				currentAnimTop = &downLeftAnimTop;
+				currentAnimBot = &downLeftAnimBot;
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &downLeftNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &downLeftPowWeaponAnim;
+				}
+
+				break;
+			case Directions::LEFT:
+				currentAnimTop = &leftAnimTop;
+				currentAnimBot = &leftAnimBot;
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &leftNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &leftPowWeaponAnim;
+				}
+
+				break;
+			case Directions::UP_LEFT:
+				currentAnimTop = &upLeftAnimTop;
+				currentAnimBot = &upLeftAnimBot;
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &upLeftNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &upLeftPowWeaponAnim;
+				}
+
+				break;
 			}
 		}
-
-		// Direction to UP_RIGHT
-		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-			facing = Directions::UP_RIGHT;
-			currentAnimTop = &upRightAnimTop;
-			currentAnimBot = &upRightAnimBot;
-			if (weapon == Weapon::NORMAL) {
-				currentWeaponAnim = &upRightNorWeaponAnim;
-			} else {
-				currentWeaponAnim = &upRightPowWeaponAnim;
-			}
-		}
-
-		// Direction to RIGHT
-		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-			facing = Directions::RIGHT;
-			currentAnimTop = &rightAnimTop;
-			currentAnimBot = &rightAnimBot;
-			if (weapon == Weapon::NORMAL) {
-				currentWeaponAnim = &rightNorWeaponAnim;
-			} else {
-				currentWeaponAnim = &rightPowWeaponAnim;
-			}
-		}
-
-		// Direction to DOWN_RIGHT
-		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
-			facing = Directions::DOWN_RIGHT;
-			currentAnimTop = &downRightAnimTop;
-			currentAnimBot = &downRightAnimBot;
-			if (weapon == Weapon::NORMAL) {
-				currentWeaponAnim = &downRightNorWeaponAnim;
-			} else {
-				currentWeaponAnim = &downRightPowWeaponAnim;
-			}
-		}
-
-		// Direction to DOWN
-		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			facing = Directions::DOWN;
-			currentAnimTop = &downAnimTop;
-			currentAnimBot = &downAnimBot;
-			if (weapon == Weapon::NORMAL) {
-				currentWeaponAnim = &downNorWeaponAnim;
-			} else {
-				currentWeaponAnim = &downPowWeaponAnim;
-			}
-		}
-
-		// Direction to DOWN_LEFT
-		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			facing = Directions::DOWN_LEFT;
-			currentAnimTop = &downLeftAnimTop;
-			currentAnimBot = &downLeftAnimBot;
-			if (weapon == Weapon::NORMAL) {
-				currentWeaponAnim = &downLeftNorWeaponAnim;
-			} else {
-				currentWeaponAnim = &downLeftPowWeaponAnim;
-			}
-		}
-
-		// Direction to LEFT
-		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			facing = Directions::LEFT;
-			currentAnimTop = &leftAnimTop;
-			currentAnimBot = &leftAnimBot;
-			if (weapon == Weapon::NORMAL) {
-				currentWeaponAnim = &leftNorWeaponAnim;
-			} else {
-				currentWeaponAnim = &leftPowWeaponAnim;
-			}
-		}
-
-		// Direction to UP_LEFT
-		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
-			facing = Directions::UP_LEFT;
-			currentAnimTop = &upLeftAnimTop;
-			currentAnimBot = &upLeftAnimBot;
-			if (weapon == Weapon::NORMAL) {
-				currentWeaponAnim = &upLeftNorWeaponAnim;
-			} else {
-				currentWeaponAnim = &upLeftPowWeaponAnim;
-			}
-		}
-		*/
-
-	switch (place) {
-	case Place::TRENCH:
-		if (currentAnimBot != &waterAnimBot)
-			currentAnimBot = &waterAnimBot;
-	case Place::WATER:
-		if (currentAnimBot != &trenchAnimBot)
-			currentAnimBot = &trenchAnimBot;
+		idleAnimTop.frames[0] = currentAnimTop->frames[currentAnimTop->GetCurrentFrameNum()];
+		idleAnimBot.frames[0] = currentAnimBot->frames[currentAnimBot->GetCurrentFrameNum()];
 	}
 
-	idleAnimTop.frames[0] = currentAnimTop->frames[currentAnimTop->GetCurrentFrameNum()];
-	idleAnimBot.frames[0] = currentAnimBot->frames[currentAnimBot->GetCurrentFrameNum()];
-
-	
-
-	// Player movement
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-		App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
-
-		currentAnimTop = &idleAnimTop;
-		currentAnimBot = &idleAnimBot;
-	} else if (!dead) {
-
-		// Move UP
-		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE &&
-			!immovable) {
-			position.y -= speed;
-			movementDir = UP;
-
-			switch (place) {
-			case Place::LAND:
-				if (currentAnimBot != &upAnimBot)
-					currentAnimBot = &upAnimBot;
-
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
-					currentAnimBot = &waterAnimBot;
-
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
-
-				break;
-			}
+	if (!dead && !immovable) {
+		if (!checkMovingDir()) {
+			currentAnimTop = &idleAnimTop;
+			currentAnimBot = &idleAnimBot;
 		}
+		else {
+			switch (movementDir) {
+			case Directions::UP:
+				position.y -= speed;
 
-		// Move UP_RIGHT
-		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT &&
-			!immovable) {
-			position.y -= speed;
-			position.x += speed;
-			movementDir = UP_RIGHT;
-			switch (place) {
-			case Place::LAND:
-				if (currentAnimBot != &upRightAnimBot)
-					currentAnimBot = &upRightAnimBot;
-
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
-					currentAnimBot = &waterAnimBot;
-
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
-
-				break;
-			}
-		}
-
-		// Move RIGHT
-		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT &&
-			!immovable) {
-			position.x += speed;
-			movementDir = RIGHT;
-			switch (place) {
-			case Place::LAND:
-				if (currentAnimBot != &rightAnimBot)
-					currentAnimBot = &rightAnimBot;
-
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
-					currentAnimBot = &waterAnimBot;
-
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
-
-				break;
-			}
-		}
-
-		// Move DOWN_RIGHT
-		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT &&
-			!immovable) {
-			position.y += speed;
-			position.x += speed;
-			movementDir = DOWN_RIGHT;
-			switch (place) {
-			case Place::LAND:
-				if (currentAnimBot != &downRightAnimBot)
-					currentAnimBot = &downRightAnimBot;
-
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
-					currentAnimBot = &waterAnimBot;
-
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
-
-				break;
-			}
-		}
-
-		// Move DOWN
-		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE &&
-			!immovable) {
-			position.y += speed;
-			movementDir = DOWN;
-			switch (place) {
-			case Place::LAND:
-				if (currentAnimBot != &downAnimBot)
-					currentAnimBot = &downAnimBot;
-
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
-					currentAnimBot = &waterAnimBot;
-
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
-
-				break;
-			}
-		}
-
-		// Move DOWN_LEFT
-		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE &&
-			!immovable) {
-			position.y += speed;
-			position.x -= speed;
-			movementDir = DOWN_LEFT;
-			switch (place) {
-			case Place::LAND:
-				if (currentAnimBot != &downLeftAnimBot)
-					currentAnimBot = &downLeftAnimBot;
-
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
-					currentAnimBot = &waterAnimBot;
-
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
-
-				break;
-			}
-		}
-
-		// Move LEFT
-		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE &&
-			!immovable) {
-			position.x -= speed;
-			movementDir = LEFT;
-			switch (place) {
-			case Place::LAND:
-				if (currentAnimBot != &leftAnimBot)
-					currentAnimBot = &leftAnimBot;
-
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
-					currentAnimBot = &waterAnimBot;
-
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
-
-				break;
-			}
-		}
-
-		// Move UP_LEFT
-		if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE &&
-			!immovable) {
-			position.y -= speed;
-			position.x -= speed;
-			movementDir = UP_LEFT;
-		}
-
-		// Activate top/bot anim when moving
-		switch (facing) {
-		case UP:
-			currentAnimTop = &upAnimTop;
-
-			switch (place) {
-			case Place::LAND:
-				if (movementDir == DOWN) {
+				switch (place) {
+				case Place::LAND:
 					if (currentAnimBot != &upAnimBot)
 						currentAnimBot = &upAnimBot;
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+					break;
 				}
-				if (movementDir == DOWN_LEFT) {
+
+				break;
+			case Directions::UP_RIGHT:
+				position.y -= speed;
+				position.x += speed;
+
+				switch (place) {
+				case Place::LAND:
 					if (currentAnimBot != &upRightAnimBot)
 						currentAnimBot = &upRightAnimBot;
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+					break;
 				}
-				if (movementDir == DOWN_RIGHT) {
+
+				break;
+			case Directions::RIGHT:
+				position.x += speed;
+
+				switch (place) {
+				case Place::LAND:
+					if (currentAnimBot != &rightAnimBot)
+						currentAnimBot = &rightAnimBot;
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+					break;
+				}
+
+				break;
+			case Directions::DOWN_RIGHT:
+				position.y += speed;
+				position.x += speed;
+
+				switch (place) {
+				case Place::LAND:
+					if (currentAnimBot != &downRightAnimBot)
+						currentAnimBot = &downRightAnimBot;
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+					break;
+				}
+
+				break;
+			case Directions::DOWN:
+				position.y += speed;
+
+				switch (place) {
+				case Place::LAND:
+					if (currentAnimBot != &downAnimBot)
+						currentAnimBot = &downAnimBot;
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+					break;
+				}
+
+				break;
+			case Directions::DOWN_LEFT:
+				position.y += speed;
+				position.x -= speed;
+
+				switch (place) {
+				case Place::LAND:
+					if (currentAnimBot != &downLeftAnimBot)
+						currentAnimBot = &downLeftAnimBot;
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+					break;
+				}
+
+				break;
+			case Directions::LEFT:
+				position.x -= speed;
+
+				switch (place) {
+				case Place::LAND:
+					if (currentAnimBot != &leftAnimBot)
+						currentAnimBot = &leftAnimBot;
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+					break;
+				}
+
+				break;
+			case Directions::UP_LEFT:
+				position.x -= speed;
+				position.y -= speed;
+
+				switch (place) {
+				case Place::LAND:
 					if (currentAnimBot != &upLeftAnimBot)
 						currentAnimBot = &upLeftAnimBot;
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+					break;
+				}
+
+				break;
+			}
+			switch (facing) {
+			case UP:
+				currentAnimTop = &upAnimTop;
+
+				switch (place) {
+				case Place::LAND:
+					if (movementDir == DOWN) {
+						if (currentAnimBot != &upAnimBot)
+							currentAnimBot = &upAnimBot;
+					}
+					if (movementDir == DOWN_LEFT) {
+						if (currentAnimBot != &upRightAnimBot)
+							currentAnimBot = &upRightAnimBot;
+					}
+					if (movementDir == DOWN_RIGHT) {
+						if (currentAnimBot != &upLeftAnimBot)
+							currentAnimBot = &upLeftAnimBot;
+					}
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						if (currentAnimBot != &waterAnimBot)
+							currentAnimBot = &waterAnimBot;
+
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+
+					break;
 				}
 				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
+			case DOWN:
+				currentAnimTop = &downAnimTop;
+
+				switch (place) {
+				case Place::LAND:
+					if (movementDir == UP) {
+						if (currentAnimBot != &downAnimBot)
+							currentAnimBot = &downAnimBot;
+					}
+					if (movementDir == UP_LEFT) {
+						if (currentAnimBot != &downRightAnimBot)
+							currentAnimBot = &downRightAnimBot;
+					}
+					if (movementDir == UP_RIGHT) {
+						if (currentAnimBot != &downLeftAnimBot)
+							currentAnimBot = &downLeftAnimBot;
+					}
+					break;
+				case Place::WATER:
 					if (currentAnimBot != &waterAnimBot)
 						currentAnimBot = &waterAnimBot;
 
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
 
+					break;
+				}
 				break;
+			case RIGHT:
+				currentAnimTop = &rightAnimTop;
+
+				switch (place) {
+				case Place::LAND:
+					if (movementDir == LEFT) {
+						if (currentAnimBot != &rightAnimBot)
+							currentAnimBot = &rightAnimBot;
+					}
+					if (movementDir == UP_LEFT) {
+						if (currentAnimBot != &downRightAnimBot)
+							currentAnimBot = &downRightAnimBot;
+					}
+					if (movementDir == DOWN_LEFT) {
+						if (currentAnimBot != &downLeftAnimBot)
+							currentAnimBot = &downLeftAnimBot;
+					}
+					if (movementDir == UP) {
+						if (currentAnimBot != &upAnimBot)
+							currentAnimBot = &upAnimBot;
+					}
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+
+					break;
+				}
+				break;
+			case LEFT:
+				currentAnimTop = &leftAnimTop;
+
+				switch (place) {
+				case Place::LAND:
+					if (movementDir == RIGHT) {
+						if (currentAnimBot != &leftAnimBot)
+							currentAnimBot = &leftAnimBot;
+					}
+					if (movementDir == UP_RIGHT) {
+						if (currentAnimBot != &downLeftAnimBot)
+							currentAnimBot = &downLeftAnimBot;
+					}
+					if (movementDir == DOWN_RIGHT) {
+						if (currentAnimBot != &upLeftAnimBot)
+							currentAnimBot = &upLeftAnimBot;
+					}
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+
+					break;
+				}
+				break;
+			case UP_RIGHT:
+				currentAnimTop = &upRightAnimTop;
+
+				switch (place) {
+				case Place::LAND:
+					if (movementDir == DOWN_LEFT) {
+						if (currentAnimBot != &upRightAnimBot)
+							currentAnimBot = &upRightAnimBot;
+					}
+					if (movementDir == LEFT) {
+						if (currentAnimBot != &rightAnimBot)
+							currentAnimBot = &rightAnimBot;
+					}
+					if (movementDir == DOWN) {
+						if (currentAnimBot != &upAnimBot)
+							currentAnimBot = &upAnimBot;
+					}
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+
+					break;
+				}
+				break;
+			case UP_LEFT:
+				currentAnimTop = &upLeftAnimTop;
+
+				switch (place) {
+				case Place::LAND:
+					if (movementDir == DOWN_RIGHT) {
+						if (currentAnimBot != &upLeftAnimBot)
+							currentAnimBot = &upLeftAnimBot;
+					}
+					if (movementDir == RIGHT) {
+						if (currentAnimBot != &leftAnimBot)
+							currentAnimBot = &leftAnimBot;
+					}
+					if (movementDir == DOWN) {
+						if (currentAnimBot != &upAnimBot)
+							currentAnimBot = &upAnimBot;
+					}
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+
+					break;
+				}
+				break;
+			case DOWN_RIGHT:
+				currentAnimTop = &downRightAnimTop;
+
+				switch (place) {
+				case Place::LAND:
+					if (movementDir == UP_LEFT) {
+						if (currentAnimBot != &downRightAnimBot)
+							currentAnimBot = &downRightAnimBot;
+					}
+					if (movementDir == LEFT) {
+						if (currentAnimBot != &leftAnimBot)
+							currentAnimBot = &leftAnimBot;
+					}
+					if (movementDir == UP) {
+						if (currentAnimBot != &downAnimBot)
+							currentAnimBot = &downAnimBot;
+					}
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot) {
+						currentAnimBot = &waterAnimBot;
+					}
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot) {
+						currentAnimBot = &trenchAnimBot;
+					}
+					break;
+				}
+				break;
+			case DOWN_LEFT:
+				currentAnimTop = &downLeftAnimTop;
+
+				switch (place) {
+				case Place::LAND:
+					if (movementDir == UP_RIGHT) {
+						if (currentAnimBot != &downLeftAnimBot)
+							currentAnimBot = &downLeftAnimBot;
+					}
+					if (movementDir == RIGHT) {
+						if (currentAnimBot != &leftAnimBot)
+							currentAnimBot = &leftAnimBot;
+					}
+					if (movementDir == UP) {
+						if (currentAnimBot != &downAnimBot)
+							currentAnimBot = &downAnimBot;
+					}
+					break;
+				case Place::WATER:
+					if (currentAnimBot != &waterAnimBot)
+						currentAnimBot = &waterAnimBot;
+
+					break;
+				case Place::TRENCH:
+					if (currentAnimBot != &trenchAnimBot)
+						currentAnimBot = &trenchAnimBot;
+
+					break;
+
+				default:
+					break;
+				}
+				// Set the idles to the current frame
+				idleAnimTop.frames[0] = currentAnimTop->GetCurrentFrame();
+				idleAnimBot.frames[0] = currentAnimBot->GetCurrentFrame();
+
 			}
-			break;
-		case DOWN:
-			currentAnimTop = &downAnimTop;
-
-			switch (place) {
-			case Place::LAND:
-				if (movementDir == UP) {
-					if (currentAnimBot != &downAnimBot)
-						currentAnimBot = &downAnimBot;
-				}
-				if (movementDir == UP_LEFT) {
-					if (currentAnimBot != &downRightAnimBot)
-						currentAnimBot = &downRightAnimBot;
-				}
-				if (movementDir == UP_RIGHT) {
-					if (currentAnimBot != &downLeftAnimBot)
-						currentAnimBot = &downLeftAnimBot;
-				}
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
-					currentAnimBot = &waterAnimBot;
-
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
-
-				break;
-			}
-			break;
-		case RIGHT:
-			currentAnimTop = &rightAnimTop;
-
-			switch (place) {
-			case Place::LAND:
-				if (movementDir == LEFT) {
-					if (currentAnimBot != &rightAnimBot)
-						currentAnimBot = &rightAnimBot;
-				}
-				if (movementDir == UP_LEFT) {
-					if (currentAnimBot != &downRightAnimBot)
-						currentAnimBot = &downRightAnimBot;
-				}
-				if (movementDir == DOWN_LEFT) {
-					if (currentAnimBot != &downLeftAnimBot)
-						currentAnimBot = &downLeftAnimBot;
-				}
-				if (movementDir == UP) {
-					if (currentAnimBot != &upAnimBot)
-						currentAnimBot = &upAnimBot;
-				}
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
-					currentAnimBot = &waterAnimBot;
-
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
-
-				break;
-			}
-			break;
-		case LEFT:
-			currentAnimTop = &leftAnimTop;
-
-			switch (place) {
-			case Place::LAND:
-				if (movementDir == RIGHT) {
-					if (currentAnimBot != &leftAnimBot)
-						currentAnimBot = &leftAnimBot;
-				}
-				if (movementDir == UP_RIGHT) {
-					if (currentAnimBot != &downLeftAnimBot)
-						currentAnimBot = &downLeftAnimBot;
-				}
-				if (movementDir == DOWN_RIGHT) {
-					if (currentAnimBot != &upLeftAnimBot)
-						currentAnimBot = &upLeftAnimBot;
-				}
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
-					currentAnimBot = &waterAnimBot;
-
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
-
-				break;
-			}
-			break;
-		case UP_RIGHT:
-			currentAnimTop = &upRightAnimTop;
-
-			switch (place) {
-			case Place::LAND:
-				if (movementDir == DOWN_LEFT) {
-					if (currentAnimBot != &upRightAnimBot)
-						currentAnimBot = &upRightAnimBot;
-				}
-				if (movementDir == LEFT) {
-					if (currentAnimBot != &rightAnimBot)
-						currentAnimBot = &rightAnimBot;
-				}
-				if (movementDir == DOWN) {
-					if (currentAnimBot != &upAnimBot)
-						currentAnimBot = &upAnimBot;
-				}
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
-					currentAnimBot = &waterAnimBot;
-
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
-
-				break;
-			}
-			break;
-		case UP_LEFT:
-			currentAnimTop = &upLeftAnimTop;
-
-			switch (place) {
-			case Place::LAND:
-				if (movementDir == DOWN_RIGHT) {
-					if (currentAnimBot != &upLeftAnimBot)
-						currentAnimBot = &upLeftAnimBot;
-				}
-				if (movementDir == RIGHT) {
-					if (currentAnimBot != &leftAnimBot)
-						currentAnimBot = &leftAnimBot;
-				}
-				if (movementDir == DOWN) {
-					if (currentAnimBot != &upAnimBot)
-						currentAnimBot = &upAnimBot;
-				}
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
-					currentAnimBot = &waterAnimBot;
-
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
-
-				break;
-			}
-			break;
-		case DOWN_RIGHT:
-			currentAnimTop = &downRightAnimTop;
-
-			switch (place) {
-			case Place::LAND:
-				if (movementDir == UP_LEFT) {
-					if (currentAnimBot != &downRightAnimBot)
-						currentAnimBot = &downRightAnimBot;
-				}
-				if (movementDir == LEFT) {
-					if (currentAnimBot != &leftAnimBot)
-						currentAnimBot = &leftAnimBot;
-				}
-				if (movementDir == UP) {
-					if (currentAnimBot != &downAnimBot)
-						currentAnimBot = &downAnimBot;
-				}
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot) {
-					currentAnimBot = &waterAnimBot;
-				}
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot) {
-					currentAnimBot = &trenchAnimBot;
-				}
-				break;
-			}
-			break;
-		case DOWN_LEFT:
-			currentAnimTop = &downLeftAnimTop;
-
-			switch (place) {
-			case Place::LAND:
-				if (movementDir == UP_RIGHT) {
-					if (currentAnimBot != &downLeftAnimBot)
-						currentAnimBot = &downLeftAnimBot;
-				}
-				if (movementDir == RIGHT) {
-					if (currentAnimBot != &leftAnimBot)
-						currentAnimBot = &leftAnimBot;
-				}
-				if (movementDir == UP) {
-					if (currentAnimBot != &downAnimBot)
-						currentAnimBot = &downAnimBot;
-				}
-				break;
-			case Place::WATER:
-				if (currentAnimBot != &waterAnimBot)
-					currentAnimBot = &waterAnimBot;
-
-				break;
-			case Place::TRENCH:
-				if (currentAnimBot != &trenchAnimBot)
-					currentAnimBot = &trenchAnimBot;
-
-				break;
-			}
-			break;
-		default:
-			break;
 		}
-		// Set the idles to the current frame
-		idleAnimTop.frames[0] = currentAnimTop->GetCurrentFrame();
-		idleAnimBot.frames[0] = currentAnimBot->GetCurrentFrame();
 	}
+
 
 	if (ammunition == 0 && weapon != Weapon::NORMAL)
 		weapon = Weapon::NORMAL;
