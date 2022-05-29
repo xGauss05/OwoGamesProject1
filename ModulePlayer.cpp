@@ -563,7 +563,7 @@ void ModulePlayer::throwGrenade() {
 Directions ModulePlayer::checkMovingDir() {
 	
 	Directions dir = movementDir;
-	/*
+	
 	if (App->input->controllerCount > 0) {
 		for (int i = 0; i < App->input->controllerCount; ++i) {
 			if (App->input->controllers[i]->j2_x > 0) {
@@ -662,7 +662,7 @@ Directions ModulePlayer::checkMovingDir() {
 			dir = UP_LEFT;
 		}
 	}
-	*/
+	
 	return dir;
 	
 }
@@ -671,7 +671,7 @@ Directions ModulePlayer::checkMovingDir() {
 Directions ModulePlayer::checkFacingDir() {
 	
 	Directions dir = facing;
-	/*
+	
 	if (App->input->controllerCount > 0) {
 		for (int i = 0; i < App->input->controllerCount; ++i) {
 			if (App->input->controllers[i]->j1_x > 0) {
@@ -770,42 +770,92 @@ Directions ModulePlayer::checkFacingDir() {
 			dir = UP_LEFT;
 		}
 	}
-	*/
+	
 	return dir;
 }
 
 
 update_status ModulePlayer::Update() {
-	/*
+	
 	facing = checkFacingDir();
 
 	switch (facing) {
 	case Directions::UP:
-		
+		currentAnimTop = &upAnimTop;
+		currentAnimBot = &upAnimBot;
+		if (weapon == Weapon::NORMAL) {
+			currentWeaponAnim = &upNorWeaponAnim;
+		} else {
+			currentWeaponAnim = &upPowWeaponAnim;
+		}
 		break;
 	case Directions::UP_RIGHT:
-		
+		currentAnimTop = &upRightAnimTop;
+		currentAnimBot = &upRightAnimBot;
+		if (weapon == Weapon::NORMAL) {
+			currentWeaponAnim = &upRightNorWeaponAnim;
+		} else {
+			currentWeaponAnim = &upRightPowWeaponAnim;
+		}
 		break;
 	case Directions::RIGHT:
-		
+		currentAnimTop = &rightAnimTop;
+		currentAnimBot = &rightAnimBot;
+		if (weapon == Weapon::NORMAL) {
+			currentWeaponAnim = &rightNorWeaponAnim;
+		} else {
+			currentWeaponAnim = &rightPowWeaponAnim;
+		}
 		break;
 	case Directions::DOWN_RIGHT:
-		
+		currentAnimTop = &downRightAnimTop;
+		currentAnimBot = &downRightAnimBot;
+		if (weapon == Weapon::NORMAL) {
+			currentWeaponAnim = &downRightNorWeaponAnim;
+		} else {
+			currentWeaponAnim = &downRightPowWeaponAnim;
+		}
 		break;
 	case Directions::DOWN:
-
+		currentAnimTop = &downAnimTop;
+		currentAnimBot = &downAnimBot;
+		if (weapon == Weapon::NORMAL) {
+			currentWeaponAnim = &downNorWeaponAnim;
+		} else {
+			currentWeaponAnim = &downPowWeaponAnim;
+		}
 		break;
 	case Directions::DOWN_LEFT:
-
+		currentAnimTop = &downLeftAnimTop;
+		currentAnimBot = &downLeftAnimBot;
+		if (weapon == Weapon::NORMAL) {
+			currentWeaponAnim = &downLeftNorWeaponAnim;
+		} else {
+			currentWeaponAnim = &downLeftPowWeaponAnim;
+		}
 		break;
 	case Directions::LEFT:
-
+		currentAnimTop = &leftAnimTop;
+		currentAnimBot = &leftAnimBot;
+		if (weapon == Weapon::NORMAL) {
+			currentWeaponAnim = &leftNorWeaponAnim;
+		} else {
+			currentWeaponAnim = &leftPowWeaponAnim;
+		}
 		break;
 	case Directions::UP_LEFT:
-
+		currentAnimTop = &upLeftAnimTop;
+		currentAnimBot = &upLeftAnimBot;
+		if (weapon == Weapon::NORMAL) {
+			currentWeaponAnim = &upLeftNorWeaponAnim;
+		} else {
+			currentWeaponAnim = &upLeftPowWeaponAnim;
+		}
 		break;
 	}
-	*/
+	
+
+	/*
 	// Change Direction
 	if (App->input->keys[SDL_SCANCODE_I] != KEY_STATE::KEY_IDLE ||
 		App->input->keys[SDL_SCANCODE_J] != KEY_STATE::KEY_IDLE ||
@@ -931,20 +981,21 @@ update_status ModulePlayer::Update() {
 				currentWeaponAnim = &upLeftPowWeaponAnim;
 			}
 		}
+		*/
 
-		switch (place) {
-		case Place::TRENCH:
-			if (currentAnimBot != &waterAnimBot)
-				currentAnimBot = &waterAnimBot;
-		case Place::WATER:
-			if (currentAnimBot != &trenchAnimBot)
-				currentAnimBot = &trenchAnimBot;
-		}
-
-		idleAnimTop.frames[0] = currentAnimTop->frames[currentAnimTop->GetCurrentFrameNum()];
-		idleAnimBot.frames[0] = currentAnimBot->frames[currentAnimBot->GetCurrentFrameNum()];
-
+	switch (place) {
+	case Place::TRENCH:
+		if (currentAnimBot != &waterAnimBot)
+			currentAnimBot = &waterAnimBot;
+	case Place::WATER:
+		if (currentAnimBot != &trenchAnimBot)
+			currentAnimBot = &trenchAnimBot;
 	}
+
+	idleAnimTop.frames[0] = currentAnimTop->frames[currentAnimTop->GetCurrentFrameNum()];
+	idleAnimBot.frames[0] = currentAnimBot->frames[currentAnimBot->GetCurrentFrameNum()];
+
+	
 
 	// Player movement
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
