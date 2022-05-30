@@ -8,6 +8,7 @@
 #include "ModulePlayer.h"
 #include "Enemy.h"
 #include "ModuleEnemies.h"
+#include "ModulePowerup.h"
 
 #include "ModuleFonts.h"
 #include <string>
@@ -35,11 +36,16 @@ update_status ModuleDebug::Update() {
 		if (App->input->keys[SDL_SCANCODE_Z] == KEY_DOWN)
 			variables = !variables;
 
-		if (App->input->keys[SDL_SCANCODE_X] == KEY_DOWN)
+		if (App->input->keys[SDL_SCANCODE_X] == KEY_DOWN &&
+			!teleport)
 			spawn = !spawn;
 
 		if (App->input->keys[SDL_SCANCODE_C] == KEY_DOWN)
 			camLimits = !camLimits;
+
+		if (App->input->keys[SDL_SCANCODE_V] == KEY_DOWN &&
+			!spawn)
+			teleport = !teleport;
 	}
 
 	return update_status::UPDATE_CONTINUE;
@@ -69,8 +75,8 @@ void ModuleDebug::DebugDraw() {
 		case Collider::Type::PLAYER: // green
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 0, 255, 0, alpha);
 			break;
-		case Collider::Type::HOSTAGE: // green
-			App->render->DrawQuad(App->collisions->colliders[i]->rect, 0, 255, 0, alpha);
+		case Collider::Type::HOSTAGE: // white
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 255, 255, alpha);
 			break;
 		case Collider::Type::ENEMY: // red
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 0, 0, alpha);
@@ -108,7 +114,6 @@ void ModuleDebug::DebugDraw() {
 
 	}
 
-
 	for (size_t i = 0; i < MAX_ENEMIES; i++) {
 		if (App->enemies->enemies[i] != nullptr) {
 			App->render->DrawLine(App->enemies->enemies[i]->position.x + 16,
@@ -122,6 +127,7 @@ void ModuleDebug::DebugDraw() {
 	App->fonts->BlitText(10, spawnBox, 0, "PRESS Z FOR VARIABLES");
 	App->fonts->BlitText(10, spawnBox + 10, 0, "PRESS X FOR SPAWN MENU");
 	App->fonts->BlitText(10, spawnBox + 20, 0, "PRESS C FOR CAM LIMITS");
+	App->fonts->BlitText(10, spawnBox + 30, 0, "PRESS V FOR TELEPORT MENU");
 
 	//Spawn Enemies 
 	if (spawn) {
@@ -129,48 +135,85 @@ void ModuleDebug::DebugDraw() {
 		App->fonts->BlitText(60, spawnBox + 40, 0, "1.GREENSOLDIER");
 		App->fonts->BlitText(60, spawnBox + 50, 0, "2.REDSOLDIER");
 		App->fonts->BlitText(60, spawnBox + 60, 0, "3.TACKLER");
+		App->fonts->BlitText(60, spawnBox + 70, 0, "4.HEAVY RIFLE");
+		App->fonts->BlitText(60, spawnBox + 80, 0, "5.FLAMETHROWER");
+		App->fonts->BlitText(60, spawnBox + 90, 0, "6.HOSTAGE");
+
+		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN)
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
+
+		if (App->input->keys[SDL_SCANCODE_2] == KEY_DOWN)
+			App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
+
+		if (App->input->keys[SDL_SCANCODE_3] == KEY_DOWN)
+			App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, App->player->position.x, App->player->position.y - 400, 0);
+
+		if (App->input->keys[SDL_SCANCODE_4] == KEY_DOWN)
+			App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, App->player->position.x, App->player->position.y - 32);
+
+		if (App->input->keys[SDL_SCANCODE_5] == KEY_DOWN)
+			App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, App->player->position.x, App->player->position.y - 32);
+
+		if (App->input->keys[SDL_SCANCODE_6] == KEY_DOWN)
+			App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, App->player->position.x, App->player->position.y - 64);
+
+	}
+
+	if (teleport) {
+		App->fonts->BlitText(10, spawnBox + 40, 0, "TELEPORT.");
+		App->fonts->BlitText(75, spawnBox + 40, 0, "1.START");
+		App->fonts->BlitText(75, spawnBox + 50, 0, "2.FENCE");
+		App->fonts->BlitText(75, spawnBox + 60, 0, "3.BRIDGE");
+		App->fonts->BlitText(75, spawnBox + 70, 0, "4.BOSS");
 
 		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN) {
-			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
+			App->player->position.x = 230;
+			App->player->position.y = -60;
 		}
 		if (App->input->keys[SDL_SCANCODE_2] == KEY_DOWN) {
-			App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
+			App->player->position.x = 485;
+			App->player->position.y = -1375;
 		}
 		if (App->input->keys[SDL_SCANCODE_3] == KEY_DOWN) {
-			App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, App->player->position.x, App->player->position.y - 400, 0);
+			App->player->position.x = 765;
+			App->player->position.y = -2585;
 		}
+		if (App->input->keys[SDL_SCANCODE_4] == KEY_DOWN) {
+			App->player->position.x = 750;
+			App->player->position.y = -3360;
+		}
+
 	}
 
 	//Camera limits debug
 
-	if (camLimits)
-	{
+	if (camLimits) {
 		//Left offset
-		App->render->DrawLine(	App->render->camera.x + SCREEN_WIDTH / 3 - 10,
-								App->render->camera.y,
-								App->render->camera.x + SCREEN_WIDTH / 3 - 10,
-								App->render->camera.y + SCREEN_HEIGHT,
-								255, 255, 50, 255, 0.5 * SCREEN_SIZE, true);
+		App->render->DrawLine(App->render->camera.x + SCREEN_WIDTH / 3 - 10,
+							  App->render->camera.y,
+							  App->render->camera.x + SCREEN_WIDTH / 3 - 10,
+							  App->render->camera.y + SCREEN_HEIGHT,
+							  255, 255, 50, 255, 0.5 * SCREEN_SIZE, true);
 
 		//Right offset
-		App->render->DrawLine(	App->render->camera.x + SCREEN_WIDTH / 1.5 + 10,
-								App->render->camera.y,
-								App->render->camera.x + SCREEN_WIDTH / 1.5 + 10,
-								App->render->camera.y + SCREEN_HEIGHT,
-								255, 255, 50, 255, 0.5 * SCREEN_SIZE, true);
+		App->render->DrawLine(App->render->camera.x + SCREEN_WIDTH / 1.5 + 10,
+							  App->render->camera.y,
+							  App->render->camera.x + SCREEN_WIDTH / 1.5 + 10,
+							  App->render->camera.y + SCREEN_HEIGHT,
+							  255, 255, 50, 255, 0.5 * SCREEN_SIZE, true);
 
 		//Upper offset
-		App->render->DrawLine(	App->render->camera.x,
-								(App->render->camera.y + SCREEN_HEIGHT / 1.4f) - 60,
-								App->render->camera.x + SCREEN_WIDTH,
-								(App->render->camera.y + SCREEN_HEIGHT / 1.4f) - 60,
-								255, 255, 50, 255, 0.5 * SCREEN_SIZE, true);
+		App->render->DrawLine(App->render->camera.x,
+							  (App->render->camera.y + SCREEN_HEIGHT / 1.4f) - 60,
+							  App->render->camera.x + SCREEN_WIDTH,
+							  (App->render->camera.y + SCREEN_HEIGHT / 1.4f) - 60,
+							  255, 255, 50, 255, 0.5 * SCREEN_SIZE, true);
 		//Lower offset
-		App->render->DrawLine(	App->render->camera.x,
-								(App->render->camera.y + SCREEN_HEIGHT / 1.4f) + 60,
-								App->render->camera.x + SCREEN_WIDTH,
-								(App->render->camera.y + SCREEN_HEIGHT / 1.4f) + 60,
-								255, 255, 50, 255, 0.5 * SCREEN_SIZE, true);
+		App->render->DrawLine(App->render->camera.x,
+							  (App->render->camera.y + SCREEN_HEIGHT / 1.4f) + 60,
+							  App->render->camera.x + SCREEN_WIDTH,
+							  (App->render->camera.y + SCREEN_HEIGHT / 1.4f) + 60,
+							  255, 255, 50, 255, 0.5 * SCREEN_SIZE, true);
 	}
 
 	//Variables debug

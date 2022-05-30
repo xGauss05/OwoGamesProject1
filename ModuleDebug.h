@@ -37,6 +37,7 @@ private:
 	bool variables = false;
 	bool camLimits = false;
 	bool spawn = false;
+	bool teleport = false;
 };
 
 #endif // __MODULE_DEBUG_H__
