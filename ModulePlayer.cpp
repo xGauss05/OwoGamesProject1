@@ -811,94 +811,157 @@ bool ModulePlayer::checkFacingDir() {
 update_status ModulePlayer::Update() {
 	
 	if (!dead) {
-		if (checkFacingDir() && !isThrowing) {
+		if (checkFacingDir()) {
 			switch (facing) {
 			case Directions::UP:
-				currentAnimTop = &upAnimTop;
 				currentAnimBot = &upAnimBot;
-				//if (weapon == Weapon::NORMAL) {
-				//	currentWeaponAnim = &upNorWeaponAnim;
-				//}
-				//else {
-				//	currentWeaponAnim = &upPowWeaponAnim;
-				//}
+				if (!isThrowing)
+					currentAnimTop = &upAnimTop;
+				else if (currentAnimTop != &upThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &upThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &upNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &upPowWeaponAnim;
+				}
 
 				break;
 			case Directions::UP_RIGHT:
-				currentAnimTop = &upRightAnimTop;
 				currentAnimBot = &upRightAnimBot;
-				//if (weapon == Weapon::NORMAL) {
-				//	currentWeaponAnim = &upRightNorWeaponAnim;
-				//}
-				//else {
-				//	currentWeaponAnim = &upRightPowWeaponAnim;
-				//}
+				if (!isThrowing)
+					currentAnimTop = &upRightAnimTop;
+				else if (currentAnimTop != &upRightThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &upRightThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
+
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &upRightNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &upRightPowWeaponAnim;
+				}
 
 				break;
 			case Directions::RIGHT:
-				currentAnimTop = &rightAnimTop;
 				currentAnimBot = &rightAnimBot;
-				//if (weapon == Weapon::NORMAL) {
-				//	currentWeaponAnim = &rightNorWeaponAnim;
-				//}
-				//else {
-				//	currentWeaponAnim = &rightPowWeaponAnim;
-				//}
+				if (!isThrowing)
+					currentAnimTop = &rightAnimTop;
+				else if (currentAnimTop != &rightThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &rightThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
+
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &rightNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &rightPowWeaponAnim;
+				}
 
 				break;
 			case Directions::DOWN_RIGHT:
-				currentAnimTop = &downRightAnimTop;
 				currentAnimBot = &downRightAnimBot;
-				//if (weapon == Weapon::NORMAL) {
-				//	currentWeaponAnim = &downRightNorWeaponAnim;
-				//}
-				//else {
-				//	currentWeaponAnim = &downRightPowWeaponAnim;
-				//}
+				if (!isThrowing)
+					currentAnimTop = &downRightAnimTop;
+				else if (currentAnimTop != &downRightThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &downRightThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
+
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &downRightNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &downRightPowWeaponAnim;
+				}
 
 				break;
 			case Directions::DOWN:
-				currentAnimTop = &downAnimTop;
 				currentAnimBot = &downAnimBot;
-				//if (weapon == Weapon::NORMAL) {
-				//	currentWeaponAnim = &downNorWeaponAnim;
-				//}
-				//else {
-				//	currentWeaponAnim = &downPowWeaponAnim;
-				//}
+				if (!isThrowing)
+					currentAnimTop = &downAnimTop;
+				else if (currentAnimTop != &downThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &downThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
+
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &downNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &downPowWeaponAnim;
+				}
 
 				break;
 			case Directions::DOWN_LEFT:
-				currentAnimTop = &downLeftAnimTop;
 				currentAnimBot = &downLeftAnimBot;
-				//if (weapon == Weapon::NORMAL) {
-				//	currentWeaponAnim = &downLeftNorWeaponAnim;
-				//}
-				//else {
-				//	currentWeaponAnim = &downLeftPowWeaponAnim;
-				//}
+				if (!isThrowing)
+					currentAnimTop = &downLeftAnimTop;
+				else if (currentAnimTop != &downLeftThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &downLeftThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
+
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &downLeftNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &downLeftPowWeaponAnim;
+				}
 
 				break;
 			case Directions::LEFT:
-				currentAnimTop = &leftAnimTop;
 				currentAnimBot = &leftAnimBot;
-				//if (weapon == Weapon::NORMAL) {
-				//	currentWeaponAnim = &leftNorWeaponAnim;
-				//}
-				//else {
-				//	currentWeaponAnim = &leftPowWeaponAnim;
-				//}
+				if (!isThrowing)
+					currentAnimTop = &leftAnimTop;
+				else if (currentAnimTop != &leftThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &leftThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
+
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &leftNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &leftPowWeaponAnim;
+				}
 
 				break;
 			case Directions::UP_LEFT:
-				currentAnimTop = &upLeftAnimTop;
 				currentAnimBot = &upLeftAnimBot;
-				//if (weapon == Weapon::NORMAL) {
-				//	currentWeaponAnim = &upLeftNorWeaponAnim;
-				//}
-				//else {
-				//	currentWeaponAnim = &upLeftPowWeaponAnim;
-				//}
+				if (!isThrowing)
+					currentAnimTop = &upLeftAnimTop;
+				else if (currentAnimTop != &upLeftThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &upLeftThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
+
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &upLeftNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &upLeftPowWeaponAnim;
+				}
 
 				break;
 			}
