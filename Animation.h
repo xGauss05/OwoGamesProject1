@@ -25,6 +25,7 @@ public:
 
 	void Reset() {
 		this->currentFrame = 0;
+		this->loopCount = 0;
 	}
 
 	void FullReset() {
@@ -52,6 +53,10 @@ public:
 
 	int GetCurrentFrameNum() {
 		return (int)currentFrame;
+	}
+
+	void BeginAnimationIn(int index) {
+		this->currentFrame = index;
 	}
 
 	/*SDL_Rect& GetCurrentFrame() {

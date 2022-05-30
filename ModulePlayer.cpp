@@ -811,7 +811,7 @@ bool ModulePlayer::checkFacingDir() {
 update_status ModulePlayer::Update() {
 	
 	if (!dead) {
-		if (checkFacingDir()) {
+		if (checkFacingDir() && !isThrowing) {
 			switch (facing) {
 			case Directions::UP:
 				currentAnimTop = &upAnimTop;
@@ -909,7 +909,9 @@ update_status ModulePlayer::Update() {
 
 	if (!dead && !immovable) {
 		if (!checkMovingDir()) {
-			currentAnimTop = &idleAnimTop;
+			if (!isThrowing) {
+				currentAnimTop = &idleAnimTop;
+			}
 			currentAnimBot = &idleAnimBot;
 		}
 		else {
@@ -1073,7 +1075,14 @@ update_status ModulePlayer::Update() {
 			}
 			switch (facing) {
 			case UP:
-				currentAnimTop = &upAnimTop;
+				if (!isThrowing)
+					currentAnimTop = &upAnimTop;
+				else if (currentAnimTop != &upThrowGrenade){
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &upThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
 
 				switch (place) {
 				case Place::LAND:
@@ -1104,7 +1113,14 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case DOWN:
-				currentAnimTop = &downAnimTop;
+				if (!isThrowing)
+					currentAnimTop = &downAnimTop;
+				else if (currentAnimTop != &downThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &downThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
 
 				switch (place) {
 				case Place::LAND:
@@ -1134,7 +1150,14 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case RIGHT:
-				currentAnimTop = &rightAnimTop;
+				if (!isThrowing)
+					currentAnimTop = &rightAnimTop;
+				else if (currentAnimTop != &rightThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &rightThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
 
 				switch (place) {
 				case Place::LAND:
@@ -1168,7 +1191,14 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case LEFT:
-				currentAnimTop = &leftAnimTop;
+				if (!isThrowing)
+					currentAnimTop = &leftAnimTop;
+				else if (currentAnimTop != &leftThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &leftThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
 
 				switch (place) {
 				case Place::LAND:
@@ -1198,8 +1228,14 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case UP_RIGHT:
-				currentAnimTop = &upRightAnimTop;
-
+				if (!isThrowing)
+					currentAnimTop = &upRightAnimTop;
+				else if (currentAnimTop != &upRightThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &upRightThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
 				switch (place) {
 				case Place::LAND:
 					if (movementDir == DOWN_LEFT) {
@@ -1228,7 +1264,14 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case UP_LEFT:
-				currentAnimTop = &upLeftAnimTop;
+				if (!isThrowing)
+					currentAnimTop = &upLeftAnimTop;
+				else if (currentAnimTop != &upLeftThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &upLeftThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
 
 				switch (place) {
 				case Place::LAND:
@@ -1258,7 +1301,14 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case DOWN_RIGHT:
-				currentAnimTop = &downRightAnimTop;
+				if (!isThrowing)
+					currentAnimTop = &downRightAnimTop;
+				else if (currentAnimTop != &downRightThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &downRightThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
 
 				switch (place) {
 				case Place::LAND:
@@ -1288,7 +1338,14 @@ update_status ModulePlayer::Update() {
 				}
 				break;
 			case DOWN_LEFT:
-				currentAnimTop = &downLeftAnimTop;
+				if (!isThrowing)
+					currentAnimTop = &downLeftAnimTop;
+				else if (currentAnimTop != &downLeftThrowGrenade) {
+					int suppVar = currentAnimTop->GetCurrentFrameNum();
+					currentAnimTop = &downLeftThrowGrenade;
+					currentAnimTop->Reset();
+					currentAnimTop->BeginAnimationIn(suppVar);
+				}
 
 				switch (place) {
 				case Place::LAND:
@@ -1349,44 +1406,64 @@ update_status ModulePlayer::Update() {
 			}
 		}
 
-		if (App->input->keys[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN) {
-			switch (facing) {
-			case UP:
-				if (currentAnimTop != &upThrowGrenade)
-					currentAnimTop = &upThrowGrenade;
-				break;
-			case UP_RIGHT:
-				if (currentAnimTop != &upRightThrowGrenade)
-					currentAnimTop = &upRightThrowGrenade;
-				break;
-			case UP_LEFT:
-				if (currentAnimTop != &upLeftThrowGrenade)
-					currentAnimTop = &upLeftThrowGrenade;
-				break;
-			case DOWN:
-				if (currentAnimTop != &downThrowGrenade)
-					currentAnimTop = &downThrowGrenade;
-				break;
-			case DOWN_RIGHT:
-				if (currentAnimTop != &downRightThrowGrenade)
-					currentAnimTop = &downRightThrowGrenade;
-				break;
-			case DOWN_LEFT:
-				if (currentAnimTop != &downLeftThrowGrenade)
-					currentAnimTop = &downLeftThrowGrenade;
-				break;
-			case RIGHT:
-				if (currentAnimTop != &rightThrowGrenade)
-					currentAnimTop = &rightThrowGrenade;
-				break;
-			case LEFT:
-				if (currentAnimTop != &leftThrowGrenade)
-					currentAnimTop = &leftThrowGrenade;
-				break;
-			}
+		if (isThrowing && currentAnimTop->HasFinished()) {
+			isThrowing = false;
+		}
 
+		if (App->input->keys[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN) {
 			if (grenades > 0) {
 				throwGrenade();
+				switch (facing) {
+				case UP:
+					upThrowGrenade.Reset();
+					if (currentAnimTop != &upThrowGrenade) {
+						currentAnimTop = &upThrowGrenade;
+					}
+						
+					break;
+				case UP_RIGHT:
+					upRightThrowGrenade.Reset();
+					if (currentAnimTop != &upRightThrowGrenade) {
+						currentAnimTop = &upRightThrowGrenade;
+					}
+					break;
+				case UP_LEFT:
+					upLeftThrowGrenade.Reset();
+					if (currentAnimTop != &upLeftThrowGrenade) {	
+						currentAnimTop = &upLeftThrowGrenade;
+					}
+					break;
+				case DOWN:
+					downThrowGrenade.Reset();
+					if (currentAnimTop != &downThrowGrenade) {
+						currentAnimTop = &downThrowGrenade;
+					}
+					break;
+				case DOWN_RIGHT:
+					downRightThrowGrenade.Reset();
+					if (currentAnimTop != &downRightThrowGrenade) {
+						currentAnimTop = &downRightThrowGrenade;
+					}
+					break;
+				case DOWN_LEFT:
+					downLeftThrowGrenade.Reset();
+					if (currentAnimTop != &downLeftThrowGrenade) {
+						currentAnimTop = &downLeftThrowGrenade;
+					}
+					break;
+				case RIGHT:
+					rightThrowGrenade.Reset();
+					if (currentAnimTop != &rightThrowGrenade) {
+						currentAnimTop = &rightThrowGrenade;
+					}
+					break;
+				case LEFT:
+					leftThrowGrenade.Reset();
+					if (currentAnimTop != &leftThrowGrenade) {
+						currentAnimTop = &leftThrowGrenade;
+					}
+					break;
+				}
 			}
 		}
 	}
@@ -1487,9 +1564,7 @@ update_status ModulePlayer::Update() {
 
 	place = Place::LAND;
 
-	if (isThrowing && currentAnimTop->HasFinished()) {
-		isThrowing = false;
-	}
+
 
 	// Updates player collider position
 	collider->SetPos(position.x, position.y);
