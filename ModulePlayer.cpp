@@ -361,6 +361,14 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled) {
 	leftThrowGrenade.speed = 0.1f;
 	leftThrowGrenade.loop = false;
 
+	upLeftThrowGrenade.PushBack({ 320, 224, 32, 32 });
+	upLeftThrowGrenade.PushBack({ 352, 224, 32, 32 });
+	upLeftThrowGrenade.PushBack({ 384, 224, 32, 32 });
+	upLeftThrowGrenade.PushBack({ 416, 224, 32, 32 });
+	upLeftThrowGrenade.PushBack({ 448, 224, 32, 32 });
+	upLeftThrowGrenade.speed = 0.1f;
+	upLeftThrowGrenade.loop = false;
+
 }
 
 ModulePlayer::~ModulePlayer() {
