@@ -1608,8 +1608,11 @@ update_status ModulePlayer::Update() {
 	if (dead) {
 		godMode = true;
 
-		if (deathCooldown == 0)
+		if (deathCooldown == 0) {
 			App->audio->PlayFx(playerDeadFx);
+			deathAnimTop.Reset();
+			deathAnimBot.Reset();
+		}
 
 		deathCooldown++;
 
@@ -1640,6 +1643,15 @@ update_status ModulePlayer::Update() {
 			} else {
 				deathAnimTop.Reset();
 				deathAnimBot.Reset();
+
+				facing = UP;
+				if (currentAnimTop != &upAnimTop)
+					currentAnimTop = &upAnimTop;
+				if (currentAnimBot != &upAnimBot)
+					currentAnimBot = &upAnimBot;
+				if (currentWeaponAnim != &upNorWeaponAnim)
+					currentWeaponAnim = &upNorWeaponAnim;
+
 				dead = false;
 				grenades = MAX_GRENADES;
 
@@ -1714,23 +1726,26 @@ update_status ModulePlayer::Update() {
 update_status ModulePlayer::PostUpdate() {
 	// Weapon textures --
 	SDL_Rect rect = currentWeaponAnim->GetCurrentFrame();
-	switch (facing) {
-	case Directions::LEFT:
-		App->render->Blit(weaponTexture, position.x - 14, position.y + 7, &rect);
-		break;
-	case Directions::UP_LEFT:
-		App->render->Blit(weaponTexture, position.x - 14, position.y - 7, &rect);
-		break;
-	case Directions::UP:
-		App->render->Blit(weaponTexture, position.x, position.y - 6, &rect);
-		break;
-	case Directions::RIGHT:
-		App->render->Blit(weaponTexture, position.x + 10, position.y + 8, &rect);
-		break;
-	case Directions::UP_RIGHT:
-		App->render->Blit(weaponTexture, position.x + 15, position.y + 2, &rect);
-		break;
+	if (!dead) {
+		switch (facing) {
+		case Directions::LEFT:
+			App->render->Blit(weaponTexture, position.x - 14, position.y + 7, &rect);
+			break;
+		case Directions::UP_LEFT:
+			App->render->Blit(weaponTexture, position.x - 14, position.y - 7, &rect);
+			break;
+		case Directions::UP:
+			App->render->Blit(weaponTexture, position.x, position.y - 6, &rect);
+			break;
+		case Directions::RIGHT:
+			App->render->Blit(weaponTexture, position.x + 10, position.y + 8, &rect);
+			break;
+		case Directions::UP_RIGHT:
+			App->render->Blit(weaponTexture, position.x + 15, position.y + 2, &rect);
+			break;
+		}
 	}
+
 
 	rect = currentAnimBot->GetCurrentFrame();
 	App->render->Blit(playerTexture, position.x, position.y + 29, &rect);
@@ -1739,16 +1754,18 @@ update_status ModulePlayer::PostUpdate() {
 	App->render->Blit(playerTexture, position.x, position.y, &rect);
 
 	rect = currentWeaponAnim->GetCurrentFrame();
-	switch (facing) {
-	case Directions::DOWN:
-		App->render->Blit(weaponTexture, position.x, position.y + 20, &rect);
-		break;
-	case Directions::DOWN_RIGHT:
-		App->render->Blit(weaponTexture, position.x + 9, position.y + 20, &rect);
-		break;
-	case Directions::DOWN_LEFT:
-		App->render->Blit(weaponTexture, position.x - 16, position.y + 20, &rect);
-		break;
+	if (!dead) {
+		switch (facing) {
+		case Directions::DOWN:
+			App->render->Blit(weaponTexture, position.x, position.y + 20, &rect);
+			break;
+		case Directions::DOWN_RIGHT:
+			App->render->Blit(weaponTexture, position.x + 9, position.y + 20, &rect);
+			break;
+		case Directions::DOWN_LEFT:
+			App->render->Blit(weaponTexture, position.x - 16, position.y + 20, &rect);
+			break;
+		}
 	}
 
 	// Parallax
