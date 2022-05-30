@@ -816,89 +816,89 @@ update_status ModulePlayer::Update() {
 			case Directions::UP:
 				currentAnimTop = &upAnimTop;
 				currentAnimBot = &upAnimBot;
-				if (weapon == Weapon::NORMAL) {
-					currentWeaponAnim = &upNorWeaponAnim;
-				}
-				else {
-					currentWeaponAnim = &upPowWeaponAnim;
-				}
+				//if (weapon == Weapon::NORMAL) {
+				//	currentWeaponAnim = &upNorWeaponAnim;
+				//}
+				//else {
+				//	currentWeaponAnim = &upPowWeaponAnim;
+				//}
 
 				break;
 			case Directions::UP_RIGHT:
 				currentAnimTop = &upRightAnimTop;
 				currentAnimBot = &upRightAnimBot;
-				if (weapon == Weapon::NORMAL) {
-					currentWeaponAnim = &upRightNorWeaponAnim;
-				}
-				else {
-					currentWeaponAnim = &upRightPowWeaponAnim;
-				}
+				//if (weapon == Weapon::NORMAL) {
+				//	currentWeaponAnim = &upRightNorWeaponAnim;
+				//}
+				//else {
+				//	currentWeaponAnim = &upRightPowWeaponAnim;
+				//}
 
 				break;
 			case Directions::RIGHT:
 				currentAnimTop = &rightAnimTop;
 				currentAnimBot = &rightAnimBot;
-				if (weapon == Weapon::NORMAL) {
-					currentWeaponAnim = &rightNorWeaponAnim;
-				}
-				else {
-					currentWeaponAnim = &rightPowWeaponAnim;
-				}
+				//if (weapon == Weapon::NORMAL) {
+				//	currentWeaponAnim = &rightNorWeaponAnim;
+				//}
+				//else {
+				//	currentWeaponAnim = &rightPowWeaponAnim;
+				//}
 
 				break;
 			case Directions::DOWN_RIGHT:
 				currentAnimTop = &downRightAnimTop;
 				currentAnimBot = &downRightAnimBot;
-				if (weapon == Weapon::NORMAL) {
-					currentWeaponAnim = &downRightNorWeaponAnim;
-				}
-				else {
-					currentWeaponAnim = &downRightPowWeaponAnim;
-				}
+				//if (weapon == Weapon::NORMAL) {
+				//	currentWeaponAnim = &downRightNorWeaponAnim;
+				//}
+				//else {
+				//	currentWeaponAnim = &downRightPowWeaponAnim;
+				//}
 
 				break;
 			case Directions::DOWN:
 				currentAnimTop = &downAnimTop;
 				currentAnimBot = &downAnimBot;
-				if (weapon == Weapon::NORMAL) {
-					currentWeaponAnim = &downNorWeaponAnim;
-				}
-				else {
-					currentWeaponAnim = &downPowWeaponAnim;
-				}
+				//if (weapon == Weapon::NORMAL) {
+				//	currentWeaponAnim = &downNorWeaponAnim;
+				//}
+				//else {
+				//	currentWeaponAnim = &downPowWeaponAnim;
+				//}
 
 				break;
 			case Directions::DOWN_LEFT:
 				currentAnimTop = &downLeftAnimTop;
 				currentAnimBot = &downLeftAnimBot;
-				if (weapon == Weapon::NORMAL) {
-					currentWeaponAnim = &downLeftNorWeaponAnim;
-				}
-				else {
-					currentWeaponAnim = &downLeftPowWeaponAnim;
-				}
+				//if (weapon == Weapon::NORMAL) {
+				//	currentWeaponAnim = &downLeftNorWeaponAnim;
+				//}
+				//else {
+				//	currentWeaponAnim = &downLeftPowWeaponAnim;
+				//}
 
 				break;
 			case Directions::LEFT:
 				currentAnimTop = &leftAnimTop;
 				currentAnimBot = &leftAnimBot;
-				if (weapon == Weapon::NORMAL) {
-					currentWeaponAnim = &leftNorWeaponAnim;
-				}
-				else {
-					currentWeaponAnim = &leftPowWeaponAnim;
-				}
+				//if (weapon == Weapon::NORMAL) {
+				//	currentWeaponAnim = &leftNorWeaponAnim;
+				//}
+				//else {
+				//	currentWeaponAnim = &leftPowWeaponAnim;
+				//}
 
 				break;
 			case Directions::UP_LEFT:
 				currentAnimTop = &upLeftAnimTop;
 				currentAnimBot = &upLeftAnimBot;
-				if (weapon == Weapon::NORMAL) {
-					currentWeaponAnim = &upLeftNorWeaponAnim;
-				}
-				else {
-					currentWeaponAnim = &upLeftPowWeaponAnim;
-				}
+				//if (weapon == Weapon::NORMAL) {
+				//	currentWeaponAnim = &upLeftNorWeaponAnim;
+				//}
+				//else {
+				//	currentWeaponAnim = &upLeftPowWeaponAnim;
+				//}
 
 				break;
 			}
@@ -1084,6 +1084,13 @@ update_status ModulePlayer::Update() {
 					currentAnimTop->BeginAnimationIn(suppVar);
 				}
 
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &upNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &upPowWeaponAnim;
+				}
+
 				switch (place) {
 				case Place::LAND:
 					if (movementDir == DOWN) {
@@ -1122,6 +1129,13 @@ update_status ModulePlayer::Update() {
 					currentAnimTop->BeginAnimationIn(suppVar);
 				}
 
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &downNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &downPowWeaponAnim;
+				}
+
 				switch (place) {
 				case Place::LAND:
 					if (movementDir == UP) {
@@ -1157,6 +1171,13 @@ update_status ModulePlayer::Update() {
 					currentAnimTop = &rightThrowGrenade;
 					currentAnimTop->Reset();
 					currentAnimTop->BeginAnimationIn(suppVar);
+				}
+
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &rightNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &rightPowWeaponAnim;
 				}
 
 				switch (place) {
@@ -1200,6 +1221,13 @@ update_status ModulePlayer::Update() {
 					currentAnimTop->BeginAnimationIn(suppVar);
 				}
 
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &leftNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &leftPowWeaponAnim;
+				}
+
 				switch (place) {
 				case Place::LAND:
 					if (movementDir == RIGHT) {
@@ -1236,6 +1264,14 @@ update_status ModulePlayer::Update() {
 					currentAnimTop->Reset();
 					currentAnimTop->BeginAnimationIn(suppVar);
 				}
+
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &upRightNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &upRightPowWeaponAnim;
+				}
+
 				switch (place) {
 				case Place::LAND:
 					if (movementDir == DOWN_LEFT) {
@@ -1271,6 +1307,13 @@ update_status ModulePlayer::Update() {
 					currentAnimTop = &upLeftThrowGrenade;
 					currentAnimTop->Reset();
 					currentAnimTop->BeginAnimationIn(suppVar);
+				}
+
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &upLeftNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &upLeftPowWeaponAnim;
 				}
 
 				switch (place) {
@@ -1310,6 +1353,13 @@ update_status ModulePlayer::Update() {
 					currentAnimTop->BeginAnimationIn(suppVar);
 				}
 
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &downRightNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &downRightPowWeaponAnim;
+				}
+
 				switch (place) {
 				case Place::LAND:
 					if (movementDir == UP_LEFT) {
@@ -1345,6 +1395,13 @@ update_status ModulePlayer::Update() {
 					currentAnimTop = &downLeftThrowGrenade;
 					currentAnimTop->Reset();
 					currentAnimTop->BeginAnimationIn(suppVar);
+				}
+
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &downLeftNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &downLeftPowWeaponAnim;
 				}
 
 				switch (place) {
