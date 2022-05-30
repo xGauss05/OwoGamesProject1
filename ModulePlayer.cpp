@@ -814,7 +814,8 @@ update_status ModulePlayer::Update() {
 		if (checkFacingDir()) {
 			switch (facing) {
 			case Directions::UP:
-				currentAnimBot = &upAnimBot;
+				if (place == LAND)
+					currentAnimBot = &upAnimBot;
 				if (!isThrowing)
 					currentAnimTop = &upAnimTop;
 				else if (currentAnimTop != &upThrowGrenade) {
@@ -832,7 +833,8 @@ update_status ModulePlayer::Update() {
 
 				break;
 			case Directions::UP_RIGHT:
-				currentAnimBot = &upRightAnimBot;
+				if (place == LAND)
+					currentAnimBot = &upRightAnimBot;
 				if (!isThrowing)
 					currentAnimTop = &upRightAnimTop;
 				else if (currentAnimTop != &upRightThrowGrenade) {
@@ -851,7 +853,8 @@ update_status ModulePlayer::Update() {
 
 				break;
 			case Directions::RIGHT:
-				currentAnimBot = &rightAnimBot;
+				if (place == LAND)
+					currentAnimBot = &rightAnimBot;
 				if (!isThrowing)
 					currentAnimTop = &rightAnimTop;
 				else if (currentAnimTop != &rightThrowGrenade) {
@@ -870,7 +873,8 @@ update_status ModulePlayer::Update() {
 
 				break;
 			case Directions::DOWN_RIGHT:
-				currentAnimBot = &downRightAnimBot;
+				if (place == LAND)
+					currentAnimBot = &downRightAnimBot;
 				if (!isThrowing)
 					currentAnimTop = &downRightAnimTop;
 				else if (currentAnimTop != &downRightThrowGrenade) {
@@ -889,7 +893,8 @@ update_status ModulePlayer::Update() {
 
 				break;
 			case Directions::DOWN:
-				currentAnimBot = &downAnimBot;
+				if (place == LAND)
+					currentAnimBot = &downAnimBot;
 				if (!isThrowing)
 					currentAnimTop = &downAnimTop;
 				else if (currentAnimTop != &downThrowGrenade) {
@@ -908,7 +913,8 @@ update_status ModulePlayer::Update() {
 
 				break;
 			case Directions::DOWN_LEFT:
-				currentAnimBot = &downLeftAnimBot;
+				if (place == LAND)
+					currentAnimBot = &downLeftAnimBot;
 				if (!isThrowing)
 					currentAnimTop = &downLeftAnimTop;
 				else if (currentAnimTop != &downLeftThrowGrenade) {
@@ -927,7 +933,8 @@ update_status ModulePlayer::Update() {
 
 				break;
 			case Directions::LEFT:
-				currentAnimBot = &leftAnimBot;
+				if (place == LAND)
+					currentAnimBot = &leftAnimBot;
 				if (!isThrowing)
 					currentAnimTop = &leftAnimTop;
 				else if (currentAnimTop != &leftThrowGrenade) {
@@ -946,7 +953,8 @@ update_status ModulePlayer::Update() {
 
 				break;
 			case Directions::UP_LEFT:
-				currentAnimBot = &upLeftAnimBot;
+				if (place == LAND)
+					currentAnimBot = &upLeftAnimBot;
 				if (!isThrowing)
 					currentAnimTop = &upLeftAnimTop;
 				else if (currentAnimTop != &upLeftThrowGrenade) {
