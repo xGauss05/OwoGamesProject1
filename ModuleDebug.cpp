@@ -9,7 +9,7 @@
 #include "Enemy.h"
 #include "ModuleEnemies.h"
 #include "ModulePowerup.h"
-
+#include "ModuleRender.h"
 #include "ModuleFonts.h"
 #include <string>
 using namespace std;
@@ -169,20 +169,28 @@ void ModuleDebug::DebugDraw() {
 		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN) {
 			App->player->position.x = 230;
 			App->player->position.y = -60;
+			App->render->camera.x = App->player->position.x;
+			App->render->camera.y = App->player->position.y;
 		}
 		if (App->input->keys[SDL_SCANCODE_2] == KEY_DOWN) {
 			App->player->position.x = 485;
 			App->player->position.y = -1375;
+			App->render->camera.x = App->player->position.x;
+			App->render->camera.y = App->player->position.y;
 		}
 		if (App->input->keys[SDL_SCANCODE_3] == KEY_DOWN) {
 			App->player->position.x = 765;
 			App->player->position.y = -2585;
+			App->render->camera.x = App->player->position.x;
+			App->render->camera.y = App->player->position.y;
 		}
 		if (App->input->keys[SDL_SCANCODE_4] == KEY_DOWN) {
 			App->player->position.x = 750;
 			App->player->position.y = -3360;
+			App->render->camera.x = App->player->position.x;
+			App->render->camera.y = App->player->position.y;
 		}
-
+		
 	}
 
 	//Camera limits debug
