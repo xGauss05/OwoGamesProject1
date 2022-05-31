@@ -25,10 +25,9 @@ bool SceneLevel1::Start() {
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/img/sprites/map.png");
+	mapTexture = App->textures->Load("Assets/img/sprites/map_broken_WIP.png");
 	parallaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.png");
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
-
 
 	//App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 300, -60);
 	//App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 210, -60);
@@ -399,7 +398,7 @@ update_status SceneLevel1::Update() {
 // Update: draw background
 update_status SceneLevel1::PostUpdate() {
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, Y_BG_POSITION, NULL);
+	App->render->Blit(mapTexture, 0, Y_BG_POSITION, NULL);
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -413,8 +412,8 @@ bool SceneLevel1::CleanUp() {
 	App->player->Disable();
 	App->collisions->Disable();
 
-	App->textures->Unload(bgTexture);
-	bgTexture = nullptr;
+	App->textures->Unload(mapTexture);
+	mapTexture = nullptr;
 	App->textures->Unload(parallaxTexture);
 	parallaxTexture = nullptr;
 	// Handle memory leaks

@@ -419,7 +419,7 @@ bool ModulePlayer::Start() {
 	position.y = -30;
 
 	// Player collider
-	collider = App->collisions->AddCollider({ position.x, position.y, 32, 64 }, Collider::Type::PLAYER, this);
+	collider = App->collisions->AddCollider({ position.x, position.y, 32, 40 }, Collider::Type::PLAYER, this);
 
 	// UI for 0.5
 	font = App->fonts->Load("Assets/img/sprites/font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
@@ -692,7 +692,6 @@ bool ModulePlayer::checkMovingDir() {
 	
 }
 
-
 bool ModulePlayer::checkFacingDir() {
 	
 	bool isActing = false;
@@ -814,7 +813,6 @@ bool ModulePlayer::checkFacingDir() {
 	
 	return isActing;
 }
-
 
 update_status ModulePlayer::Update() {
 	
@@ -1729,45 +1727,44 @@ update_status ModulePlayer::PostUpdate() {
 	if (!dead) {
 		switch (facing) {
 		case Directions::LEFT:
-			App->render->Blit(weaponTexture, position.x - 14, position.y + 7, &rect);
+			App->render->Blit(weaponTexture, position.x - 14, position.y -17, &rect);
 			break;
 		case Directions::UP_LEFT:
-			App->render->Blit(weaponTexture, position.x - 14, position.y - 7, &rect);
+			App->render->Blit(weaponTexture, position.x - 14, position.y - 31, &rect);
 			break;
 		case Directions::UP:
-			App->render->Blit(weaponTexture, position.x, position.y - 6, &rect);
+			App->render->Blit(weaponTexture, position.x, position.y - 30, &rect);
 			break;
 		case Directions::RIGHT:
-			App->render->Blit(weaponTexture, position.x + 10, position.y + 8, &rect);
+			App->render->Blit(weaponTexture, position.x + 10, position.y -16, &rect);
 			break;
 		case Directions::UP_RIGHT:
-			App->render->Blit(weaponTexture, position.x + 15, position.y + 2, &rect);
+			App->render->Blit(weaponTexture, position.x + 15, position.y -22, &rect);
 			break;
 		}
 	}
 
-
 	rect = currentAnimBot->GetCurrentFrame();
-	App->render->Blit(playerTexture, position.x, position.y + 29, &rect);
+	App->render->Blit(playerTexture, position.x, position.y + 5, &rect);
 
 	rect = currentAnimTop->GetCurrentFrame();
-	App->render->Blit(playerTexture, position.x, position.y, &rect);
+	App->render->Blit(playerTexture, position.x, position.y-24, &rect);
 
 	rect = currentWeaponAnim->GetCurrentFrame();
 	if (!dead) {
 		switch (facing) {
 		case Directions::DOWN:
-			App->render->Blit(weaponTexture, position.x, position.y + 20, &rect);
+			App->render->Blit(weaponTexture, position.x, position.y - 4, &rect);
 			break;
 		case Directions::DOWN_RIGHT:
-			App->render->Blit(weaponTexture, position.x + 9, position.y + 20, &rect);
+			App->render->Blit(weaponTexture, position.x + 9, position.y - 4, &rect);
 			break;
 		case Directions::DOWN_LEFT:
-			App->render->Blit(weaponTexture, position.x - 16, position.y + 20, &rect);
+			App->render->Blit(weaponTexture, position.x - 16, position.y - 4, &rect);
 			break;
 		}
 	}
-
+		
 	// Parallax
 	if (App->level1->IsEnabled()) {
 		App->level1->DrawParallax();
