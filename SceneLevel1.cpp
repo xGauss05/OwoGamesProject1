@@ -29,14 +29,7 @@ bool SceneLevel1::Start() {
 	parallaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.png");
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 300, -60);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 210, -60);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_1, 210, -60);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::BARBED_2, 210, -92);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 210, -92, 1);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 178, -92, 2);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 146, -92, 3);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 242, -92, 4);
+	
 	// Entities --- Add enemies/powerups here
 	//App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 300, -60);
 	App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, 240, -60);
@@ -305,13 +298,15 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 830, -3920, 95, 155 }, Collider::Type::NON_DEST_BAR);
 
 	//Borders
-	//App->collisions->AddCollider({ 0, 240, 500, 10 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, 240, 500, 10 }, Collider::Type::WALL);
 
 	App->collisions->AddCollider({ 226, -1865, 30, 325 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 768, -1865, 30, 325 }, Collider::Type::WALL);
 
 	App->collisions->AddCollider({ 420, -3320, 60, 520 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 992, -3320, 60, 520 }, Collider::Type::WALL);
+
+	App->collisions->AddCollider({ 690, -3930, 175, 10}, Collider::Type::WALL);
 
 	// Water
 		//First
@@ -330,14 +325,14 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 795, -3286, 256, 370 }, Collider::Type::WATER);
 
 	//Trenches
-	App->collisions->AddCollider({ 140, -945, 160, 5 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 255, -1840, 180, 5 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 560, -1840, 180, 5 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 430, -2450, 100, 5 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 430, -2450, 100, 5 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 525, -2545, 160, 5 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 720, -2765, 100, 5 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 690, -3440, 135, 5 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 140, -945, 160, 10 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 255, -1840, 180, 10 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 560, -1840, 180, 10 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 430, -2450, 100, 10 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 430, -2450, 100, 10 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 525, -2545, 160, 10 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 720, -2765, 100, 10 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 690, -3440, 135, 10 }, Collider::Type::TRENCH);
 
 	//bridge
 
@@ -353,19 +348,6 @@ bool SceneLevel1::Start() {
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 736, -2992);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 736, -2960);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 736, -2928);
-
-	/*App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3278);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3246);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3214);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3182);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3150);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3118);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3086);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3054);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -3022);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -2990);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -2958);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 766, -2926);*/
 
 	App->player->Enable();
 	App->enemies->Enable();
