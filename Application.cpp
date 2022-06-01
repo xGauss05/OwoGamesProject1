@@ -35,12 +35,12 @@ Application::Application() {
 	modules[7] = win = new SceneWin(false);
 	//modules[8] = lose = new SceneLose(false);
 	
-	modules[13] = breakables = new ModuleBreakable(false);
-	modules[9] = enemies = new ModuleEnemies(false);
-	modules[10] = player = new ModulePlayer(false);
-	modules[11] = particles = new ModuleParticles(true);
-	modules[12] = powerups = new ModulePowerup(false);
 	modules[8] = collisions = new ModuleCollisions(false);
+	modules[9] = breakables = new ModuleBreakable(false);
+	modules[10] = powerups = new ModulePowerup(false);
+	modules[11] = enemies = new ModuleEnemies(false);
+	modules[12] = player = new ModulePlayer(false);
+	modules[13] = particles = new ModuleParticles(true);
 
 	modules[14] = fonts = new ModuleFonts(true);
 	modules[15] = fade = new ModuleFadeToBlack(true);
