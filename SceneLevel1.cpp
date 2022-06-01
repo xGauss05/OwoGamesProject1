@@ -318,21 +318,21 @@ bool SceneLevel1::Start() {
 	App->collisions->AddCollider({ 195, 75, 140, 35 }, Collider::Type::WATER);
 	App->collisions->AddCollider({ 215, 45, 105, 30 }, Collider::Type::WATER);
 	//Second
-	App->collisions->AddCollider({ 255, -1625, 130, 20 }, Collider::Type::WATER);
-	App->collisions->AddCollider({ 615, -1625, 140, 20 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 255, -1610, 130, 5 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 615, -1610, 140,  5}, Collider::Type::WATER);
 	//Third
-	App->collisions->AddCollider({ 480, -3286, 256, 370 }, Collider::Type::WATER);
-	App->collisions->AddCollider({ 795, -3286, 256, 370 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 480, -3260, 256, 370 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 795, -3260, 256, 370 }, Collider::Type::WATER);
 
 	//Trenches
-	App->collisions->AddCollider({ 140, -945, 160, 10 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 255, -1840, 180, 10 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 560, -1840, 180, 10 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 430, -2450, 100, 10 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 430, -2450, 100, 10 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 525, -2545, 160, 10 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 720, -2765, 100, 10 }, Collider::Type::TRENCH);
-	App->collisions->AddCollider({ 690, -3440, 135, 10 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 140, -925, 160, 5 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 255, -1820, 180, 5 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 560, -1820, 180, 5 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 430, -2430, 100, 5 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 430, -2430, 100, 5 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 525, -2525, 160, 5 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 720, -2745, 100, 5 }, Collider::Type::TRENCH);
+	App->collisions->AddCollider({ 690, -3420, 135, 5 }, Collider::Type::TRENCH);
 
 	//bridge
 
