@@ -433,28 +433,28 @@ bool ModulePlayer::Start() {
 void ModulePlayer::shootNormal() {
 	switch (facing) {
 	case Directions::UP:
-		App->particles->AddParticle(App->particles->shot_up, position.x + 19, position.y, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_up, position.x + 19, position.y-16, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::UP_RIGHT:
-		App->particles->AddParticle(App->particles->shot_up_right, position.x + 29, position.y + 11, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_up_right, position.x + 29, position.y -10, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::UP_LEFT:
-		App->particles->AddParticle(App->particles->shot_up_left, position.x - 1, position.y, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_up_left, position.x - 1, position.y-24, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::DOWN:
-		App->particles->AddParticle(App->particles->shot_down, position.x + 9, position.y + 50, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_down, position.x + 9, position.y+4, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::DOWN_RIGHT:
-		App->particles->AddParticle(App->particles->shot_down_right, position.x + 25, position.y + 42, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_down_right, position.x + 25, position.y+16, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::DOWN_LEFT:
-		App->particles->AddParticle(App->particles->shot_down_left, position.x, position.y + 31, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_down_left, position.x, position.y+4, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::RIGHT:
-		App->particles->AddParticle(App->particles->shot_right, position.x + 26, position.y + 23, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_right, position.x + 26, position.y-2, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::LEFT:
-		App->particles->AddParticle(App->particles->shot_left, position.x, position.y + 24, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_left, position.x, position.y, Collider::Type::PLAYER_SHOT);
 		break;
 	}
 }
@@ -463,28 +463,28 @@ void ModulePlayer::shootHeavyRifle() {
 	ammunition--;
 	switch (facing) {
 	case Directions::UP:
-		App->particles->AddParticle(App->particles->hrifle_up, position.x + 19, position.y, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->hrifle_up, position.x + 19, position.y-16, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::UP_RIGHT:
-		App->particles->AddParticle(App->particles->hrifle_up_right, position.x + 29, position.y - 3, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->hrifle_up_right, position.x + 29, position.y - 28, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::UP_LEFT:
-		App->particles->AddParticle(App->particles->hrifle_up_left, position.x - 1, position.y, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->hrifle_up_left, position.x - 1, position.y-24, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::DOWN:
 		App->particles->AddParticle(App->particles->hrifle_down, position.x + 7, position.y + 15, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::DOWN_RIGHT:
-		App->particles->AddParticle(App->particles->hrifle_down_right, position.x + 25, position.y + 42, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->hrifle_down_right, position.x + 25, position.y+16, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::DOWN_LEFT:
-		App->particles->AddParticle(App->particles->hrifle_down_left, position.x - 16, position.y + 31, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->hrifle_down_left, position.x - 16, position.y, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::RIGHT:
-		App->particles->AddParticle(App->particles->hrifle_right, position.x + 26, position.y + 23, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->hrifle_right, position.x + 26, position.y, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::LEFT:
-		App->particles->AddParticle(App->particles->hrifle_left, position.x, position.y + 24, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->hrifle_left, position.x, position.y, Collider::Type::PLAYER_SHOT);
 		break;
 	}
 }
@@ -493,28 +493,28 @@ void ModulePlayer::shootFlamethrower() {
 	ammunition--;
 	switch (facing) {
 	case Directions::UP:
-		App->particles->AddParticle(App->particles->fthrower_up, position.x + 13, position.y, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_up, position.x + 13, position.y-82, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::UP_RIGHT:
-		App->particles->AddParticle(App->particles->fthrower_up_right, position.x + 32, position.y, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_up_right, position.x + 32, position.y-46, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::UP_LEFT:
-		App->particles->AddParticle(App->particles->fthrower_up_left, position.x, position.y, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_up_left, position.x-32, position.y-58, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::DOWN:
-		App->particles->AddParticle(App->particles->fthrower_down, position.x + 13, position.y + 64, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_down, position.x+1, position.y + 16, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::DOWN_RIGHT:
-		App->particles->AddParticle(App->particles->fthrower_down_right, position.x + 32, position.y + 64, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_down_right, position.x + 28, position.y+24, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::DOWN_LEFT:
-		App->particles->AddParticle(App->particles->fthrower_down_left, position.x, position.y + 64, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_down_left, position.x-32, position.y, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::RIGHT:
-		App->particles->AddParticle(App->particles->fthrower_right, position.x + 32, position.y + 29, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_right, position.x + 32, position.y-8, Collider::Type::PLAYER_SHOT);
 		break;
 	case Directions::LEFT:
-		App->particles->AddParticle(App->particles->fthrower_left, position.x, position.y + 29, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_left, position.x-64, position.y-4, Collider::Type::PLAYER_SHOT);
 		break;
 	}
 }
@@ -528,42 +528,42 @@ void ModulePlayer::throwGrenade() {
 	case Directions::UP:
 		App->particles->grenade.speed.x = 0;
 		App->particles->grenade.speed.y = -2;
-		App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->grenade, position.x, position.y, Collider::Type::NONE);
 		break;
 	case Directions::UP_RIGHT:
 		App->particles->grenade.speed.x = 2;
 		App->particles->grenade.speed.y = -2;
-		App->particles->AddParticle(App->particles->grenade, position.x + 32, position.y, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->grenade, position.x -8, position.y-8, Collider::Type::NONE);
 		break;
 	case Directions::UP_LEFT:
 		App->particles->grenade.speed.x = -2;
 		App->particles->grenade.speed.y = -2;
-		App->particles->AddParticle(App->particles->grenade, position.x, position.y, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->grenade, position.x+8, position.y, Collider::Type::NONE);
 		break;
 	case Directions::DOWN:
 		App->particles->grenade.speed.x = 0;
 		App->particles->grenade.speed.y = 2;
-		App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y + 64, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y + 8, Collider::Type::NONE);
 		break;
 	case Directions::DOWN_RIGHT:
 		App->particles->grenade.speed.x = 2;
 		App->particles->grenade.speed.y = 2;
-		App->particles->AddParticle(App->particles->grenade, position.x + 32, position.y + 64, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->grenade, position.x + 16, position.y -8, Collider::Type::NONE);
 		break;
 	case Directions::DOWN_LEFT:
 		App->particles->grenade.speed.x = -2;
 		App->particles->grenade.speed.y = 2;
-		App->particles->AddParticle(App->particles->grenade, position.x, position.y + 64, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->grenade, position.x, position.y + 8, Collider::Type::NONE);
 		break;
 	case Directions::RIGHT:
 		App->particles->grenade.speed.x = 2;
 		App->particles->grenade.speed.y = 0;
-		App->particles->AddParticle(App->particles->grenade, position.x + 32, position.y + 29, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->grenade, position.x + 28, position.y -16, Collider::Type::NONE);
 		break;
 	case Directions::LEFT:
 		App->particles->grenade.speed.x = -2;
 		App->particles->grenade.speed.y = 0;
-		App->particles->AddParticle(App->particles->grenade, position.x, position.y + 29, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->grenade, position.x, position.y -16, Collider::Type::NONE);
 		break;
 	}
 }

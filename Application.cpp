@@ -20,7 +20,6 @@
 #include "SceneLevel1.h"
 #include "SceneWin.h"
 
-
 Application::Application() {
 	// The order in which the modules are added is very important.
 	// It will define the order in which Pre/Update/Post will be called
@@ -36,12 +35,12 @@ Application::Application() {
 	modules[7] = win = new SceneWin(false);
 	//modules[8] = lose = new SceneLose(false);
 	
-	modules[8] = breakables = new ModuleBreakable(false);
+	modules[13] = breakables = new ModuleBreakable(false);
 	modules[9] = enemies = new ModuleEnemies(false);
 	modules[10] = player = new ModulePlayer(false);
 	modules[11] = particles = new ModuleParticles(true);
 	modules[12] = powerups = new ModulePowerup(false);
-	modules[13] = collisions = new ModuleCollisions(false);
+	modules[8] = collisions = new ModuleCollisions(false);
 
 	modules[14] = fonts = new ModuleFonts(true);
 	modules[15] = fade = new ModuleFadeToBlack(true);

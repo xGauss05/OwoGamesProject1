@@ -183,6 +183,7 @@ bool ModuleParticles::Start() {
 	fthrower_up.anim.speed = 0.2f;
 	fthrower_up.speed.x = 0;
 	fthrower_up.speed.y = -5;
+	fthrower_up.explodes = true;
 
 	fthrower_up_left.anim.PushBack({ 0,111,43,44 });
 	fthrower_up_left.anim.PushBack({ 95,111,44,42 });
@@ -191,6 +192,7 @@ bool ModuleParticles::Start() {
 	fthrower_up_left.anim.speed = 0.2f;
 	fthrower_up_left.speed.x = -5;
 	fthrower_up_left.speed.y = -5;
+	fthrower_up_left.explodes = true;
 
 	fthrower_up_right.anim.PushBack({ 4,63,44,44 });
 	fthrower_up_right.anim.PushBack({ 100,63,44,42 });
@@ -199,6 +201,7 @@ bool ModuleParticles::Start() {
 	fthrower_up_right.anim.speed = 0.2f;
 	fthrower_up_right.speed.x = 5;
 	fthrower_up_right.speed.y = -5;
+	fthrower_up_right.explodes = true;
 
 	fthrower_down.anim.PushBack({ 101,0,19,64 });
 	fthrower_down.anim.PushBack({ 230,1,18,63 });
@@ -207,6 +210,7 @@ bool ModuleParticles::Start() {
 	fthrower_down.anim.speed = 0.2f;
 	fthrower_down.speed.x = 0;
 	fthrower_down.speed.y = 5;
+	fthrower_down.explodes = true;
 
 	fthrower_down_left.anim.PushBack({ 47,116,44,44 });
 	fthrower_down_left.anim.PushBack({ 143,116,42,44 });
@@ -215,6 +219,7 @@ bool ModuleParticles::Start() {
 	fthrower_down_left.anim.speed = 0.2f;
 	fthrower_down_left.speed.x = -5;
 	fthrower_down_left.speed.y = 5;
+	fthrower_down_left.explodes = true;
 
 	fthrower_down_right.anim.PushBack({ 52,68,44,44 });
 	fthrower_down_right.anim.PushBack({ 150,68,42,44 });
@@ -223,6 +228,7 @@ bool ModuleParticles::Start() {
 	fthrower_down_right.anim.speed = 0.2f;
 	fthrower_down_right.speed.x = 5;
 	fthrower_down_right.speed.y = 5;
+	fthrower_down_right.explodes = true;
 
 	fthrower_left.anim.PushBack({ 31,39,65,18 });
 	fthrower_left.anim.PushBack({ 159,39,64,19 });
@@ -231,6 +237,7 @@ bool ModuleParticles::Start() {
 	fthrower_left.anim.speed = 0.2f;
 	fthrower_left.speed.x = -5;
 	fthrower_left.speed.y = 0;
+	fthrower_left.explodes = true;
 
 	fthrower_right.anim.PushBack({ 31,5,65,19 });
 	fthrower_right.anim.PushBack({ 160,6,64,18 });
@@ -239,6 +246,7 @@ bool ModuleParticles::Start() {
 	fthrower_right.anim.speed = 0.2f;
 	fthrower_right.speed.x = 5;
 	fthrower_right.speed.y = 0;
+	fthrower_right.explodes = true;
 
 	// Grenade player/enemy shots
 	grenade.anim.PushBack({ 0,160,16,16 });
