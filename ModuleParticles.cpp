@@ -21,6 +21,7 @@ bool ModuleParticles::Start() {
 	bulletsTexture = App->textures->Load("Assets/img/sprites/bullets.png");
 	explosionTexture = App->textures->Load("Assets/img/sprites/explosions.png");
 	hostageTexture = App->textures->Load("Assets/img/sprites/hostage.png");
+	greenEnemiesTexture = App->textures->Load("Assets/img/sprites/Guerrilla War Enemy Spritesheet.png");
 
 	grenadeExplosionFx = App->audio->LoadFx("Assets/sounds/sfx/186.wav");
 
@@ -313,6 +314,49 @@ bool ModuleParticles::Start() {
 	hostageDeathBot.anim.loop = false;
 	hostageDeathBot.isHostage = true;
 
+	//Enemy deaths
+
+	greenDeathAnimTop.anim.PushBack({ 0,320,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 32,320,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 64,320,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 96,320,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 128,320,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 160,320,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 192,320,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 224,320,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 256,320,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 288,320,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 320,320,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 352,320,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 384,320,32,32 });
+
+	greenDeathAnimTop.anim.speed = 0.2f;
+	greenDeathAnimTop.lifetime = 70;
+	greenDeathAnimTop.speed = { 0, -1 };
+	greenDeathAnimTop.anim.loop = false;
+	greenDeathAnimTop.isGreenEnemy = true;
+
+	greenDeathAnimBot.anim.PushBack({ 0,352,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 32,352,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 64,352,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 96,352,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 128,352,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 160,352,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 192,352,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 224,352,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 256,352,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 288,352,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 320,352,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 352,352,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 384,352,32,32 });
+
+	greenDeathAnimBot.anim.speed = 0.2f;
+	greenDeathAnimBot.lifetime = 70;
+	greenDeathAnimBot.speed = { 0, -1 };
+	greenDeathAnimBot.anim.loop = false;
+	greenDeathAnimBot.isGreenEnemy = true;
+
+
 	return true;
 }
 
@@ -321,6 +365,7 @@ bool ModuleParticles::CleanUp() {
 	App->textures->Unload(bulletsTexture);
 	App->textures->Unload(explosionTexture);
 	App->textures->Unload(hostageTexture);
+	App->textures->Unload(greenEnemiesTexture);
 	App->audio->UnloadFx(grenadeExplosionFx);
 	// Delete all remaining active particles on application exit 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
@@ -379,13 +424,15 @@ update_status ModuleParticles::PostUpdate() {
 		Particle* particle = particles[i];
 
 		if (particle != nullptr && particle->isAlive) {
-			if (particle->explodes && !particle->isExplosion && !particle->isHostage ||
-				!particle->explodes && !particle->isExplosion && !particle->isHostage) {
+			if (particle->explodes && !particle->isExplosion && !particle->isHostage && !particle->isGreenEnemy ||
+				!particle->explodes && !particle->isExplosion && !particle->isHostage && !particle->isGreenEnemy) {
 				App->render->Blit(bulletsTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 			} else if (!particle->explodes && particle->isExplosion) {
 				App->render->Blit(explosionTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 			} else if (particle->isHostage) {
 				App->render->Blit(hostageTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			} else if (particle->isGreenEnemy) {
+				App->render->Blit(greenEnemiesTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 			}
 
 		}

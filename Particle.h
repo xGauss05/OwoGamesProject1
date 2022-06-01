@@ -46,6 +46,8 @@ public:
 	// Define if the particle is part of the Hostage Powerup entity
 	bool isHostage = false;
 
+	bool isGreenEnemy = false;
+
 	// Defines the amout of frames this particle has been active
 	// Negative values mean the particle is waiting to be activated
 	int frameCount = 0;

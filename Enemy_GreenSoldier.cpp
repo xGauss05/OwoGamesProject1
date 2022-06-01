@@ -89,6 +89,8 @@ void Enemy_GreenSoldier::Update()
 	else if (degrees > 67.5 && degrees < 112.5)
 		looking = Directions::DOWN;
 
+#pragma endregion
+
 	Shoot();
 
 	// Call to the base class. It must be called at the end
@@ -100,9 +102,46 @@ void Enemy_GreenSoldier::OnCollision(Collider* collider) {
 	if (collider->type == Collider::Type::PLAYER_SHOT) {
 		App->audio->PlayFx(enemyDeadFx);
 		App->player->score += 100;
+
+		switch (looking)
+		{
+		case Directions::UP:
+			App->particles->greenDeathAnimTop.speed = { 0, 1 };
+			App->particles->greenDeathAnimBot.speed = { 0, 1 };
+			break;
+		case Directions::UP_RIGHT:
+			App->particles->greenDeathAnimTop.speed = { -1, 1 };
+			App->particles->greenDeathAnimBot.speed = { -1, 1 };
+			break;
+		case Directions::UP_LEFT:
+			App->particles->greenDeathAnimTop.speed = { 1, 1 };
+			App->particles->greenDeathAnimBot.speed = { 1, 1 };
+			break;
+		case Directions::DOWN:
+			App->particles->greenDeathAnimTop.speed = { 0, -1 };
+			App->particles->greenDeathAnimBot.speed = { 0, -1 };
+			break;
+		case Directions::DOWN_RIGHT:
+			App->particles->greenDeathAnimTop.speed = { -1, -1 };
+			App->particles->greenDeathAnimBot.speed = { -1, -1 };
+			break;
+		case Directions::DOWN_LEFT:
+			App->particles->greenDeathAnimTop.speed = { 1, -1 };
+			App->particles->greenDeathAnimBot.speed = { 1, -1 };
+			break;
+		case Directions::RIGHT:
+			App->particles->greenDeathAnimTop.speed = { -1, 0 };
+			App->particles->greenDeathAnimBot.speed = { -1, 0 };
+			break;
+		case Directions::LEFT:
+			App->particles->greenDeathAnimTop.speed = { 1, 0 };
+			App->particles->greenDeathAnimBot.speed = { 1, 0 };
+			break;
+		}
+
+		App->particles->AddParticle(App->particles->greenDeathAnimTop, position.x, position.y + 5, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->greenDeathAnimBot, position.x, position.y + 32, Collider::Type::NONE);
 	}
-	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-	//App->audio->PlayFx(enemyDeadFx);
 }
 
 void Enemy_GreenSoldier::Shoot()
