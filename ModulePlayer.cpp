@@ -574,12 +574,12 @@ bool ModulePlayer::checkMovingDir() {
 	
 	if (App->input->controllerCount > 0) {
 		for (int i = 0; i < App->input->controllerCount; ++i) {
-			if (App->input->controllers[i]->j2_x > 0) {
-				if (App->input->controllers[i]->j2_y > 0) {
+			if (App->input->controllers[i]->j2_x > 100) {
+				if (App->input->controllers[i]->j2_y > 100) {
 					movementDir = DOWN_RIGHT;
 					isActing = true;
 				}
-				else if (App->input->controllers[i]->j2_y < 0) {
+				else if (App->input->controllers[i]->j2_y < -100) {
 					movementDir = UP_RIGHT;
 					isActing = true;
 				}
@@ -588,12 +588,12 @@ bool ModulePlayer::checkMovingDir() {
 					isActing = true;
 				}
 			}
-			else if (App->input->controllers[i]->j2_x < 0) {
-				if (App->input->controllers[i]->j2_y > 0) {
+			else if (App->input->controllers[i]->j2_x < -100) {
+				if (App->input->controllers[i]->j2_y > 100) {
 					movementDir = DOWN_LEFT;
 					isActing = true;
 				}
-				else if (App->input->controllers[i]->j2_y < 0) {
+				else if (App->input->controllers[i]->j2_y < -100) {
 					movementDir = UP_LEFT;
 					isActing = true;
 				}
@@ -603,11 +603,11 @@ bool ModulePlayer::checkMovingDir() {
 				}
 			}
 			else {
-				if (App->input->controllers[i]->j2_y > 0) {
+				if (App->input->controllers[i]->j2_y > 100) {
 					movementDir = DOWN;
 					isActing = true;
 				}
-				else if (App->input->controllers[i]->j2_y < 0) {
+				else if (App->input->controllers[i]->j2_y < -100) {
 					movementDir = UP;
 					isActing = true;
 				}
@@ -698,12 +698,12 @@ bool ModulePlayer::checkFacingDir() {
 
 	if (App->input->controllerCount > 0) {
 		for (int i = 0; i < App->input->controllerCount; ++i) {
-			if (App->input->controllers[i]->j1_x > 0) {
-				if (App->input->controllers[i]->j1_y > 0) {
+			if (App->input->controllers[i]->j1_x > 100) {
+				if (App->input->controllers[i]->j1_y > 100) {
 					facing = DOWN_RIGHT;
 					isActing = true;
 				}
-				else if (App->input->controllers[i]->j1_y < 0) {
+				else if (App->input->controllers[i]->j1_y < -100) {
 					facing = UP_RIGHT;
 					isActing = true;
 				}
@@ -712,12 +712,12 @@ bool ModulePlayer::checkFacingDir() {
 					isActing = true;
 				}
 			}
-			else if (App->input->controllers[i]->j1_x < 0) {
-				if (App->input->controllers[i]->j1_y > 0) {
+			else if (App->input->controllers[i]->j1_x < -100) {
+				if (App->input->controllers[i]->j1_y > 100) {
 					facing = DOWN_LEFT;
 					isActing = true;
 				}
-				else if (App->input->controllers[i]->j1_y < 0) {
+				else if (App->input->controllers[i]->j1_y < -100) {
 					facing = UP_LEFT;
 					isActing = true;
 				}
@@ -727,11 +727,11 @@ bool ModulePlayer::checkFacingDir() {
 				}
 			}
 			else {
-				if (App->input->controllers[i]->j1_y > 0) {
+				if (App->input->controllers[i]->j1_y > 100) {
 					facing = DOWN;
 					isActing = true;
 				}
-				else if (App->input->controllers[i]->j1_y < 0) {
+				else if (App->input->controllers[i]->j1_y < -100) {
 					facing = UP;
 					isActing = true;
 				}
@@ -1522,8 +1522,24 @@ update_status ModulePlayer::Update() {
 	if (ammunition == 0 && weapon != Weapon::NORMAL)
 		weapon = Weapon::NORMAL;
 
+	// Check to shoot or throw grenade
+	bool haveToShoot = false;
+	bool haveToThrowGrenade = false;
+
+	if (App->input->controllerCount > 0) {
+		for (int i = 0; i < App->input->controllerCount; ++i) {
+			if (App->input->controllers[i]->buttons[SDL_CONTROLLER_BUTTON_A]) {
+				haveToShoot = true;
+			}
+			if (App->input->controllers[i]->buttons[SDL_CONTROLLER_BUTTON_B]) {
+				haveToThrowGrenade = true;
+			}
+		}
+	}
+
+
 	if (!dead) {
-		if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
+		if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || haveToShoot) {
 			switch (weapon) {
 			case Weapon::FLAMETHROWER:
 				App->audio->PlayFx(flamethrowerFx);
@@ -1544,7 +1560,9 @@ update_status ModulePlayer::Update() {
 			isThrowing = false;
 		}
 
-		if (App->input->keys[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN) {
+
+
+		if (App->input->keys[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN || haveToThrowGrenade) {
 			if (grenades > 0) {
 				throwGrenade();
 				switch (facing) {
