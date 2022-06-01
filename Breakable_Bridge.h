@@ -9,7 +9,7 @@ public:
 	// Creates animation and movement data and the collider
 	Breakable_Bridge(int x, int y);
 
-	// The enemy is going to follow the different steps in the path
+	// The breakable is going to follow the different steps in the path
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
