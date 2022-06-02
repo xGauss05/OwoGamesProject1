@@ -49,7 +49,7 @@ void Enemy::Draw() {
 		App->render->Blit(texture, position.x, position.y + 32, &(currentAnimBot->GetCurrentFrame()));
 
 	if (currentAnimTop != nullptr)
-		App->render->Blit(texture, position.x, position.y, &(currentAnimTop->GetCurrentFrame()));
+		App->render->Blit(texture, position.x, position.y + 4, &(currentAnimTop->GetCurrentFrame()));
 }
 
 void Enemy::lookAtPlayer()

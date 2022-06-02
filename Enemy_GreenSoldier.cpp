@@ -379,7 +379,7 @@ void Enemy_GreenSoldier::OnCollision(Collider* collider) {
 			break;
 		}
 
-		App->particles->AddParticle(App->particles->greenDeathAnimTop, position.x, position.y + 5, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->greenDeathAnimTop, position.x, position.y + 1, Collider::Type::NONE);
 		App->particles->AddParticle(App->particles->greenDeathAnimBot, position.x, position.y + 32, Collider::Type::NONE);
 	}
 }

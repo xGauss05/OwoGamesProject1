@@ -21,7 +21,7 @@ bool ModuleParticles::Start() {
 	bulletsTexture = App->textures->Load("Assets/img/sprites/bullets.png");
 	explosionTexture = App->textures->Load("Assets/img/sprites/explosions.png");
 	hostageTexture = App->textures->Load("Assets/img/sprites/hostage.png");
-	greenEnemiesTexture = App->textures->Load("Assets/img/sprites/Guerrilla War Enemy Spritesheet.png");
+	greenEnemiesTexture = App->textures->Load("Assets/img/sprites/Spritesheet Guerrilla Enemy OK 0.2.png");
 
 	grenadeExplosionFx = App->audio->LoadFx("Assets/sounds/sfx/186.wav");
 
@@ -316,19 +316,19 @@ bool ModuleParticles::Start() {
 
 	//Enemy deaths
 
-	greenDeathAnimTop.anim.PushBack({ 0,320,32,32 });
-	greenDeathAnimTop.anim.PushBack({ 32,320,32,32 });
-	greenDeathAnimTop.anim.PushBack({ 64,320,32,32 });
-	greenDeathAnimTop.anim.PushBack({ 96,320,32,32 });
-	greenDeathAnimTop.anim.PushBack({ 128,320,32,32 });
-	greenDeathAnimTop.anim.PushBack({ 160,320,32,32 });
-	greenDeathAnimTop.anim.PushBack({ 192,320,32,32 });
-	greenDeathAnimTop.anim.PushBack({ 224,320,32,32 });
-	greenDeathAnimTop.anim.PushBack({ 256,320,32,32 });
-	greenDeathAnimTop.anim.PushBack({ 288,320,32,32 });
-	greenDeathAnimTop.anim.PushBack({ 320,320,32,32 });
-	greenDeathAnimTop.anim.PushBack({ 352,320,32,32 });
-	greenDeathAnimTop.anim.PushBack({ 384,320,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 0,  448,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 32, 448,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 64, 448,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 96, 448,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 128,448,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 160,448,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 192,448,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 224,448,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 256,448,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 288,448,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 320,448,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 352,448,32,32 });
+	greenDeathAnimTop.anim.PushBack({ 384,448,32,32 });
 
 	greenDeathAnimTop.anim.speed = 0.2f;
 	greenDeathAnimTop.lifetime = 70;
@@ -336,19 +336,19 @@ bool ModuleParticles::Start() {
 	greenDeathAnimTop.anim.loop = false;
 	greenDeathAnimTop.isGreenEnemy = true;
 
-	greenDeathAnimBot.anim.PushBack({ 0,352,32,32 });
-	greenDeathAnimBot.anim.PushBack({ 32,352,32,32 });
-	greenDeathAnimBot.anim.PushBack({ 64,352,32,32 });
-	greenDeathAnimBot.anim.PushBack({ 96,352,32,32 });
-	greenDeathAnimBot.anim.PushBack({ 128,352,32,32 });
-	greenDeathAnimBot.anim.PushBack({ 160,352,32,32 });
-	greenDeathAnimBot.anim.PushBack({ 192,352,32,32 });
-	greenDeathAnimBot.anim.PushBack({ 224,352,32,32 });
-	greenDeathAnimBot.anim.PushBack({ 256,352,32,32 });
-	greenDeathAnimBot.anim.PushBack({ 288,352,32,32 });
-	greenDeathAnimBot.anim.PushBack({ 320,352,32,32 });
-	greenDeathAnimBot.anim.PushBack({ 352,352,32,32 });
-	greenDeathAnimBot.anim.PushBack({ 384,352,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 0,  480,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 32, 480,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 64, 480,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 96, 480,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 128,480,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 160,480,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 192,480,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 224,480,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 256,480,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 288,480,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 320,480,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 352,480,32,32 });
+	greenDeathAnimBot.anim.PushBack({ 384,480,32,32 });
 
 	greenDeathAnimBot.anim.speed = 0.2f;
 	greenDeathAnimBot.lifetime = 70;
