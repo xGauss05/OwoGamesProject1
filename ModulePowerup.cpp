@@ -92,7 +92,7 @@ void ModulePowerup::HandlePowerupsSpawn() {
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (spawnQueue[i].type != POWERUP_TYPE::NO_TYPE) {
 			// Spawn a new enemy if the screen has reached a spawn position
-			if (spawnQueue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN) {
+			if (spawnQueue[i].x /** SCREEN_SIZE*/ < App->render->camera.x + (App->render->camera.w /** SCREEN_SIZE*/) + SPAWN_MARGIN) {
 				LOG("Spawning powerup at %d", spawnQueue[i].x * SCREEN_SIZE);
 
 				SpawnPowerup(spawnQueue[i]);
@@ -107,7 +107,7 @@ void ModulePowerup::HandlePowerupsDespawn() {
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] != nullptr) {
 			// Delete the powerup when it has reached the end of the screen
-			if (powerUps[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN) {
+			if (powerUps[i]->position.x /** SCREEN_SIZE*/ < (App->render->camera.x) - SPAWN_MARGIN) {
 				LOG("DeSpawning powerup at %d. ", powerUps[i]->position.x * SCREEN_SIZE);
 
 				delete powerUps[i];
