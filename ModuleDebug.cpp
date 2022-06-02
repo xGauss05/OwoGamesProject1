@@ -140,7 +140,7 @@ void ModuleDebug::DebugDraw() {
 		App->fonts->BlitText(60, spawnBox + 90, 0, "6.HOSTAGE");
 
 		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN)
-			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 100, 1);
 
 		if (App->input->keys[SDL_SCANCODE_2] == KEY_DOWN)
 			App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
@@ -265,16 +265,16 @@ void ModuleDebug::DebugDraw() {
 			App->fonts->BlitText(10, debugBox + 110, 0, "J1.Y");
 			App->fonts->BlitText(50, debugBox + 110, 0, std::to_string(App->input->controllers[0]->j1_y).c_str());
 
-			if (App->input->controllers[0]->j1_y < -10000)
+			if (App->input->controllers[0]->j1_y < -15000)
 				App->fonts->BlitText(185, debugBox + 90, 0, "U");
 
-			else if (App->input->controllers[0]->j1_y > 10000)
+			else if (App->input->controllers[0]->j1_y > 15000)
 				App->fonts->BlitText(185, debugBox + 110, 0, "D");
 
-			if (App->input->controllers[0]->j1_x < -10000)
+			if (App->input->controllers[0]->j1_x < -15000)
 				App->fonts->BlitText(175, debugBox + 100, 0, "L");
 
-			else if (App->input->controllers[0]->j1_x > 10000)
+			else if (App->input->controllers[0]->j1_x > 15000)
 				App->fonts->BlitText(195, debugBox + 100, 0, "R");
 
 			//
@@ -285,16 +285,16 @@ void ModuleDebug::DebugDraw() {
 			App->fonts->BlitText(10, debugBox + 130, 0, "J2.Y");
 			App->fonts->BlitText(50, debugBox + 130, 0, std::to_string(App->input->controllers[0]->j2_y).c_str());
 
-			if (App->input->controllers[0]->j2_y < -10000)
+			if (App->input->controllers[0]->j2_y < -15000)
 				App->fonts->BlitText(185, debugBox + 120, 0, "U");
 
-			else if (App->input->controllers[0]->j2_y > 10000)
+			else if (App->input->controllers[0]->j2_y > 15000)
 				App->fonts->BlitText(185, debugBox + 140, 0, "D");
 
-			if (App->input->controllers[0]->j2_x < -10000)
+			if (App->input->controllers[0]->j2_x < -15000)
 				App->fonts->BlitText(175, debugBox + 130, 0, "L");
 
-			else if (App->input->controllers[0]->j2_x > 10000)
+			else if (App->input->controllers[0]->j2_x > 15000)
 				App->fonts->BlitText(195, debugBox + 130, 0, "R");
 
 			//
