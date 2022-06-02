@@ -54,6 +54,7 @@ private:
 	SDL_Texture* explosionTexture = nullptr;
 	SDL_Texture* hostageTexture = nullptr;
 	SDL_Texture* greenEnemiesTexture = nullptr;
+	SDL_Texture* redEnemiesTexture = nullptr;
 
 	// An array to store and handle all the particles
 	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };
