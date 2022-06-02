@@ -164,6 +164,9 @@
     <ClCompile Include="Breakable_Fence.cpp">
       <Filter>Archivos de origen\Entities\Breakables</Filter>
     </ClCompile>
+    <ClCompile Include="ScenePrevTitle.cpp">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -294,6 +297,9 @@
     </ClInclude>
     <ClInclude Include="Breakable_Fence.h">
       <Filter>Archivos de origen\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenePrevTitle.h">
+      <Filter>Archivos de origen\Modules\Gameplay\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

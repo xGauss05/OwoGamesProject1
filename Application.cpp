@@ -19,6 +19,7 @@
 #include "SceneTitle.h"
 #include "SceneLevel1.h"
 #include "SceneWin.h"
+#include "ScenePrevTitle.h"
 
 Application::Application() {
 	// The order in which the modules are added is very important.
@@ -30,22 +31,23 @@ Application::Application() {
 	modules[3] = audio = new ModuleAudio(true);
 
 	modules[4] = intro = new SceneIntro(true);
-	modules[5] = title = new SceneTitle(false);
-	modules[6] = level1 = new SceneLevel1(false);
-	modules[7] = win = new SceneWin(false);
+	modules[5] = prevtitle = new ScenePrevTitle(false);
+	modules[6] = title = new SceneTitle(false);
+	modules[7] = level1 = new SceneLevel1(false);
+	modules[8] = win = new SceneWin(false);
 	//modules[8] = lose = new SceneLose(false);
 	
-	modules[8] = collisions = new ModuleCollisions(false);
-	modules[9] = breakables = new ModuleBreakable(false);
-	modules[10] = powerups = new ModulePowerup(false);
-	modules[11] = enemies = new ModuleEnemies(false);
-	modules[12] = player = new ModulePlayer(false);
-	modules[13] = particles = new ModuleParticles(true);
+	modules[9] = collisions = new ModuleCollisions(false);
+	modules[10] = breakables = new ModuleBreakable(false);
+	modules[11] = powerups = new ModulePowerup(false);
+	modules[12] = enemies = new ModuleEnemies(false);
+	modules[13] = player = new ModulePlayer(false);
+	modules[14] = particles = new ModuleParticles(true);
 
-	modules[14] = fonts = new ModuleFonts(true);
-	modules[15] = fade = new ModuleFadeToBlack(true);
-	modules[16] = debug = new ModuleDebug(true);
-	modules[17] = render = new ModuleRender(true);
+	modules[15] = fonts = new ModuleFonts(true);
+	modules[16] = fade = new ModuleFadeToBlack(true);
+	modules[17] = debug = new ModuleDebug(true);
+	modules[18] = render = new ModuleRender(true);
 }
 
 Application::~Application() {

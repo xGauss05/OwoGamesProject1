@@ -33,7 +33,7 @@ update_status SceneIntro::Update() {
 	durationTimer++;
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN ||
 		durationTimer >= SCENE_DURATION) {
-		App->fade->FadeToBlack(this, (Module*)App->title, 90);
+		App->fade->FadeToBlack(this, (Module*)App->prevtitle, 90);
 	}
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_REPEAT) {
 		return update_status::UPDATE_STOP;
