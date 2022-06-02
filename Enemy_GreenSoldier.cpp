@@ -21,15 +21,15 @@ Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y, ushort behaviour) : Enemy(x
 	//path.PushBack({ -0.5f, 0 }, 200, &botAnimLeft);
 	//path.PushBack({ 0.5f, 0 }, 200, &botAnimRight);
 
-	//Testing Waking Movement
-	path.PushBack({ -0.5f,	0	 }, 50, &botLeftWalk);
+	//Testing Walking Movement
+	/*path.PushBack({ -0.5f,	0	 }, 50, &botLeftWalk);
 	path.PushBack({ -0.5f,	0.5  }, 50, &botDownLeftWalk);
 	path.PushBack({		0,	0.5  }, 50, &botDownWalk);
 	path.PushBack({ 0.5f,	0.5	 }, 50, &botDownRightWalk);
 	path.PushBack({ 0.5f,	0	 }, 50, &botRightWalk);
 	path.PushBack({	0.5f,	-0.5 }, 50, &botUpRightWalk);
 	path.PushBack({		0,	-0.5 }, 50, &botUpWalk);
-	path.PushBack({ -0.5f,	-0.5 }, 50, &botUpLeftWalk);
+	path.PushBack({ -0.5f,	-0.5 }, 50, &botUpLeftWalk);*/
 
 	//Testing Crouch Movement
 	/*path.PushBack({ -0.5f,	0	 }, 50, &botLeftCrouch);
@@ -40,6 +40,26 @@ Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y, ushort behaviour) : Enemy(x
 	path.PushBack({	0.5f,	-0.5 }, 50, &botUpRightCrouch);
 	path.PushBack({		0,	-0.5 }, 50, &botUpCrouch);
 	path.PushBack({ -0.5f,	-0.5 }, 50, &botUpLeftCrouch);*/
+
+	//Testing Grenade Animations
+	/*path.PushBack({ -0.5f,	0	 }, 50, &botLeftGrenade);
+	path.PushBack({ -0.5f,	0.5  }, 50, &botDownLeftGrenade);
+	path.PushBack({		0,	0.5  }, 50, &botDownGrenade);
+	path.PushBack({ 0.5f,	0.5	 }, 50, &botDownRightGrenade);
+	path.PushBack({ 0.5f,	0	 }, 50, &botRightGrenade);
+	path.PushBack({	0.5f,	-0.5 }, 50, &botUpRightGrenade);
+	path.PushBack({		0,	-0.5 }, 50, &botUpGrenade);
+	path.PushBack({ -0.5f,	-0.5 }, 50, &botUpLeftGrenade);*/
+
+	//Testing Shoot Animations
+	path.PushBack({ -0.5f,	0	 }, 50, &botLeftShoot);
+	path.PushBack({ -0.5f,	0.5  }, 50, &botDownLeftShoot);
+	path.PushBack({		0,	0.5  }, 50, &botDownShoot);
+	path.PushBack({ 0.5f,	0.5	 }, 50, &botDownRightShoot);
+	path.PushBack({ 0.5f,	0	 }, 50, &botRightShoot);
+	path.PushBack({	0.5f,	-0.5 }, 50, &botUpRightShoot);
+	path.PushBack({		0,	-0.5 }, 50, &botUpShoot);
+	path.PushBack({ -0.5f,	-0.5 }, 50, &botUpLeftShoot);
 
 	//collider = App->collisions->AddCollider({ 0, 0, 36, 72 }, Collider::Type::ENEMY, (Module*)App->enemies);
 	collider = App->collisions->AddCollider({ 0, 0, 32, 64 }, Collider::Type::ENEMY, (Module*)App->enemies);
@@ -227,12 +247,149 @@ void Enemy_GreenSoldier::initAnimations()
 	//Up Right Idle Crouch
 	topUpRightCrouch.PushBack({ 288, 256,32,32 });
 	botUpRightCrouch.PushBack({ 288, 288,32,32 });
+
+	//Up Grenade
+	topUpGrenade.PushBack({ 256,128,32,32 });
+	topUpGrenade.PushBack({ 288,128,32,32 });
+	topUpGrenade.PushBack({ 320,128,32,32 });
+	topUpGrenade.speed = 0.2f;
+	topUpGrenade.loop = false;
+
+	botUpGrenade.PushBack({ 256,160,32,32 });
+	botUpGrenade.PushBack({ 288,160,32,32 });
+	botUpGrenade.PushBack({ 320,160,32,32 });
+	botUpGrenade.speed = 0.2f;
+	botUpGrenade.loop = false;
+
+	//Up Left Grenade
+	topUpLeftGrenade.PushBack({ 352,128,32,32 });
+	topUpLeftGrenade.PushBack({ 384,128,32,32 });
+	topUpLeftGrenade.PushBack({ 416,128,32,32 });
+	topUpLeftGrenade.speed = 0.2f;
+	topUpLeftGrenade.loop = false;
+
+	botUpLeftGrenade.PushBack({ 352,160,32,32 });
+	botUpLeftGrenade.PushBack({ 384,160,32,32 });
+	botUpLeftGrenade.PushBack({ 416,160,32,32 });
+	botUpLeftGrenade.speed = 0.2f;
+	botUpLeftGrenade.loop = false;
+
+	//Left Grenade
+	topLeftGrenade.PushBack({ 256,192,32,32 });
+	topLeftGrenade.PushBack({ 288,192,32,32 });
+	topLeftGrenade.PushBack({ 320,192,32,32 });
+	topLeftGrenade.speed = 0.2f;
+	topLeftGrenade.loop = false;
+
+	botLeftGrenade.PushBack({ 256,224,32,32 });
+	botLeftGrenade.PushBack({ 288,224,32,32 });
+	botLeftGrenade.PushBack({ 320,224,32,32 });
+	botLeftGrenade.speed = 0.2f;
+	botLeftGrenade.loop = false;
+
+	//Down Left Grenade
+	topDownLeftGrenade.PushBack({ 352,192,32,32 });
+	topDownLeftGrenade.PushBack({ 384,192,32,32 });
+	topDownLeftGrenade.PushBack({ 416,192,32,32 });
+	topDownLeftGrenade.speed = 0.2f;
+	topDownLeftGrenade.loop = false;
+
+	botDownLeftGrenade.PushBack({ 352,224,32,32 });
+	botDownLeftGrenade.PushBack({ 384,224,32,32 });
+	botDownLeftGrenade.PushBack({ 416,224,32,32 });
+	botDownLeftGrenade.speed = 0.2f;
+	botDownLeftGrenade.loop = false;
+
+	//Down Grenade
+	topDownGrenade.PushBack({ 256,0,32,32 });
+	topDownGrenade.PushBack({ 288,0,32,32 });
+	topDownGrenade.PushBack({ 320,0,32,32 });
+	topDownGrenade.speed = 0.2f;
+	topDownGrenade.loop = false;
+
+	botDownGrenade.PushBack({ 256,32,32,32 });
+	botDownGrenade.PushBack({ 288,32,32,32 });
+	botDownGrenade.PushBack({ 320,32,32,32 });
+	botDownGrenade.speed = 0.2f;
+	botDownGrenade.loop = false;
+
+	//Down Right Grenade
+	topDownRightGrenade.PushBack({ 352,0,32,32 });
+	topDownRightGrenade.PushBack({ 384,0,32,32 });
+	topDownRightGrenade.PushBack({ 416,0,32,32 });
+	topDownRightGrenade.speed = 0.2f;
+	topDownRightGrenade.loop = false;
+
+	botDownRightGrenade.PushBack({ 352,32,32,32 });
+	botDownRightGrenade.PushBack({ 384,32,32,32 });
+	botDownRightGrenade.PushBack({ 416,32,32,32 });
+	botDownRightGrenade.speed = 0.2f;
+	botDownRightGrenade.loop = false;
+
+	//Right Grenade
+	topRightGrenade.PushBack({ 256,64,32,32 });
+	topRightGrenade.PushBack({ 288,64,32,32 });
+	topRightGrenade.PushBack({ 320,64,32,32 });
+	topRightGrenade.speed = 0.2f;
+	topRightGrenade.loop = false;
+
+	botRightGrenade.PushBack({ 256,96,32,32 });
+	botRightGrenade.PushBack({ 288,96,32,32 });
+	botRightGrenade.PushBack({ 320,96,32,32 });
+	botRightGrenade.speed = 0.2f;
+	botRightGrenade.loop = false;
+
+	//Up Right Grenade
+	topUpRightGrenade.PushBack({ 352,64,32,32 });
+	topUpRightGrenade.PushBack({ 384,64,32,32 });
+	topUpRightGrenade.PushBack({ 416,64,32,32 });
+	topUpRightGrenade.speed = 0.2f;
+	topUpRightGrenade.loop = false;
+
+	botUpRightGrenade.PushBack({ 352,96,32,32 });
+	botUpRightGrenade.PushBack({ 384,96,32,32 });
+	botUpRightGrenade.PushBack({ 416,96,32,32 });
+	botUpRightGrenade.speed = 0.2f;
+	botUpRightGrenade.loop = false;
+
+	//Up Shoot
+	topUpShoot.PushBack({ 256, 320,32,32 });
+	botUpShoot.PushBack({ 256, 352,32,32 });
+
+	//Up Left Shoot
+	topUpLeftShoot.PushBack({ 480, 320,32,32 });
+	botUpLeftShoot.PushBack({ 480, 352,32,32 });
+
+	//Left Shoot
+	topLeftShoot.PushBack({ 448, 320,32,32 });
+	botLeftShoot.PushBack({ 448, 352,32,32 });
+
+	//Down Left Shoot
+	topDownLeftShoot.PushBack({ 416, 320,32,32 });
+	botDownLeftShoot.PushBack({ 416, 352,32,32 });
+
+	//Down Shoot
+	topDownShoot.PushBack({ 384, 320,32,32 });
+	botDownShoot.PushBack({ 384, 352,32,32 });
+
+	//Down Right Shoot
+	topDownRightShoot.PushBack({ 352, 320,32,32 });
+	botDownRightShoot.PushBack({ 352, 352,32,32 });
+
+	//Right Shoot
+	topRightShoot.PushBack({ 320, 320,32,32 });
+	botRightShoot.PushBack({ 320, 352,32,32 });
+
+	//Up Right Shoot
+	topUpRightShoot.PushBack({ 288, 320,32,32 });
+	botUpRightShoot.PushBack({ 288, 352,32,32 });
 }
 
 void Enemy_GreenSoldier::syncAnimations()
 {
 	currentAnimBot = path.GetCurrentAnimation();
 
+	//Walk
 	if (currentAnimBot == &botUpWalk)
 		currentAnimTop = &topUpWalk;
 
@@ -257,6 +414,7 @@ void Enemy_GreenSoldier::syncAnimations()
 	else if (currentAnimBot == &botUpRightWalk)
 		currentAnimTop = &topUpRightWalk;
 
+	//Crouch
 	else if (currentAnimBot == &botUpCrouch)
 		currentAnimTop = &topUpCrouch;
 
@@ -281,6 +439,55 @@ void Enemy_GreenSoldier::syncAnimations()
 	else if (currentAnimBot == &botUpRightCrouch)
 		currentAnimTop = &topUpRightCrouch;
 
+	//Grenade
+	else if (currentAnimBot == &botUpGrenade)
+		currentAnimTop = &topUpGrenade;
+
+	else if (currentAnimBot == &botUpLeftGrenade)
+		currentAnimTop = &topUpLeftGrenade;
+
+	else if (currentAnimBot == &botLeftGrenade)
+		currentAnimTop = &topLeftGrenade;
+
+	else if (currentAnimBot == &botDownLeftGrenade)
+		currentAnimTop = &topDownLeftGrenade;
+
+	else if (currentAnimBot == &botDownGrenade)
+		currentAnimTop = &topDownGrenade;
+
+	else if (currentAnimBot == &botDownRightGrenade)
+		currentAnimTop = &topDownRightGrenade;
+
+	else if (currentAnimBot == &botRightGrenade)
+		currentAnimTop = &topRightGrenade;
+
+	else if (currentAnimBot == &botUpRightGrenade)
+		currentAnimTop = &topUpRightGrenade;
+
+	//Shoot
+	else if (currentAnimBot == &botUpShoot)
+		currentAnimTop = &topUpShoot;
+
+	else if (currentAnimBot == &botUpLeftShoot)
+		currentAnimTop = &topUpLeftShoot;
+
+	else if (currentAnimBot == &botLeftShoot)
+		currentAnimTop = &topLeftShoot;
+
+	else if (currentAnimBot == &botDownLeftShoot)
+		currentAnimTop = &topDownLeftShoot;
+
+	else if (currentAnimBot == &botDownShoot)
+		currentAnimTop = &topDownShoot;
+
+	else if (currentAnimBot == &botDownRightShoot)
+		currentAnimTop = &topDownRightShoot;
+
+	else if (currentAnimBot == &botRightShoot)
+		currentAnimTop = &topRightShoot;
+
+	else if (currentAnimBot == &botUpRightShoot)
+		currentAnimTop = &topUpRightShoot;
 }
 
 void Enemy_GreenSoldier::Update()

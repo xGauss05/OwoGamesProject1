@@ -60,6 +60,26 @@ private:
 	Animation topRightCrouch, botRightCrouch;
 	Animation topUpRightCrouch, botUpRightCrouch;
 
+	//Throw Grenade
+	Animation topUpGrenade, botUpGrenade;
+	Animation topUpLeftGrenade, botUpLeftGrenade;
+	Animation topLeftGrenade, botLeftGrenade;
+	Animation topDownLeftGrenade, botDownLeftGrenade;
+	Animation topDownGrenade, botDownGrenade;
+	Animation topDownRightGrenade, botDownRightGrenade;
+	Animation topRightGrenade, botRightGrenade;
+	Animation topUpRightGrenade, botUpRightGrenade;
+
+	//Shoot
+	Animation topUpShoot, botUpShoot;
+	Animation topUpLeftShoot, botUpLeftShoot;
+	Animation topLeftShoot, botLeftShoot;
+	Animation topDownLeftShoot, botDownLeftShoot;
+	Animation topDownShoot, botDownShoot;
+	Animation topDownRightShoot, botDownRightShoot;
+	Animation topRightShoot, botRightShoot;
+	Animation topUpRightShoot, botUpRightShoot;
+
 
 	ushort behaviour;
 
