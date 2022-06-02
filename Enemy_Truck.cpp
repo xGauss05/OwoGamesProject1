@@ -11,7 +11,6 @@
 
 #define TRUCK_SCORE 300;
 Enemy_Truck::Enemy_Truck(int x, int y) : Enemy(x, y) {
-
 	anim.PushBack({  0, 0, 92, 58 });
 	anim.PushBack({ 23, 0, 92, 58 });
 	currentAnimTop = &anim;
@@ -42,4 +41,6 @@ void Enemy_Truck::OnCollision(Collider* collider) {
 
 }
 
+void Enemy_Truck::Shoot() {
+}
 

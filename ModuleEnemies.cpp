@@ -11,19 +11,20 @@
 #include "Enemy_GreenSoldier.h"
 #include "Enemy_RedSoldier.h"
 #include "Enemy_Tackler.h"
+#include "Enemy_Truck.h"
 
+#include "Collider.h"
 #define SPAWN_MARGIN	50
 
-ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
-{
+ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled) {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 		enemies[i] = nullptr;
 }
 
-ModuleEnemies::~ModuleEnemies() {}
+ModuleEnemies::~ModuleEnemies() {
+}
 
-bool ModuleEnemies::Start()
-{
+bool ModuleEnemies::Start() {
 	greenEnemyTexture = App->textures->Load("Assets/img/sprites/Spritesheet Guerrilla Enemy OK 0.2.png");
 	redEnemyTexture = App->textures->Load("Assets/img/sprites/Guerrilla War Enemy Red Spritesheet.png");
 	truckEnemyTexture = App->textures->Load("Assets/img/sprites/truck.png");
@@ -32,12 +33,10 @@ bool ModuleEnemies::Start()
 	return true;
 }
 
-update_status ModuleEnemies::Update()
-{
+update_status ModuleEnemies::Update() {
 	HandleEnemiesSpawn();
 
-	for (uint i = 0; i < MAX_ENEMIES; ++i)
-	{
+	for (uint i = 0; i < MAX_ENEMIES; ++i) {
 		if (enemies[i] != nullptr)
 			enemies[i]->Update();
 	}
@@ -47,10 +46,8 @@ update_status ModuleEnemies::Update()
 	return update_status::UPDATE_CONTINUE;
 }
 
-update_status ModuleEnemies::PostUpdate()
-{
-	for (uint i = 0; i < MAX_ENEMIES; ++i)
-	{
+update_status ModuleEnemies::PostUpdate() {
+	for (uint i = 0; i < MAX_ENEMIES; ++i) {
 		if (enemies[i] != nullptr)
 			enemies[i]->Draw();
 	}
@@ -59,17 +56,14 @@ update_status ModuleEnemies::PostUpdate()
 }
 
 // Called before quitting
-bool ModuleEnemies::CleanUp()
-{
+bool ModuleEnemies::CleanUp() {
 	LOG("Freeing all enemies");
 	App->textures->Unload(greenEnemyTexture);
 	App->textures->Unload(redEnemyTexture);
 	App->audio->UnloadFx(enemyDestroyedFx);
 
-	for (uint i = 0; i < MAX_ENEMIES; ++i)
-	{
-		if (enemies[i] != nullptr)
-		{
+	for (uint i = 0; i < MAX_ENEMIES; ++i) {
+		if (enemies[i] != nullptr) {
 			App->textures->Unload(enemies[i]->texture);
 			App->audio->UnloadFx(enemies[i]->enemyDeadFx);
 			delete enemies[i];
@@ -90,14 +84,11 @@ bool ModuleEnemies::CleanUp()
  - 5: Come and shoot to leave (Grenade). WIP
  - 6: Bush surprise (Optional). WIP
 */
-bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, ushort behaviour)
-{
+bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, ushort behaviour) {
 	bool ret = false;
 
-	for (uint i = 0; i < MAX_ENEMIES; ++i)
-	{
-		if (spawnQueue[i].type == ENEMY_TYPE::NO_TYPE)
-		{
+	for (uint i = 0; i < MAX_ENEMIES; ++i) {
+		if (spawnQueue[i].type == ENEMY_TYPE::NO_TYPE) {
 			spawnQueue[i].type = type;
 			spawnQueue[i].x = x;
 			spawnQueue[i].y = y;
@@ -110,16 +101,12 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, ushort behaviour)
 	return ret;
 }
 
-void ModuleEnemies::HandleEnemiesSpawn()
-{
+void ModuleEnemies::HandleEnemiesSpawn() {
 	// Iterate all the enemies queue
-	for (uint i = 0; i < MAX_ENEMIES; ++i)
-	{
-		if (spawnQueue[i].type != ENEMY_TYPE::NO_TYPE)
-		{
+	for (uint i = 0; i < MAX_ENEMIES; ++i) {
+		if (spawnQueue[i].type != ENEMY_TYPE::NO_TYPE) {
 			// Spawn a new enemy if the screen has reached a spawn position
-			if (spawnQueue[i].x /** SCREEN_SIZE*/ < App->render->camera.x + (App->render->camera.w /** SCREEN_SIZE*/) + SPAWN_MARGIN)
-			{
+			if (spawnQueue[i].x /** SCREEN_SIZE*/ < App->render->camera.x + (App->render->camera.w /** SCREEN_SIZE*/) + SPAWN_MARGIN) {
 				LOG("Spawning enemy at %d", spawnQueue[i].x * SCREEN_SIZE);
 
 				SpawnEnemy(spawnQueue[i]);
@@ -129,16 +116,12 @@ void ModuleEnemies::HandleEnemiesSpawn()
 	}
 }
 
-void ModuleEnemies::HandleEnemiesDespawn()
-{
+void ModuleEnemies::HandleEnemiesDespawn() {
 	// Iterate existing enemies
-	for (uint i = 0; i < MAX_ENEMIES; ++i)
-	{
-		if (enemies[i] != nullptr)
-		{
+	for (uint i = 0; i < MAX_ENEMIES; ++i) {
+		if (enemies[i] != nullptr) {
 			// Delete the enemy when it has reached the end of the screen
-			if (enemies[i]->position.x /** SCREEN_SIZE*/ < (App->render->camera.x) - SPAWN_MARGIN)
-			{
+			if (enemies[i]->position.x /** SCREEN_SIZE*/ < (App->render->camera.x) - SPAWN_MARGIN) {
 				LOG("DeSpawning enemy at %d", enemies[i]->position.x * SCREEN_SIZE);
 
 				delete enemies[i];
@@ -148,15 +131,11 @@ void ModuleEnemies::HandleEnemiesDespawn()
 	}
 }
 
-void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
-{
+void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info) {
 	// Find an empty slot in the enemies array
-	for (uint i = 0; i < MAX_ENEMIES; ++i)
-	{
-		if (enemies[i] == nullptr)
-		{
-			switch (info.type)
-			{
+	for (uint i = 0; i < MAX_ENEMIES; ++i) {
+		if (enemies[i] == nullptr) {
+			switch (info.type) {
 			case ENEMY_TYPE::GREENSOLDIER:
 				enemies[i] = new Enemy_GreenSoldier(info.x, info.y, info.behaviour);
 				enemies[i]->texture = greenEnemyTexture;
@@ -172,22 +151,31 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				enemies[i]->texture = greenEnemyTexture;
 				enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
 				break;
+			case ENEMY_TYPE::TRUCK:
+				enemies[i] = new Enemy_Truck(info.x, info.y);
+				enemies[i]->texture = truckEnemyTexture;
+				//enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
+				break;
 			}
 			break;
 		}
 	}
 }
 
-void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
-{
-	for (uint i = 0; i < MAX_ENEMIES; ++i)
-	{
-		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
-		{
+void ModuleEnemies::OnCollision(Collider* c1, Collider* c2) {
+	for (uint i = 0; i < MAX_ENEMIES; ++i) {
+		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1) {
 			enemies[i]->OnCollision(c2); // Notify the enemy of a collision
-			
-			delete enemies[i];
-			enemies[i] = nullptr;
+			if (c2->type == Collider::Type::EXPLOSION &&
+				c1->type == Collider::Type::TRUCK) {
+
+				delete enemies[i];
+				enemies[i] = nullptr;
+			}
+			if (c1->type != Collider::Type::TRUCK) {
+				delete enemies[i];
+				enemies[i] = nullptr;
+			}
 			break;
 		}
 	}
