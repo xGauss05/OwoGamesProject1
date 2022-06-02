@@ -12,7 +12,7 @@
 #define TRUCK_SCORE 300;
 Enemy_Truck::Enemy_Truck(int x, int y) : Enemy(x, y) {
 	anim.PushBack({  0, 0, 92, 58 });
-	anim.PushBack({ 23, 0, 92, 58 });
+	anim.PushBack({ 96, 0, 92, 58 });
 	currentAnimTop = &anim;
 
 	/*path.PushBack({ 0, -1.0f }, 50);
@@ -23,17 +23,13 @@ Enemy_Truck::Enemy_Truck(int x, int y) : Enemy(x, y) {
 }
 
 void Enemy_Truck::Update() {
-	if (lifePoints == 0) {
 
-	}
 	Enemy::Update();
 }
 
 void Enemy_Truck::OnCollision(Collider* collider) {
-	if (collider->type == Collider::Type::EXPLOSION &&
-		lifePoints > 0) {
-		lifePoints--;
-		
+	if (collider->type == Collider::Type::EXPLOSION) {
+
 		App->player->score += TRUCK_SCORE;
 	}
 
