@@ -153,6 +153,7 @@
     <ClCompile Include="Enemy_GreenSoldier.cpp" />
     <ClCompile Include="Enemy_RedSoldier.cpp" />
     <ClCompile Include="Enemy_Tackler.cpp" />
+    <ClCompile Include="Enemy_Truck.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Module.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Enemy_GreenSoldier.h" />
     <ClInclude Include="Enemy_RedSoldier.h" />
     <ClInclude Include="Enemy_Tackler.h" />
+    <ClInclude Include="Enemy_Truck.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="Module.h" />

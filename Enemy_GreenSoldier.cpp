@@ -6,64 +6,58 @@
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h" //(Testing)
+#include <time.h>
 
 #include "ModuleFonts.h"
 #include <string>
 using namespace std;
 
 #define GREENSOLDIER_SCORE 100
+
+int randVal(int min, int max) {
+
+	return (rand() % (max - min + 1)) + min;
+}
+
 Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y, ushort behaviour) : Enemy(x, y)
 {
+	this->behaviour = behaviour;
+
+	srand(time(NULL));
+	leaveDir = randVal(0, 2);
+
+	//currentAnimTop = &defaultTopAnim;
+	//currentAnimBot = &botAnimLeft;
+
+	switch (behaviour)
+	{
+	case 0:
+		stationary = true;
+		break;
+	case 1:
+		path.PushBack({ 1.0f,1.0f }, 200, &botDownRightWalk);
+		pathTransitionDuration = 200;
+		path.PushBack({ 1.0f,-1.0f }, 200, &botUpRightWalk);
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	case 5:
+		break;
+	case 6:
+		break;
+	case 7:
+		break;
+	default:
+		break;
+	}
+
 	initAnimations();
 
-
-	//Left Right movement
-	//path.PushBack({ -0.5f, 0 }, 200, &botAnimLeft);
-	//path.PushBack({ 0.5f, 0 }, 200, &botAnimRight);
-
-	//Testing Walking Movement
-	/*path.PushBack({ -0.5f,	0	 }, 50, &botLeftWalk);
-	path.PushBack({ -0.5f,	0.5  }, 50, &botDownLeftWalk);
-	path.PushBack({		0,	0.5  }, 50, &botDownWalk);
-	path.PushBack({ 0.5f,	0.5	 }, 50, &botDownRightWalk);
-	path.PushBack({ 0.5f,	0	 }, 50, &botRightWalk);
-	path.PushBack({	0.5f,	-0.5 }, 50, &botUpRightWalk);
-	path.PushBack({		0,	-0.5 }, 50, &botUpWalk);
-	path.PushBack({ -0.5f,	-0.5 }, 50, &botUpLeftWalk);*/
-
-	//Testing Crouch Movement
-	/*path.PushBack({ -0.5f,	0	 }, 50, &botLeftCrouch);
-	path.PushBack({ -0.5f,	0.5  }, 50, &botDownLeftCrouch);
-	path.PushBack({		0,	0.5  }, 50, &botDownCrouch);
-	path.PushBack({ 0.5f,	0.5	 }, 50, &botDownRightCrouch);
-	path.PushBack({ 0.5f,	0	 }, 50, &botRightCrouch);
-	path.PushBack({	0.5f,	-0.5 }, 50, &botUpRightCrouch);
-	path.PushBack({		0,	-0.5 }, 50, &botUpCrouch);
-	path.PushBack({ -0.5f,	-0.5 }, 50, &botUpLeftCrouch);*/
-
-	//Testing Grenade Animations
-	/*path.PushBack({ -0.5f,	0	 }, 50, &botLeftGrenade);
-	path.PushBack({ -0.5f,	0.5  }, 50, &botDownLeftGrenade);
-	path.PushBack({		0,	0.5  }, 50, &botDownGrenade);
-	path.PushBack({ 0.5f,	0.5	 }, 50, &botDownRightGrenade);
-	path.PushBack({ 0.5f,	0	 }, 50, &botRightGrenade);
-	path.PushBack({	0.5f,	-0.5 }, 50, &botUpRightGrenade);
-	path.PushBack({		0,	-0.5 }, 50, &botUpGrenade);
-	path.PushBack({ -0.5f,	-0.5 }, 50, &botUpLeftGrenade);*/
-
-	//Testing Shoot Animations
-	path.PushBack({ -0.5f,	0	 }, 50, &botLeftShoot);
-	path.PushBack({ -0.5f,	0.5  }, 50, &botDownLeftShoot);
-	path.PushBack({		0,	0.5  }, 50, &botDownShoot);
-	path.PushBack({ 0.5f,	0.5	 }, 50, &botDownRightShoot);
-	path.PushBack({ 0.5f,	0	 }, 50, &botRightShoot);
-	path.PushBack({	0.5f,	-0.5 }, 50, &botUpRightShoot);
-	path.PushBack({		0,	-0.5 }, 50, &botUpShoot);
-	path.PushBack({ -0.5f,	-0.5 }, 50, &botUpLeftShoot);
-
-	//collider = App->collisions->AddCollider({ 0, 0, 36, 72 }, Collider::Type::ENEMY, (Module*)App->enemies);
 	collider = App->collisions->AddCollider({ 0, 0, 32, 64 }, Collider::Type::ENEMY, (Module*)App->enemies);
-	this->behaviour = behaviour;
 }
 
 void Enemy_GreenSoldier::initAnimations()
@@ -219,10 +213,14 @@ void Enemy_GreenSoldier::initAnimations()
 	//Up Idle Crouch
 	topUpCrouch.PushBack({ 256, 256,32,32 });
 	botUpCrouch.PushBack({ 256, 288,32,32 });
+	topUpCrouch.speed = 0;
+	botUpCrouch.speed = 0;
 
 	//Up Left Idle Crouch
 	topUpLeftCrouch.PushBack({ 480, 256,32,32 });
 	botUpLeftCrouch.PushBack({ 480, 288,32,32 });
+	topUpLeftCrouch.speed = 0;
+	botUpLeftCrouch.speed = 0;
 
 	//Left Idle Crouch
 	topLeftCrouch.PushBack({ 448, 256,32,32 });
@@ -235,6 +233,8 @@ void Enemy_GreenSoldier::initAnimations()
 	//Down Idle Crouch
 	topDownCrouch.PushBack({ 384, 256,32,32 });
 	botDownCrouch.PushBack({ 384, 288,32,32 });
+	topDownCrouch.speed = 0;
+	botDownCrouch.speed = 0;
 
 	//Down Right Idle Crouch
 	topDownRightCrouch.PushBack({ 352, 256,32,32 });
@@ -384,11 +384,13 @@ void Enemy_GreenSoldier::initAnimations()
 	topUpRightShoot.PushBack({ 288, 320,32,32 });
 	botUpRightShoot.PushBack({ 288, 352,32,32 });
 }
-
 void Enemy_GreenSoldier::syncAnimations()
 {
-	currentAnimBot = path.GetCurrentAnimation();
-
+	if (!stationary)
+	{
+		currentAnimBot = path.GetCurrentAnimation();
+	}
+	
 	//Walk
 	if (currentAnimBot == &botUpWalk)
 		currentAnimTop = &topUpWalk;
@@ -492,50 +494,67 @@ void Enemy_GreenSoldier::syncAnimations()
 
 void Enemy_GreenSoldier::Update()
 {
-	path.Update();
-	syncAnimations();
+	App->fonts->BlitText(10, SCREEN_HEIGHT - 40, 0, std::to_string(pathTransitionDelay).c_str());
 
+	if (stationary)
+	{
+		switch (looking)
+		{
+		case Directions::UP:
+			currentAnimBot = &botUpCrouch;
+			break;
+
+		case Directions::UP_RIGHT:
+			currentAnimBot = &botUpRightCrouch;
+			break;
+
+		case Directions::UP_LEFT:
+			currentAnimBot = &botUpLeftCrouch;
+			break;
+
+		case Directions::RIGHT:
+			currentAnimBot = &botRightCrouch;
+			break;
+
+		case Directions::LEFT:
+			currentAnimBot = &botLeftCrouch;
+			break;
+
+		case Directions::DOWN_RIGHT:
+			currentAnimBot = &botDownRightCrouch;
+			break;
+		case Directions::DOWN_LEFT:
+			currentAnimBot = &botDownLeftCrouch;
+			break;
+		case Directions::DOWN:
+			currentAnimBot = &botDownCrouch;
+			break;
+		}
+	}
+	else
+	{
+		path.Update();
+
+		if (pathTransitionDelay >= pathTransitionDuration && shotCount > 2)
+		{
+			App->particles->AddParticle(App->particles->shot_right, position.x - 20, position.y, Collider::Type::PLAYER_SHOT); //Harakiry
+		}
+
+		else if (pathTransitionDelay >= pathTransitionDuration)
+		{
+			pathTransitionDelay = 0;
+			stationary = true;
+		}
+		pathTransitionDelay++;
+	}
+
+
+	syncAnimations();
 	position = spawnPos + path.GetRelativePosition();
 
-	#pragma region Update Direction
-
-	// Down
-	if (degrees > 247.5 && degrees < 292.5)
-		looking = Directions::UP;
-
-	// Down right
-	else if (degrees > 292.5 && degrees < 337.5)
-		looking = Directions::UP_RIGHT;
-
-	// Down left
-	else if (degrees > 202.5 && degrees < 247.5)
-		looking = Directions::UP_LEFT;
-
-	// Right
-	else if (degrees > 337.5 || degrees < 22.5)
-		looking = Directions::RIGHT;
-
-	// Left
-	else if (degrees > 157.5 && degrees < 202.5)
-		looking = Directions::LEFT;
-
-	// Up right
-	else if (degrees > 22.5 && degrees < 67.5)
-		looking = Directions::DOWN_RIGHT;
-
-	// Up left
-	else if (degrees > 112.5 && degrees < 157.5)
-		looking = Directions::DOWN_LEFT;
-
-	// Up
-	else if (degrees > 67.5 && degrees < 112.5)
-		looking = Directions::DOWN;
-
-#pragma endregion
-
-
 	//As every part of the path will have its own animation, you can define certain behaviours for certain parts of the path (animations).
-	if (currentAnimBot == &botAnimLeft)
+	if (currentAnimBot == &botUpCrouch || currentAnimBot == &botUpLeftCrouch || currentAnimBot == &botLeftCrouch || currentAnimBot == &botDownLeftCrouch ||
+		currentAnimBot == &botDownCrouch || currentAnimBot == &botDownRightCrouch || currentAnimBot == &botRightCrouch || currentAnimBot == &botUpRightCrouch)
 	{
 		Shoot();
 	}
@@ -547,8 +566,12 @@ void Enemy_GreenSoldier::Update()
 
 void Enemy_GreenSoldier::OnCollision(Collider* collider) {
 	if (collider->type == Collider::Type::PLAYER_SHOT) {
-		App->audio->PlayFx(enemyDeadFx);
-		App->player->score += 100;
+
+		if (pathTransitionDelay < pathTransitionDuration)
+		{
+			App->audio->PlayFx(enemyDeadFx);
+			App->player->score += 100;
+		}
 
 		switch (looking)
 		{
@@ -596,11 +619,11 @@ void Enemy_GreenSoldier::Shoot()
 	switch (behaviour)
 	{
 	case 0:
-		Burst();
+		Grenade();
 		break;
 
 	case 1:
-		Grenade();
+		Burst();
 		break;
 	}
 }
@@ -614,6 +637,7 @@ void Enemy_GreenSoldier::Burst()
 		{
 			burstDelay = 0;
 			burst = true;
+			shotCount++;
 		}
 		burstDelay++;
 	}
@@ -625,7 +649,7 @@ void Enemy_GreenSoldier::Burst()
 			shootdelay = 0;
 			burstCount++;
 
-#pragma region Shot
+			#pragma region Shot
 			switch (looking)
 			{
 			case Directions::UP:
@@ -663,6 +687,7 @@ void Enemy_GreenSoldier::Burst()
 			}
 
 			App->particles->AddParticle(App->particles->enemy_shot, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
+			App->audio->PlayFx(enemyDeadFx);
 #pragma endregion
 		}
 		shootdelay++;
@@ -672,6 +697,11 @@ void Enemy_GreenSoldier::Burst()
 			burstCount = 0;
 			burst = false;
 		}
+	}
+
+	if (stationary && shotCount > 2)
+	{
+		stationary = false;
 	}
 }
 

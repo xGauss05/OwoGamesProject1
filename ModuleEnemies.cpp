@@ -26,6 +26,7 @@ bool ModuleEnemies::Start()
 {
 	greenEnemyTexture = App->textures->Load("Assets/img/sprites/Spritesheet Guerrilla Enemy OK 0.2.png");
 	redEnemyTexture = App->textures->Load("Assets/img/sprites/Guerrilla War Enemy Red Spritesheet.png");
+	truckEnemyTexture = App->textures->Load("Assets/img/sprites/truck.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/sounds/sfx/194.wav");
 
 	return true;
@@ -184,7 +185,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
 			enemies[i]->OnCollision(c2); // Notify the enemy of a collision
-
+			
 			delete enemies[i];
 			enemies[i] = nullptr;
 			break;
