@@ -9,6 +9,7 @@
 class Enemy_GreenSoldier : public Enemy
 {
 public:
+
 	// Constructor (x y coordinates in the world)
 	// Creates animation and movement data and the collider
 	Enemy_GreenSoldier(int x, int y, ushort behaviour);
@@ -82,6 +83,10 @@ private:
 
 
 	ushort behaviour;
+	bool stationary = false;
+	int pathTransitionDelay = 0;
+	int pathTransitionDuration = 0;
+	int shotCount = 0;
 
 	bool burst = false;
 	int burstDelay;
@@ -89,6 +94,8 @@ private:
 	int burstCount = 0;
 
 	int grenadeDelay;
+
+	ushort leaveDir;
 };
 
 #endif // __ENEMY_GREENSOLDIER_H__
