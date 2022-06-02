@@ -1,4 +1,4 @@
-## 
+## Game
 
 <p align="center"><img src=https://user-images.githubusercontent.com/57706173/155706887-e6121473-e1ac-4a2f-a602-30ab4cdf49a2.jpg></p>
 
@@ -19,7 +19,7 @@ The gameplay is about eliminating lots of hordes of enemy soldiers until you rea
 ## Controls
 
 ```markdown
-- Keyboard controls
+Keyboard controls
   WASD: Player movement
   IJKL: Player direction
   SPACEBAR: Shoot
@@ -27,7 +27,7 @@ The gameplay is about eliminating lots of hordes of enemy soldiers until you rea
 ```
 
 ```markdown
-- Gamepad controls
+Gamepad controls
   Left Joystick: Player movement
   Right Joystick: Player direction
   X: Shoot
