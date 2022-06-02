@@ -1,4 +1,4 @@
-<p align="center"><img src=https://user-images.githubusercontent.com/57706173/155706887-e6121473-e1ac-4a2f-a602-30ab4cdf49a2.jpg></p>
+<img src=https://user-images.githubusercontent.com/57706173/155706887-e6121473-e1ac-4a2f-a602-30ab4cdf49a2.jpg>
 
 ## Our project
 Our main objective is to replicate Guerrilla War (Arcade version) developed and published by SNK as a tribute to the game. This project has been done by four students from the Design and Game Development degree in TTC - UPC (Barcelona, Spain).
