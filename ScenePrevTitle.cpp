@@ -26,12 +26,27 @@ bool ScenePrevTitle::Start() {
 	photoAnim.PushBack({ 208, 240, 128, 144 });
 	photoAnim.loop = false;
 	
-	photo.x = 500;
+	photo.x = 500 + (SCREEN_WIDTH / 2) - 64;
+	photo.y = 50;
 
 
 	logoAnim.FullReset();
 	logoAnim.PushBack({ 0, 240, 208, 160 });
 	logoAnim.loop = false;
+
+	logo.x = (SCREEN_WIDTH / 2) - 104;
+	logo.y = 20;
+
+	boatAnim.FullReset();
+	boatAnim.PushBack({ 0 , 64, 32, 96 });
+	boatAnim.PushBack({ 32, 64, 32, 96 });
+	boatAnim.PushBack({ 64, 64, 32, 96 });
+	boatAnim.PushBack({ 96, 64, 32, 96 });
+	boatAnim.loop = true;
+	boatAnim.speed = 0.1f;
+
+	boat.x = (SCREEN_WIDTH / 2) - 8;
+	boat.y = (SCREEN_HEIGHT / 2) + 64;
 
 	duration = 0;
 
@@ -60,6 +75,11 @@ update_status ScenePrevTitle::Update() {
 			duration >= SCENE_DURATION) {
 			App->fade->FadeToBlack(this, (Module*)App->title, 90);
 		}
+		App->render->camera.y -= 2 * SCREEN_SIZE;
+		boat.y -= 4;
+		logo.y -= 4;
+		boatAnim.Update();
+
 		break;
 	default:
 		break;
@@ -83,6 +103,9 @@ update_status ScenePrevTitle::PostUpdate() {
 	rect = logoAnim.GetCurrentFrame();
 	App->render->Blit(introAssets, logo.x, logo.y, &rect);
 
+	rect = boatAnim.GetCurrentFrame();
+	App->render->Blit(introAssets, boat.x, boat.y, &rect);
+
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -90,5 +113,8 @@ update_status ScenePrevTitle::PostUpdate() {
 bool ScenePrevTitle::CleanUp() {
 	App->textures->Unload(bgTexture);
 	bgTexture = nullptr;
+	App->textures->Unload(introAssets);
+	introAssets = nullptr;
+
 	return true;
 }
