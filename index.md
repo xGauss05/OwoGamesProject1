@@ -1,6 +1,6 @@
 ## Game
 
-<p align="center"><img src=https://user-images.githubusercontent.com/57706173/155706887-e6121473-e1ac-4a2f-a602-30ab4cdf49a2.jpg></p>
+<p align="center"><img src=https://user-images.githubusercontent.com/57706173/155706887-e6121473-e1ac-4a2f-a602-30ab4cdf49a2.jpg width="600" height="800"></p>
 
 ## Our project
 
