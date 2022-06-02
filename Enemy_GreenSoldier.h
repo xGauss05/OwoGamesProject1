@@ -15,6 +15,10 @@ public:
 
 	// The enemy is going to follow the different steps in the path
 	// Position will be updated depending on the speed defined at each step
+
+	void initAnimations();
+	void syncAnimations();
+
 	void Update() override;
 
 	void OnCollision(Collider* collider) override;
@@ -29,9 +33,33 @@ private:
 	// And an animation for each step
 	Path path;
 
+	//Old animations
 	Animation defaultTopAnim;
 	Animation botAnimLeft;
 	Animation botAnimRight;
+
+	//New animations
+
+	//Walk
+	Animation topUpWalk, botUpWalk;
+	Animation topUpLeftWalk, botUpLeftWalk;
+	Animation topLeftWalk, botLeftWalk;
+	Animation topDownLeftWalk, botDownLeftWalk;
+	Animation topDownWalk, botDownWalk;
+	Animation topDownRightWalk, botDownRightWalk;
+	Animation topRightWalk, botRightWalk;
+	Animation topUpRightWalk, botUpRightWalk;
+
+	//Crouch
+	Animation topUpCrouch, botUpCrouch;
+	Animation topUpLeftCrouch, botUpLeftCrouch;
+	Animation topLeftCrouch, botLeftCrouch;
+	Animation topDownLeftCrouch, botDownLeftCrouch;
+	Animation topDownCrouch, botDownCrouch;
+	Animation topDownRightCrouch, botDownRightCrouch;
+	Animation topRightCrouch, botRightCrouch;
+	Animation topUpRightCrouch, botUpRightCrouch;
+
 
 	ushort behaviour;
 

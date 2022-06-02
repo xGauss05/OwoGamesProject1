@@ -32,7 +32,7 @@ bool SceneLevel1::Start() {
 	
 	// Entities --- Add enemies/powerups here
 	//App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 300, -60);
-	App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 240, -60);
+	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 240, -60);
 	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 230, -60);
 
 	// Colliders --- Make collision boxes here

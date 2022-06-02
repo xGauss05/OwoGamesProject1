@@ -24,7 +24,7 @@ ModuleEnemies::~ModuleEnemies() {}
 
 bool ModuleEnemies::Start()
 {
-	greenEnemyTexture = App->textures->Load("Assets/img/sprites/Guerrilla War Enemy Spritesheet.png");
+	greenEnemyTexture = App->textures->Load("Assets/img/sprites/Spritesheet Guerrilla Enemy OK.png");
 	redEnemyTexture = App->textures->Load("Assets/img/sprites/Guerrilla War Enemy Red Spritesheet.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/sounds/sfx/194.wav");
 
