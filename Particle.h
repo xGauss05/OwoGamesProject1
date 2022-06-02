@@ -48,6 +48,8 @@ public:
 
 	bool isGreenEnemy = false;
 
+	bool isRedEnemy = false;
+
 	// Defines the amout of frames this particle has been active
 	// Negative values mean the particle is waiting to be activated
 	int frameCount = 0;

@@ -24,16 +24,25 @@ SceneWin::~SceneWin() {
 bool SceneWin::Start() {
 	bool ret = true;
 	bgTexture = App->textures->Load("Assets/img/sprites/win.png");
-	App->audio->PlayMusic("Assets/sounds/bgm/127.ogg", 1.0f);
-
+	App->audio->PlayMusic("Assets/sounds/bgm/127.ogg", 3.0f);
+	countdown = 10;
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
+	t1 = SDL_GetTicks();
 	return ret;
 }
 
 update_status SceneWin::Update() {
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
-		App->fade->FadeToBlack(this, (Module*)App->title, 0);
+	int t2 = SDL_GetTicks();
+	if ((t2 - t1) / 1000.0f >= 1) {
+		countdown--;
+		t1 = t2;
+	}
+	
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN ||
+		countdown == 1) {
+		
+		App->fade->FadeToBlack(this, (Module*)App->prevtitle, 0);
 	}
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_REPEAT) {
 		return update_status::UPDATE_STOP;
