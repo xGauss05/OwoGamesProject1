@@ -21,6 +21,9 @@ public:
 
 	void Shoot() override;
 
+	void Burst();
+	void Grenade();
+
 private:
 	// A set of steps that define the position in the screen
 	// And an animation for each step
@@ -31,7 +34,12 @@ private:
 	Animation botAnimRight;
 
 	ushort behaviour;
+
+	bool burst = false;
+	int burstDelay;
 	int shootdelay;
+	int burstCount = 0;
+
 	int grenadeDelay;
 };
 

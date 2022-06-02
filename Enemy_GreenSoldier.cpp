@@ -7,6 +7,10 @@
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h" //(Testing)
 
+#include "ModuleFonts.h"
+#include <string>
+using namespace std;
+
 #define GREENSOLDIER_SCORE 100
 Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y, ushort behaviour) : Enemy(x, y)
 {
@@ -39,8 +43,8 @@ Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y, ushort behaviour) : Enemy(x
 	botAnimRight.pingpong = true;
 	currentAnimBot = &botAnimLeft;
 
-	path.PushBack({ -0.5f, 0 }, 100, &botAnimLeft);
-	path.PushBack({ 0.5f, 0 }, 100, &botAnimRight);
+	path.PushBack({ -0.5f, 0 }, 200, &botAnimLeft);
+	path.PushBack({ 0.5f, 0 }, 200, &botAnimRight);
 
 
 	//collider = App->collisions->AddCollider({ 0, 0, 36, 72 }, Collider::Type::ENEMY, (Module*)App->enemies);
@@ -55,7 +59,7 @@ void Enemy_GreenSoldier::Update()
 
 	position = spawnPos + path.GetRelativePosition();
 
-#pragma region Update Direction
+	#pragma region Update Direction
 
 	// Down
 	if (degrees > 247.5 && degrees < 292.5)
@@ -91,7 +95,12 @@ void Enemy_GreenSoldier::Update()
 
 #pragma endregion
 
-	Shoot();
+
+	//As every part of the path will have its own animation, you can define certain behaviours for certain parts of the path (animations).
+	if (currentAnimBot == &botAnimLeft)
+	{
+		Shoot();
+	}
 
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
@@ -149,55 +158,126 @@ void Enemy_GreenSoldier::Shoot()
 	switch (behaviour)
 	{
 	case 0:
-		if (grenadeDelay >= 100)
+		Burst();
+		break;
+
+	case 1:
+		Grenade();
+		break;
+	}
+}
+
+
+void Enemy_GreenSoldier::Burst()
+{
+	if (!burst)
+	{
+		if (burstDelay >= 100)
 		{
+			burstDelay = 0;
+			burst = true;
+		}
+		burstDelay++;
+	}
+
+	if (burst)
+	{
+		if (shootdelay >= 10)
+		{
+			shootdelay = 0;
+			burstCount++;
+
+#pragma region Shot
 			switch (looking)
 			{
 			case Directions::UP:
-				App->particles->grenade.speed.x = 0;
-				App->particles->grenade.speed.y = -2;
+				App->particles->enemy_shot.speed.x = 0;
+				App->particles->enemy_shot.speed.y = -2;
 				break;
 			case Directions::UP_RIGHT:
-				App->particles->grenade.speed.x = 2;
-				App->particles->grenade.speed.y = -2;
+				App->particles->enemy_shot.speed.x = 2;
+				App->particles->enemy_shot.speed.y = -2;
 				break;
 			case Directions::UP_LEFT:
-				App->particles->grenade.speed.x = -2;
-				App->particles->grenade.speed.y = -2;
+				App->particles->enemy_shot.speed.x = -2;
+				App->particles->enemy_shot.speed.y = -2;
 				break;
 			case Directions::DOWN:
-				App->particles->grenade.speed.x = 0;
-				App->particles->grenade.speed.y = 2;
+				App->particles->enemy_shot.speed.x = 0;
+				App->particles->enemy_shot.speed.y = 2;
 				break;
 			case Directions::DOWN_RIGHT:
-				App->particles->grenade.speed.x = 2;
-				App->particles->grenade.speed.y = 2;
+				App->particles->enemy_shot.speed.x = 2;
+				App->particles->enemy_shot.speed.y = 2;
 				break;
 			case Directions::DOWN_LEFT:
-				App->particles->grenade.speed.x = -2;
-				App->particles->grenade.speed.y = 2;
+				App->particles->enemy_shot.speed.x = -2;
+				App->particles->enemy_shot.speed.y = 2;
 				break;
 			case Directions::RIGHT:
-				App->particles->grenade.speed.x = 2;
-				App->particles->grenade.speed.y = 0;
+				App->particles->enemy_shot.speed.x = 2;
+				App->particles->enemy_shot.speed.y = 0;
 				break;
 			case Directions::LEFT:
-				App->particles->grenade.speed.x = -2;
-				App->particles->grenade.speed.y = 0;
+				App->particles->enemy_shot.speed.x = -2;
+				App->particles->enemy_shot.speed.y = 0;
 				break;
 			}
-			App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y, Collider::Type::NONE);
-			grenadeDelay = 0;
-		}
-		grenadeDelay++;
-		break;
-	case 1:
-		if (shootdelay >= 50)
-		{
+
 			App->particles->AddParticle(App->particles->enemy_shot, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
-			shootdelay = 0;
+#pragma endregion
 		}
 		shootdelay++;
-		break;
+
+		if (burstCount >= 3)
+		{
+			burstCount = 0;
+			burst = false;
+		}
 	}
+}
+
+void Enemy_GreenSoldier::Grenade()
+{
+	if (grenadeDelay >= 100)
+	{
+		switch (looking)
+		{
+		case Directions::UP:
+			App->particles->grenade.speed.x = 0;
+			App->particles->grenade.speed.y = -2;
+			break;
+		case Directions::UP_RIGHT:
+			App->particles->grenade.speed.x = 2;
+			App->particles->grenade.speed.y = -2;
+			break;
+		case Directions::UP_LEFT:
+			App->particles->grenade.speed.x = -2;
+			App->particles->grenade.speed.y = -2;
+			break;
+		case Directions::DOWN:
+			App->particles->grenade.speed.x = 0;
+			App->particles->grenade.speed.y = 2;
+			break;
+		case Directions::DOWN_RIGHT:
+			App->particles->grenade.speed.x = 2;
+			App->particles->grenade.speed.y = 2;
+			break;
+		case Directions::DOWN_LEFT:
+			App->particles->grenade.speed.x = -2;
+			App->particles->grenade.speed.y = 2;
+			break;
+		case Directions::RIGHT:
+			App->particles->grenade.speed.x = 2;
+			App->particles->grenade.speed.y = 0;
+			break;
+		case Directions::LEFT:
+			App->particles->grenade.speed.x = -2;
+			App->particles->grenade.speed.y = 0;
+			break;
+		}
+		App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y, Collider::Type::NONE);
+		grenadeDelay = 0;
+	}
+	grenadeDelay++;
 }
