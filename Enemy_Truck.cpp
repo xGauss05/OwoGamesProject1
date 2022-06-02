@@ -10,6 +10,7 @@
 #include "ModulePowerup.h" //(Testing)
 
 #define TRUCK_SCORE 300;
+
 Enemy_Truck::Enemy_Truck(int x, int y) : Enemy(x, y) {
 	anim.PushBack({  0, 0, 92, 58 });
 	anim.PushBack({ 96, 0, 92, 58 });
