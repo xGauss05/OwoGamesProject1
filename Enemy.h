@@ -61,7 +61,7 @@ public:
 
 	// Sound fx when destroyed
 	int enemyDeadFx = 0;
-
+	int enemyShotFx = 0;
 protected:
 	// A ptr to the current animation
 	Animation* currentAnimTop = nullptr;
