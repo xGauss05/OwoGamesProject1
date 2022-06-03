@@ -595,7 +595,7 @@ void Enemy_GreenSoldier::Update()
 }
 
 void Enemy_GreenSoldier::OnCollision(Collider* collider) {
-	if (collider->type == Collider::Type::PLAYER_SHOT) {
+	if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER) {
 
 		if (pathTransitionDelay < pathTransitionDuration)
 		{
@@ -724,7 +724,7 @@ void Enemy_GreenSoldier::Burst()
 			}
 
 			App->particles->AddParticle(App->particles->enemy_shot, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
-			App->audio->PlayFx(enemyDeadFx);
+			App->audio->PlayFx(enemyShotFx);
 #pragma endregion
 		}
 		shootdelay++;

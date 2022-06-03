@@ -65,6 +65,8 @@ bool ModuleAudio::CleanUp() {
 bool ModuleAudio::PlayMusic(const char* path, float fade_time) {
 	bool ret = true;
 
+	Mix_VolumeMusic(MIX_MAX_VOLUME / 8);
+
 	if (music != NULL) {
 		if (fade_time > 0.0f) {
 			// Warning: This call blocks the execution until fade out is done
@@ -134,6 +136,7 @@ bool ModuleAudio::PlayFx(uint index, int repeat) {
 	bool ret = false;
 
 	if (soundFx[index] != nullptr) {
+		Mix_Volume(-1, MIX_MAX_VOLUME / 4);
 		Mix_PlayChannel(-1, soundFx[index], repeat);
 		ret = true;
 	}

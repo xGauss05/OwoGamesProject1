@@ -97,11 +97,11 @@ update_status ModuleRender::Update() {
 		}
 
 		//Up
-		if (App->player->position.y - camera.y <= SCREEN_HEIGHT / 1.4f - 60)
+		if (App->player->position.y - camera.y - 20 <= SCREEN_HEIGHT / 1.4f - 60)
 			camera.y--;
 
 		//Down
-		if (App->player->position.y - camera.y + 64 >= SCREEN_HEIGHT / 1.4f + 60)
+		if (App->player->position.y - camera.y + 40 >= SCREEN_HEIGHT / 1.4f + 60)
 			camera.y++;
 	}
 	

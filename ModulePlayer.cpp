@@ -598,12 +598,12 @@ bool ModulePlayer::checkMovingDir() {
 	
 	if (App->input->controllerCount > 0) {
 		for (int i = 0; i < App->input->controllerCount; ++i) {
-			if (App->input->controllers[i]->j1_x > 3000) {
-				if (App->input->controllers[i]->j1_y > 3000) {
+			if (App->input->controllers[i]->j1_x > 15000) {
+				if (App->input->controllers[i]->j1_y > 15000) {
 					movementDir = DOWN_RIGHT;
 					isActing = true;
 				}
-				else if (App->input->controllers[i]->j1_y < -3000) {
+				else if (App->input->controllers[i]->j1_y < -15000) {
 					movementDir = UP_RIGHT;
 					isActing = true;
 				}
@@ -612,12 +612,12 @@ bool ModulePlayer::checkMovingDir() {
 					isActing = true;
 				}
 			}
-			else if (App->input->controllers[i]->j1_x < -3000) {
-				if (App->input->controllers[i]->j1_y > 3000) {
+			else if (App->input->controllers[i]->j1_x < -15000) {
+				if (App->input->controllers[i]->j1_y > 15000) {
 					movementDir = DOWN_LEFT;
 					isActing = true;
 				}
-				else if (App->input->controllers[i]->j1_y < -3000) {
+				else if (App->input->controllers[i]->j1_y < -15000) {
 					movementDir = UP_LEFT;
 					isActing = true;
 				}
@@ -627,11 +627,11 @@ bool ModulePlayer::checkMovingDir() {
 				}
 			}
 			else {
-				if (App->input->controllers[i]->j1_y > 3000) {
+				if (App->input->controllers[i]->j1_y > 15000) {
 					movementDir = DOWN;
 					isActing = true;
 				}
-				else if (App->input->controllers[i]->j1_y < -3000) {
+				else if (App->input->controllers[i]->j1_y < -15000) {
 					movementDir = UP;
 					isActing = true;
 				}
@@ -722,12 +722,12 @@ bool ModulePlayer::checkFacingDir() {
 
 	if (App->input->controllerCount > 0) {
 		for (int i = 0; i < App->input->controllerCount; ++i) {
-			if (App->input->controllers[i]->j2_x > 3000) {
-				if (App->input->controllers[i]->j2_y > 3000) {
+			if (App->input->controllers[i]->j2_x > 15000) {
+				if (App->input->controllers[i]->j2_y > 15000) {
 					facing = DOWN_RIGHT;
 					isActing = true;
 				}
-				else if (App->input->controllers[i]->j2_y < -3000) {
+				else if (App->input->controllers[i]->j2_y < -15000) {
 					facing = UP_RIGHT;
 					isActing = true;
 				}
@@ -736,12 +736,12 @@ bool ModulePlayer::checkFacingDir() {
 					isActing = true;
 				}
 			}
-			else if (App->input->controllers[i]->j2_x < -3000) {
-				if (App->input->controllers[i]->j2_y > 3000) {
+			else if (App->input->controllers[i]->j2_x < -15000) {
+				if (App->input->controllers[i]->j2_y > 15000) {
 					facing = DOWN_LEFT;
 					isActing = true;
 				}
-				else if (App->input->controllers[i]->j2_y < -3000) {
+				else if (App->input->controllers[i]->j2_y < -15000) {
 					facing = UP_LEFT;
 					isActing = true;
 				}
@@ -751,11 +751,11 @@ bool ModulePlayer::checkFacingDir() {
 				}
 			}
 			else {
-				if (App->input->controllers[i]->j2_y > 3000) {
+				if (App->input->controllers[i]->j2_y > 15000) {
 					facing = DOWN;
 					isActing = true;
 				}
-				else if (App->input->controllers[i]->j2_y < -3000) {
+				else if (App->input->controllers[i]->j2_y < -15000) {
 					facing = UP;
 					isActing = true;
 				}
