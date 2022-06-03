@@ -32,9 +32,28 @@ bool SceneLevel1::Start() {
 	
 	// Entities --- Add enemies/powerups here
 	App->enemies->AddEnemy(ENEMY_TYPE::TRUCK, 540, -1745);
-	//App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 300, -60);
 	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 240, -60);
 	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 230, -60);
+	//Hostages
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 160, -570);
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 192, -570);
+
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 224, -990);
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 256, -990);
+
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 548, -1404);
+
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 448, -1600);
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 544, -1600);
+
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 448, -1970);
+
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 672, -2576);
+
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 736, -2928);
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 768, -2928);
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 752, -3152);
+	App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, 752, -3248);
 
 	// Colliders --- Make collision boxes here
 	// Left colliders
@@ -128,6 +147,11 @@ bool SceneLevel1::Start() {
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 128, -930);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 160, -930);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 192, -930);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 224, -930);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 256, -930);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 288, -930);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 516, -1344);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 548, -1344);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 416, -1424);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_H, 448, -1424);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BARRICADE_V, 480, -1455);
@@ -271,6 +295,24 @@ bool SceneLevel1::Start() {
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 704, -2286, 3);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 736, -2286, 2);
 
+	//Trees
+	App->collisions->AddCollider({ 308, -2008, 6, 52 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 402, -2008, 6, 52 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 536, -2008, 6, 52 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 626, -2008, 6, 52 }, Collider::Type::WALL);
+
+	App->collisions->AddCollider({ 308, -2068, 6, 52 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 626, -2068, 6, 52 }, Collider::Type::WALL);
+
+	App->collisions->AddCollider({ 308, -2128, 6, 52 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 402, -2128, 6, 52 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 536, -2128, 6, 52 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 626, -2128, 6, 52 }, Collider::Type::WALL);
+
+	App->collisions->AddCollider({ 402, -2188, 6, 52 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 536, -2188, 6, 52 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 626, -2188, 6, 52 }, Collider::Type::WALL);
+
 	// Non destroyable barricade
 	App->collisions->AddCollider({ 575, -1680, 65, 30 }, Collider::Type::NON_DEST_BAR);
 	App->collisions->AddCollider({ 350, -1680, 65, 30 }, Collider::Type::NON_DEST_BAR);
@@ -301,8 +343,8 @@ bool SceneLevel1::Start() {
 	//Borders
 	App->collisions->AddCollider({ 0, 240, 500, 10 }, Collider::Type::WALL);
 
-	App->collisions->AddCollider({ 226, -1865, 30, 325 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 768, -1865, 30, 325 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 226, -2265, 30, 750 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 768, -2265, 30, 750 }, Collider::Type::WALL);
 
 	App->collisions->AddCollider({ 420, -3320, 60, 520 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 992, -3320, 60, 520 }, Collider::Type::WALL);
