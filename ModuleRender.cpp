@@ -75,11 +75,26 @@ update_status ModuleRender::Update() {
 
 		//Left
 		if (App->player->position.x - camera.x <= SCREEN_WIDTH / 3 - 10)
+		{
 			camera.x--;
+			if (camera.y > -1865 - SCREEN_HEIGHT && camera.y < -1540 && camera.x <= 256) {
+				camera.x++;
+			}
+			if (camera.y > -3320 - SCREEN_HEIGHT && camera.y < -2800 && camera.x <= 488) {
+				camera.x++;
+			}
+		}
+			
 
 		//Right
 		if (App->player->position.x - camera.x + 32 >= SCREEN_WIDTH / 1.5 + 10)
 			camera.x++;
+		if (camera.y > -1865 - SCREEN_HEIGHT && camera.y < -1540 && camera.x >= 768 - SCREEN_WIDTH) {
+			camera.x--;
+		}
+		if (camera.y > -3320 - SCREEN_HEIGHT && camera.y < -2800 && camera.x >= 992 - SCREEN_WIDTH) {
+			camera.x--;
+		}
 
 		//Up
 		if (App->player->position.y - camera.y <= SCREEN_HEIGHT / 1.4f - 60)
