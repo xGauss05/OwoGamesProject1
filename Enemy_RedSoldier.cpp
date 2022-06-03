@@ -108,13 +108,48 @@ void Enemy_RedSoldier::Update()
 void Enemy_RedSoldier::OnCollision(Collider* collider) {
 	if (collider->type == Collider::Type::PLAYER_SHOT) {
 		App->audio->PlayFx(enemyDeadFx);
-		App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, position.x, position.y);
+		//App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, position.x, position.y);
 		App->player->score += REDSOLDIER_SCORE;
 	}
 	
+	switch (looking)
+	{
+	case Directions::UP:
+		App->particles->redDeathAnimTop.speed = { 0, 1 };
+		App->particles->redDeathAnimBot.speed = { 0, 1 };
+		break;
+	case Directions::UP_RIGHT:
+		App->particles->redDeathAnimTop.speed = { -1, 1 };
+		App->particles->redDeathAnimBot.speed = { -1, 1 };
+		break;
+	case Directions::UP_LEFT:
+		App->particles->greenDeathAnimTop.speed = { 1, 1 };
+		App->particles->greenDeathAnimBot.speed = { 1, 1 };
+		break;
+	case Directions::DOWN:
+		App->particles->redDeathAnimTop.speed = { 0, -1 };
+		App->particles->redDeathAnimBot.speed = { 0, -1 };
+		break;
+	case Directions::DOWN_RIGHT:
+		App->particles->redDeathAnimTop.speed = { -1, -1 };
+		App->particles->redDeathAnimBot.speed = { -1, -1 };
+		break;
+	case Directions::DOWN_LEFT:
+		App->particles->redDeathAnimTop.speed = { 1, -1 };
+		App->particles->redDeathAnimBot.speed = { 1, -1 };
+		break;
+	case Directions::RIGHT:
+		App->particles->redDeathAnimTop.speed = { -1, 0 };
+		App->particles->redDeathAnimBot.speed = { -1, 0 };
+		break;
+	case Directions::LEFT:
+		App->particles->redDeathAnimTop.speed = { 1, 0 };
+		App->particles->redDeathAnimBot.speed = { 1, 0 };
+		break;
+	}
 
-	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-	//App->audio->PlayFx(enemyDeadFx);
+	App->particles->AddParticle(App->particles->redDeathAnimTop, position.x, position.y + 2, Collider::Type::NONE);
+	App->particles->AddParticle(App->particles->redDeathAnimBot, position.x, position.y + 32, Collider::Type::NONE);
 }
 
 void Enemy_RedSoldier::Shoot()
