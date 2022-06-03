@@ -528,37 +528,40 @@ void Enemy_GreenSoldier::Update()
 
 	if (stationary)
 	{
-		switch (looking)
+		if (!burst)
 		{
-		case Directions::UP:
-			currentAnimBot = &botUpCrouch;
-			break;
+			switch (looking)
+			{
+			case Directions::UP:
+				currentAnimBot = &botUpCrouch;
+				break;
 
-		case Directions::UP_RIGHT:
-			currentAnimBot = &botUpRightCrouch;
-			break;
+			case Directions::UP_RIGHT:
+				currentAnimBot = &botUpRightCrouch;
+				break;
 
-		case Directions::UP_LEFT:
-			currentAnimBot = &botUpLeftCrouch;
-			break;
+			case Directions::UP_LEFT:
+				currentAnimBot = &botUpLeftCrouch;
+				break;
 
-		case Directions::RIGHT:
-			currentAnimBot = &botRightCrouch;
-			break;
+			case Directions::RIGHT:
+				currentAnimBot = &botRightCrouch;
+				break;
 
-		case Directions::LEFT:
-			currentAnimBot = &botLeftCrouch;
-			break;
+			case Directions::LEFT:
+				currentAnimBot = &botLeftCrouch;
+				break;
 
-		case Directions::DOWN_RIGHT:
-			currentAnimBot = &botDownRightCrouch;
-			break;
-		case Directions::DOWN_LEFT:
-			currentAnimBot = &botDownLeftCrouch;
-			break;
-		case Directions::DOWN:
-			currentAnimBot = &botDownCrouch;
-			break;
+			case Directions::DOWN_RIGHT:
+				currentAnimBot = &botDownRightCrouch;
+				break;
+			case Directions::DOWN_LEFT:
+				currentAnimBot = &botDownLeftCrouch;
+				break;
+			case Directions::DOWN:
+				currentAnimBot = &botDownCrouch;
+				break;
+			}
 		}
 	}
 	else
@@ -584,7 +587,9 @@ void Enemy_GreenSoldier::Update()
 
 	//As every part of the path will have its own animation, you can define certain behaviours for certain parts of the path (animations).
 	if (currentAnimBot == &botUpCrouch || currentAnimBot == &botUpLeftCrouch || currentAnimBot == &botLeftCrouch || currentAnimBot == &botDownLeftCrouch ||
-		currentAnimBot == &botDownCrouch || currentAnimBot == &botDownRightCrouch || currentAnimBot == &botRightCrouch || currentAnimBot == &botUpRightCrouch)
+		currentAnimBot == &botDownCrouch || currentAnimBot == &botDownRightCrouch || currentAnimBot == &botRightCrouch || currentAnimBot == &botUpRightCrouch ||
+		currentAnimBot == &botUpShoot || currentAnimBot == &botUpLeftShoot || currentAnimBot == &botLeftShoot || currentAnimBot == &botDownLeftShoot ||
+			currentAnimBot == &botDownShoot || currentAnimBot == &botDownRightShoot || currentAnimBot == &botRightShoot || currentAnimBot == &botUpRightShoot)
 	{
 		Shoot();
 	}
@@ -646,15 +651,6 @@ void Enemy_GreenSoldier::OnCollision(Collider* collider) {
 
 void Enemy_GreenSoldier::Shoot()
 {
-	/*if (behaviour == 0 || behaviour == 1 || behaviour == 2 || behaviour == 3)
-	{
-		Burst();
-	}
-	else if (behaviour == 4 || behaviour == 5 || behaviour == 6 || behaviour == 7)
-	{
-		Grenade();
-	}*/
-
 	if (behaviour < 4)
 	{
 		Burst();
@@ -681,6 +677,34 @@ void Enemy_GreenSoldier::Burst()
 
 	if (burst)
 	{
+		/*switch (looking)
+		{
+		case Directions::UP:
+			currentAnimBot = &botUpShoot;
+			break;
+		case Directions::UP_RIGHT:
+			currentAnimBot = &botUpRightShoot;
+			break;
+		case Directions::UP_LEFT:
+			currentAnimBot = &botUpLeftShoot;
+			break;
+		case Directions::DOWN:
+			currentAnimBot = &botDownShoot;
+			break;
+		case Directions::DOWN_RIGHT:
+			currentAnimBot = &botDownRightShoot;
+			break;
+		case Directions::DOWN_LEFT:
+			currentAnimBot = &botDownLeftShoot;
+			break;
+		case Directions::RIGHT:
+			currentAnimBot = &botRightShoot;
+			break;
+		case Directions::LEFT:
+			currentAnimBot = &botLeftShoot;
+			break;
+		}*/
+
 		if (shootdelay >= 10)
 		{
 			shootdelay = 0;
@@ -692,38 +716,54 @@ void Enemy_GreenSoldier::Burst()
 			case Directions::UP:
 				App->particles->enemy_shot.speed.x = 0;
 				App->particles->enemy_shot.speed.y = -2;
+				currentAnimBot = &botUpShoot;
+				App->particles->AddParticle(App->particles->enemy_shot, position.x + 21, position.y + 5, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::UP_RIGHT:
 				App->particles->enemy_shot.speed.x = 2;
 				App->particles->enemy_shot.speed.y = -2;
+				currentAnimBot = &botUpRightShoot;
+				App->particles->AddParticle(App->particles->enemy_shot, position.x + 28, position.y + 11, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::UP_LEFT:
 				App->particles->enemy_shot.speed.x = -2;
 				App->particles->enemy_shot.speed.y = -2;
+				currentAnimBot = &botUpLeftShoot;
+				App->particles->AddParticle(App->particles->enemy_shot, position.x + 6, position.y + 8, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::DOWN:
 				App->particles->enemy_shot.speed.x = 0;
 				App->particles->enemy_shot.speed.y = 2;
+				currentAnimBot = &botDownShoot;
+				App->particles->AddParticle(App->particles->enemy_shot, position.x + 9, position.y + 46, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::DOWN_RIGHT:
 				App->particles->enemy_shot.speed.x = 2;
 				App->particles->enemy_shot.speed.y = 2;
+				currentAnimBot = &botDownRightShoot;
+				App->particles->AddParticle(App->particles->enemy_shot, position.x + 27, position.y + 41, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::DOWN_LEFT:
 				App->particles->enemy_shot.speed.x = -2;
 				App->particles->enemy_shot.speed.y = 2;
+				currentAnimBot = &botDownLeftShoot;
+				App->particles->AddParticle(App->particles->enemy_shot, position.x - 1, position.y + 33, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::RIGHT:
 				App->particles->enemy_shot.speed.x = 2;
 				App->particles->enemy_shot.speed.y = 0;
+				currentAnimBot = &botRightShoot;
+				App->particles->AddParticle(App->particles->enemy_shot, position.x + 29, position.y + 24, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::LEFT:
 				App->particles->enemy_shot.speed.x = -2;
 				App->particles->enemy_shot.speed.y = 0;
+				currentAnimBot = &botLeftShoot;
+				App->particles->AddParticle(App->particles->enemy_shot, position.x, position.y + 21, Collider::Type::ENEMY_SHOT);
 				break;
 			}
 
-			App->particles->AddParticle(App->particles->enemy_shot, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
+			//App->particles->AddParticle(App->particles->enemy_shot, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
 			App->audio->PlayFx(enemyShotFx);
 #pragma endregion
 		}
@@ -736,7 +776,7 @@ void Enemy_GreenSoldier::Burst()
 		}
 	}
 
-	if (stationary && shotCount > 2)
+	if (behaviour != 0 && stationary && shotCount > 2)
 	{
 		stationary = false;
 	}
