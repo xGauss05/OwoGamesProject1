@@ -166,8 +166,8 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2) {
 	for (uint i = 0; i < MAX_ENEMIES; ++i) {
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1) {
 			enemies[i]->OnCollision(c2); // Notify the enemy of a collision
-			if (c2->type == Collider::Type::EXPLOSION &&
-				c1->type == Collider::Type::TRUCK) {
+			if (enemies[i]->GetCollider()->type == Collider::Type::TRUCK &&
+				c2->type == Collider::Type::EXPLOSION) {
 
 				delete enemies[i];
 				enemies[i] = nullptr;

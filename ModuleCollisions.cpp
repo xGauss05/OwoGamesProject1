@@ -237,7 +237,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::TRUCK][Collider::Type::BREAKABLE_BRIDGE] = false;
 	matrix[Collider::Type::TRUCK][Collider::Type::NON_DEST_BAR] = false;
 	matrix[Collider::Type::TRUCK][Collider::Type::HOSTAGE] = false;
-	matrix[Collider::Type::TRUCK][Collider::Type::EXPLOSION] = false;
+	matrix[Collider::Type::TRUCK][Collider::Type::EXPLOSION] = true;
 	matrix[Collider::Type::TRUCK][Collider::Type::TRUCK] = true;
 }
 
