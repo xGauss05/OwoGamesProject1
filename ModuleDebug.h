@@ -37,6 +37,7 @@ private:
 	bool variables = false;
 	bool camLimits = false;
 	bool spawn = false;
+	bool behaviour = false;
 	bool teleport = false;
 };
 

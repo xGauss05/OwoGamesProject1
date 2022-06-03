@@ -132,6 +132,15 @@ void ModuleDebug::DebugDraw() {
 	App->fonts->BlitText(10, spawnBox + 20, 0, "PRESS C FOR CAM LIMITS");
 	App->fonts->BlitText(10, spawnBox + 30, 0, "PRESS V FOR TELEPORT MENU");
 
+
+	//This specific case has to go here in order for the spawn menu to work properly due to code execution order
+	if (behaviour)
+		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x - 50, App->player->position.y - 120, 1);
+			behaviour = false;
+		}
+
 	//Spawn Enemies 
 	if (spawn) {
 		App->fonts->BlitText(10, spawnBox + 40, 0, "SPAWN.");
@@ -142,24 +151,68 @@ void ModuleDebug::DebugDraw() {
 		App->fonts->BlitText(60, spawnBox + 80, 0, "5.FLAMETHROWER");
 		App->fonts->BlitText(60, spawnBox + 90, 0, "6.HOSTAGE");
 
-		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN)
-			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 100, 1);
+		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN && !behaviour)
+			behaviour = true;
 
-		if (App->input->keys[SDL_SCANCODE_2] == KEY_DOWN)
+		if (App->input->keys[SDL_SCANCODE_2] == KEY_DOWN && !behaviour)
 			App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
 
-		if (App->input->keys[SDL_SCANCODE_3] == KEY_DOWN)
+		if (App->input->keys[SDL_SCANCODE_3] == KEY_DOWN && !behaviour)
 			App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, App->player->position.x, App->player->position.y - 400, 0);
 
-		if (App->input->keys[SDL_SCANCODE_4] == KEY_DOWN)
+		if (App->input->keys[SDL_SCANCODE_4] == KEY_DOWN && !behaviour)
 			App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, App->player->position.x, App->player->position.y - 32);
 
-		if (App->input->keys[SDL_SCANCODE_5] == KEY_DOWN)
+		if (App->input->keys[SDL_SCANCODE_5] == KEY_DOWN && !behaviour)
 			App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, App->player->position.x, App->player->position.y - 32);
 
-		if (App->input->keys[SDL_SCANCODE_6] == KEY_DOWN)
+		if (App->input->keys[SDL_SCANCODE_6] == KEY_DOWN && !behaviour)
 			App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, App->player->position.x, App->player->position.y - 64);
 
+	}
+
+	if (behaviour)
+	{
+		App->fonts->BlitText(60, spawnBox + 110, 0, "CHOOSE BEHAVIOUR 0-7");
+
+		if (App->input->keys[SDL_SCANCODE_0] == KEY_DOWN)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
+			behaviour = false;
+		}
+		
+		//Here should go case 1, declared above
+
+		if (App->input->keys[SDL_SCANCODE_2] == KEY_DOWN)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 120, 2);
+			behaviour = false;
+		}
+		if (App->input->keys[SDL_SCANCODE_3] == KEY_DOWN)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x + 50, App->player->position.y - 120, 3);
+			behaviour = false;
+		}
+		if (App->input->keys[SDL_SCANCODE_4] == KEY_DOWN)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 120, 4);
+			behaviour = false;
+		}
+		if (App->input->keys[SDL_SCANCODE_5] == KEY_DOWN)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x - 50, App->player->position.y - 120, 5);
+			behaviour = false;
+		}
+		if (App->input->keys[SDL_SCANCODE_6] == KEY_DOWN)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 120, 6);
+			behaviour = false;
+		}
+		if (App->input->keys[SDL_SCANCODE_7] == KEY_DOWN)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x + 50, App->player->position.y - 120, 7);
+			behaviour = false;
+		}
 	}
 
 	if (teleport) {

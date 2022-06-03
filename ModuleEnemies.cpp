@@ -7,6 +7,8 @@
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 
+#include <time.h>
+
 #include "Enemy.h"
 #include "Enemy_GreenSoldier.h"
 #include "Enemy_RedSoldier.h"
@@ -29,6 +31,8 @@ bool ModuleEnemies::Start() {
 	redEnemyTexture = App->textures->Load("Assets/img/sprites/Guerrilla War Enemy Red Spritesheet.png");
 	truckEnemyTexture = App->textures->Load("Assets/img/sprites/truck.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/sounds/sfx/194.wav");
+
+	srand(time(NULL));
 
 	return true;
 }
@@ -74,16 +78,11 @@ bool ModuleEnemies::CleanUp() {
 	return true;
 }
 
+int ModuleEnemies::randVal(int min, int max) {
 
-/* Behaviour for greensoldiers:
- - 0: Stay squatting (Shoot). WIP
- - 1: Stay squatting (Grenade). WIP
- - 2: Come and tackle (Shoot). WIP
- - 3: Come and tackle (Grenade). WIP
- - 4: Come and shoot to leave (Shoot). WIP
- - 5: Come and shoot to leave (Grenade). WIP
- - 6: Bush surprise (Optional). WIP
-*/
+	return (rand() % (max - min + 1)) + min;
+}
+
 bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, ushort behaviour) {
 	bool ret = false;
 

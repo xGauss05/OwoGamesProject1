@@ -6,7 +6,7 @@
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h" //(Testing)
-#include <time.h>
+
 
 #include "ModuleFonts.h"
 #include <string>
@@ -14,45 +14,75 @@ using namespace std;
 
 #define GREENSOLDIER_SCORE 100
 
-int randVal(int min, int max) {
-
-	return (rand() % (max - min + 1)) + min;
-}
-
 Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y, ushort behaviour) : Enemy(x, y)
 {
 	this->behaviour = behaviour;
 
-	srand(time(NULL));
-	leaveDir = randVal(0, 2);
+	pathTransitionDuration = 40;
 
-	//currentAnimTop = &defaultTopAnim;
-	//currentAnimBot = &botAnimLeft;
-
-	switch (behaviour)
+	/*switch (behaviour)
 	{
 	case 0:
 		stationary = true;
 		break;
 	case 1:
-		path.PushBack({ 1.0f,1.0f }, 200, &botDownRightWalk);
-		pathTransitionDuration = 200;
-		path.PushBack({ 1.0f,-1.0f }, 200, &botUpRightWalk);
+		path.PushBack({ 1.0f,1.0f }, pathTransitionDuration, &botDownRightWalk);
 		break;
 	case 2:
+		path.PushBack({ 1.0f,1.0f }, pathTransitionDuration, &botDownRightWalk);
 		break;
 	case 3:
+		path.PushBack({ 1.0f,1.0f }, pathTransitionDuration, &botDownRightWalk);
 		break;
 	case 4:
+		stationary = true;
 		break;
 	case 5:
+		path.PushBack({ 1.0f,1.0f }, pathTransitionDuration, &botDownRightWalk);
 		break;
 	case 6:
+		path.PushBack({ 1.0f,1.0f }, pathTransitionDuration, &botDownRightWalk);
 		break;
 	case 7:
+		path.PushBack({ 1.0f,1.0f }, pathTransitionDuration, &botDownRightWalk);
 		break;
 	default:
 		break;
+	}*/
+
+	if (behaviour == 0 || behaviour == 4)
+	{
+		stationary = true;
+	}
+	else if (behaviour == 1 || behaviour == 5)
+	{
+		path.PushBack({ 1.0f,1.0f }, pathTransitionDuration, &botDownRightWalk);
+	}
+	else if (behaviour == 2 || behaviour == 6)
+	{
+		path.PushBack({ 0.0f,1.0f }, pathTransitionDuration, &botDownWalk);
+	}
+	else if (behaviour == 3 || behaviour == 7)
+	{
+		path.PushBack({ -1.0f,1.0f }, pathTransitionDuration, &botDownLeftWalk);
+	}
+
+	if (behaviour != 0 && behaviour != 4)
+	{
+		leaveDir = App->enemies->randVal(0, 2);
+
+		switch (leaveDir)
+		{
+		case 0:
+			path.PushBack({ -1.0f,-1.0f }, pathTransitionDuration, &botUpLeftWalk);
+			break;
+		case 1:
+			path.PushBack({ 0.0f,-1.0f }, pathTransitionDuration, &botUpWalk);
+			break;
+		case 2:
+			path.PushBack({ 1.0f,-1.0f }, pathTransitionDuration, &botUpRightWalk);
+			break;
+		}
 	}
 
 	initAnimations();
@@ -616,15 +646,22 @@ void Enemy_GreenSoldier::OnCollision(Collider* collider) {
 
 void Enemy_GreenSoldier::Shoot()
 {
-	switch (behaviour)
+	/*if (behaviour == 0 || behaviour == 1 || behaviour == 2 || behaviour == 3)
 	{
-	case 0:
-		Grenade();
-		break;
-
-	case 1:
 		Burst();
-		break;
+	}
+	else if (behaviour == 4 || behaviour == 5 || behaviour == 6 || behaviour == 7)
+	{
+		Grenade();
+	}*/
+
+	if (behaviour < 4)
+	{
+		Burst();
+	}
+	else
+	{
+		Grenade();
 	}
 }
 

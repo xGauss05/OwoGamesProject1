@@ -51,8 +51,20 @@ public:
 	// The enemy is destroyed and an explosion particle is fired
 	void OnCollision(Collider* c1, Collider* c2) override;
 
-	// Add an enemy into the queue to be spawned later
-	bool AddEnemy(ENEMY_TYPE type, int x, int y, unsigned short behaviour = 0);
+	int randVal(int min, int max);
+
+	/* Add an enemy into the queue to be spawned later
+	 Behaviour for greensoldiers:
+ - 0: Stay squatting (Shoot). WIP
+ - 1: Up Left (Shoot).
+ - 2: Up (Shoot).
+ - 3: Up Right (Shoot).
+ - 4: Stay squatting (Grenade). WIP
+ - 5: Up Left (Grenade). WIP
+ - 6: Up (Grenade). WIP
+ - 7: Up Right (Grenade). WIP
+*/
+	bool AddEnemy(ENEMY_TYPE type, int x, int y, ushort behaviour = 0);
 
 	// Iterates the queue and checks for camera position
 	void HandleEnemiesSpawn();
