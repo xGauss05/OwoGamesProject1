@@ -49,7 +49,9 @@ void Enemy_Tackler::Update()
 	Enemy::Update();
 }
 
-void Enemy_Tackler::OnCollision(Collider* collider) {}
+void Enemy_Tackler::OnCollision(Collider* collider) {
+	App->player->score += GREENSOLDIER_SCORE;
+}
 
 void Enemy_Tackler::Shoot() { return; }
 

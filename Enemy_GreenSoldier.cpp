@@ -570,7 +570,7 @@ void Enemy_GreenSoldier::OnCollision(Collider* collider) {
 		if (pathTransitionDelay < pathTransitionDuration)
 		{
 			App->audio->PlayFx(enemyDeadFx);
-			App->player->score += 100;
+			App->player->score += GREENSOLDIER_SCORE;
 		}
 
 		switch (looking)

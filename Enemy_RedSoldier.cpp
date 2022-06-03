@@ -109,7 +109,7 @@ void Enemy_RedSoldier::OnCollision(Collider* collider) {
 	if (collider->type == Collider::Type::PLAYER_SHOT) {
 		App->audio->PlayFx(enemyDeadFx);
 		App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, position.x, position.y);
-		App->player->score += 300;
+		App->player->score += REDSOLDIER_SCORE;
 	}
 	
 
