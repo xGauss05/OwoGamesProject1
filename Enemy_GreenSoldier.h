@@ -93,6 +93,7 @@ private:
 	int shootdelay;
 	int burstCount = 0;
 
+	bool throwing = false;
 	int grenadeDelay;
 
 	ushort leaveDir;

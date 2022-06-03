@@ -20,36 +20,6 @@ Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y, ushort behaviour) : Enemy(x
 
 	pathTransitionDuration = 40;
 
-	/*switch (behaviour)
-	{
-	case 0:
-		stationary = true;
-		break;
-	case 1:
-		path.PushBack({ 1.0f,1.0f }, pathTransitionDuration, &botDownRightWalk);
-		break;
-	case 2:
-		path.PushBack({ 1.0f,1.0f }, pathTransitionDuration, &botDownRightWalk);
-		break;
-	case 3:
-		path.PushBack({ 1.0f,1.0f }, pathTransitionDuration, &botDownRightWalk);
-		break;
-	case 4:
-		stationary = true;
-		break;
-	case 5:
-		path.PushBack({ 1.0f,1.0f }, pathTransitionDuration, &botDownRightWalk);
-		break;
-	case 6:
-		path.PushBack({ 1.0f,1.0f }, pathTransitionDuration, &botDownRightWalk);
-		break;
-	case 7:
-		path.PushBack({ 1.0f,1.0f }, pathTransitionDuration, &botDownRightWalk);
-		break;
-	default:
-		break;
-	}*/
-
 	if (behaviour == 0 || behaviour == 4)
 	{
 		stationary = true;
@@ -524,11 +494,12 @@ void Enemy_GreenSoldier::syncAnimations()
 
 void Enemy_GreenSoldier::Update()
 {
-	App->fonts->BlitText(10, SCREEN_HEIGHT - 40, 0, std::to_string(pathTransitionDelay).c_str());
+	App->fonts->BlitText(10, SCREEN_HEIGHT - 40, 0, std::to_string(grenadeDelay).c_str());
+	App->fonts->BlitText(10, SCREEN_HEIGHT - 50, 0, std::to_string(topDownGrenade.GetCurrentFrameNum()).c_str());
 
 	if (stationary)
 	{
-		if (!burst)
+		if (!burst && !throwing)
 		{
 			switch (looking)
 			{
@@ -581,18 +552,20 @@ void Enemy_GreenSoldier::Update()
 		pathTransitionDelay++;
 	}
 
-
-	syncAnimations();
-	position = spawnPos + path.GetRelativePosition();
-
 	//As every part of the path will have its own animation, you can define certain behaviours for certain parts of the path (animations).
-	if (currentAnimBot == &botUpCrouch || currentAnimBot == &botUpLeftCrouch || currentAnimBot == &botLeftCrouch || currentAnimBot == &botDownLeftCrouch ||
+	/*if (currentAnimBot == &botUpCrouch || currentAnimBot == &botUpLeftCrouch || currentAnimBot == &botLeftCrouch || currentAnimBot == &botDownLeftCrouch ||
 		currentAnimBot == &botDownCrouch || currentAnimBot == &botDownRightCrouch || currentAnimBot == &botRightCrouch || currentAnimBot == &botUpRightCrouch ||
 		currentAnimBot == &botUpShoot || currentAnimBot == &botUpLeftShoot || currentAnimBot == &botLeftShoot || currentAnimBot == &botDownLeftShoot ||
-			currentAnimBot == &botDownShoot || currentAnimBot == &botDownRightShoot || currentAnimBot == &botRightShoot || currentAnimBot == &botUpRightShoot)
+			currentAnimBot == &botDownShoot || currentAnimBot == &botDownRightShoot || currentAnimBot == &botRightShoot || currentAnimBot == &botUpRightShoot)*/
+
+	if (currentAnimBot != &botUpWalk && currentAnimBot != &botUpLeftWalk && currentAnimBot != &botLeftWalk && currentAnimBot != &botDownLeftWalk && 
+		currentAnimBot != &botDownWalk && currentAnimBot != &botDownRightWalk && currentAnimBot != &botRightWalk && currentAnimBot != &botUpRightWalk)
 	{
 		Shoot();
 	}
+
+	syncAnimations();
+	position = spawnPos + path.GetRelativePosition();
 
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
@@ -677,34 +650,6 @@ void Enemy_GreenSoldier::Burst()
 
 	if (burst)
 	{
-		/*switch (looking)
-		{
-		case Directions::UP:
-			currentAnimBot = &botUpShoot;
-			break;
-		case Directions::UP_RIGHT:
-			currentAnimBot = &botUpRightShoot;
-			break;
-		case Directions::UP_LEFT:
-			currentAnimBot = &botUpLeftShoot;
-			break;
-		case Directions::DOWN:
-			currentAnimBot = &botDownShoot;
-			break;
-		case Directions::DOWN_RIGHT:
-			currentAnimBot = &botDownRightShoot;
-			break;
-		case Directions::DOWN_LEFT:
-			currentAnimBot = &botDownLeftShoot;
-			break;
-		case Directions::RIGHT:
-			currentAnimBot = &botRightShoot;
-			break;
-		case Directions::LEFT:
-			currentAnimBot = &botLeftShoot;
-			break;
-		}*/
-
 		if (shootdelay >= 10)
 		{
 			shootdelay = 0;
@@ -786,43 +731,107 @@ void Enemy_GreenSoldier::Grenade()
 {
 	if (grenadeDelay >= 100)
 	{
+		grenadeDelay = 0;
+		throwing = true;
+
 		switch (looking)
 		{
 		case Directions::UP:
 			App->particles->grenade.speed.x = 0;
 			App->particles->grenade.speed.y = -2;
+			topUpGrenade.Reset();
+			botUpGrenade.Reset();
+			currentAnimBot = &botUpGrenade;
 			break;
 		case Directions::UP_RIGHT:
 			App->particles->grenade.speed.x = 2;
 			App->particles->grenade.speed.y = -2;
+			topUpRightGrenade.Reset();
+			botUpRightGrenade.Reset();
+			currentAnimBot = &botUpRightGrenade;
 			break;
 		case Directions::UP_LEFT:
 			App->particles->grenade.speed.x = -2;
 			App->particles->grenade.speed.y = -2;
+			topUpLeftGrenade.Reset();
+			botUpLeftGrenade.Reset();
+			currentAnimBot = &botUpLeftGrenade;
 			break;
 		case Directions::DOWN:
 			App->particles->grenade.speed.x = 0;
 			App->particles->grenade.speed.y = 2;
+			topDownGrenade.Reset();
+			botDownGrenade.Reset();
+			currentAnimBot = &botDownGrenade;
 			break;
 		case Directions::DOWN_RIGHT:
 			App->particles->grenade.speed.x = 2;
 			App->particles->grenade.speed.y = 2;
+			topDownRightGrenade.Reset();
+			botDownRightGrenade.Reset();
+			currentAnimBot = &botDownRightGrenade;
 			break;
 		case Directions::DOWN_LEFT:
 			App->particles->grenade.speed.x = -2;
 			App->particles->grenade.speed.y = 2;
+			topDownLeftGrenade.Reset();
+			botDownLeftGrenade.Reset();
+			currentAnimBot = &botDownLeftGrenade;
 			break;
 		case Directions::RIGHT:
 			App->particles->grenade.speed.x = 2;
 			App->particles->grenade.speed.y = 0;
+			topRightGrenade.Reset();
+			botRightGrenade.Reset();
+			currentAnimBot = &botRightGrenade;
 			break;
 		case Directions::LEFT:
 			App->particles->grenade.speed.x = -2;
 			App->particles->grenade.speed.y = 0;
+			topLeftGrenade.Reset();
+			botLeftGrenade.Reset();
+			currentAnimBot = &botLeftGrenade;
 			break;
 		}
+
 		App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y, Collider::Type::NONE);
-		grenadeDelay = 0;
 	}
+
+	switch (looking)
+	{
+	case Directions::UP:
+		if (botUpGrenade.HasFinished())
+			throwing = false;
+		break;
+	case Directions::UP_RIGHT:
+		if (botUpRightGrenade.HasFinished())
+			throwing = false;
+		break;
+	case Directions::UP_LEFT:
+		if (botUpLeftGrenade.HasFinished())
+			throwing = false;
+		break;
+	case Directions::DOWN:
+		if (botDownGrenade.HasFinished())
+			throwing = false;
+		break;
+	case Directions::DOWN_RIGHT:
+		if (botDownRightGrenade.HasFinished())
+			throwing = false;
+		break;
+	case Directions::DOWN_LEFT:
+		if (botDownLeftGrenade.HasFinished())
+			throwing = false;
+		break;
+	case Directions::RIGHT:
+		if (botRightGrenade.HasFinished())
+			throwing = false;
+		break;
+	case Directions::LEFT:
+		if (botLeftGrenade.HasFinished())
+			throwing = false;
+		break;
+	}
+
 	grenadeDelay++;
 }
