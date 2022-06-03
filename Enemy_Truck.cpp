@@ -39,7 +39,7 @@ void Enemy_Truck::Update() {
 
 void Enemy_Truck::OnCollision(Collider* collider) {
 	if (collider->type == Collider::Type::EXPLOSION) {
-
+		App->particles->AddParticle(App->particles->truckAnim, position.x, position.y, Collider::Type::NONE);
 		App->player->score += TRUCK_SCORE;
 	}
 

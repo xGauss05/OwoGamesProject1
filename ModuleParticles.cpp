@@ -23,6 +23,7 @@ bool ModuleParticles::Start() {
 	hostageTexture = App->textures->Load("Assets/img/sprites/hostage.png");
 	greenEnemiesTexture = App->textures->Load("Assets/img/sprites/Spritesheet Guerrilla Enemy OK 0.2.png");
 	redEnemiesTexture = App->textures->Load("Assets/img/sprites/Red Enemy Spritesheet.png");
+	truckTexture = App->textures->Load("Assets/img/sprites/truck.png");
 	grenadeExplosionFx = App->audio->LoadFx("Assets/sounds/sfx/186.wav");
 
 	// Put the animations here, 
@@ -112,7 +113,7 @@ bool ModuleParticles::Start() {
 	hrifle_up.speed.x = 0;
 	hrifle_up.speed.y = -5;
 	hrifle_up.explodes = true;
-	
+
 	hrifle_up_left.anim.PushBack({ 203,211,24,25 });
 	hrifle_up_left.anim.PushBack({ 227,211,24,25 });
 	hrifle_up_left.anim.loop = true;
@@ -121,7 +122,7 @@ bool ModuleParticles::Start() {
 	hrifle_up_left.speed.x = -5;
 	hrifle_up_left.speed.y = -5;
 	hrifle_up_left.explodes = true;
-	
+
 	hrifle_up_right.anim.PushBack({ 33,211,27,29 });
 	hrifle_up_right.anim.PushBack({ 60,211,27,29 });
 	hrifle_up_right.anim.loop = true;
@@ -130,7 +131,7 @@ bool ModuleParticles::Start() {
 	hrifle_up_right.speed.x = 5;
 	hrifle_up_right.speed.y = -5;
 	hrifle_up_right.explodes = true;
-	
+
 	hrifle_down.anim.PushBack({ 5,208,9,29 });
 	hrifle_down.anim.PushBack({ 21,208,9,29 });
 	hrifle_down.anim.loop = true;
@@ -139,7 +140,7 @@ bool ModuleParticles::Start() {
 	hrifle_down.speed.x = 0;
 	hrifle_down.speed.y = 5;
 	hrifle_down.explodes = true;
-	
+
 	hrifle_down_left.anim.PushBack({ 147,211,24,25 });
 	hrifle_down_left.anim.PushBack({ 171,211,24,25 });
 	hrifle_down_left.anim.loop = true;
@@ -148,7 +149,7 @@ bool ModuleParticles::Start() {
 	hrifle_down_left.speed.x = -5;
 	hrifle_down_left.speed.y = 5;
 	hrifle_down_left.explodes = true;
-	
+
 	hrifle_down_right.anim.PushBack({ 91,208,24,25 });
 	hrifle_down_right.anim.PushBack({ 116,208,24,25 });
 	hrifle_down_right.anim.loop = true;
@@ -157,7 +158,7 @@ bool ModuleParticles::Start() {
 	hrifle_down_right.speed.x = 5;
 	hrifle_down_right.speed.y = 5;
 	hrifle_down_right.explodes = true;
-	
+
 	hrifle_right.anim.PushBack({ 3,245,28,7 });
 	hrifle_right.anim.PushBack({ 34,245,28,7 });
 	hrifle_right.anim.loop = true;
@@ -166,7 +167,7 @@ bool ModuleParticles::Start() {
 	hrifle_right.speed.x = 5;
 	hrifle_right.speed.y = 0;
 	hrifle_right.explodes = true;
-	
+
 	hrifle_left.anim.PushBack({ 64,245,28,7 });
 	hrifle_left.anim.PushBack({ 96,245,28,7 });
 	hrifle_left.anim.loop = true;
@@ -175,7 +176,7 @@ bool ModuleParticles::Start() {
 	hrifle_left.speed.x = -5;
 	hrifle_left.speed.y = 0;
 	hrifle_left.explodes = true;
-	
+
 	// Flamethrower player shots
 	fthrower_up.anim.PushBack({ 5,0,19,64 });
 	fthrower_up.anim.PushBack({ 134,0,18,63 });
@@ -392,6 +393,15 @@ bool ModuleParticles::Start() {
 	redDeathAnimBot.anim.loop = false;
 	redDeathAnimBot.isRedEnemy = true;
 
+	truckAnim.anim.PushBack({ 0, 63, 92, 58 });
+	truckAnim.anim.PushBack({ 96, 63, 92, 58 });
+	truckAnim.anim.PushBack({ 0, 63, 92, 58 });
+	truckAnim.anim.PushBack({ 96, 63, 92, 58 });
+	truckAnim.anim.speed = 0.2f;
+	truckAnim.lifetime = 70;
+	truckAnim.anim.loop = false;
+	truckAnim.isTruckEnemy = true;
+
 	return true;
 }
 
@@ -402,6 +412,7 @@ bool ModuleParticles::CleanUp() {
 	App->textures->Unload(hostageTexture);
 	App->textures->Unload(greenEnemiesTexture);
 	App->textures->Unload(redEnemiesTexture);
+	App->textures->Unload(truckTexture);
 	App->audio->UnloadFx(grenadeExplosionFx);
 	// Delete all remaining active particles on application exit 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
@@ -460,8 +471,8 @@ update_status ModuleParticles::PostUpdate() {
 		Particle* particle = particles[i];
 
 		if (particle != nullptr && particle->isAlive) {
-			if (particle->explodes && !particle->isExplosion && !particle->isHostage && !particle->isGreenEnemy && !particle->isRedEnemy ||
-				!particle->explodes && !particle->isExplosion && !particle->isHostage && !particle->isGreenEnemy && !particle->isRedEnemy) {
+			if (particle->explodes && !particle->isExplosion && !particle->isHostage && !particle->isGreenEnemy && !particle->isRedEnemy && !particle->isTruckEnemy ||
+				!particle->explodes && !particle->isExplosion && !particle->isHostage && !particle->isGreenEnemy && !particle->isRedEnemy && !particle->isTruckEnemy) {
 				App->render->Blit(bulletsTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 			} else if (!particle->explodes && particle->isExplosion) {
 				App->render->Blit(explosionTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
@@ -471,6 +482,8 @@ update_status ModuleParticles::PostUpdate() {
 				App->render->Blit(greenEnemiesTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 			} else if (particle->isRedEnemy) {
 				App->render->Blit(redEnemiesTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			} else if (particle->isTruckEnemy) {
+				App->render->Blit(truckTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 			}
 
 		}

@@ -55,6 +55,7 @@ private:
 	SDL_Texture* hostageTexture = nullptr;
 	SDL_Texture* greenEnemiesTexture = nullptr;
 	SDL_Texture* redEnemiesTexture = nullptr;
+	SDL_Texture* truckTexture = nullptr;
 
 	// An array to store and handle all the particles
 	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };
@@ -90,9 +91,10 @@ public:
 	Particle hostageDeathTop, hostageDeathBot;
 	Particle hostagePickUpTop, hostagePickUpBot;
 
-	//Enemy deaths "particles"
+	// Enemy deaths "particles"
 	Particle greenDeathAnimTop, greenDeathAnimBot;
 	Particle redDeathAnimTop, redDeathAnimBot;
+	Particle truckAnim;
 
 	// SFX from the grenade explosion
 	uint grenadeExplosionFx = 0;
