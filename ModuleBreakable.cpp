@@ -95,7 +95,7 @@ void ModuleBreakable::HandleBreakablesSpawn() {
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
 		if (spawnQueue[i].type != BREAKABLE_TYPE::NO_TYPE) {
 			// Spawn a new breakable if the screen has reached a spawn position
-			if (spawnQueue[i].x /** SCREEN_SIZE */ < App->render->camera.x + (App->render->camera.w /** SCREEN_SIZE*/) + SPAWN_MARGIN) {
+			if (spawnQueue[i].y > App->render->camera.y - SPAWN_MARGIN) {
 				LOG("Spawning breakable at %d", spawnQueue[i].x * SCREEN_SIZE);
 
 				SpawnBreakable(spawnQueue[i]);
@@ -110,7 +110,7 @@ void ModuleBreakable::HandleBreakablesDespawn() {
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
 		if (breakables[i] != nullptr) {
 			// Delete the breakable when it has reached the end of the screen
-			if (breakables[i]->position.x /** SCREEN_SIZE*/ < (App->render->camera.x) - SPAWN_MARGIN) {
+			if (breakables[i]->position.y > App->render->camera.y + App->render->camera.h + SPAWN_MARGIN) {
 				LOG("DeSpawning breakable at %d", breakables[i]->position.x * SCREEN_SIZE);
 
 				delete breakables[i];

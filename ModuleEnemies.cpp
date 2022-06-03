@@ -106,8 +106,8 @@ void ModuleEnemies::HandleEnemiesSpawn() {
 	for (uint i = 0; i < MAX_ENEMIES; ++i) {
 		if (spawnQueue[i].type != ENEMY_TYPE::NO_TYPE) {
 			// Spawn a new enemy if the screen has reached a spawn position
-			if (spawnQueue[i].x /** SCREEN_SIZE*/ < App->render->camera.x + (App->render->camera.w /** SCREEN_SIZE*/) + SPAWN_MARGIN) {
-				LOG("Spawning enemy at %d", spawnQueue[i].x * SCREEN_SIZE);
+			if (spawnQueue[i].y > App->render->camera.y - SPAWN_MARGIN) {
+				LOG("Spawning enemy at %d", spawnQueue[i].y);
 
 				SpawnEnemy(spawnQueue[i]);
 				spawnQueue[i].type = ENEMY_TYPE::NO_TYPE; // Removing the newly spawned enemy from the queue
@@ -121,8 +121,8 @@ void ModuleEnemies::HandleEnemiesDespawn() {
 	for (uint i = 0; i < MAX_ENEMIES; ++i) {
 		if (enemies[i] != nullptr) {
 			// Delete the enemy when it has reached the end of the screen
-			if (enemies[i]->position.x /** SCREEN_SIZE*/ < (App->render->camera.x) - SPAWN_MARGIN) {
-				LOG("DeSpawning enemy at %d", enemies[i]->position.x * SCREEN_SIZE);
+			if (enemies[i]->position.y > App->render->camera.y + App->render->camera.h + SPAWN_MARGIN) {
+				LOG("DeSpawning enemy at %d", enemies[i]->position.y);
 
 				delete enemies[i];
 				enemies[i] = nullptr;
@@ -166,8 +166,8 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2) {
 	for (uint i = 0; i < MAX_ENEMIES; ++i) {
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1) {
 			enemies[i]->OnCollision(c2); // Notify the enemy of a collision
-			if (c2->type == Collider::Type::EXPLOSION &&
-				c1->type == Collider::Type::TRUCK) {
+			if (enemies[i]->GetCollider()->type == Collider::Type::TRUCK &&
+				c2->type == Collider::Type::EXPLOSION) {
 
 				delete enemies[i];
 				enemies[i] = nullptr;

@@ -8,7 +8,8 @@ Particle::Particle() {
 
 Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), speed(p.speed),
 frameCount(p.frameCount), lifetime(p.lifetime), explodes(p.explodes), isExplosion(p.isExplosion),
-isHostage(p.isHostage), isGreenEnemy(p.isGreenEnemy), isRedEnemy(p.isRedEnemy) {
+isHostage(p.isHostage), isGreenEnemy(p.isGreenEnemy), isRedEnemy(p.isRedEnemy),
+isTruckEnemy(p.isTruckEnemy) {
 }
 
 Particle::~Particle() {
