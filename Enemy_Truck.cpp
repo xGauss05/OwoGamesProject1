@@ -11,8 +11,9 @@
 
 #define TRUCK_SCORE 300;
 
+// Should appear once per level
 Enemy_Truck::Enemy_Truck(int x, int y) : Enemy(x, y) {
-	anim.PushBack({  0, 0, 92, 58 });
+	anim.PushBack({ 0, 0, 92, 58 });
 	anim.PushBack({ 96, 0, 92, 58 });
 	currentAnimTop = &anim;
 
@@ -25,6 +26,10 @@ Enemy_Truck::Enemy_Truck(int x, int y) : Enemy(x, y) {
 
 void Enemy_Truck::Update() {
 
+	if (this->position.x <= 385) {
+		path.Update();
+		position = spawnPos + path.GetRelativePosition();
+	}
 	Enemy::Update();
 }
 
