@@ -178,7 +178,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info) {
 			case ENEMY_TYPE::TRUCK:
 				enemies[i] = new Enemy_Truck(info.x, info.y);
 				enemies[i]->texture = truckEnemyTexture;
-				//enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
+				enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
 				break;
 			}
 			break;
