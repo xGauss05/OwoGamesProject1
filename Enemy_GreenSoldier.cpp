@@ -575,7 +575,7 @@ void Enemy_GreenSoldier::OnCollision(Collider* collider) {
 
 		//if (pathTransitionDelay < pathTransitionDuration)
 		if (position.x < App->render->camera.x + SCREEN_WIDTH	&& position.x > App->render->camera.x - 32 && 
-			position.y > App->render->camera.y - 64				&& position.y < App->render->camera.y - SCREEN_HEIGHT)
+			position.y > App->render->camera.y - 64				&& position.y < App->render->camera.y + SCREEN_HEIGHT)
 		{
 			App->audio->PlayFx(enemyDeadFx);
 			App->player->score += GREENSOLDIER_SCORE;
