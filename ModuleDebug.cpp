@@ -158,7 +158,7 @@ void ModuleDebug::DebugDraw() {
 			App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
 
 		if (App->input->keys[SDL_SCANCODE_3] == KEY_DOWN && !behaviour)
-			App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, App->player->position.x, App->player->position.y - 400, 0);
+			App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, App->player->position.x, App->player->position.y - 400);
 
 		if (App->input->keys[SDL_SCANCODE_4] == KEY_DOWN && !behaviour)
 			App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, App->player->position.x, App->player->position.y - 32);

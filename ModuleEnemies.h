@@ -54,15 +54,18 @@ public:
 	int randVal(int min, int max);
 
 	/* Add an enemy into the queue to be spawned later
-	 Behaviour for greensoldiers:
- - 0: Stay squatting (Shoot). WIP
+	 Behaviour for Greensoldiers:
+ - 0: Stay squatting (Shoot).
  - 1: Up Left (Shoot).
  - 2: Up (Shoot).
  - 3: Up Right (Shoot).
- - 4: Stay squatting (Grenade). WIP
- - 5: Up Left (Grenade). WIP
- - 6: Up (Grenade). WIP
- - 7: Up Right (Grenade). WIP
+ - 4: Stay squatting (Grenade).
+ - 5: Up Left (Grenade).
+ - 6: Up (Grenade).
+ - 7: Up Right (Grenade).
+ Behaviour for Redsoldiers:
+ - 0: Drop Heavy rifle.
+ - 1: Drop flamethrower.
 */
 	bool AddEnemy(ENEMY_TYPE type, int x, int y, ushort behaviour = 0);
 

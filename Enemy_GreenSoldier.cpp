@@ -660,48 +660,48 @@ void Enemy_GreenSoldier::Burst()
 			{
 			case Directions::UP:
 				App->particles->enemy_shot.speed.x = 0;
-				App->particles->enemy_shot.speed.y = -2;
+				App->particles->enemy_shot.speed.y = -SHOT_SPEED_STRAIGHT;
 				currentAnimBot = &botUpShoot;
 				App->particles->AddParticle(App->particles->enemy_shot, position.x + 21, position.y + 5, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::UP_RIGHT:
-				App->particles->enemy_shot.speed.x = 2;
-				App->particles->enemy_shot.speed.y = -2;
+				App->particles->enemy_shot.speed.x = SHOT_SPEED_DIAGONAL;
+				App->particles->enemy_shot.speed.y = -SHOT_SPEED_DIAGONAL;
 				currentAnimBot = &botUpRightShoot;
 				App->particles->AddParticle(App->particles->enemy_shot, position.x + 28, position.y + 11, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::UP_LEFT:
-				App->particles->enemy_shot.speed.x = -2;
-				App->particles->enemy_shot.speed.y = -2;
+				App->particles->enemy_shot.speed.x = -SHOT_SPEED_DIAGONAL;
+				App->particles->enemy_shot.speed.y = -SHOT_SPEED_DIAGONAL;
 				currentAnimBot = &botUpLeftShoot;
 				App->particles->AddParticle(App->particles->enemy_shot, position.x + 6, position.y + 8, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::DOWN:
 				App->particles->enemy_shot.speed.x = 0;
-				App->particles->enemy_shot.speed.y = 2;
+				App->particles->enemy_shot.speed.y = SHOT_SPEED_STRAIGHT;
 				currentAnimBot = &botDownShoot;
 				App->particles->AddParticle(App->particles->enemy_shot, position.x + 9, position.y + 46, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::DOWN_RIGHT:
-				App->particles->enemy_shot.speed.x = 2;
-				App->particles->enemy_shot.speed.y = 2;
+				App->particles->enemy_shot.speed.x = SHOT_SPEED_DIAGONAL;
+				App->particles->enemy_shot.speed.y = SHOT_SPEED_DIAGONAL;
 				currentAnimBot = &botDownRightShoot;
 				App->particles->AddParticle(App->particles->enemy_shot, position.x + 27, position.y + 41, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::DOWN_LEFT:
-				App->particles->enemy_shot.speed.x = -2;
-				App->particles->enemy_shot.speed.y = 2;
+				App->particles->enemy_shot.speed.x = -SHOT_SPEED_DIAGONAL;
+				App->particles->enemy_shot.speed.y = SHOT_SPEED_DIAGONAL;
 				currentAnimBot = &botDownLeftShoot;
 				App->particles->AddParticle(App->particles->enemy_shot, position.x - 1, position.y + 33, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::RIGHT:
-				App->particles->enemy_shot.speed.x = 2;
+				App->particles->enemy_shot.speed.x = SHOT_SPEED_STRAIGHT;
 				App->particles->enemy_shot.speed.y = 0;
 				currentAnimBot = &botRightShoot;
 				App->particles->AddParticle(App->particles->enemy_shot, position.x + 29, position.y + 24, Collider::Type::ENEMY_SHOT);
 				break;
 			case Directions::LEFT:
-				App->particles->enemy_shot.speed.x = -2;
+				App->particles->enemy_shot.speed.x = -SHOT_SPEED_STRAIGHT;
 				App->particles->enemy_shot.speed.y = 0;
 				currentAnimBot = &botLeftShoot;
 				App->particles->AddParticle(App->particles->enemy_shot, position.x, position.y + 21, Collider::Type::ENEMY_SHOT);

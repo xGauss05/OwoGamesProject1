@@ -29,9 +29,10 @@ bool SceneLevel1::Start() {
 	parallaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.png");
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 	
-	
-	// Entities --- Add enemies/powerups here
+	// Enemies --- Add all the enemies here
 	App->enemies->AddEnemy(ENEMY_TYPE::TRUCK, 540, -1745);
+
+	// Entities --- Add powerups here
 	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 240, -60);
 	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 230, -60);
 	//Hostages
