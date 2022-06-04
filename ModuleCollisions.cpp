@@ -189,7 +189,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::HOSTAGE][Collider::Type::BREAKABLE_BRIDGE] = false;
 	matrix[Collider::Type::HOSTAGE][Collider::Type::NON_DEST_BAR] = false;
 	matrix[Collider::Type::HOSTAGE][Collider::Type::HOSTAGE] = false;
-	matrix[Collider::Type::HOSTAGE][Collider::Type::EXPLOSION] = false;
+	matrix[Collider::Type::HOSTAGE][Collider::Type::EXPLOSION] = true;
 	matrix[Collider::Type::HOSTAGE][Collider::Type::TRUCK] = false;
 
 
@@ -221,7 +221,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::EXPLOSION][Collider::Type::BREAKABLE] = false;
 	matrix[Collider::Type::EXPLOSION][Collider::Type::BREAKABLE_BRIDGE] = false;
 	matrix[Collider::Type::EXPLOSION][Collider::Type::NON_DEST_BAR] = false;
-	matrix[Collider::Type::EXPLOSION][Collider::Type::HOSTAGE] = false;
+	matrix[Collider::Type::EXPLOSION][Collider::Type::HOSTAGE] = true;
 	matrix[Collider::Type::EXPLOSION][Collider::Type::EXPLOSION] = false;
 	matrix[Collider::Type::EXPLOSION][Collider::Type::TRUCK] = true;
 

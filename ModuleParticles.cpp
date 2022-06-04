@@ -283,35 +283,35 @@ bool ModuleParticles::Start() {
 	grenExplosion.isExplosion = true;
 
 	// Hostage "particles"
-	hostagePickUpTop.anim.PushBack({ 0 ,64,26,26 });
-	hostagePickUpTop.anim.PushBack({ 32 ,64,26,26 });
-	hostagePickUpTop.anim.PushBack({ 64 ,64,26,26 });
-	hostagePickUpTop.anim.PushBack({ 96 ,64,26,26 });
-	hostagePickUpTop.anim.speed = 0.05f;
+	hostagePickUpTop.anim.PushBack({ 0 ,64,32,32 });
+	hostagePickUpTop.anim.PushBack({ 32 ,64,32,32 });
+	hostagePickUpTop.anim.PushBack({ 64 ,64,32,32 });
+	hostagePickUpTop.anim.PushBack({ 96 ,64,32,32 });
+	hostagePickUpTop.anim.speed = 0.08f;
 	hostagePickUpTop.anim.loop = false;
 	hostagePickUpTop.isHostage = true;
 
-	hostagePickUpBot.anim.PushBack({ 0,96,26, 26 });
-	hostagePickUpBot.anim.PushBack({ 32,96,26, 26 });
-	hostagePickUpBot.anim.PushBack({ 64,96,26, 26 });
-	hostagePickUpBot.anim.PushBack({ 96,96,26, 26 });
-	hostagePickUpBot.anim.speed = 0.05f;
+	hostagePickUpBot.anim.PushBack({ 0,96,32, 32 });
+	hostagePickUpBot.anim.PushBack({ 32,96,32, 32 });
+	hostagePickUpBot.anim.PushBack({ 64,96,32, 32 });
+	hostagePickUpBot.anim.PushBack({ 96,96,32, 32 });
+	hostagePickUpBot.anim.speed = 0.08f;
 	hostagePickUpBot.anim.loop = false;
 	hostagePickUpBot.isHostage = true;
 
-	hostageDeathTop.anim.PushBack({ 0,  128, 26, 26 });
-	hostageDeathTop.anim.PushBack({ 32, 128, 26, 26 });
-	hostageDeathTop.anim.PushBack({ 64, 128, 26, 26 });
-	hostageDeathTop.anim.PushBack({ 96, 128, 26, 26 });
-	hostageDeathTop.anim.speed = 0.05f;
+	hostageDeathTop.anim.PushBack({ 0,  128, 32, 32 });
+	hostageDeathTop.anim.PushBack({ 32, 128, 32, 32 });
+	hostageDeathTop.anim.PushBack({ 64, 128, 32, 32 });
+	hostageDeathTop.anim.PushBack({ 96, 128, 32, 32 });
+	hostageDeathTop.anim.speed = 0.08f;
 	hostageDeathTop.anim.loop = false;
 	hostageDeathTop.isHostage = true;
 
-	hostageDeathBot.anim.PushBack({ 0,  160, 26, 26 });
-	hostageDeathBot.anim.PushBack({ 32, 160, 26, 26 });
-	hostageDeathBot.anim.PushBack({ 64, 160, 26, 26 });
-	hostageDeathBot.anim.PushBack({ 96, 160, 26, 26 });
-	hostageDeathBot.anim.speed = 0.05f;
+	hostageDeathBot.anim.PushBack({ 0,  160, 32, 32 });
+	hostageDeathBot.anim.PushBack({ 32, 160, 32, 32 });
+	hostageDeathBot.anim.PushBack({ 64, 160, 32, 32 });
+	hostageDeathBot.anim.PushBack({ 96, 160, 32, 32 });
+	hostageDeathBot.anim.speed = 0.08f;
 	hostageDeathBot.anim.loop = false;
 	hostageDeathBot.isHostage = true;
 
