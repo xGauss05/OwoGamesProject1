@@ -50,7 +50,50 @@ void Enemy_Tackler::Update()
 }
 
 void Enemy_Tackler::OnCollision(Collider* collider) {
-	App->player->score += GREENSOLDIER_SCORE;
+	if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER) {
+
+		App->audio->PlayFx(enemyDeadFx);
+		App->player->score += GREENSOLDIER_SCORE;
+
+		switch (looking)
+		{
+		case Directions::UP:
+			App->particles->greenDeathAnimTop.speed = { 0, 1 };
+			App->particles->greenDeathAnimBot.speed = { 0, 1 };
+			break;
+		case Directions::UP_RIGHT:
+			App->particles->greenDeathAnimTop.speed = { -1, 1 };
+			App->particles->greenDeathAnimBot.speed = { -1, 1 };
+			break;
+		case Directions::UP_LEFT:
+			App->particles->greenDeathAnimTop.speed = { 1, 1 };
+			App->particles->greenDeathAnimBot.speed = { 1, 1 };
+			break;
+		case Directions::DOWN:
+			App->particles->greenDeathAnimTop.speed = { 0, -1 };
+			App->particles->greenDeathAnimBot.speed = { 0, -1 };
+			break;
+		case Directions::DOWN_RIGHT:
+			App->particles->greenDeathAnimTop.speed = { -1, -1 };
+			App->particles->greenDeathAnimBot.speed = { -1, -1 };
+			break;
+		case Directions::DOWN_LEFT:
+			App->particles->greenDeathAnimTop.speed = { 1, -1 };
+			App->particles->greenDeathAnimBot.speed = { 1, -1 };
+			break;
+		case Directions::RIGHT:
+			App->particles->greenDeathAnimTop.speed = { -1, 0 };
+			App->particles->greenDeathAnimBot.speed = { -1, 0 };
+			break;
+		case Directions::LEFT:
+			App->particles->greenDeathAnimTop.speed = { 1, 0 };
+			App->particles->greenDeathAnimBot.speed = { 1, 0 };
+			break;
+		}
+
+		App->particles->AddParticle(App->particles->greenDeathAnimTop, position.x, position.y + 1, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->greenDeathAnimBot, position.x, position.y + 32, Collider::Type::NONE);
+	}
 }
 
 void Enemy_Tackler::Shoot() { return; }

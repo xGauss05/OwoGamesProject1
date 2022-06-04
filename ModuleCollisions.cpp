@@ -63,7 +63,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::ENEMY][Collider::Type::BREAKABLE] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::BREAKABLE_BRIDGE] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::NON_DEST_BAR] = true;
-	matrix[Collider::Type::ENEMY][Collider::Type::HOSTAGE] = true;
+	matrix[Collider::Type::ENEMY][Collider::Type::HOSTAGE] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::EXPLOSION] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::TRUCK] = false;
 
