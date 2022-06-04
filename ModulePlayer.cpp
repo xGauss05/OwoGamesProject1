@@ -1014,6 +1014,73 @@ update_status ModulePlayer::Update() {
 				currentAnimTop = &idleAnimTop;
 			}
 			currentAnimBot = &idleAnimBot;
+
+			switch (facing) {
+			case UP:
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &upNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &upPowWeaponAnim;
+				}
+				break;
+			case DOWN:
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &downNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &downPowWeaponAnim;
+				}
+				break;
+			case RIGHT:
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &rightNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &rightPowWeaponAnim;
+				}
+				break;
+			case LEFT:
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &leftNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &leftPowWeaponAnim;
+				}
+				break;
+			case UP_RIGHT:
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &upRightNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &upRightPowWeaponAnim;
+				}
+				break;
+			case UP_LEFT:
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &upLeftNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &upLeftPowWeaponAnim;
+				}
+				break;
+			case DOWN_RIGHT:
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &downRightNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &downRightPowWeaponAnim;
+				}
+				break;
+			case DOWN_LEFT:
+				if (weapon == Weapon::NORMAL) {
+					currentWeaponAnim = &downLeftNorWeaponAnim;
+				}
+				else {
+					currentWeaponAnim = &downLeftPowWeaponAnim;
+				}
+				break;
+			}
 		}
 		else {
 			switch (movementDir) {
