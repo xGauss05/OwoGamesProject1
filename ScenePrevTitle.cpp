@@ -21,14 +21,7 @@ bool ScenePrevTitle::Start() {
 
 	introAssets = App->textures->Load("Assets/img/sprites/intro_assets.png");
 	bgTexture = App->textures->Load("Assets/img/sprites/title_map_large.png");
-
-	photoAnim.FullReset();
-	photoAnim.PushBack({ 208, 240, 128, 144 });
-	photoAnim.loop = false;
-	
-	photo.x = 500 + (SCREEN_WIDTH / 2) - 64;
-	photo.y = 50;
-
+	photoTexture = App->textures->Load("Assets/img/sprites/pretitle_photo.png");
 
 	logoAnim.FullReset();
 	logoAnim.PushBack({ 0, 240, 208, 160 });
@@ -97,10 +90,9 @@ update_status ScenePrevTitle::PostUpdate() {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, SCREEN_HEIGHT - 1904, NULL);
 	
-	SDL_Rect rect = photoAnim.GetCurrentFrame();
-	App->render->Blit(introAssets, photo.x, photo.y, &rect);
+	App->render->Blit(photoTexture, 500, 0, NULL);
 
-	rect = logoAnim.GetCurrentFrame();
+	SDL_Rect rect = logoAnim.GetCurrentFrame();
 	App->render->Blit(introAssets, logo.x, logo.y, &rect);
 
 	rect = boatAnim.GetCurrentFrame();
@@ -115,6 +107,8 @@ bool ScenePrevTitle::CleanUp() {
 	bgTexture = nullptr;
 	App->textures->Unload(introAssets);
 	introAssets = nullptr;
+	App->textures->Unload(photoTexture);
+	photoTexture = nullptr;
 
 	return true;
 }

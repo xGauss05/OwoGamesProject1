@@ -36,9 +36,6 @@ public:
 
 	int scenePart;
 
-	iPoint photo;
-	Animation photoAnim;
-
 	iPoint logo;
 	Animation logoAnim;
 
@@ -48,6 +45,7 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* introAssets = nullptr;
+	SDL_Texture* photoTexture = nullptr;
 };
 
 #endif // __MODULE_PREVSCENETITLE_H__
