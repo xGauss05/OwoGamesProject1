@@ -37,7 +37,7 @@ void Enemy_Truck::Update() {
 		int t2 = SDL_GetTicks();
 		if ((t2 - t1) / 3000.0f >= 1) {
 			t1 = t2;
-			App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, position.x + 92, position.y);
+			App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, position.x + 92, position.y + SCREEN_WIDTH);
 		}
 	}
 	Enemy::Update();
