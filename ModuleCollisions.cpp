@@ -179,7 +179,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 
 	matrix[Collider::Type::HOSTAGE][Collider::Type::WALL] = false;
 	matrix[Collider::Type::HOSTAGE][Collider::Type::PLAYER] = true;
-	matrix[Collider::Type::HOSTAGE][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::HOSTAGE][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::HOSTAGE][Collider::Type::PLAYER_SHOT] = true;
 	matrix[Collider::Type::HOSTAGE][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::HOSTAGE][Collider::Type::POWER_UP] = false;
