@@ -106,9 +106,34 @@ void ModuleEnemies::HandleEnemiesSpawn() {
 		if (spawnQueue[i].type != ENEMY_TYPE::NO_TYPE) {
 			// Spawn a new enemy if the screen has reached a spawn position
 			if (spawnQueue[i].y > App->render->camera.y - SPAWN_MARGIN) {
+
 				LOG("Spawning enemy at %d", spawnQueue[i].y);
 
+				//Place them according to where they come from, the position passed will be the point where they stop.
+				if (spawnQueue[i].type == ENEMY_TYPE::GREENSOLDIER)
+				{
+					if (spawnQueue[i].behaviour == 1 || spawnQueue[i].behaviour == 4)
+					{
+						spawnQueue[i].x -= SCREEN_WIDTH;
+						spawnQueue[i].y -= SCREEN_WIDTH;
+					}
+					else if (spawnQueue[i].behaviour == 2 || spawnQueue[i].behaviour == 5)
+					{
+						spawnQueue[i].y -= SCREEN_WIDTH;
+					}
+					else if (spawnQueue[i].behaviour == 3 || spawnQueue[i].behaviour == 6)
+					{
+						spawnQueue[i].x += SCREEN_WIDTH;
+						spawnQueue[i].y -= SCREEN_WIDTH;
+					}
+				}
+				else if (spawnQueue[i].type == ENEMY_TYPE::TACKLER)
+				{
+					spawnQueue[i].y -= SCREEN_WIDTH;
+				}
+
 				SpawnEnemy(spawnQueue[i]);
+
 				spawnQueue[i].type = ENEMY_TYPE::NO_TYPE; // Removing the newly spawned enemy from the queue
 			}
 		}
