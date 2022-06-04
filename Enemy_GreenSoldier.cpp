@@ -539,7 +539,7 @@ void Enemy_GreenSoldier::Update()
 	{
 		path.Update();
 
-		if (pathTransitionDelay >= pathTransitionDuration && shotCount > 2)
+		if (pathTransitionDelay >= pathTransitionDuration && (shotCount > 2 || grenadeCount > 2))
 		{
 			App->particles->AddParticle(App->particles->shot_right, position.x - 20, position.y, Collider::Type::PLAYER_SHOT); //Harakiry
 		}
@@ -734,6 +734,7 @@ void Enemy_GreenSoldier::Grenade()
 		grenadeDelay = 0;
 		throwing = true;
 
+		//When shooting, selects direction and triggers animation
 		switch (looking)
 		{
 		case Directions::UP:
@@ -795,8 +796,10 @@ void Enemy_GreenSoldier::Grenade()
 		}
 
 		App->particles->AddParticle(App->particles->grenade, position.x + 13, position.y, Collider::Type::NONE);
+		grenadeCount++;
 	}
 
+	//When animation ends, goes back to idle animation
 	switch (looking)
 	{
 	case Directions::UP:
@@ -834,4 +837,9 @@ void Enemy_GreenSoldier::Grenade()
 	}
 
 	grenadeDelay++;
+
+	if (behaviour != 4 && stationary && grenadeCount > 2)
+	{
+		stationary = false;
+	}
 }

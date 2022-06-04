@@ -95,6 +95,7 @@ private:
 
 	bool throwing = false;
 	int grenadeDelay;
+	int grenadeCount = 0;
 
 	ushort leaveDir;
 };
