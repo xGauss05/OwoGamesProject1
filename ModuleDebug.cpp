@@ -137,7 +137,7 @@ void ModuleDebug::DebugDraw() {
 	if (behaviour)
 		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN)
 		{
-			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x - 50, App->player->position.y - 120, 1);
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 120, 1);
 			behaviour = false;
 		}
 
@@ -177,7 +177,7 @@ void ModuleDebug::DebugDraw() {
 
 		if (App->input->keys[SDL_SCANCODE_0] == KEY_DOWN)
 		{
-			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 120, 0);
 			behaviour = false;
 		}
 		
@@ -190,7 +190,7 @@ void ModuleDebug::DebugDraw() {
 		}
 		if (App->input->keys[SDL_SCANCODE_3] == KEY_DOWN)
 		{
-			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x + 50, App->player->position.y - 120, 3);
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 120, 3);
 			behaviour = false;
 		}
 		if (App->input->keys[SDL_SCANCODE_4] == KEY_DOWN)
@@ -200,7 +200,7 @@ void ModuleDebug::DebugDraw() {
 		}
 		if (App->input->keys[SDL_SCANCODE_5] == KEY_DOWN)
 		{
-			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x - 50, App->player->position.y - 120, 5);
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 120, 5);
 			behaviour = false;
 		}
 		if (App->input->keys[SDL_SCANCODE_6] == KEY_DOWN)
@@ -210,7 +210,7 @@ void ModuleDebug::DebugDraw() {
 		}
 		if (App->input->keys[SDL_SCANCODE_7] == KEY_DOWN)
 		{
-			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x + 50, App->player->position.y - 120, 7);
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 120, 7);
 			behaviour = false;
 		}
 	}

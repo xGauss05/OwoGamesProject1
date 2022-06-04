@@ -30,6 +30,7 @@ bool SceneLevel1::Start() {
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 	
 	// Enemies --- Add all the enemies here
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 210, -440, 1);
 	App->enemies->AddEnemy(ENEMY_TYPE::TRUCK, 540, -1745);
 
 	// Entities --- Add powerups here

@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 #include "ModuleAudio.h"
+#include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h" //(Testing)
@@ -18,7 +19,7 @@ Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y, ushort behaviour) : Enemy(x
 {
 	this->behaviour = behaviour;
 
-	pathTransitionDuration = 40;
+	pathTransitionDuration = 220;
 
 	if (behaviour == 0 || behaviour == 4)
 	{
@@ -494,9 +495,6 @@ void Enemy_GreenSoldier::syncAnimations()
 
 void Enemy_GreenSoldier::Update()
 {
-	App->fonts->BlitText(10, SCREEN_HEIGHT - 40, 0, std::to_string(grenadeDelay).c_str());
-	App->fonts->BlitText(10, SCREEN_HEIGHT - 50, 0, std::to_string(topDownGrenade.GetCurrentFrameNum()).c_str());
-
 	if (stationary)
 	{
 		if (!burst && !throwing)
@@ -541,10 +539,15 @@ void Enemy_GreenSoldier::Update()
 
 		if (pathTransitionDelay >= pathTransitionDuration && (shotCount > 2 || grenadeCount > 2))
 		{
-			App->particles->AddParticle(App->particles->shot_right, position.x - 20, position.y, Collider::Type::PLAYER_SHOT); //Harakiry
+			//If out of the camera
+			if (position.x > App->render->camera.x + SCREEN_WIDTH + 30	|| position.x < App->render->camera.x - 32 -10 || 
+				position.y < App->render->camera.y - 64 -10				|| position.y > App->render->camera.y + SCREEN_HEIGHT + 10)
+			{
+				App->particles->AddParticle(App->particles->shot_right, position.x - 20, position.y, Collider::Type::PLAYER_SHOT); //Harakiry
+			}
 		}
 
-		else if (pathTransitionDelay >= pathTransitionDuration)
+		else if (pathTransitionDelay >= pathTransitionDuration && (shotCount < 2 || grenadeCount < 2))
 		{
 			pathTransitionDelay = 0;
 			stationary = true;
@@ -553,11 +556,6 @@ void Enemy_GreenSoldier::Update()
 	}
 
 	//As every part of the path will have its own animation, you can define certain behaviours for certain parts of the path (animations).
-	/*if (currentAnimBot == &botUpCrouch || currentAnimBot == &botUpLeftCrouch || currentAnimBot == &botLeftCrouch || currentAnimBot == &botDownLeftCrouch ||
-		currentAnimBot == &botDownCrouch || currentAnimBot == &botDownRightCrouch || currentAnimBot == &botRightCrouch || currentAnimBot == &botUpRightCrouch ||
-		currentAnimBot == &botUpShoot || currentAnimBot == &botUpLeftShoot || currentAnimBot == &botLeftShoot || currentAnimBot == &botDownLeftShoot ||
-			currentAnimBot == &botDownShoot || currentAnimBot == &botDownRightShoot || currentAnimBot == &botRightShoot || currentAnimBot == &botUpRightShoot)*/
-
 	if (currentAnimBot != &botUpWalk && currentAnimBot != &botUpLeftWalk && currentAnimBot != &botLeftWalk && currentAnimBot != &botDownLeftWalk && 
 		currentAnimBot != &botDownWalk && currentAnimBot != &botDownRightWalk && currentAnimBot != &botRightWalk && currentAnimBot != &botUpRightWalk)
 	{
@@ -575,7 +573,9 @@ void Enemy_GreenSoldier::Update()
 void Enemy_GreenSoldier::OnCollision(Collider* collider) {
 	if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER) {
 
-		if (pathTransitionDelay < pathTransitionDuration)
+		//if (pathTransitionDelay < pathTransitionDuration)
+		if (position.x < App->render->camera.x + SCREEN_WIDTH	&& position.x > App->render->camera.x - 32 && 
+			position.y > App->render->camera.y - 64				&& position.y < App->render->camera.y - SCREEN_HEIGHT)
 		{
 			App->audio->PlayFx(enemyDeadFx);
 			App->player->score += GREENSOLDIER_SCORE;
