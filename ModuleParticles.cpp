@@ -316,7 +316,6 @@ bool ModuleParticles::Start() {
 	hostageDeathBot.isHostage = true;
 
 	//Enemy deaths
-
 	greenDeathAnimTop.anim.PushBack({ 0,  448,32,32 });
 	greenDeathAnimTop.anim.PushBack({ 32, 448,32,32 });
 	greenDeathAnimTop.anim.PushBack({ 64, 448,32,32 });
@@ -368,11 +367,11 @@ bool ModuleParticles::Start() {
 	redDeathAnimTop.anim.PushBack({ 320,448,32,32 });
 	redDeathAnimTop.anim.PushBack({ 352,448,32,32 });
 	redDeathAnimTop.anim.PushBack({ 384,448,32,32 });
-	redDeathAnimBot.anim.speed = 0.2f;
-	redDeathAnimBot.lifetime = 70;
-	redDeathAnimBot.speed = { 0, -1 };
-	redDeathAnimBot.anim.loop = false;
-	redDeathAnimBot.isRedEnemy = true;
+	redDeathAnimTop.anim.speed = 0.2f;
+	redDeathAnimTop.lifetime = 70;
+	redDeathAnimTop.speed = { 0, -1 };
+	redDeathAnimTop.anim.loop = false;
+	redDeathAnimTop.isRedEnemy = true;
 
 	redDeathAnimBot.anim.PushBack({ 0,  480,32,32 });
 	redDeathAnimBot.anim.PushBack({ 32, 480,32,32 });
@@ -485,7 +484,6 @@ update_status ModuleParticles::PostUpdate() {
 			} else if (particle->isTruckEnemy) {
 				App->render->Blit(truckTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 			}
-
 		}
 	}
 	return update_status::UPDATE_CONTINUE;
