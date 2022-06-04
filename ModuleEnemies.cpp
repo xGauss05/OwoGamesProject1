@@ -112,16 +112,16 @@ void ModuleEnemies::HandleEnemiesSpawn() {
 				//Place them according to where they come from, the position passed will be the point where they stop.
 				if (spawnQueue[i].type == ENEMY_TYPE::GREENSOLDIER)
 				{
-					if (spawnQueue[i].behaviour == 1 || spawnQueue[i].behaviour == 4)
+					if (spawnQueue[i].behaviour == 1 || spawnQueue[i].behaviour == 5)
 					{
 						spawnQueue[i].x -= SCREEN_WIDTH;
 						spawnQueue[i].y -= SCREEN_WIDTH;
 					}
-					else if (spawnQueue[i].behaviour == 2 || spawnQueue[i].behaviour == 5)
+					else if (spawnQueue[i].behaviour == 2 || spawnQueue[i].behaviour == 6)
 					{
 						spawnQueue[i].y -= SCREEN_WIDTH;
 					}
-					else if (spawnQueue[i].behaviour == 3 || spawnQueue[i].behaviour == 6)
+					else if (spawnQueue[i].behaviour == 3 || spawnQueue[i].behaviour == 7)
 					{
 						spawnQueue[i].x += SCREEN_WIDTH;
 						spawnQueue[i].y -= SCREEN_WIDTH;

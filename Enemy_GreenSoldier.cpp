@@ -571,7 +571,7 @@ void Enemy_GreenSoldier::Update()
 }
 
 void Enemy_GreenSoldier::OnCollision(Collider* collider) {
-	if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER) {
+	if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER || collider->type == Collider::Type::EXPLOSION) {
 
 		//if (pathTransitionDelay < pathTransitionDuration)
 		if (position.x < App->render->camera.x + SCREEN_WIDTH	&& position.x > App->render->camera.x - 32 && 

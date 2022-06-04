@@ -50,7 +50,7 @@ void Enemy_Tackler::Update()
 }
 
 void Enemy_Tackler::OnCollision(Collider* collider) {
-	if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER) {
+	if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER || collider->type == Collider::Type::EXPLOSION) {
 
 		App->audio->PlayFx(enemyDeadFx);
 		App->player->score += GREENSOLDIER_SCORE;

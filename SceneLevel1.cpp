@@ -30,7 +30,41 @@ bool SceneLevel1::Start() {
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 	
 	// Enemies --- Add all the enemies here
-	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 210, -440, 1);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 191, -275, 6);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 223, -275, 6);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 255, -275, 6);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 145, -480, 4);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 277, -480, 4);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 214, -500, 0);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, 160, -700);
+	App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, 192, -700);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 188, -630, 1);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 220, -630, 1);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -630, 3);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 292, -630, 3);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 220, -660, 6);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 298, -480, 2);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 230, -760, 2);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 262, -480, 2);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 172, -850, 1);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 200, -850, 1);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 237, -846, 3);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 178, -954, 6);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 210, -954, 6);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 243, -954, 6);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 355, -890, 0);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 412, -995, 1);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 345, -1000, 1);
+
 	App->enemies->AddEnemy(ENEMY_TYPE::TRUCK, 540, -1745);
 
 	// Entities --- Add powerups here
