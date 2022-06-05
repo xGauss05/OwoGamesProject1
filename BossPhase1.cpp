@@ -64,7 +64,7 @@ void BossPhase1::Update() {
 	
 	if (isHit) {
 		int t2 = SDL_GetTicks();
-		if (t2 - t1 > 5) {
+		if (t2 - t1 >= 5) {
 			t1 = t2;
 			explosionInvincible--;
 		}
@@ -138,8 +138,8 @@ void BossPhase1::OnCollision(Collider* collider) {
 void BossPhase1::Shoot() {
 	if (spawnDelay >= 90) {
 		currentAnimTop = &topAnimSpawn;
-		/*App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x - 50, position.y + 70, 8);
-		App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x + 50, position.y + 70, 8);*/
+		App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x - 50, position.y + 70, 8);
+		App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x + 50, position.y + 70, 8);
 
 		spawnDelay = 0;
 		spawning = true;

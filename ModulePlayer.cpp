@@ -550,7 +550,6 @@ void ModulePlayer::throwGrenade() {
 	isThrowing = true;
 	grenades--;
 	App->audio->PlayFx(throwGrenadeFx);
-	//App->particles->grenade.explodes = true;
 	switch (facing) {
 	case Directions::UP:
 		App->particles->grenade.speed.x = 0;
@@ -1613,7 +1612,7 @@ update_status ModulePlayer::Update() {
 		}
 
 		if (App->input->keys[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN || haveToThrowGrenade) {
-			if (grenades > 0) {
+			if (grenades > 0 && !isThrowing) {
 				throwGrenade();
 				switch (facing) {
 				case UP:
