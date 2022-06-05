@@ -1701,6 +1701,14 @@ update_status ModulePlayer::Update() {
 					lives = 3;
 					continueCooldown = 9;
 				}
+				if (App->input->controllerCount > 0) {
+					for (int i = 0; i < App->input->controllerCount; ++i) {
+						if (App->input->controllers[i]->buttons[SDL_CONTROLLER_BUTTON_A] == KEY_DOWN) {
+							lives = 3;
+							continueCooldown = 9;
+						}
+					}
+				}
 
 				if (continueCooldown == 0)
 					App->fade->FadeToBlack((Module*)App->level1, (Module*)App->title, 0);
@@ -1751,17 +1759,6 @@ update_status ModulePlayer::Update() {
 
 		}
 	}
-
-	
-	// Invincible frames
-	/*if (lives != 0) {
-		if (deathCooldown >= DEATH_ANIM_DURATION) {
-			
-			
-		} else {
-			immovable = false;
-		}
-	}*/
 
 	// God mode cheat
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN) {
