@@ -57,7 +57,8 @@ void Powerup_Hostage::OnCollision(Collider* collider) {
 		} else {
 			App->player->score = 0;
 		}
-		
+		App->audio->UnloadFx(this->deadFx);
+		App->audio->UnloadFx(this->idleFx);
 		App->particles->AddParticle(App->particles->hostageDeathTop, position.x, position.y, Collider::Type::NONE);
 		App->particles->AddParticle(App->particles->hostageDeathBot, position.x, position.y + 26, Collider::Type::NONE);
 	}
@@ -65,7 +66,8 @@ void Powerup_Hostage::OnCollision(Collider* collider) {
 	if (collider->type == Collider::Type::PLAYER) {
 		App->audio->PlayFx(pickUpFx);
 		App->player->score += 1000;
-
+		App->audio->UnloadFx(this->deadFx);
+		App->audio->UnloadFx(this->idleFx);
 		App->particles->AddParticle(App->particles->hostagePickUpTop, position.x, position.y, Collider::Type::NONE);
 		App->particles->AddParticle(App->particles->hostagePickUpBot, position.x, position.y + 26, Collider::Type::NONE);
 	}

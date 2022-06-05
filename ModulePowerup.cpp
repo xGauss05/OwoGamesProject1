@@ -145,6 +145,7 @@ void ModulePowerup::SpawnPowerup(const PowerupSpawnpoint& info) {
 void ModulePowerup::OnCollision(Collider* c1, Collider* c2) {
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (powerUps[i] != nullptr && powerUps[i]->GetCollider() == c1) {
+			App->audio->UnloadFx(powerUps[i]->pickUpFx);
 
 			powerUps[i]->OnCollision(c2);
 			delete powerUps[i];
