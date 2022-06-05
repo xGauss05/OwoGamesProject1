@@ -21,6 +21,12 @@ Breakable_Fence::Breakable_Fence(int x, int y, unsigned short version) : Breakab
 	case 4:
 		animation.PushBack({ 96,96,32,32 });
 		break;
+	case 5:
+		animation.PushBack({ 0,64,32,32 });
+		break;
+	case 6:
+		animation.PushBack({ 32,64,32,32 });
+		break;
 	default:
 		animation.PushBack({ 0,96,32,32 });
 		break;

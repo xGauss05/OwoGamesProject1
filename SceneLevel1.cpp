@@ -321,12 +321,35 @@ bool SceneLevel1::Start() {
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 704, -1902, 3);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 736, -1902, 2);
 
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 256, -1870, 5);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 288, -1870, 6);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 320, -1870, 5);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -1870, 6);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 384, -1870, 5);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 416, -1870, 6);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 448, -1870, 5);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 480, -1870, 6);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 512, -1870, 5);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 544, -1870, 6);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 576, -1870, 5);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 608, -1870, 6);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 640, -1870, 5);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 672, -1870, 6);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 704, -1870, 5);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 736, -1870, 6);
+
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 256, -2286, 3);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 288, -2286, 2);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 320, -2286, 3);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -2286, 2);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 384, -2286, 3);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 416, -2286, 4);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 256, -2254, 5);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 288, -2254, 6);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 320, -2254, 5);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 352, -2254, 6);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 384, -2254, 5);
 
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 512, -2286, 1);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 544, -2286, 2);
@@ -336,6 +359,14 @@ bool SceneLevel1::Start() {
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 672, -2286, 2);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 704, -2286, 3);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 736, -2286, 2);
+
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 544, -2254, 6);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 576, -2254, 5);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 608, -2254, 6);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 640, -2254, 5);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 672, -2254, 6);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 704, -2254, 5);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::FENCE, 736, -2254, 6);
 
 	//Trees
 	App->collisions->AddCollider({ 308, -2008, 6, 52 }, Collider::Type::WALL);
