@@ -1877,7 +1877,7 @@ update_status ModulePlayer::PostUpdate() {
 		App->fonts->BlitText(15, SCREEN_HEIGHT - 25, ui_logos, "F");
 	}
 	if (lives == 0) {
-		App->fonts->BlitText((SCREEN_WIDTH / 2) - 48, SCREEN_HEIGHT / 2, font, "CONTINUE?");
+		App->fonts->BlitText((SCREEN_WIDTH / 2) - 48, SCREEN_HEIGHT / 2, font, "CONTINUE");
 		temp = std::to_string(continueCooldown);
 		num_char = temp.c_str();
 		App->fonts->BlitText((SCREEN_WIDTH / 2) - 64, SCREEN_HEIGHT / 2 + 32, font, "WITHIN");
