@@ -43,6 +43,5 @@ typedef unsigned short ushort;
 
 // Hostage
 #define IDLEFX_COOLDOWN 750
-#define HOSTAGE_COOLDOWN 50000
 
 #endif // __GLOBALS_H__

@@ -58,8 +58,6 @@ void Powerup_Hostage::OnCollision(Collider* collider) {
 			App->player->score = 0;
 		}
 		
-		// add -500 score animation
-
 		App->particles->AddParticle(App->particles->hostageDeathTop, position.x, position.y, Collider::Type::NONE);
 		App->particles->AddParticle(App->particles->hostageDeathBot, position.x, position.y + 26, Collider::Type::NONE);
 	}
@@ -68,7 +66,6 @@ void Powerup_Hostage::OnCollision(Collider* collider) {
 		App->audio->PlayFx(pickUpFx);
 		App->player->score += 1000;
 
-		// add +1000 score animation
 		App->particles->AddParticle(App->particles->hostagePickUpTop, position.x, position.y, Collider::Type::NONE);
 		App->particles->AddParticle(App->particles->hostagePickUpBot, position.x, position.y + 26, Collider::Type::NONE);
 	}
