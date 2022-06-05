@@ -1580,10 +1580,12 @@ update_status ModulePlayer::Update() {
 
 	if (App->input->controllerCount > 0) {
 		for (int i = 0; i < App->input->controllerCount; ++i) {
-			if (App->input->controllers[i]->buttons[SDL_CONTROLLER_BUTTON_A] == KEY_DOWN) {
+			if (App->input->controllers[i]->buttons[SDL_CONTROLLER_BUTTON_A] == KEY_DOWN ||
+				App->input->controllers[i]->buttons[SDL_CONTROLLER_BUTTON_RIGHTSHOULDER] == KEY_DOWN){
 				haveToShoot = true;
 			}
-			if (App->input->controllers[i]->buttons[SDL_CONTROLLER_BUTTON_B] == KEY_DOWN) {
+			if (App->input->controllers[i]->buttons[SDL_CONTROLLER_BUTTON_B] == KEY_DOWN ||
+				App->input->controllers[i]->buttons[SDL_CONTROLLER_BUTTON_LEFTSHOULDER] == KEY_DOWN) {
 				haveToThrowGrenade = true;
 			}
 		}
