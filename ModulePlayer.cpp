@@ -1723,12 +1723,12 @@ update_status ModulePlayer::Update() {
 
 				dead = false;
 				grenades = MAX_GRENADES;
-
+				immovable = true;
 				spawnPoint = this->position.y;
 				this->position.y += 150;
 				if (weapon != Weapon::NORMAL)
 					weapon = Weapon::NORMAL;
-				immovable = true;
+				
 			}
 		}
 	}
@@ -1742,6 +1742,7 @@ update_status ModulePlayer::Update() {
 			}
 			if (invincibleCooldown >= INVINCIBLE_DURATION) {
 				godMode = false;
+				isHit = false;
 				deathCooldown = 0;
 				invincibleCooldown = 0;
 			}
@@ -1898,28 +1899,28 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			if (!godMode && !isHit) {
 				this->dead = true;
 				lives--;
-				position.y += 10;
+				this->isHit = true;
 			}
 			break;
 		case Collider::Type::ENEMY_SHOT:
 			if (!godMode && !isHit) {
 				this->dead = true;
 				lives--;
-				position.y += 10;
+				this->isHit = true;
 			}
 			break;
 		case Collider::Type::EXPLOSION:
 			if (!godMode && !isHit) {
 				this->dead = true;
 				lives--;
-				position.y += 10;
+				this->isHit = true;
 			}
 			break;
 		case Collider::Type::TRUCK:
 			if (!godMode && !isHit) {
 				this->dead = true;
 				lives--;
-				position.y += 10;
+				this->isHit = true;
 			}
 			break;
 		case Collider::Type::POWER_UP:
