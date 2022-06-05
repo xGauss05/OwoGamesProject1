@@ -375,15 +375,15 @@ ModulePlayer::~ModulePlayer() {
 }
 
 bool ModulePlayer::Start() {
-	LOG("Loading player textures");
-	//App->fonts->Enable();
+	LOG("Loading player features");
+
 	score = 0;
 	ammunition = 0;
 	continueCooldown = 9;
 	deathCooldown = 0;
 	invincibleCooldown = 0;
 	spawnPoint = -INT_MAX;
-	lives = 3;
+	lives = MAX_LIVES;
 	grenades = MAX_GRENADES;
 	t1 = SDL_GetTicks();
 
@@ -410,12 +410,12 @@ bool ModulePlayer::Start() {
 	isRespawning = false;
 	invincible = false;
 
-	// Initiate player audios here
+	// Initiate player audios indexes
 	shotFx = App->audio->LoadFx("Assets/sounds/sfx/142.wav"); // shot sfx
 	playerDeadFx = App->audio->LoadFx("Assets/sounds/sfx/195.wav"); // dead sfx
-	heavyRifleFx = App->audio->LoadFx("Assets/sounds/sfx/153.wav");
-	flamethrowerFx = App->audio->LoadFx("Assets/sounds/sfx/136.wav");
-	throwGrenadeFx = App->audio->LoadFx("Assets/sounds/sfx/137.wav");
+	heavyRifleFx = App->audio->LoadFx("Assets/sounds/sfx/153.wav"); // heavyrifle sfx
+	flamethrowerFx = App->audio->LoadFx("Assets/sounds/sfx/136.wav"); // flamethrower sfx
+	throwGrenadeFx = App->audio->LoadFx("Assets/sounds/sfx/137.wav"); // throw grenade sfx
 
 	// Initial position
 	position.x = 240;
@@ -424,7 +424,7 @@ bool ModulePlayer::Start() {
 	// Player collider
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 40 }, Collider::Type::PLAYER, this);
 
-	// UI for 0.5
+	// UI Indexes
 	font = App->fonts->Load("Assets/img/sprites/font.png", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.@'&-                       ", 8);
 	ui_logos = App->fonts->Load("Assets/img/sprites/logos.png", "ABCDEFGHIJKLMNOPQR                  ", 6);
 	// F     - lives icons
@@ -706,13 +706,10 @@ bool ModulePlayer::checkMovingDir() {
 		}
 	}
 
-
 	return isActing;
-
 }
 
 bool ModulePlayer::checkFacingDir() {
-
 	bool isActing = false;
 
 	if (App->input->controllerCount > 0) {
@@ -827,7 +824,6 @@ bool ModulePlayer::checkFacingDir() {
 }
 
 update_status ModulePlayer::Update() {
-
 	if (!dead) {
 		if (checkFacingDir()) {
 			switch (facing) {
@@ -1256,6 +1252,7 @@ update_status ModulePlayer::Update() {
 
 					break;
 				}
+
 				break;
 			case DOWN:
 				if (!isThrowing)
@@ -1299,6 +1296,7 @@ update_status ModulePlayer::Update() {
 
 					break;
 				}
+
 				break;
 			case RIGHT:
 				if (!isThrowing)
@@ -1346,6 +1344,7 @@ update_status ModulePlayer::Update() {
 
 					break;
 				}
+
 				break;
 			case LEFT:
 				if (!isThrowing)
@@ -1728,11 +1727,13 @@ update_status ModulePlayer::Update() {
 					currentWeaponAnim = &upNorWeaponAnim;
 
 				dead = false;
-				grenades = MAX_GRENADES;
 				immovable = true;
 				isRespawning = true;
+
+				grenades = MAX_GRENADES;
 				spawnPoint = this->position.y;
 				this->position.y += 150;
+
 				if (weapon != Weapon::NORMAL)
 					weapon = Weapon::NORMAL;
 				
@@ -1772,6 +1773,7 @@ update_status ModulePlayer::Update() {
 		App->fade->FadeToBlack((Module*)App->level1, (Module*)App->win, 0);
 	}
 
+	// Replenish lives cheat
 	if (App->input->keys[SDL_SCANCODE_BACKSPACE] == KEY_STATE::KEY_DOWN) {
 		if (lives != 3) {
 			lives = MAX_LIVES;
@@ -1787,11 +1789,13 @@ update_status ModulePlayer::Update() {
 		lives--;
 	}
 
+	// Exits the game
 	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_REPEAT) {
 		return update_status::UPDATE_STOP;
 	}
-
-	place = Place::LAND;
+	
+	if (place != Place::LAND)
+		place = Place::LAND;
 
 	// Updates player collider position
 	collider->SetPos(position.x, position.y);
@@ -1907,15 +1911,15 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		case Collider::Type::ENEMY:
 			if (!godMode && !isHit && !invincible) {
 				this->dead = true;
-				lives--;
 				this->isHit = true;
+				lives--;
 			}
 			break;
 		case Collider::Type::ENEMY_SHOT:
 			if (!godMode && !isHit && !invincible) {
 				this->dead = true;
-				lives--;
 				this->isHit = true;
+				lives--;
 			}
 			break;
 		case Collider::Type::EXPLOSION:
@@ -1928,8 +1932,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 		case Collider::Type::TRUCK:
 			if (!godMode && !isHit && !invincible) {
 				this->dead = true;
-				lives--;
 				this->isHit = true;
+				lives--;
 			}
 			break;
 		case Collider::Type::POWER_UP:
@@ -1976,7 +1980,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 				}
 			}
 			break;
-
 		case Collider::Type::WATER:
 			if (currentAnimBot != &waterAnimBot)
 				currentAnimBot = &waterAnimBot;
@@ -2062,7 +2065,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 				break;
 			}
 			break;
-
 		}
 
 		if (c2->type != Collider::Type::WATER && c2->type != Collider::Type::TRENCH) {

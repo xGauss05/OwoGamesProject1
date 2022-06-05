@@ -84,6 +84,9 @@ void ModuleDebug::DebugDraw() {
 		case Collider::Type::TRUCK: // red
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 0, 0, alpha);
 			break;
+		case Collider::Type::BOSS: // red
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 0, 0, alpha);
+			break;
 		case Collider::Type::PLAYER_SHOT: // yellow
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 255, 0, alpha);
 			break;

@@ -14,7 +14,6 @@ public:
 	void Update() override;
 
 	void OnCollision(Collider* collider) override;
-private:
 
 };
 

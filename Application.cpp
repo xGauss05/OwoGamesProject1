@@ -35,7 +35,6 @@ Application::Application() {
 	modules[6] = title = new SceneTitle(false);
 	modules[7] = level1 = new SceneLevel1(false);
 	modules[8] = win = new SceneWin(false);
-	//modules[8] = lose = new SceneLose(false);
 	
 	modules[9] = collisions = new ModuleCollisions(false);
 	modules[10] = breakables = new ModuleBreakable(false);
@@ -52,8 +51,8 @@ Application::Application() {
 
 Application::~Application() {
 	for (int i = 0; i < NUM_MODULES; ++i) {
-		//Important: when deleting a pointer, set it to nullptr afterwards
-		//It allows us for null check in other parts of the code
+		// Important: when deleting a pointer, set it to nullptr afterwards
+		// It allows us for null check in other parts of the code
 		delete modules[i];
 		modules[i] = nullptr;
 	}
@@ -65,7 +64,6 @@ bool Application::Init() {
 	for (int i = 0; i < NUM_MODULES && ret; ++i)
 		ret = modules[i]->Init();
 
-	//By now we will consider that all modules are always active
 	for (int i = 0; i < NUM_MODULES && ret; ++i)
 		ret = modules[i]->IsEnabled() ? modules[i]->Start() : true;
 

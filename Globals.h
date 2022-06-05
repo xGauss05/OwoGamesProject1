@@ -34,7 +34,6 @@ typedef unsigned short ushort;
 #define DEATH_ANIM_DURATION 185
 #define INVINCIBLE_DURATION 500
 
-
 // Camera Configuration (for debug purposes)
 #define CAMERA_SPEED 2
 

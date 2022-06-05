@@ -14,8 +14,7 @@ public:
 	void Update() override;
 
 	void OnCollision(Collider* collider) override;
-private:
-	
+
 };
 
 #endif // __BREAKABLE_BARBED_1_H__

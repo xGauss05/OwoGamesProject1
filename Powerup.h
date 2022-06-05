@@ -10,7 +10,6 @@ struct Collider;
 class Powerup {
 public:
 	// Constructor
-	// Saves the spawn position for later movement calculations
 	Powerup(int x, int y);
 
 	// Destructor
@@ -20,7 +19,7 @@ public:
 	const Collider* GetCollider() const;
 
 	// Called from inhering powerups' Udpate
-	// Updates animation and collider position
+	// Updates animation
 	virtual void Update();
 
 	// Called from ModulePowerups' Update
@@ -50,7 +49,7 @@ protected:
 	// The powerup's collider
 	Collider* collider = nullptr;
 
-	// Original spawn position. Stored for movement calculations
+	// Original spawn position.
 	iPoint spawnPos;
 
 };
