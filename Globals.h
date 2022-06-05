@@ -32,7 +32,7 @@ typedef unsigned short ushort;
 
 // Gameplay variables
 #define DEATH_ANIM_DURATION 185
-#define INVINCIBLE_DURATION 300
+#define INVINCIBLE_DURATION 500
 
 
 // Camera Configuration (for debug purposes)

@@ -24,7 +24,7 @@ bool ModuleDebug::Start() {
 	if (App->input->controllerCount != 0) {
 		debugBox -= 60;
 	}
-
+	debug = false;
 	return true;
 }
 

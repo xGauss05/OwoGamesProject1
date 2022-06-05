@@ -407,6 +407,8 @@ bool ModulePlayer::Start() {
 	isThrowing = false;
 	immovable = false;
 	isHit = false;
+	isRespawning = false;
+	invincible = false;
 
 	// Initiate player audios here
 	shotFx = App->audio->LoadFx("Assets/sounds/sfx/142.wav"); // shot sfx
@@ -1559,7 +1561,6 @@ update_status ModulePlayer::Update() {
 						currentAnimBot = &trenchAnimBot;
 
 					break;
-
 				default:
 					break;
 				}
@@ -1570,7 +1571,6 @@ update_status ModulePlayer::Update() {
 			}
 		}
 	}
-
 
 	if (ammunition == 0 && weapon != Weapon::NORMAL)
 		weapon = Weapon::NORMAL;
@@ -1589,7 +1589,6 @@ update_status ModulePlayer::Update() {
 			}
 		}
 	}
-
 
 	if (!dead) {
 		if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || haveToShoot) {
@@ -1612,8 +1611,6 @@ update_status ModulePlayer::Update() {
 		if (isThrowing && currentAnimTop->HasFinished()) {
 			isThrowing = false;
 		}
-
-
 
 		if (App->input->keys[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN || haveToThrowGrenade) {
 			if (grenades > 0) {
@@ -1675,7 +1672,7 @@ update_status ModulePlayer::Update() {
 
 	// If the player is dead
 	if (dead) {
-		godMode = true;
+		invincible = true;
 
 		if (deathCooldown == 0) {
 			App->audio->PlayFx(playerDeadFx);
@@ -1724,6 +1721,7 @@ update_status ModulePlayer::Update() {
 				dead = false;
 				grenades = MAX_GRENADES;
 				immovable = true;
+				isRespawning = true;
 				spawnPoint = this->position.y;
 				this->position.y += 150;
 				if (weapon != Weapon::NORMAL)
@@ -1733,23 +1731,38 @@ update_status ModulePlayer::Update() {
 		}
 	}
 
+	if (isRespawning) {
+		deathCooldown = 0;
+		
+		if (spawnPoint < this->position.y) {
+			this->position.y--;
+		} 
+		if (spawnPoint >= this->position.y) {
+			immovable = false;
+			isRespawning = false;
+		}
+	}
+
+	if (invincible) {
+		invincibleCooldown++;
+		if (invincibleCooldown >= INVINCIBLE_DURATION) {
+			invincible = false;
+			isHit = false;
+			invincibleCooldown = 0;
+
+		}
+	}
+
+	
 	// Invincible frames
-	if (lives != 0) {
+	/*if (lives != 0) {
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
-			invincibleCooldown++;
-			if (spawnPoint < this->position.y) {
-				this->position.y--;
-			}
-			if (invincibleCooldown >= INVINCIBLE_DURATION) {
-				godMode = false;
-				isHit = false;
-				deathCooldown = 0;
-				invincibleCooldown = 0;
-			}
+			
+			
 		} else {
 			immovable = false;
 		}
-	}
+	}*/
 
 	// God mode cheat
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN) {
@@ -1763,7 +1776,7 @@ update_status ModulePlayer::Update() {
 
 	if (App->input->keys[SDL_SCANCODE_BACKSPACE] == KEY_STATE::KEY_DOWN) {
 		if (lives != 3) {
-			lives++;
+			lives = MAX_LIVES;
 		}
 	}
 
@@ -1781,8 +1794,6 @@ update_status ModulePlayer::Update() {
 	}
 
 	place = Place::LAND;
-
-
 
 	// Updates player collider position
 	collider->SetPos(position.x, position.y);
@@ -1896,28 +1907,28 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	if (c1 == collider) {
 		switch (c2->type) {
 		case Collider::Type::ENEMY:
-			if (!godMode && !isHit) {
+			if (!godMode && !isHit && !invincible) {
 				this->dead = true;
 				lives--;
 				this->isHit = true;
 			}
 			break;
 		case Collider::Type::ENEMY_SHOT:
-			if (!godMode && !isHit) {
+			if (!godMode && !isHit && !invincible) {
 				this->dead = true;
 				lives--;
 				this->isHit = true;
 			}
 			break;
 		case Collider::Type::EXPLOSION:
-			if (!godMode && !isHit) {
+			if (!godMode && !isHit && !invincible) {
 				this->dead = true;
 				lives--;
 				this->isHit = true;
 			}
 			break;
 		case Collider::Type::TRUCK:
-			if (!godMode && !isHit) {
+			if (!godMode && !isHit && !invincible) {
 				this->dead = true;
 				lives--;
 				this->isHit = true;
@@ -1934,7 +1945,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			c2->pendingToDelete = true;
 			break;
 		case Collider::Type::WALL:
-			if (invincibleCooldown == 0) {
+			if (!isRespawning) {
 				switch (movementDir) {
 				case UP:
 					position.y += speed;
@@ -1981,7 +1992,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 				place = Place::TRENCH;
 			break;
 		case Collider::Type::BREAKABLE:
-			if (invincibleCooldown == 0) {
+			if (!isRespawning) {
 				switch (movementDir) {
 				case UP:
 					position.y += speed;

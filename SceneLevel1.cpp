@@ -10,6 +10,7 @@
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
 #include "ModuleBreakable.h"
+#include "ModuleFonts.h"
 
 #define Y_BG_POSITION -3920
 
@@ -433,11 +434,13 @@ bool SceneLevel1::Start() {
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 736, -2960);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::BRIDGE, 736, -2928);
 
+	
 	App->player->Enable();
 	App->enemies->Enable();
 	App->powerups->Enable();
 	App->breakables->Enable();
 	App->collisions->Enable();
+	App->debug->Enable();
 
 	App->render->camera.x = App->player->position.x - SCREEN_WIDTH / SCREEN_SIZE + 32 / SCREEN_SIZE;
 	App->render->camera.y = App->player->position.y - SCREEN_HEIGHT / 3 * SCREEN_SIZE;
@@ -471,12 +474,13 @@ update_status SceneLevel1::PostUpdate() {
 
 bool SceneLevel1::CleanUp() {
 	// Disables the player, enemies and powerups.	
-
+	App->fonts->Disable();
 	App->breakables->Disable();
 	App->powerups->Disable();
 	App->enemies->Disable();
 	App->player->Disable();
 	App->collisions->Disable();
+	App->debug->Disable();
 
 	App->textures->Unload(mapTexture);
 	mapTexture = nullptr;

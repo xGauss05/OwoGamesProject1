@@ -10,6 +10,7 @@ struct Collider;
 
 #define MAX_AMMO	50
 #define MAX_GRENADES 50
+#define MAX_LIVES 3
 
 enum Directions {
 	UP, DOWN, RIGHT, 
@@ -176,6 +177,9 @@ public:
 	bool immovable = false;
 
 	bool isHit = false;
+	bool invincible = false;
+
+	bool isRespawning = false;
 	// Amount of shots available. Max defined in MAX_AMMO
 	ushort ammunition = 0;
 
@@ -189,7 +193,7 @@ public:
 	int t1 = 0;
 
 	// Lives of the player
-	ushort lives = 3;
+	ushort lives = MAX_LIVES;
 
 	// Amount of grenades available. Max defined in MAX_GRENADES
 	ushort grenades = MAX_GRENADES;

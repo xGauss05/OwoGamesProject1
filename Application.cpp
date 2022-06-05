@@ -46,7 +46,7 @@ Application::Application() {
 
 	modules[15] = fonts = new ModuleFonts(true);
 	modules[16] = fade = new ModuleFadeToBlack(true);
-	modules[17] = debug = new ModuleDebug(true);
+	modules[17] = debug = new ModuleDebug(false);
 	modules[18] = render = new ModuleRender(true);
 }
 
