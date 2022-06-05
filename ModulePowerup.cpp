@@ -136,6 +136,7 @@ void ModulePowerup::SpawnPowerup(const PowerupSpawnpoint& info) {
 				powerUps[i] = new Powerup_Hostage(info.x, info.y);
 				powerUps[i]->texture = this->hostageTexture;
 				powerUps[i]->pickUpFx = this->hostagePickUpFx;
+				
 			}
 			break;
 		}

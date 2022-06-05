@@ -10,6 +10,7 @@ public:
 	// Creates animation and movement data and the collider
 	Powerup_Hostage(int x, int y);
 
+	~Powerup_Hostage();
 	// The powerup is going to follow the different steps in the path
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
