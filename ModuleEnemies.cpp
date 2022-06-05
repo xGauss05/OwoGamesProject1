@@ -74,6 +74,7 @@ bool ModuleEnemies::CleanUp() {
 		if (enemies[i] != nullptr) {
 			App->textures->Unload(enemies[i]->texture);
 			App->audio->UnloadFx(enemies[i]->enemyDeadFx);
+			App->audio->UnloadFx(enemies[i]->enemyShotFx);
 			delete enemies[i];
 			enemies[i] = nullptr;
 		}
