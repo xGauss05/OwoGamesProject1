@@ -132,7 +132,16 @@ bool SceneTitle::Start() {
 
 update_status SceneTitle::Update() {
 
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || duration >= SCENE_DURATION) {
+	bool toSkip = false;
+	if (App->input->controllerCount > 0) {
+		for (int i = 0; i < App->input->controllerCount; ++i) {
+			if (App->input->controllers[i]->buttons[SDL_CONTROLLER_BUTTON_A] == KEY_DOWN) {
+				toSkip = true;
+			}
+		}
+	}
+
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || duration >= SCENE_DURATION || toSkip) {
 		App->fade->FadeToBlack(this, (Module*)App->level1, 0);
 	}
 

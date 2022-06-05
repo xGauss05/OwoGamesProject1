@@ -54,10 +54,19 @@ bool ScenePrevTitle::Start() {
 update_status ScenePrevTitle::Update() {
 	duration++;
 
+	bool toSkip = false;
+	if (App->input->controllerCount > 0) {
+		for (int i = 0; i < App->input->controllerCount; ++i) {
+			if (App->input->controllers[i]->buttons[SDL_CONTROLLER_BUTTON_A] == KEY_DOWN) {
+				toSkip = true;
+			}
+		}
+	}
+
 	switch (scenePart) {
 	case 0:
 		if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN ||
-			duration >= SCENE_DURATION / 2) {
+			duration >= SCENE_DURATION / 2 || toSkip) {
 			scenePart = 1;
 			App->render->camera.x = 0;
 			App->render->camera.y = 0;
@@ -65,7 +74,7 @@ update_status ScenePrevTitle::Update() {
 		break;
 	case 1:
 		if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN ||
-			duration >= SCENE_DURATION) {
+			duration >= SCENE_DURATION || toSkip) {
 			App->fade->FadeToBlack(this, (Module*)App->title, 90);
 		}
 		App->render->camera.y -= 2 * SCREEN_SIZE;
