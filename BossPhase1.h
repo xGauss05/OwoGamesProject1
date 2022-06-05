@@ -22,12 +22,25 @@ public:
 private:
 	// A set of steps that define the position in the screen
 	// And an animation for each step
+	Path inOutPath;
 	Path path;
+	int inOutTime = 100;
 
-	Animation topAnim;
-	Animation botAnim;
+	Animation topAnimIdle;
+	Animation topAnimSpawn;
+	Animation botAnimLeft;
+	Animation botAnimRight;
+	Animation botAnimSpawn;
 
-	int shootdelay;
+	bool inOut = true;
+	int inOutTimer = 0;
+
+	iPoint stayPos = { 0,0 };
+	int spawnDelay;
+	bool spawning;
+
+	int hits = 0;
+	int winWait = 0;
 };
 
 #endif // __BOSSPHASE1__

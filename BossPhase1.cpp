@@ -6,52 +6,113 @@
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h" //(Testing)
+#include "ModuleFadeToBlack.h"
+
+#include "ModuleFonts.h"
+#include <string>
 
 #define BOSSPHASE1_SCORE 100
 
 BossPhase1::BossPhase1(int x, int y) : Enemy(x, y)
 {
-	/*defaultTopAnim.PushBack({ 0, 0,32,32 });
-	defaultTopAnim.PushBack({ 32, 0,32,32 });
-	defaultTopAnim.PushBack({ 64, 0,32,32 });
-	defaultTopAnim.speed = 0.1f;
-	defaultTopAnim.pingpong = true;
-	currentAnimTop = &defaultTopAnim;
+	topAnimIdle.PushBack({ 96,0,32,32 });
+	currentAnimTop = &topAnimIdle;
 
-	botAnimLeft.PushBack({ 96, 192,32,32 });
-	botAnimLeft.PushBack({ 128,192,32,32 });
-	botAnimLeft.PushBack({ 160,192,32,32 });
-	botAnimLeft.PushBack({ 192,192,32,32 });
-	botAnimLeft.PushBack({ 224,192,32,32 });
+	topAnimSpawn.PushBack({ 128,0,32,32 });
+	topAnimSpawn.PushBack({ 64,0,32,32 });
+	topAnimSpawn.PushBack({ 160,0,32,32 });
+	topAnimSpawn.PushBack({ 0,0,32,32 });
+
+	topAnimSpawn.PushBack({ 32,0,32,32 });
+
+	topAnimSpawn.PushBack({ 0,0,32,32 });
+	topAnimSpawn.PushBack({ 160,0,32,32 });
+	topAnimSpawn.PushBack({ 64,0,32,32 });
+	topAnimSpawn.PushBack({ 128,0,32,32 });
+	topAnimSpawn.speed = 0.2f;
+	topAnimSpawn.loop = false;
+	//topAnimSpawn.pingpong = true;
+
+	botAnimLeft.PushBack({ 0,32,32,32 });
+	botAnimLeft.PushBack({ 32,32,32,32 });
+	botAnimLeft.PushBack({ 64,32,32,32 });
+	botAnimLeft.PushBack({ 96,32,32,32 });
+	botAnimLeft.PushBack({ 128,32,32,32 });
 	botAnimLeft.speed = 0.2f;
 	botAnimLeft.pingpong = true;
 
-	botAnimRight.PushBack({ 96, 64,32,32 });
+	botAnimRight.PushBack({ 0,64,32,32 });
+	botAnimRight.PushBack({ 32,64,32,32 });
+	botAnimRight.PushBack({ 64,64,32,32 });
+	botAnimRight.PushBack({ 96,64,32,32 });
 	botAnimRight.PushBack({ 128,64,32,32 });
-	botAnimRight.PushBack({ 160,64,32,32 });
-	botAnimRight.PushBack({ 192,64,32,32 });
-	botAnimRight.PushBack({ 224,64,32,32 });
 	botAnimRight.speed = 0.2f;
 	botAnimRight.pingpong = true;
-	currentAnimBot = &botAnimLeft;
+
+	botAnimSpawn.PushBack({ 64,64,32,32 });
+
+	inOutPath.PushBack({0, 2.0f},inOutTime,&botAnimLeft);
+	inOutPath.PushBack({0, -2.0f},inOutTime,&botAnimLeft);
 
 	path.PushBack({ -0.5f, 0 }, 100, &botAnimLeft);
 	path.PushBack({ 0.5f, 0 }, 100, &botAnimRight);
-	*/
 
-	//collider = App->collisions->AddCollider({ 0, 0, 36, 72 }, Collider::Type::ENEMY, (Module*)App->enemies);
-	collider = App->collisions->AddCollider({ 0, 0, 32, 64 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0, 0, 32, 64 }, Collider::Type::BOSS, (Module*)App->enemies);
 }
 
 void BossPhase1::Update()
 {
-	path.Update();
-	currentAnimBot = path.GetCurrentAnimation();
+	if (inOut)
+	{
+		if (inOutTimer >= inOutTime)
+		{
+			inOut = false;
+			inOutTimer = 0;
+			stayPos = position;
+		}
 
-	position = spawnPos + path.GetRelativePosition();
+		inOutPath.Update();
+		currentAnimBot = inOutPath.GetCurrentAnimation();
+		position = spawnPos + inOutPath.GetRelativePosition();
 
-	Shoot();
+		inOutTimer++;
+	}
 
+	if (!spawning && !inOut)
+	{
+		path.Update();
+		currentAnimBot = path.GetCurrentAnimation();
+
+		position = stayPos + path.GetRelativePosition();
+
+		if (hits < 50)
+			Shoot();
+	}
+	
+	else if (topAnimSpawn.HasFinished())
+	{
+		topAnimSpawn.Reset();
+		currentAnimTop = &topAnimIdle;
+		currentAnimBot = &botAnimSpawn;
+		spawning = false;
+	}
+	
+	if (hits >= 50)
+	{
+		stayPos = position;
+		inOut = true;
+		if (winWait >= inOutTime)
+		{
+			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->win, 0);
+		}
+		winWait++;
+	}
+
+	App->fonts->BlitText(10, SCREEN_HEIGHT - 40, 0, std::to_string(inOutTimer).c_str());
+	if (inOut)
+		App->fonts->BlitText(10, SCREEN_HEIGHT - 50, 0, "INOUT");
+	else
+		App->fonts->BlitText(10, SCREEN_HEIGHT - 50, 0, "NOT INOUT");
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();
@@ -59,20 +120,21 @@ void BossPhase1::Update()
 
 void BossPhase1::OnCollision(Collider* collider) {
 	if (collider->type == Collider::Type::PLAYER_SHOT) {
-		App->audio->PlayFx(enemyDeadFx);
-		App->player->score += 100;
+		hits++;
 	}
-	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-	//App->audio->PlayFx(enemyDeadFx);
 }
 
 void BossPhase1::Shoot()
 {
-	if (shootdelay >= 50)
+	if (spawnDelay >= 90)
 	{
-		App->particles->AddParticle(App->particles->grenade, position.x + 16, position.y + 32, Collider::Type::ENEMY_SHOT);
-		shootdelay = 0;
+		currentAnimTop = &topAnimSpawn;
+		App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x - 50, position.y + 70, 8);
+		App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x + 50, position.y + 70, 8);
+
+		spawnDelay = 0;
+		spawning = true;
 	}
 
-	shootdelay++;
+	spawnDelay++;
 }

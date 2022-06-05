@@ -22,6 +22,7 @@ struct Collider {
 		NON_DEST_BAR,
 		EXPLOSION,
 		TRUCK,
+		BOSS,
 
 		MAX
 	};

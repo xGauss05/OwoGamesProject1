@@ -147,9 +147,10 @@ void ModuleDebug::DebugDraw() {
 		App->fonts->BlitText(60, spawnBox + 40, 0, "1.GREENSOLDIER");
 		App->fonts->BlitText(60, spawnBox + 50, 0, "2.REDSOLDIER");
 		App->fonts->BlitText(60, spawnBox + 60, 0, "3.TACKLER");
-		App->fonts->BlitText(60, spawnBox + 70, 0, "4.HEAVY RIFLE");
-		App->fonts->BlitText(60, spawnBox + 80, 0, "5.FLAMETHROWER");
-		App->fonts->BlitText(60, spawnBox + 90, 0, "6.HOSTAGE");
+		App->fonts->BlitText(60, spawnBox + 70, 0, "4.BOSS");
+		App->fonts->BlitText(60, spawnBox + 80, 0, "5.HEAVY RIFLE");
+		App->fonts->BlitText(60, spawnBox + 90, 0, "6.FLAMETHROWER");
+		App->fonts->BlitText(60, spawnBox + 100, 0, "7.HOSTAGE");
 
 		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN && !behaviour)
 			behaviour = true;
@@ -161,12 +162,15 @@ void ModuleDebug::DebugDraw() {
 			App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, App->player->position.x, App->player->position.y - 400);
 
 		if (App->input->keys[SDL_SCANCODE_4] == KEY_DOWN && !behaviour)
-			App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, App->player->position.x, App->player->position.y - 32);
+			App->enemies->AddEnemy(ENEMY_TYPE::BOSS, App->player->position.x, App->player->position.y - 200, 0);
 
 		if (App->input->keys[SDL_SCANCODE_5] == KEY_DOWN && !behaviour)
-			App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, App->player->position.x, App->player->position.y - 32);
+			App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, App->player->position.x, App->player->position.y - 32);
 
 		if (App->input->keys[SDL_SCANCODE_6] == KEY_DOWN && !behaviour)
+			App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, App->player->position.x, App->player->position.y - 32);
+
+		if (App->input->keys[SDL_SCANCODE_7] == KEY_DOWN && !behaviour)
 			App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, App->player->position.x, App->player->position.y - 64);
 
 	}

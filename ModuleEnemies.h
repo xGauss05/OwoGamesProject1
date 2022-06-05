@@ -9,7 +9,7 @@
 enum class ENEMY_TYPE
 {
 	NO_TYPE, GREENSOLDIER,	REDSOLDIER, TACKLER,
-	TRUCK
+	TRUCK, BOSS
 };
 
 struct EnemySpawnpoint
@@ -90,6 +90,7 @@ private:
 	SDL_Texture* greenEnemyTexture = nullptr;
 	SDL_Texture* redEnemyTexture = nullptr;
 	SDL_Texture* truckEnemyTexture = nullptr;
+	SDL_Texture* bossTexture = nullptr;
 
 	// The audio fx for destroying an enemy (generic)
 	int enemyDestroyedFx = 0;

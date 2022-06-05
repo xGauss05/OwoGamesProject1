@@ -37,8 +37,12 @@ Enemy_GreenSoldier::Enemy_GreenSoldier(int x, int y, ushort behaviour) : Enemy(x
 	{
 		path.PushBack({ -1.0f,1.0f }, pathTransitionDuration, &botDownLeftWalk);
 	}
+	else if (behaviour == 8)
+	{
+		path.PushBack({ 0.0f,2.0f }, pathTransitionDuration/2, &botDownWalk);
+	}
 
-	if (behaviour != 0 && behaviour != 4)
+	if (behaviour != 0 && behaviour != 4 && behaviour != 8)
 	{
 		leaveDir = App->enemies->randVal(0, 2);
 
@@ -552,6 +556,11 @@ void Enemy_GreenSoldier::Update()
 			pathTransitionDelay = 0;
 			stationary = true;
 		}
+		else if (behaviour == 8 && pathTransitionDelay >= pathTransitionDuration / 2 && (shotCount < 2 || grenadeCount < 2))
+		{
+			pathTransitionDelay = 0;
+			stationary = true;
+		}
 		pathTransitionDelay++;
 	}
 
@@ -624,7 +633,7 @@ void Enemy_GreenSoldier::OnCollision(Collider* collider) {
 
 void Enemy_GreenSoldier::Shoot()
 {
-	if (behaviour < 4)
+	if (behaviour < 4 || behaviour == 8)
 	{
 		Burst();
 	}
@@ -639,12 +648,25 @@ void Enemy_GreenSoldier::Burst()
 {
 	if (!burst)
 	{
-		if (burstDelay >= 100)
+		if (behaviour == 8)
 		{
-			burstDelay = 0;
-			burst = true;
-			shotCount++;
+			if (burstDelay >= 40)
+			{
+				burstDelay = 0;
+				burst = true;
+				shotCount++;
+			}
 		}
+		else
+		{
+			if (burstDelay >= 80)
+			{
+				burstDelay = 0;
+				burst = true;
+				shotCount++;
+			}
+		}
+		
 		burstDelay++;
 	}
 
@@ -721,7 +743,7 @@ void Enemy_GreenSoldier::Burst()
 		}
 	}
 
-	if (behaviour != 0 && stationary && shotCount > 2)
+	if (behaviour != 0 && behaviour != 8 && stationary && shotCount > 2)
 	{
 		stationary = false;
 	}

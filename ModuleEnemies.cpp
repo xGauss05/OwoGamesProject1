@@ -14,6 +14,7 @@
 #include "Enemy_RedSoldier.h"
 #include "Enemy_Tackler.h"
 #include "Enemy_Truck.h"
+#include "BossPhase1.h"
 
 #include "Collider.h"
 #define SPAWN_MARGIN	50
@@ -30,6 +31,7 @@ bool ModuleEnemies::Start() {
 	greenEnemyTexture = App->textures->Load("Assets/img/sprites/Spritesheet Guerrilla Enemy OK 0.2.png");
 	redEnemyTexture = App->textures->Load("Assets/img/sprites/Red Enemy Spritesheet.png");
 	truckEnemyTexture = App->textures->Load("Assets/img/sprites/truck.png");
+	bossTexture = App->textures->Load("Assets/img/sprites/Guerrilla War Boss Spritesheet 2.0.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/sounds/sfx/194.wav");
 
 	srand(time(NULL));
@@ -64,6 +66,8 @@ bool ModuleEnemies::CleanUp() {
 	LOG("Freeing all enemies");
 	App->textures->Unload(greenEnemyTexture);
 	App->textures->Unload(redEnemyTexture);
+	App->textures->Unload(truckEnemyTexture);
+	App->textures->Unload(bossTexture);
 	App->audio->UnloadFx(enemyDestroyedFx);
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i) {
@@ -117,7 +121,7 @@ void ModuleEnemies::HandleEnemiesSpawn() {
 						spawnQueue[i].x -= SCREEN_WIDTH;
 						spawnQueue[i].y -= SCREEN_WIDTH;
 					}
-					else if (spawnQueue[i].behaviour == 2 || spawnQueue[i].behaviour == 6)
+					else if (spawnQueue[i].behaviour == 2 || spawnQueue[i].behaviour == 6 || spawnQueue[i].behaviour == 8)
 					{
 						spawnQueue[i].y -= SCREEN_WIDTH;
 					}
@@ -128,6 +132,11 @@ void ModuleEnemies::HandleEnemiesSpawn() {
 					}
 				}
 				else if (spawnQueue[i].type == ENEMY_TYPE::TACKLER)
+				{
+					spawnQueue[i].y -= SCREEN_WIDTH;
+				}
+
+				else if (spawnQueue[i].type == ENEMY_TYPE::BOSS)
 				{
 					spawnQueue[i].y -= SCREEN_WIDTH;
 				}
@@ -180,6 +189,11 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info) {
 				enemies[i]->texture = truckEnemyTexture;
 				enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
 				break;
+			case ENEMY_TYPE::BOSS:
+				enemies[i] = new BossPhase1(info.x, info.y);
+				enemies[i]->texture = bossTexture;
+				enemies[i]->enemyDeadFx = this->enemyDestroyedFx;
+				break;
 			}
 			break;
 		}
@@ -196,7 +210,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2) {
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}
-			if (c1->type != Collider::Type::TRUCK) {
+			if (c1->type != Collider::Type::TRUCK && c1->type != Collider::Type::BOSS) {
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}

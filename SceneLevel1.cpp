@@ -67,6 +67,11 @@ bool SceneLevel1::Start() {
 
 	App->enemies->AddEnemy(ENEMY_TYPE::TRUCK, 540, -1745);
 
+
+
+
+	App->enemies->AddEnemy(ENEMY_TYPE::BOSS, 800, -3700);
+
 	// Entities --- Add powerups here
 	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 240, -60);
 	//App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, 230, -60);
