@@ -22,7 +22,7 @@ The gameplay is about eliminating lots of hordes of enemy soldiers until you rea
 Keyboard controls
   WASD: Player movement
   IJKL: Player direction
-  SPACEBAR: Shoot
+  SPACEBAR: Shoot, Scene transitions, Continue
   E: Grenade
 ```
 
@@ -30,8 +30,9 @@ Keyboard controls
 Gamepad controls
   Left Joystick: Player movement
   Right Joystick: Player direction
-  X: Shoot
-  O: Grenade
+  RB: Shoot
+  X: Shoot, Scene transitions, Continue
+  O or LB: Grenade
 ```
 ## OwO Games - Our team
 
