@@ -175,6 +175,7 @@ public:
 	// Flag to prevent the player from moving
 	bool immovable = false;
 
+	bool isHit = false;
 	// Amount of shots available. Max defined in MAX_AMMO
 	ushort ammunition = 0;
 

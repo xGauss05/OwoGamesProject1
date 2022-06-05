@@ -406,6 +406,7 @@ bool ModulePlayer::Start() {
 	godMode = false;
 	isThrowing = false;
 	immovable = false;
+	isHit = false;
 
 	// Initiate player audios here
 	shotFx = App->audio->LoadFx("Assets/sounds/sfx/142.wav"); // shot sfx
@@ -1894,28 +1895,28 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 	if (c1 == collider) {
 		switch (c2->type) {
 		case Collider::Type::ENEMY:
-			if (godMode == false) {
+			if (!godMode && !isHit) {
 				this->dead = true;
 				lives--;
 				position.y += 10;
 			}
 			break;
 		case Collider::Type::ENEMY_SHOT:
-			if (godMode == false) {
+			if (!godMode && !isHit) {
 				this->dead = true;
 				lives--;
 				position.y += 10;
 			}
 			break;
 		case Collider::Type::EXPLOSION:
-			if (godMode == false) {
+			if (!godMode && !isHit) {
 				this->dead = true;
 				lives--;
 				position.y += 10;
 			}
 			break;
 		case Collider::Type::TRUCK:
-			if (godMode == false) {
+			if (!godMode && !isHit) {
 				this->dead = true;
 				lives--;
 				position.y += 10;
