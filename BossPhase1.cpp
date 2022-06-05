@@ -10,17 +10,17 @@
 
 #include "ModuleFonts.h"
 #include <string>
+#include "SDL/include/SDL.h"
 
 #define BOSSPHASE1_SCORE 100
 
-BossPhase1::BossPhase1(int x, int y) : Enemy(x, y)
-{
+BossPhase1::BossPhase1(int x, int y) : Enemy(x, y) {
 	topAnimIdle.PushBack({ 96,0,32,32 });
 	currentAnimTop = &topAnimIdle;
-
+	t1 = SDL_GetTicks();
 	topAnimSpawn.PushBack({ 128,0,32,32 });
 	topAnimSpawn.PushBack({ 64,0,32,32 });
-	topAnimSpawn.PushBack({ 160,0,32,32 });
+	topAnimSpawn.PushBack  ({ 160,0,32,32 });
 	topAnimSpawn.PushBack({ 0,0,32,32 });
 
 	topAnimSpawn.PushBack({ 32,0,32,32 });
@@ -51,8 +51,8 @@ BossPhase1::BossPhase1(int x, int y) : Enemy(x, y)
 
 	botAnimSpawn.PushBack({ 64,64,32,32 });
 
-	inOutPath.PushBack({0, 2.0f},inOutTime,&botAnimLeft);
-	inOutPath.PushBack({0, -2.0f},inOutTime,&botAnimLeft);
+	inOutPath.PushBack({ 0, 2.0f }, inOutTime, &botAnimLeft);
+	inOutPath.PushBack({ 0, -2.0f }, inOutTime, &botAnimLeft);
 
 	path.PushBack({ -0.5f, 0 }, 100, &botAnimLeft);
 	path.PushBack({ 0.5f, 0 }, 100, &botAnimRight);
@@ -60,12 +60,21 @@ BossPhase1::BossPhase1(int x, int y) : Enemy(x, y)
 	collider = App->collisions->AddCollider({ 0, 0, 32, 64 }, Collider::Type::BOSS, (Module*)App->enemies);
 }
 
-void BossPhase1::Update()
-{
-	if (inOut)
-	{
-		if (inOutTimer >= inOutTime)
-		{
+void BossPhase1::Update() {
+	
+	if (isHit) {
+		int t2 = SDL_GetTicks();
+		if (t2 - t1 > 5) {
+			t1 = t2;
+			explosionInvincible--;
+		}
+		if (explosionInvincible <= 0) {
+			isHit = false;
+			explosionInvincible = 5;
+		}
+	}
+	if (inOut) {
+		if (inOutTimer >= inOutTime) {
 			inOut = false;
 			inOutTimer = 0;
 			stayPos = position;
@@ -78,8 +87,7 @@ void BossPhase1::Update()
 		inOutTimer++;
 	}
 
-	if (!spawning && !inOut)
-	{
+	if (!spawning && !inOut) {
 		path.Update();
 		currentAnimBot = path.GetCurrentAnimation();
 
@@ -88,21 +96,18 @@ void BossPhase1::Update()
 		if (hits < 50)
 			Shoot();
 	}
-	
-	else if (topAnimSpawn.HasFinished())
-	{
+
+	else if (topAnimSpawn.HasFinished()) {
 		topAnimSpawn.Reset();
 		currentAnimTop = &topAnimIdle;
 		currentAnimBot = &botAnimSpawn;
 		spawning = false;
 	}
-	
-	if (hits >= 50)
-	{
+
+	if (hits >= 50) {
 		stayPos = position;
 		inOut = true;
-		if (winWait >= inOutTime)
-		{
+		if (winWait >= inOutTime) {
 			App->fade->FadeToBlack((Module*)App->level1, (Module*)App->win, 0);
 		}
 		winWait++;
@@ -122,15 +127,19 @@ void BossPhase1::OnCollision(Collider* collider) {
 	if (collider->type == Collider::Type::PLAYER_SHOT) {
 		hits++;
 	}
+	if (!isHit) {
+		if (collider->type == Collider::Type::EXPLOSION) {
+			hits += 2;
+			isHit = true;
+		}
+	}
 }
 
-void BossPhase1::Shoot()
-{
-	if (spawnDelay >= 90)
-	{
+void BossPhase1::Shoot() {
+	if (spawnDelay >= 90) {
 		currentAnimTop = &topAnimSpawn;
-		App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x - 50, position.y + 70, 8);
-		App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x + 50, position.y + 70, 8);
+		/*App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x - 50, position.y + 70, 8);
+		App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x + 50, position.y + 70, 8);*/
 
 		spawnDelay = 0;
 		spawning = true;

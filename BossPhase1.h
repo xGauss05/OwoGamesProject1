@@ -33,14 +33,16 @@ private:
 	Animation botAnimSpawn;
 
 	bool inOut = true;
+	bool isHit = false;
 	int inOutTimer = 0;
-
+	int explosionInvincible = 5;
 	iPoint stayPos = { 0,0 };
 	int spawnDelay;
 	bool spawning;
 
 	int hits = 0;
 	int winWait = 0;
+	int t1;
 };
 
 #endif // __BOSSPHASE1__
