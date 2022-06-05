@@ -12,7 +12,7 @@
 #include "Globals.h"
 #include "SDL/include/SDL.h"
 
-#define TRUCK_SCORE 500;
+#define TRUCK_SCORE 800;
 
 // Should appear once per level
 Enemy_Truck::Enemy_Truck(int x, int y) : Enemy(x, y) {
