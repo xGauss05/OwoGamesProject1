@@ -7,6 +7,7 @@
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h" //(Testing)
+#include "SceneLevel1.h"
 
 
 #include "ModuleFonts.h"
@@ -628,6 +629,11 @@ void Enemy_GreenSoldier::OnCollision(Collider* collider) {
 
 		App->particles->AddParticle(App->particles->greenDeathAnimTop, position.x, position.y + 1, Collider::Type::NONE);
 		App->particles->AddParticle(App->particles->greenDeathAnimBot, position.x, position.y + 32, Collider::Type::NONE);
+
+		if (behaviour == 8)
+		{
+			App->level1->bossMinions--;
+		}
 	}
 }
 

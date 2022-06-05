@@ -7,6 +7,7 @@
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h" //(Testing)
 #include "ModuleFadeToBlack.h"
+#include "SceneLevel1.h"
 
 #include "ModuleFonts.h"
 #include <string>
@@ -54,8 +55,8 @@ BossPhase1::BossPhase1(int x, int y) : Enemy(x, y) {
 	inOutPath.PushBack({ 0, 2.0f }, inOutTime, &botAnimLeft);
 	inOutPath.PushBack({ 0, -2.0f }, inOutTime, &botAnimLeft);
 
-	path.PushBack({ -0.5f, 0 }, 100, &botAnimLeft);
-	path.PushBack({ 0.5f, 0 }, 100, &botAnimRight);
+	path.PushBack({ -0.5f, 0 }, 200, &botAnimLeft);
+	path.PushBack({ 0.5f, 0 }, 200, &botAnimRight);
 
 	collider = App->collisions->AddCollider({ 0, 0, 32, 64 }, Collider::Type::BOSS, (Module*)App->enemies);
 }
@@ -112,12 +113,6 @@ void BossPhase1::Update() {
 		}
 		winWait++;
 	}
-
-	App->fonts->BlitText(10, SCREEN_HEIGHT - 40, 0, std::to_string(inOutTimer).c_str());
-	if (inOut)
-		App->fonts->BlitText(10, SCREEN_HEIGHT - 50, 0, "INOUT");
-	else
-		App->fonts->BlitText(10, SCREEN_HEIGHT - 50, 0, "NOT INOUT");
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();
@@ -138,8 +133,14 @@ void BossPhase1::OnCollision(Collider* collider) {
 void BossPhase1::Shoot() {
 	if (spawnDelay >= 90) {
 		currentAnimTop = &topAnimSpawn;
-		App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x - 50, position.y + 70, 8);
-		App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x + 50, position.y + 70, 8);
+
+		if (App->level1->bossMinions < MAX_MINIONS)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x - 50, position.y + 60, 8);
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x + 50, position.y + 60, 8);
+
+			App->level1->bossMinions += 2;
+		}
 
 		spawnDelay = 0;
 		spawning = true;

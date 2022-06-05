@@ -4,6 +4,8 @@
 #include "Module.h"
 #include "Animation.h"
 
+#define MAX_MINIONS 6
+
 struct SDL_Texture;
 
 class SceneLevel1 : public Module {
@@ -41,6 +43,8 @@ public:
 	// Bools to check if the music has changed
 	bool isLevelMusic = false;
 	bool isContinueMusic = false;
+
+	int bossMinions = 0;
 };
 
 #endif // __MODULE_SCENE1_H__
