@@ -433,31 +433,31 @@ bool ModulePlayer::Start() {
 void ModulePlayer::shootNormal() {
 	switch (facing) {
 	case Directions::UP:
-		App->particles->AddParticle(App->particles->shot_up, position.x + 19, position.y-16, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_up, position.x + 19, position.y - 16, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &upShotNorWeaponAnim;
 		break;
 	case Directions::UP_RIGHT:
-		App->particles->AddParticle(App->particles->shot_up_right, position.x + 29, position.y -10, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_up_right, position.x + 29, position.y - 10, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &upRightShotNorWeaponAnim;
 		break;
 	case Directions::UP_LEFT:
-		App->particles->AddParticle(App->particles->shot_up_left, position.x - 1, position.y-24, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_up_left, position.x - 1, position.y - 24, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &upLeftShotNorWeaponAnim;
 		break;
 	case Directions::DOWN:
-		App->particles->AddParticle(App->particles->shot_down, position.x + 9, position.y+4, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_down, position.x + 9, position.y + 4, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &downShotNorWeaponAnim;
 		break;
 	case Directions::DOWN_RIGHT:
-		App->particles->AddParticle(App->particles->shot_down_right, position.x + 25, position.y+16, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_down_right, position.x + 25, position.y + 16, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &downRightShotNorWeaponAnim;
 		break;
 	case Directions::DOWN_LEFT:
-		App->particles->AddParticle(App->particles->shot_down_left, position.x, position.y+4, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_down_left, position.x, position.y + 4, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &downLeftShotNorWeaponAnim;
 		break;
 	case Directions::RIGHT:
-		App->particles->AddParticle(App->particles->shot_right, position.x + 26, position.y-2, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->shot_right, position.x + 26, position.y - 2, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &rightShotNorWeaponAnim;
 		break;
 	case Directions::LEFT:
@@ -471,7 +471,7 @@ void ModulePlayer::shootHeavyRifle() {
 	ammunition--;
 	switch (facing) {
 	case Directions::UP:
-		App->particles->AddParticle(App->particles->hrifle_up, position.x + 19, position.y-16, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->hrifle_up, position.x + 19, position.y - 16, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &upShotPowWeaponAnim;
 		break;
 	case Directions::UP_RIGHT:
@@ -479,7 +479,7 @@ void ModulePlayer::shootHeavyRifle() {
 		currentWeaponAnim = &upRightShotPowWeaponAnim;
 		break;
 	case Directions::UP_LEFT:
-		App->particles->AddParticle(App->particles->hrifle_up_left, position.x - 1, position.y-24, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->hrifle_up_left, position.x - 1, position.y - 24, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &upLeftShotPowWeaponAnim;
 		break;
 	case Directions::DOWN:
@@ -487,7 +487,7 @@ void ModulePlayer::shootHeavyRifle() {
 		currentWeaponAnim = &downShotPowWeaponAnim;
 		break;
 	case Directions::DOWN_RIGHT:
-		App->particles->AddParticle(App->particles->hrifle_down_right, position.x + 25, position.y+16, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->hrifle_down_right, position.x + 25, position.y + 16, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &downRightShotPowWeaponAnim;
 		break;
 	case Directions::DOWN_LEFT:
@@ -509,35 +509,35 @@ void ModulePlayer::shootFlamethrower() {
 	ammunition--;
 	switch (facing) {
 	case Directions::UP:
-		App->particles->AddParticle(App->particles->fthrower_up, position.x + 13, position.y-82, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_up, position.x + 13, position.y - 82, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &upShotPowWeaponAnim;
 		break;
 	case Directions::UP_RIGHT:
-		App->particles->AddParticle(App->particles->fthrower_up_right, position.x + 32, position.y-46, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_up_right, position.x + 32, position.y - 46, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &upRightShotPowWeaponAnim;
 		break;
 	case Directions::UP_LEFT:
-		App->particles->AddParticle(App->particles->fthrower_up_left, position.x-32, position.y-58, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_up_left, position.x - 32, position.y - 58, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &upLeftShotPowWeaponAnim;
 		break;
 	case Directions::DOWN:
-		App->particles->AddParticle(App->particles->fthrower_down, position.x+1, position.y + 16, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_down, position.x + 1, position.y + 16, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &downShotPowWeaponAnim;
 		break;
 	case Directions::DOWN_RIGHT:
-		App->particles->AddParticle(App->particles->fthrower_down_right, position.x + 28, position.y+24, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_down_right, position.x + 28, position.y + 24, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &downRightShotPowWeaponAnim;
 		break;
 	case Directions::DOWN_LEFT:
-		App->particles->AddParticle(App->particles->fthrower_down_left, position.x-32, position.y, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_down_left, position.x - 32, position.y, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &downLeftShotPowWeaponAnim;
 		break;
 	case Directions::RIGHT:
-		App->particles->AddParticle(App->particles->fthrower_right, position.x + 32, position.y-8, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_right, position.x + 32, position.y - 8, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &rightShotPowWeaponAnim;
 		break;
 	case Directions::LEFT:
-		App->particles->AddParticle(App->particles->fthrower_left, position.x-64, position.y-4, Collider::Type::PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->fthrower_left, position.x - 64, position.y - 4, Collider::Type::PLAYER_SHOT);
 		currentWeaponAnim = &leftShotPowWeaponAnim;
 		break;
 	}
@@ -557,12 +557,12 @@ void ModulePlayer::throwGrenade() {
 	case Directions::UP_RIGHT:
 		App->particles->grenade.speed.x = 2;
 		App->particles->grenade.speed.y = -2;
-		App->particles->AddParticle(App->particles->grenade, position.x -8, position.y-8, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->grenade, position.x - 8, position.y - 8, Collider::Type::NONE);
 		break;
 	case Directions::UP_LEFT:
 		App->particles->grenade.speed.x = -2;
 		App->particles->grenade.speed.y = -2;
-		App->particles->AddParticle(App->particles->grenade, position.x+8, position.y, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->grenade, position.x + 8, position.y, Collider::Type::NONE);
 		break;
 	case Directions::DOWN:
 		App->particles->grenade.speed.x = 0;
@@ -572,7 +572,7 @@ void ModulePlayer::throwGrenade() {
 	case Directions::DOWN_RIGHT:
 		App->particles->grenade.speed.x = 2;
 		App->particles->grenade.speed.y = 2;
-		App->particles->AddParticle(App->particles->grenade, position.x + 16, position.y -8, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->grenade, position.x + 16, position.y - 8, Collider::Type::NONE);
 		break;
 	case Directions::DOWN_LEFT:
 		App->particles->grenade.speed.x = -2;
@@ -582,56 +582,49 @@ void ModulePlayer::throwGrenade() {
 	case Directions::RIGHT:
 		App->particles->grenade.speed.x = 2;
 		App->particles->grenade.speed.y = 0;
-		App->particles->AddParticle(App->particles->grenade, position.x + 28, position.y -16, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->grenade, position.x + 28, position.y - 16, Collider::Type::NONE);
 		break;
 	case Directions::LEFT:
 		App->particles->grenade.speed.x = -2;
 		App->particles->grenade.speed.y = 0;
-		App->particles->AddParticle(App->particles->grenade, position.x, position.y -16, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->grenade, position.x, position.y - 16, Collider::Type::NONE);
 		break;
 	}
 }
 
 bool ModulePlayer::checkMovingDir() {
-	
+
 	bool isActing = false;
-	
+
 	if (App->input->controllerCount > 0) {
 		for (int i = 0; i < App->input->controllerCount; ++i) {
 			if (App->input->controllers[i]->j1_x > 15000) {
 				if (App->input->controllers[i]->j1_y > 15000) {
 					movementDir = DOWN_RIGHT;
 					isActing = true;
-				}
-				else if (App->input->controllers[i]->j1_y < -15000) {
+				} else if (App->input->controllers[i]->j1_y < -15000) {
 					movementDir = UP_RIGHT;
 					isActing = true;
-				}
-				else {
+				} else {
 					movementDir = RIGHT;
 					isActing = true;
 				}
-			}
-			else if (App->input->controllers[i]->j1_x < -15000) {
+			} else if (App->input->controllers[i]->j1_x < -15000) {
 				if (App->input->controllers[i]->j1_y > 15000) {
 					movementDir = DOWN_LEFT;
 					isActing = true;
-				}
-				else if (App->input->controllers[i]->j1_y < -15000) {
+				} else if (App->input->controllers[i]->j1_y < -15000) {
 					movementDir = UP_LEFT;
 					isActing = true;
-				}
-				else {
+				} else {
 					movementDir = LEFT;
 					isActing = true;
 				}
-			}
-			else {
+			} else {
 				if (App->input->controllers[i]->j1_y > 15000) {
 					movementDir = DOWN;
 					isActing = true;
-				}
-				else if (App->input->controllers[i]->j1_y < -15000) {
+				} else if (App->input->controllers[i]->j1_y < -15000) {
 					movementDir = UP;
 					isActing = true;
 				}
@@ -654,70 +647,70 @@ bool ModulePlayer::checkMovingDir() {
 		}
 		// Direction to UP_RIGHT
 		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+				 App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
 			movementDir = UP_RIGHT;
 			isActing = true;
 		}
 		// Direction to RIGHT
 		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+				 App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
 			movementDir = RIGHT;
 			isActing = true;
 		}
 		// Direction to DOWN_RIGHT
 		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+				 App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
+				 App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
 			movementDir = DOWN_RIGHT;
 			isActing = true;
 		}
 		// Direction to DOWN
 		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+				 App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
+				 App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			movementDir = Directions::DOWN;
 			isActing = true;
 		}
 		// Direction to DOWN_LEFT
 		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+				 App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
+				 App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT &&
+				 App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			movementDir = DOWN_LEFT;
 			isActing = true;
 		}
 		// Direction to LEFT
 		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+				 App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
+				 App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			movementDir = LEFT;
 			isActing = true;
 		}
 
 		// Direction to UP_LEFT
 		else if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
+				 App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT &&
+				 App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE) {
 			movementDir = UP_LEFT;
 			isActing = true;
 		}
 	}
 
-	
+
 	return isActing;
-	
+
 }
 
 bool ModulePlayer::checkFacingDir() {
-	
+
 	bool isActing = false;
 
 	if (App->input->controllerCount > 0) {
@@ -726,36 +719,29 @@ bool ModulePlayer::checkFacingDir() {
 				if (App->input->controllers[i]->j2_y > 15000) {
 					facing = DOWN_RIGHT;
 					isActing = true;
-				}
-				else if (App->input->controllers[i]->j2_y < -15000) {
+				} else if (App->input->controllers[i]->j2_y < -15000) {
 					facing = UP_RIGHT;
 					isActing = true;
-				}
-				else {
+				} else {
 					facing = RIGHT;
 					isActing = true;
 				}
-			}
-			else if (App->input->controllers[i]->j2_x < -15000) {
+			} else if (App->input->controllers[i]->j2_x < -15000) {
 				if (App->input->controllers[i]->j2_y > 15000) {
 					facing = DOWN_LEFT;
 					isActing = true;
-				}
-				else if (App->input->controllers[i]->j2_y < -15000) {
+				} else if (App->input->controllers[i]->j2_y < -15000) {
 					facing = UP_LEFT;
 					isActing = true;
-				}
-				else {
+				} else {
 					facing = LEFT;
 					isActing = true;
 				}
-			}
-			else {
+			} else {
 				if (App->input->controllers[i]->j2_y > 15000) {
 					facing = DOWN;
 					isActing = true;
-				}
-				else if (App->input->controllers[i]->j2_y < -15000) {
+				} else if (App->input->controllers[i]->j2_y < -15000) {
 					facing = UP;
 					isActing = true;
 				}
@@ -767,7 +753,7 @@ bool ModulePlayer::checkFacingDir() {
 		App->input->keys[SDL_SCANCODE_J] != KEY_STATE::KEY_IDLE ||
 		App->input->keys[SDL_SCANCODE_K] != KEY_STATE::KEY_IDLE ||
 		App->input->keys[SDL_SCANCODE_L] != KEY_STATE::KEY_IDLE) {
-	
+
 		// Direction to UP
 		if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
 			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
@@ -778,68 +764,68 @@ bool ModulePlayer::checkFacingDir() {
 		}
 		// Direction to UP_RIGHT
 		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
+				 App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
 			facing = UP_RIGHT;
 			isActing = true;
 		}
 		// Direction to RIGHT
 		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
+				 App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
 			facing = RIGHT;
 			isActing = true;
 		}
 		// Direction to DOWN_RIGHT
 		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
+				 App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
+				 App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT) {
 			facing = DOWN_RIGHT;
 			isActing = true;
 		}
 		// Direction to DOWN
 		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+				 App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
+				 App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
 			facing = DOWN;
 			isActing = true;
 		}
 		// Direction to DOWN_LEFT
 		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+				 App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
+				 App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_REPEAT &&
+				 App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
 			facing = DOWN_LEFT;
 			isActing = true;
 		}
 		// Direction to LEFT
 		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+				 App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
+				 App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
 			facing = LEFT;
 			isActing = true;
 		}
-	
+
 		// Direction to UP_LEFT
 		else if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
-			App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
-			App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
+				 App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_REPEAT &&
+				 App->input->keys[SDL_SCANCODE_K] == KEY_STATE::KEY_IDLE &&
+				 App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_IDLE) {
 			facing = UP_LEFT;
 			isActing = true;
 		}
 	}
-	
+
 	return isActing;
 }
 
 update_status ModulePlayer::Update() {
-	
+
 	if (!dead) {
 		if (checkFacingDir()) {
 			switch (facing) {
@@ -856,8 +842,7 @@ update_status ModulePlayer::Update() {
 				}
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &upNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &upPowWeaponAnim;
 				}
 
@@ -876,8 +861,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &upRightNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &upRightPowWeaponAnim;
 				}
 
@@ -896,8 +880,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &rightNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &rightPowWeaponAnim;
 				}
 
@@ -916,8 +899,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &downRightNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &downRightPowWeaponAnim;
 				}
 
@@ -936,8 +918,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &downNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &downPowWeaponAnim;
 				}
 
@@ -956,8 +937,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &downLeftNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &downLeftPowWeaponAnim;
 				}
 
@@ -976,8 +956,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &leftNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &leftPowWeaponAnim;
 				}
 
@@ -996,8 +975,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &upLeftNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &upLeftPowWeaponAnim;
 				}
 
@@ -1019,70 +997,61 @@ update_status ModulePlayer::Update() {
 			case UP:
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &upNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &upPowWeaponAnim;
 				}
 				break;
 			case DOWN:
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &downNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &downPowWeaponAnim;
 				}
 				break;
 			case RIGHT:
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &rightNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &rightPowWeaponAnim;
 				}
 				break;
 			case LEFT:
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &leftNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &leftPowWeaponAnim;
 				}
 				break;
 			case UP_RIGHT:
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &upRightNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &upRightPowWeaponAnim;
 				}
 				break;
 			case UP_LEFT:
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &upLeftNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &upLeftPowWeaponAnim;
 				}
 				break;
 			case DOWN_RIGHT:
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &downRightNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &downRightPowWeaponAnim;
 				}
 				break;
 			case DOWN_LEFT:
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &downLeftNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &downLeftPowWeaponAnim;
 				}
 				break;
 			}
-		}
-		else {
+		} else {
 			switch (movementDir) {
 			case Directions::UP:
 				position.y -= speed;
@@ -1245,7 +1214,7 @@ update_status ModulePlayer::Update() {
 			case UP:
 				if (!isThrowing)
 					currentAnimTop = &upAnimTop;
-				else if (currentAnimTop != &upThrowGrenade){
+				else if (currentAnimTop != &upThrowGrenade) {
 					int suppVar = currentAnimTop->GetCurrentFrameNum();
 					currentAnimTop = &upThrowGrenade;
 					currentAnimTop->Reset();
@@ -1254,8 +1223,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &upNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &upPowWeaponAnim;
 				}
 
@@ -1299,8 +1267,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &downNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &downPowWeaponAnim;
 				}
 
@@ -1343,8 +1310,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &rightNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &rightPowWeaponAnim;
 				}
 
@@ -1391,8 +1357,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &leftNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &leftPowWeaponAnim;
 				}
 
@@ -1435,8 +1400,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &upRightNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &upRightPowWeaponAnim;
 				}
 
@@ -1479,8 +1443,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &upLeftNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &upLeftPowWeaponAnim;
 				}
 
@@ -1523,8 +1486,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &downRightNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &downRightPowWeaponAnim;
 				}
 
@@ -1567,8 +1529,7 @@ update_status ModulePlayer::Update() {
 
 				if (weapon == Weapon::NORMAL) {
 					currentWeaponAnim = &downLeftNorWeaponAnim;
-				}
-				else {
+				} else {
 					currentWeaponAnim = &downLeftPowWeaponAnim;
 				}
 
@@ -1662,7 +1623,7 @@ update_status ModulePlayer::Update() {
 					if (currentAnimTop != &upThrowGrenade) {
 						currentAnimTop = &upThrowGrenade;
 					}
-						
+
 					break;
 				case UP_RIGHT:
 					upRightThrowGrenade.Reset();
@@ -1672,7 +1633,7 @@ update_status ModulePlayer::Update() {
 					break;
 				case UP_LEFT:
 					upLeftThrowGrenade.Reset();
-					if (currentAnimTop != &upLeftThrowGrenade) {	
+					if (currentAnimTop != &upLeftThrowGrenade) {
 						currentAnimTop = &upLeftThrowGrenade;
 					}
 					break;
@@ -1731,12 +1692,12 @@ update_status ModulePlayer::Update() {
 		if (deathCooldown >= DEATH_ANIM_DURATION) {
 
 			if (lives == 0) {
-		
+
 
 				int t2 = SDL_GetTicks();
 				if ((t2 - t1) / 1000.0f >= 1) {
 					continueCooldown--;
-					t1 = t2;	
+					t1 = t2;
 				}
 
 				if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) {
@@ -1836,7 +1797,7 @@ update_status ModulePlayer::PostUpdate() {
 	if (!dead) {
 		switch (facing) {
 		case Directions::LEFT:
-			App->render->Blit(weaponTexture, position.x - 14, position.y -17, &rect);
+			App->render->Blit(weaponTexture, position.x - 14, position.y - 17, &rect);
 			break;
 		case Directions::UP_LEFT:
 			App->render->Blit(weaponTexture, position.x - 14, position.y - 31, &rect);
@@ -1845,10 +1806,10 @@ update_status ModulePlayer::PostUpdate() {
 			App->render->Blit(weaponTexture, position.x, position.y - 30, &rect);
 			break;
 		case Directions::RIGHT:
-			App->render->Blit(weaponTexture, position.x + 10, position.y -16, &rect);
+			App->render->Blit(weaponTexture, position.x + 10, position.y - 16, &rect);
 			break;
 		case Directions::UP_RIGHT:
-			App->render->Blit(weaponTexture, position.x + 15, position.y -22, &rect);
+			App->render->Blit(weaponTexture, position.x + 15, position.y - 22, &rect);
 			break;
 		}
 	}
@@ -1857,7 +1818,7 @@ update_status ModulePlayer::PostUpdate() {
 	App->render->Blit(playerTexture, position.x, position.y + 5, &rect);
 
 	rect = currentAnimTop->GetCurrentFrame();
-	App->render->Blit(playerTexture, position.x, position.y-24, &rect);
+	App->render->Blit(playerTexture, position.x, position.y - 24, &rect);
 
 	rect = currentWeaponAnim->GetCurrentFrame();
 	if (!dead) {
@@ -1873,7 +1834,7 @@ update_status ModulePlayer::PostUpdate() {
 			break;
 		}
 	}
-		
+
 	// Parallax
 	if (App->level1->IsEnabled()) {
 		App->level1->DrawParallax();
@@ -1936,18 +1897,28 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2) {
 			if (godMode == false) {
 				this->dead = true;
 				lives--;
+				position.y += 10;
 			}
 			break;
 		case Collider::Type::ENEMY_SHOT:
 			if (godMode == false) {
 				this->dead = true;
 				lives--;
+				position.y += 10;
 			}
 			break;
 		case Collider::Type::EXPLOSION:
 			if (godMode == false) {
 				this->dead = true;
 				lives--;
+				position.y += 10;
+			}
+			break;
+		case Collider::Type::TRUCK:
+			if (godMode == false) {
+				this->dead = true;
+				lives--;
+				position.y += 10;
 			}
 			break;
 		case Collider::Type::POWER_UP:
