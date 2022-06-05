@@ -62,6 +62,7 @@ _Ariadna Sevcik's Github and role_
 
 ## Links
 
+- [Twitter](https://twitter.com/0woGames)
 - [Wikipage](https://github.com/xGauss05/OwoGamesProject1/wiki)
 - [Latest release]()
 - [Repository](https://github.com/xGauss05/OwoGamesProject1)
