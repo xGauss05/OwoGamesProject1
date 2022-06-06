@@ -157,10 +157,11 @@ void ModuleDebug::DebugDraw() {
 		App->fonts->BlitText(60, spawnBox + 40, 0, "1.GREENSOLDIER");
 		App->fonts->BlitText(60, spawnBox + 50, 0, "2.REDSOLDIER");
 		App->fonts->BlitText(60, spawnBox + 60, 0, "3.TACKLER");
-		App->fonts->BlitText(60, spawnBox + 70, 0, "4.BOSS");
-		App->fonts->BlitText(60, spawnBox + 80, 0, "5.HEAVY RIFLE");
-		App->fonts->BlitText(60, spawnBox + 90, 0, "6.FLAMETHROWER");
-		App->fonts->BlitText(60, spawnBox + 100, 0, "7.HOSTAGE");
+		App->fonts->BlitText(60, spawnBox + 70, 0, "4.TRUCK");
+		App->fonts->BlitText(60, spawnBox + 80, 0, "5.BOSS");
+		App->fonts->BlitText(60, spawnBox + 90, 0, "6.HEAVY RIFLE");
+		App->fonts->BlitText(60, spawnBox + 100, 0, "7.FLAMETHROWER");
+		App->fonts->BlitText(60, spawnBox + 110, 0, "8.HOSTAGE");
 
 		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN && !behaviour)
 			behaviour = true;
@@ -172,22 +173,24 @@ void ModuleDebug::DebugDraw() {
 			App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, App->render->camera.x+(mouse.x/2), App->render->camera.y + mouse.y);
 
 		if (App->input->keys[SDL_SCANCODE_4] == KEY_DOWN && !behaviour)
-			App->enemies->AddEnemy(ENEMY_TYPE::BOSS, App->render->camera.x + (mouse.x / 2), App->render->camera.y + mouse.y, 0);
+			App->enemies->AddEnemy(ENEMY_TYPE::TRUCK, App->render->camera.x + (mouse.x / 2), App->render->camera.y + (mouse.y / 2), 0);
 
 		if (App->input->keys[SDL_SCANCODE_5] == KEY_DOWN && !behaviour)
+			App->enemies->AddEnemy(ENEMY_TYPE::BOSS, App->render->camera.x + (mouse.x / 2), App->render->camera.y + mouse.y, 0);
+			
+		if (App->input->keys[SDL_SCANCODE_6] == KEY_DOWN && !behaviour)
 			App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, App->render->camera.x + (mouse.x / 2), App->render->camera.y + (mouse.y / 2));
 
-		if (App->input->keys[SDL_SCANCODE_6] == KEY_DOWN && !behaviour)
-			App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, App->render->camera.x + (mouse.x / 2), App->render->camera.y + (mouse.y / 2));
-
 		if (App->input->keys[SDL_SCANCODE_7] == KEY_DOWN && !behaviour)
+			App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, App->render->camera.x + (mouse.x / 2), App->render->camera.y + (mouse.y / 2));
+			
+		if (App->input->keys[SDL_SCANCODE_8] == KEY_DOWN && !behaviour)
 			App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, App->render->camera.x + (mouse.x / 2), App->render->camera.y + (mouse.y / 2));
-
 	}
 
 	if (behaviour)
 	{
-		App->fonts->BlitText(60, spawnBox + 110, 0, "CHOOSE BEHAVIOUR 0-7");
+		App->fonts->BlitText(60, spawnBox + 120, 0, "CHOOSE BEHAVIOUR 0-7");
 
 		if (App->input->keys[SDL_SCANCODE_0] == KEY_DOWN)
 		{
