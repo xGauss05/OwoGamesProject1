@@ -27,7 +27,7 @@ bool SceneLevel1::Start() {
 
 	bool ret = true;
 
-	mapTexture = App->textures->Load("Assets/img/sprites/map_broken_WIP.png");
+	mapTexture = App->textures->Load("Assets/img/sprites/map_broken.png");
 	parallaxTexture = App->textures->Load("Assets/img/sprites/paralax_map.png");
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 	
