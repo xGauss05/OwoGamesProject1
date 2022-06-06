@@ -30,10 +30,10 @@ ModuleEnemies::~ModuleEnemies() {
 }
 
 bool ModuleEnemies::Start() {
-	greenEnemyTexture = App->textures->Load("Assets/img/sprites/Spritesheet Guerrilla Enemy OK 0.2.png");
-	redEnemyTexture = App->textures->Load("Assets/img/sprites/Red Enemy Spritesheet.png");
+	greenEnemyTexture = App->textures->Load("Assets/img/sprites/green_enemy.png");
+	redEnemyTexture = App->textures->Load("Assets/img/sprites/red_enemy.png");
 	truckEnemyTexture = App->textures->Load("Assets/img/sprites/truck.png");
-	bossTexture = App->textures->Load("Assets/img/sprites/Guerrilla War Boss Spritesheet 2.0.png");
+	bossTexture = App->textures->Load("Assets/img/sprites/boss.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/sounds/sfx/194.wav");
 
 	srand(time(NULL));

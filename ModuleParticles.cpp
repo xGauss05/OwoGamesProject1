@@ -21,8 +21,8 @@ bool ModuleParticles::Start() {
 	bulletsTexture = App->textures->Load("Assets/img/sprites/bullets.png");
 	explosionTexture = App->textures->Load("Assets/img/sprites/explosions.png");
 	hostageTexture = App->textures->Load("Assets/img/sprites/hostage.png");
-	greenEnemiesTexture = App->textures->Load("Assets/img/sprites/Spritesheet Guerrilla Enemy OK 0.2.png");
-	redEnemiesTexture = App->textures->Load("Assets/img/sprites/Red Enemy Spritesheet.png");
+	greenEnemiesTexture = App->textures->Load("Assets/img/sprites/green_enemy.png");
+	redEnemiesTexture = App->textures->Load("Assets/img/sprites/red_enemy.png");
 	truckTexture = App->textures->Load("Assets/img/sprites/truck.png");
 	grenadeExplosionFx = App->audio->LoadFx("Assets/sounds/sfx/186.wav");
 
