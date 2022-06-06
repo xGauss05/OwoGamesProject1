@@ -65,8 +65,8 @@ update_status ScenePrevTitle::Update() {
 
 	switch (scenePart) {
 	case 0:
-		if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN ||
-			duration >= SCENE_DURATION / 2 || toSkip) {
+		if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN ||
+			duration >= SCENE_DURATION / 2 || toSkip) && duration > 80) {
 			scenePart = 1;
 			App->render->camera.x = 0;
 			App->render->camera.y = 0;
