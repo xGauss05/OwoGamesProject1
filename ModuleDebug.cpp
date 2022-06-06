@@ -14,6 +14,11 @@
 #include <string>
 using namespace std;
 
+struct {
+	int x, y;
+	
+} mouse;
+
 ModuleDebug::ModuleDebug(bool startEnabled) : Module(startEnabled) {
 	debug = false;
 }
@@ -29,6 +34,8 @@ bool ModuleDebug::Start() {
 }
 
 update_status ModuleDebug::Update() {
+	int state = SDL_GetMouseState(&mouse.x, &mouse.y);
+	LOG("Mouse(x,y)=(%d,%d)", mouse.x, mouse.y);
 	if (App->input->keys[SDL_SCANCODE_F2] == KEY_DOWN)
 		debug = !debug;
 
@@ -59,7 +66,7 @@ update_status ModuleDebug::PostUpdate() {
 }
 
 void ModuleDebug::DebugDraw() {
-
+	
 	Uint8 alpha = 80;
 	for (uint i = 0; i < MAX_COLLIDERS; ++i) {
 		if (App->collisions->colliders[i] == nullptr)
@@ -140,7 +147,7 @@ void ModuleDebug::DebugDraw() {
 	if (behaviour)
 		if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN)
 		{
-			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->player->position.x, App->player->position.y - 120, 1);
+			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, App->render->camera.x + mouse.x, App->render->camera.y + mouse.y, 1);
 			behaviour = false;
 		}
 
@@ -159,22 +166,22 @@ void ModuleDebug::DebugDraw() {
 			behaviour = true;
 
 		if (App->input->keys[SDL_SCANCODE_2] == KEY_DOWN && !behaviour)
-			App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, App->player->position.x, App->player->position.y - 100, 0);
+			App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, App->render->camera.x + (mouse.x / 2), App->render->camera.y + mouse.y, 0);
 
 		if (App->input->keys[SDL_SCANCODE_3] == KEY_DOWN && !behaviour)
-			App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, App->player->position.x, App->player->position.y - 400);
+			App->enemies->AddEnemy(ENEMY_TYPE::TACKLER, App->render->camera.x+(mouse.x/2), App->render->camera.y + mouse.y);
 
 		if (App->input->keys[SDL_SCANCODE_4] == KEY_DOWN && !behaviour)
-			App->enemies->AddEnemy(ENEMY_TYPE::BOSS, App->player->position.x, App->player->position.y - 200, 0);
+			App->enemies->AddEnemy(ENEMY_TYPE::BOSS, App->render->camera.x + (mouse.x / 2), App->render->camera.y + mouse.y, 0);
 
 		if (App->input->keys[SDL_SCANCODE_5] == KEY_DOWN && !behaviour)
-			App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, App->player->position.x, App->player->position.y - 32);
+			App->powerups->AddPowerup(POWERUP_TYPE::HEAVY_RIFLE, App->render->camera.x + (mouse.x / 2), App->render->camera.y + (mouse.y / 2));
 
 		if (App->input->keys[SDL_SCANCODE_6] == KEY_DOWN && !behaviour)
-			App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, App->player->position.x, App->player->position.y - 32);
+			App->powerups->AddPowerup(POWERUP_TYPE::FLAMETHROWER, App->render->camera.x + (mouse.x / 2), App->render->camera.y + (mouse.y / 2));
 
 		if (App->input->keys[SDL_SCANCODE_7] == KEY_DOWN && !behaviour)
-			App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, App->player->position.x, App->player->position.y - 64);
+			App->powerups->AddPowerup(POWERUP_TYPE::HOSTAGE, App->render->camera.x + (mouse.x / 2), App->render->camera.y + (mouse.y / 2));
 
 	}
 
