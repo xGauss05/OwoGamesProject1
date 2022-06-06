@@ -64,5 +64,5 @@ _Ariadna Sevcik's Github and role_
 
 - [Twitter](https://twitter.com/0woGames)
 - [Wikipage](https://github.com/xGauss05/OwoGamesProject1/wiki)
-- [Latest release]()
+- [Latest release](https://github.com/xGauss05/OwoGamesProject1/releases/tag/GuerrillaWar-v1.0)
 - [Repository](https://github.com/xGauss05/OwoGamesProject1)
