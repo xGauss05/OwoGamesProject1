@@ -9,17 +9,49 @@ The main objective of the game is to reach the final part while shooting your wa
 - Set the path to $(ProjectDir)/Game/
 
 ## Controls
-+ W, A, S, D : Movement controls
-+ I, J, K, L : Sets the direction where the player looks
-+ SPACE BAR: Shoot
-+ E: Throw grenade (TBI)
+Keyboard controls
+  WASD: Player movement
+  IJKL: Player direction
+  SPACEBAR: Shoot, Scene transitions, Continue
+  E: Grenade
+
+Gamepad controls
+  Left Joystick: Player movement
+  Right Joystick: Player direction
+  RB: Shoot
+  X (PlayStation), A (XBox): Shoot, Scene transitions, Continue
+  O (PlayStation), B (XBox) or LB: Grenade
 
 ## Debug controls
-+ F1: Enable/Disable God Mode
-+ F2: Show all colliders
-+ F3: Instant win
-+ F4: Instant lose
-+ F5: Camera debug (while enabled, move the camera with ARROW KEYS)
+F1 to enable God Mode
+
+F2 to enable Debug Mode (shows enemy colliders and directions)
+- Z: Shows variables: player position, controller, camera positions, god mode, free camera
+- X: Opens spawn menu. (cannot open while the teleport menu is open) SPAWNS ON MOUSE POSITION
+	- 1: Green soldier
+		- 0 ~ 7 for a behaviour
+	- 2: Red soldier
+	- 3: Tackler
+	- 4: Truck
+	- 5: Boss
+	- 6: Heavy Rifle
+	- 7: Flamethrower
+	- 8: Hostage
+- C: Check camera limits
+- V: Opens Teleport menu. (cannot open while the spawn menu is open)
+	- 1: Start
+	- 2: Fence
+	- 3: Bridge
+	- 4: Boss
+
+F3 to Instant Win
+
+F4 to Instant Lose (loses 1 life)
+
+F5 for camera debug.
+While the camera debug is activated, move the camera with the Arrow Keys.
+
+Backspace to gain max lives (Max: 3)
 
 ## Team members
 + Project Repository: [Link](https://github.com/xGauss05/OwoGamesProject1)
