@@ -19,9 +19,10 @@ BossPhase1::BossPhase1(int x, int y) : Enemy(x, y) {
 	topAnimIdle.PushBack({ 96,0,32,32 });
 	currentAnimTop = &topAnimIdle;
 	t1 = SDL_GetTicks();
+	spawnFx = App->audio->LoadFx("Assets/sounds/sfx/193.wav");
 	topAnimSpawn.PushBack({ 128,0,32,32 });
 	topAnimSpawn.PushBack({ 64,0,32,32 });
-	topAnimSpawn.PushBack  ({ 160,0,32,32 });
+	topAnimSpawn.PushBack({ 160,0,32,32 });
 	topAnimSpawn.PushBack({ 0,0,32,32 });
 
 	topAnimSpawn.PushBack({ 32,0,32,32 });
@@ -61,8 +62,12 @@ BossPhase1::BossPhase1(int x, int y) : Enemy(x, y) {
 	collider = App->collisions->AddCollider({ 0, 0, 32, 64 }, Collider::Type::BOSS, (Module*)App->enemies);
 }
 
+BossPhase1::~BossPhase1() {
+	App->audio->UnloadFx(this->spawnFx);
+	Enemy::~Enemy();
+}
 void BossPhase1::Update() {
-	
+
 	if (isHit) {
 		int t2 = SDL_GetTicks();
 		if (t2 - t1 >= 5) {
@@ -134,11 +139,10 @@ void BossPhase1::Shoot() {
 	if (spawnDelay >= 90) {
 		currentAnimTop = &topAnimSpawn;
 
-		if (App->level1->bossMinions < MAX_MINIONS)
-		{
+		if (App->level1->bossMinions < MAX_MINIONS) {
 			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x - 50, position.y + 60, 8);
 			App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, position.x + 50, position.y + 60, 8);
-
+			App->audio->PlayFx(spawnFx);
 			App->level1->bossMinions += 2;
 		}
 

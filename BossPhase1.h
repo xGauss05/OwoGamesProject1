@@ -11,6 +11,8 @@ public:
 	// Creates animation and movement data and the collider
 	BossPhase1(int x, int y);
 
+	~BossPhase1();
+
 	// The enemy is going to follow the different steps in the path
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
@@ -40,6 +42,7 @@ private:
 	int spawnDelay;
 	bool spawning;
 
+	int spawnFx;
 	int hits = 0;
 	int winWait = 0;
 	int t1;
