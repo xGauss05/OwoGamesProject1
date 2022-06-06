@@ -32,6 +32,8 @@ bool SceneLevel1::Start() {
 	App->audio->PlayMusic("Assets/sounds/bgm/106.ogg", 1.0f); // bgm Farm
 	
 	// Enemies --- Add all the enemies here
+
+	//First part
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 191, -275, 6);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 223, -275, 6);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 255, -275, 6);
@@ -47,8 +49,6 @@ bool SceneLevel1::Start() {
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 220, -630, 1);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 260, -630, 3);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 292, -630, 3);
-
-	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 220, -660, 6);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 298, -480, 2);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 230, -760, 2);
@@ -67,10 +67,53 @@ bool SceneLevel1::Start() {
 	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 412, -995, 1);
 	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 345, -1000, 1);
 
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 458, -1150, 2);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 490, -1150, 6);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 522, -1150, 2);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 453, -1150, 2);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 485, -1150, 2);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 517, -1150, 2);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 443, -1480, 4);
+
 	App->enemies->AddEnemy(ENEMY_TYPE::TRUCK, 540, -1745);
 
+	//Farm
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 355, -1830, 4);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDSOLDIER, 400, -1830, 0);
 
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 460, -1970, 0);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 390, -2060, 4);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 344, -2374, 0);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 430, -2200, 0); 
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 520, -2070, 4);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 567, -2136, 0);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 480, -2200, 0);
 
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 390, -2330, 4);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 530, -2330, 4);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 437, -2444, 4);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 469, -2444, 4);
+
+	//Bridge
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 650, -2900, 0);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 682, -2900, 0);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 897, -2990, 7);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 886, -3329, 4);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 808, -3270, 3);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 751, -3118, 0);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 665, -3097, 2);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 668, -3339, 1);
+
+	//Boss
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 716, -3442, 4);
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 755, -3442, 4);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::GREENSOLDIER, 834, -3700, 4);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BOSS, 800, -3700);
 
