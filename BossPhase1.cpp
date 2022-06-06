@@ -13,7 +13,7 @@
 #include <string>
 #include "SDL/include/SDL.h"
 
-#define BOSSPHASE1_SCORE 100
+#define BOSSPHASE1_SCORE 10000
 
 BossPhase1::BossPhase1(int x, int y) : Enemy(x, y) {
 	topAnimIdle.PushBack({ 96,0,32,32 });

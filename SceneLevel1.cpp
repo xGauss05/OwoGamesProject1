@@ -11,6 +11,7 @@
 #include "ModuleParticles.h"
 #include "ModuleBreakable.h"
 #include "ModuleFonts.h"
+#include "SceneLevel1.h"
 
 #define Y_BG_POSITION -3920
 

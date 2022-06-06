@@ -4,6 +4,8 @@
 #include "Enemy.h"
 #include "Path.h"
 
+#define TRUCK_SCORE 800;
+
 class Enemy_Truck : public Enemy {
 public:
 	// Constructor (x y coordinates in the world)
@@ -25,9 +27,11 @@ private:
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
 	Animation anim;
-	
-	int t1 = 0;
 
+	bool isHit = false;
+	int timerSpawn = 0;
+	int timerInvincible = 0;
+	int explosionInvincible = 2;
 };
 
 #endif // __ENEMY_TRUCK_H__

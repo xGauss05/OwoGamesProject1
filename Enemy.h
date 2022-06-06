@@ -58,7 +58,7 @@ public:
 
 	// The enemy's texture
 	SDL_Texture* texture = nullptr;
-
+	int hits = 0;
 	// Sound fx when destroyed
 	int enemyDeadFx = 0;
 	int enemyShotFx = 0;

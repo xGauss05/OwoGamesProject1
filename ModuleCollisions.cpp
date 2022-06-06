@@ -87,7 +87,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled) {
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::NON_DEST_BAR] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::HOSTAGE] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::EXPLOSION] = false;
-	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::TRUCK] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::TRUCK] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BOSS] = true;
 
 	// -- Enemy shot

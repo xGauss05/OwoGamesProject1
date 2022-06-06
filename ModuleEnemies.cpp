@@ -6,6 +6,8 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
+#include "ModuleParticles.h"
+#include "ModulePlayer.h"
 
 #include <time.h>
 
@@ -18,7 +20,7 @@
 
 #include "Collider.h"
 #define SPAWN_MARGIN	50
-
+#define TRUCK_HITS		300
 ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled) {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 		enemies[i] = nullptr;
@@ -115,30 +117,21 @@ void ModuleEnemies::HandleEnemiesSpawn() {
 				LOG("Spawning enemy at %d", spawnQueue[i].y);
 
 				//Place them according to where they come from, the position passed will be the point where they stop.
-				if (spawnQueue[i].type == ENEMY_TYPE::GREENSOLDIER)
-				{
-					if (spawnQueue[i].behaviour == 1 || spawnQueue[i].behaviour == 5)
-					{
+				if (spawnQueue[i].type == ENEMY_TYPE::GREENSOLDIER) {
+					if (spawnQueue[i].behaviour == 1 || spawnQueue[i].behaviour == 5) {
 						spawnQueue[i].x -= SCREEN_WIDTH;
 						spawnQueue[i].y -= SCREEN_WIDTH;
-					}
-					else if (spawnQueue[i].behaviour == 2 || spawnQueue[i].behaviour == 6 || spawnQueue[i].behaviour == 8)
-					{
+					} else if (spawnQueue[i].behaviour == 2 || spawnQueue[i].behaviour == 6 || spawnQueue[i].behaviour == 8) {
 						spawnQueue[i].y -= SCREEN_WIDTH;
-					}
-					else if (spawnQueue[i].behaviour == 3 || spawnQueue[i].behaviour == 7)
-					{
+					} else if (spawnQueue[i].behaviour == 3 || spawnQueue[i].behaviour == 7) {
 						spawnQueue[i].x += SCREEN_WIDTH;
 						spawnQueue[i].y -= SCREEN_WIDTH;
 					}
-				}
-				else if (spawnQueue[i].type == ENEMY_TYPE::TACKLER)
-				{
+				} else if (spawnQueue[i].type == ENEMY_TYPE::TACKLER) {
 					spawnQueue[i].y -= SCREEN_WIDTH;
 				}
 
-				else if (spawnQueue[i].type == ENEMY_TYPE::BOSS)
-				{
+				else if (spawnQueue[i].type == ENEMY_TYPE::BOSS) {
 					spawnQueue[i].y -= SCREEN_WIDTH;
 				}
 
@@ -207,9 +200,13 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2) {
 			enemies[i]->OnCollision(c2); // Notify the enemy of a collision
 			if (enemies[i]->GetCollider()->type == Collider::Type::TRUCK &&
 				c2->type == Collider::Type::EXPLOSION) {
+				if (enemies[i]->hits >= TRUCK_HITS) {
+					App->player->score += TRUCK_SCORE;
+					App->particles->AddParticle(App->particles->truckAnim, enemies[i]->position.x, enemies[i]->position.y, Collider::Type::NONE);
+					delete enemies[i];
+					enemies[i] = nullptr;
+				}
 
-				delete enemies[i];
-				enemies[i] = nullptr;
 			}
 			if (c1->type != Collider::Type::TRUCK && c1->type != Collider::Type::BOSS) {
 				delete enemies[i];
