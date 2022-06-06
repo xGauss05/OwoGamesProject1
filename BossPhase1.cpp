@@ -83,7 +83,7 @@ void BossPhase1::Update() {
 
 		inOutPath.Update();
 		currentAnimBot = inOutPath.GetCurrentAnimation();
-		position = spawnPos + inOutPath.GetRelativePosition();
+		position = spawnPos + inOutPath.GetRelativePosition() + path.GetRelativePosition();
 
 		inOutTimer++;
 	}
